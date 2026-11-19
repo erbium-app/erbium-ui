@@ -13,7 +13,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import CarouselLightbox from \"../examples/carousel-lightbox\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <CarouselLightbox />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import CarouselLightbox from \"../examples/carousel-lightbox\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <CarouselLightbox />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/carousel/variants/lightbox.tsx",
       "target": "@components/showcase/carousel/variants/lightbox.tsx",
       "type": "registry:component"

@@ -8,7 +8,7 @@ import { cn } from "../lib/utils";
 import { Separator } from "./separator";
 
 const itemGroupVariants = cva(
-  "group/item-group flex w-full flex-col has-[>[data-slot=item][data-selected]]:gap-0 [&>[data-slot=item][data-selected=true]]:rounded-lg [&>[data-slot=item][data-selected=true]]:[--surface-tint:var(--surface-tint-selected)] [&>[data-slot=item][data-selected=true]:has(+[data-slot=item][data-selected=true])]:rounded-b-none [&>[data-slot=item][data-selected=true]+[data-slot=item][data-selected=true]]:rounded-t-none",
+  "group/item-group flex w-full flex-col has-[>[data-slot=item][data-selected]]:gap-0 [&>[data-slot=item][data-selected=true]]:rounded-lg [&>[data-slot=item][data-selected=true]]:[--surface-tint:var(--surface-tint-selected)] [&>[data-slot=item][data-selected=true]+[data-slot=item][data-selected=true]]:rounded-t-none [&>[data-slot=item][data-selected=true]:has(+[data-slot=item][data-selected=true])]:rounded-b-none",
   {
     defaultVariants: {
       variant: "default",
@@ -50,7 +50,7 @@ const ItemSeparator = ({ className, ...props }: React.ComponentProps<typeof Sepa
 );
 
 const itemVariants = cva(
-  "group/item flex w-full flex-wrap items-center rounded-lg border border-transparent text-caption transition-[color,background-color,box-shadow] duration-150 outline-none motion-reduce:transition-none [a]:focus-visible:border-ring [a]:focus-visible:ring-2 [a]:focus-visible:ring-focus-halo group-data-[variant=panel]/item-group:rounded-none group-data-[variant=panel]/item-group:border-0 group-data-[variant=panel]/item-group:bg-transparent group-data-[variant=panel]/item-group:px-panel group-data-[variant=panel]/item-group:py-panel group-data-[variant=panel]/item-group:shadow-none",
+  "group/item flex w-full flex-wrap items-center rounded-lg border border-transparent text-caption transition-[color,background-color,box-shadow] duration-150 outline-none group-data-[variant=panel]/item-group:rounded-none group-data-[variant=panel]/item-group:border-0 group-data-[variant=panel]/item-group:bg-transparent group-data-[variant=panel]/item-group:px-panel group-data-[variant=panel]/item-group:py-panel group-data-[variant=panel]/item-group:shadow-none motion-reduce:transition-none [a]:focus-visible:border-ring [a]:focus-visible:ring-2 [a]:focus-visible:ring-focus-halo",
   {
     defaultVariants: {
       size: "default",
@@ -78,6 +78,7 @@ const Item = ({
   ...props
 }: useRender.ComponentProps<"div"> & VariantProps<typeof itemVariants>) =>
   useRender({
+    render,
     defaultTagName: "div",
     props: mergeProps<"div">(
       {
@@ -85,11 +86,10 @@ const Item = ({
       },
       props,
     ),
-    render,
     state: {
       size,
-      slot: "item",
       variant,
+      slot: "item",
     },
   });
 
@@ -176,7 +176,7 @@ const ItemFooter = ({ className, ...props }: React.ComponentProps<"div">) => (
   <div
     data-slot="item-footer"
     className={cn(
-      "flex basis-full items-center justify-between gap-related rounded-md carve-top bg-footer p-2",
+      "flex basis-full items-center justify-between gap-related rounded-md bg-footer carve-top p-2",
       className,
     )}
     {...props}

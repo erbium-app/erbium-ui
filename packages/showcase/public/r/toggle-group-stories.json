@@ -71,7 +71,7 @@
       "type": "registry:file"
     },
     {
-      "content": "import ExampleToggleGroupDisabled from \"../examples/toggle-group-disabled\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleToggleGroupDisabled />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import ExampleToggleGroupDisabled from \"../examples/toggle-group-disabled\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <ExampleToggleGroupDisabled />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/toggle-group/variants/disabled.tsx",
       "target": "@components/showcase/toggle-group/variants/disabled.tsx",
       "type": "registry:component"
@@ -83,13 +83,13 @@
       "type": "registry:component"
     },
     {
-      "content": "import ExampleToggleGroupOutline from \"../examples/toggle-group-outline\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleToggleGroupOutline />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import ExampleToggleGroupOutline from \"../examples/toggle-group-outline\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <ExampleToggleGroupOutline />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/toggle-group/variants/outline.tsx",
       "target": "@components/showcase/toggle-group/variants/outline.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import ToggleGroupExample from \"../examples/toggle-group-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ToggleGroupExample />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import ToggleGroupExample from \"../examples/toggle-group-demo\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <ToggleGroupExample />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/toggle-group/variants/overview.tsx",
       "target": "@components/showcase/toggle-group/variants/overview.tsx",
       "type": "registry:component"
@@ -107,7 +107,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import ExampleToggleGroupSpacing from \"../examples/toggle-group-spacing\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleToggleGroupSpacing />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import ExampleToggleGroupSpacing from \"../examples/toggle-group-spacing\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <ExampleToggleGroupSpacing />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/toggle-group/variants/spacing.tsx",
       "target": "@components/showcase/toggle-group/variants/spacing.tsx",
       "type": "registry:component"

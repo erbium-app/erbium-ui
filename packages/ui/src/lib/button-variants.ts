@@ -3,7 +3,7 @@ import { cva } from "class-variance-authority";
 /* Each variant names one surface; hover, press, engaged, invalid, and
    disabled states come from the surface itself. */
 const buttonVariants = cva(
-  "group/button inline-flex touch-target [&>[data-slot=spinner]]:order-first shrink-0 items-center justify-center rounded-lg border border-transparent text-control whitespace-nowrap transition-button duration-150 outline-none select-none [--button-shortcut-inset:0.125rem] motion-reduce:transition-none focus-visible:border-ring disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-error aria-invalid:ring-control aria-invalid:ring-invalid-halo dark:aria-invalid:border-invalid [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 data-disabled:pointer-events-none data-disabled:opacity-50 data-[loading]:data-disabled:opacity-100",
+  "group/button touch-target inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent text-control whitespace-nowrap transition-button duration-150 outline-none select-none [--button-shortcut-inset:0.125rem] focus-visible:border-ring disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-error aria-invalid:ring-control aria-invalid:ring-invalid-halo motion-reduce:transition-none dark:aria-invalid:border-invalid data-disabled:pointer-events-none data-disabled:opacity-50 data-[loading]:data-disabled:opacity-100 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 [&>[data-slot=spinner]]:order-first",
   {
     defaultVariants: {
       size: "default",
@@ -19,14 +19,14 @@ const buttonVariants = cva(
         "icon-xs":
           "size-control-xs rounded-button-xs [&_svg:not([class*='size-'])]:size-control-icon-sm",
         lg: "control-size-lg text-control [&_svg:not([class*='size-'])]:size-control-icon-lg",
-        sm: "control-size-sm text-control-sm rounded-button-sm [&_svg:not([class*='size-'])]:size-control-icon-sm",
-        xs: "control-size-xs text-control-sm rounded-button-xs [&_svg:not([class*='size-'])]:size-control-icon-sm",
+        sm: "control-size-sm rounded-button-sm text-control-sm [&_svg:not([class*='size-'])]:size-control-icon-sm",
+        xs: "control-size-xs rounded-button-xs text-control-sm [&_svg:not([class*='size-'])]:size-control-icon-sm",
       },
       variant: {
         default: "surface-fill-primary text-primary-foreground",
         error: "surface-fill-error text-error-foreground focus-visible:border-error-focus",
         embedded:
-          "border-0 bg-transparent text-muted-foreground shadow-none hover:text-foreground active:text-foreground focus-visible:ring-1 focus-visible:ring-ring",
+          "border-0 bg-transparent text-muted-foreground shadow-none hover:text-foreground focus-visible:ring-1 focus-visible:ring-ring active:text-foreground",
         ghost: "surface-flat hover:text-foreground engaged:text-foreground",
         "ghost-error":
           "surface-ghost-error-soft text-error-soft-foreground focus-visible:border-error-focus",

@@ -79,7 +79,7 @@ export const ControlledAccordionExample = () => {
           Close all
         </Button>
       </div>
-      <p className="text-muted-foreground text-caption">
+      <p className="text-caption text-muted-foreground">
         Open items: {value.length > 0 ? value.join(", ") : "None"}
       </p>
     </div>

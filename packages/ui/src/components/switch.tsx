@@ -31,7 +31,7 @@ const Switch = ({
     data-choice=""
     data-size={size}
     className={cn(
-      "peer group/switch @container relative inline-flex shrink-0 items-center rounded-full border px-px border-transparent transition-all outline-none group-has-focus-visible/field-card:not-aria-invalid:border-transparent group-has-focus-visible/field-card:not-aria-invalid:ring-0 after:absolute after:-inset-x-3 after:-inset-y-2 focus-visible:border-ring not-data-disabled:not-data-readonly:active:[--switch-thumb-stretch:1.2] aria-invalid:border-error aria-invalid:ring-[1.5px] aria-invalid:ring-invalid-halo aria-invalid:focus-visible:border-error  motion-reduce:transition-none dark:aria-invalid:border-invalid dark:aria-invalid:focus-visible:border-invalid data-checked:bg-selection data-unchecked:bg-input dark:data-unchecked:bg-input/80 data-disabled:cursor-not-allowed data-disabled:opacity-50",
+      "peer group/switch @container relative inline-flex shrink-0 items-center rounded-full border border-transparent px-px transition-all outline-none group-has-focus-visible/field-card:not-aria-invalid:border-transparent group-has-focus-visible/field-card:not-aria-invalid:ring-0 after:absolute after:-inset-x-3 after:-inset-y-2 focus-visible:border-ring not-data-disabled:not-data-readonly:active:[--switch-thumb-stretch:1.2] aria-invalid:border-error aria-invalid:ring-[1.5px] aria-invalid:ring-invalid-halo aria-invalid:focus-visible:border-error motion-reduce:transition-none dark:aria-invalid:border-invalid dark:aria-invalid:focus-visible:border-invalid data-checked:bg-selection data-unchecked:bg-input dark:data-unchecked:bg-input/80 data-disabled:cursor-not-allowed data-disabled:opacity-50",
       switchGeometryClassName,
       className,
     )}

@@ -18,7 +18,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import ExampleButtonGroupSeparator from \"../examples/button-group-separator\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleButtonGroupSeparator />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import ExampleButtonGroupSeparator from \"../examples/button-group-separator\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <ExampleButtonGroupSeparator />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/button-group/variants/separator.tsx",
       "target": "@components/showcase/button-group/variants/separator.tsx",
       "type": "registry:component"

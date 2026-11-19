@@ -44,7 +44,7 @@ export const DocPageView = ({ page }: { page: DocPage }) => {
             <div className="grow *:last:mb-0">
               <header className="mb-4">
                 <div className="flex items-center justify-between gap-group">
-                  <h1 className="text-display text-foreground min-w-0 wrap-anywhere">
+                  <h1 className="min-w-0 text-display wrap-anywhere text-foreground">
                     {page.title}
                   </h1>
                   <div className="flex shrink-0 gap-(--docs-tight-gap)">
@@ -72,10 +72,10 @@ export const DocPageView = ({ page }: { page: DocPage }) => {
                     )}
                   </div>
                 </div>
-                <p className="max-w-2xl mt-(--docs-description-gap) text-body text-muted-foreground">
+                <p className="mt-(--docs-description-gap) max-w-2xl text-body text-muted-foreground">
                   {page.description}
                 </p>
-                <div className="flex flex-wrap gap-related mt-(--docs-page-action-gap)">
+                <div className="mt-(--docs-page-action-gap) flex flex-wrap gap-related">
                   {page.sourceUrl !== undefined && page.sourceUrl !== "" && (
                     <a
                       href={page.sourceUrl}
@@ -150,7 +150,7 @@ export const DocPageView = ({ page }: { page: DocPage }) => {
                   <h2 id="component-reference-title" className="text-title font-semibold">
                     {page.reference.title}
                   </h2>
-                  <p className="text-body mt-3">{page.reference.description}</p>
+                  <p className="mt-3 text-body">{page.reference.description}</p>
                   <div className="docs-toolbar">
                     {page.reference.links.map((link) => (
                       <a
@@ -169,16 +169,16 @@ export const DocPageView = ({ page }: { page: DocPage }) => {
             </div>
             <nav
               aria-label="Adjacent documentation pages"
-              className="grid grid-cols-2 gap-group mt-12 carve-top pt-6"
+              className="mt-12 grid grid-cols-2 gap-group carve-top pt-6"
             >
               {previousPage === undefined ? (
                 <span />
               ) : (
                 <Link
                   to={previousPage.href}
-                  className={`${buttonVariants({ variant: "outline" })} h-auto min-w-0 items-start py-(--docs-pagination-block) px-4 whitespace-normal flex-col gap-1 text-control`}
+                  className={`${buttonVariants({ variant: "outline" })} h-auto min-w-0 flex-col items-start gap-1 px-4 py-(--docs-pagination-block) text-control whitespace-normal`}
                 >
-                  <span className="flex items-center gap-related text-muted-foreground text-metadata">
+                  <span className="flex items-center gap-related text-metadata text-muted-foreground">
                     <Icon name="arrow-left-01" className="rtl:rotate-180" />
                     Previous
                   </span>
@@ -188,9 +188,9 @@ export const DocPageView = ({ page }: { page: DocPage }) => {
               {nextPage !== undefined && (
                 <Link
                   to={nextPage.href}
-                  className={`${buttonVariants({ variant: "outline" })} h-auto min-w-0 items-end py-(--docs-pagination-block) px-4 whitespace-normal flex-col gap-1 text-end text-control`}
+                  className={`${buttonVariants({ variant: "outline" })} h-auto min-w-0 flex-col items-end gap-1 px-4 py-(--docs-pagination-block) text-end text-control whitespace-normal`}
                 >
-                  <span className="flex items-center gap-related text-muted-foreground text-metadata">
+                  <span className="flex items-center gap-related text-metadata text-muted-foreground">
                     Next
                     <Icon name="arrow-right-01" className="rtl:rotate-180" />
                   </span>

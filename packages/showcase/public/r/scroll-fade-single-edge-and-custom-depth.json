@@ -13,7 +13,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { Fragment } from \"react\";\nimport { Separator } from \"@/registry/erbium/ui/separator\";\n\nimport { rows } from \"../helpers\";\n\nexport default function ScrollFadeSingleEdgeAndCustomDepthExample() {\n  return (\n    <div className=\"w-72 overflow-hidden rounded-lg border surface-panel\">\n      <div className=\"scroll-fade-b-8 h-56 overflow-y-auto px-4\">\n        {rows.map((row, index) => (\n          <Fragment key={row}>\n            {index > 0 ? <Separator /> : null}\n            <div className=\"py-4 text-caption\">Bottom edge only · row {row}</div>\n          </Fragment>\n        ))}\n      </div>\n    </div>\n  );\n}\n",
+      "content": "import { Fragment } from \"react\";\nimport { Separator } from \"@/registry/erbium/ui/separator\";\n\nimport { rows } from \"../helpers\";\n\nexport default function ScrollFadeSingleEdgeAndCustomDepthExample() {\n  return (\n    <div className=\"w-72 overflow-hidden rounded-lg border surface-panel\">\n      <div className=\"h-56 overflow-y-auto px-4 scroll-fade-b-8\">\n        {rows.map((row, index) => (\n          <Fragment key={row}>\n            {index > 0 ? <Separator /> : null}\n            <div className=\"py-4 text-caption\">Bottom edge only · row {row}</div>\n          </Fragment>\n        ))}\n      </div>\n    </div>\n  );\n}\n",
       "path": "src/scroll-fade/variants/single-edge-and-custom-depth.tsx",
       "target": "@components/showcase/scroll-fade/variants/single-edge-and-custom-depth.tsx",
       "type": "registry:component"

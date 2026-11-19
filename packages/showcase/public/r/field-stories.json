@@ -115,25 +115,25 @@
       "type": "registry:file"
     },
     {
-      "content": "import ExampleFieldCheckbox from \"../examples/field-checkbox\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleFieldCheckbox />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import ExampleFieldCheckbox from \"../examples/field-checkbox\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <ExampleFieldCheckbox />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/field/variants/checkbox.tsx",
       "target": "@components/showcase/field/variants/checkbox.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import ExampleFieldChoiceCard from \"../examples/field-choice-card\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleFieldChoiceCard />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import ExampleFieldChoiceCard from \"../examples/field-choice-card\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <ExampleFieldChoiceCard />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/field/variants/choice-card.tsx",
       "target": "@components/showcase/field/variants/choice-card.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import ExampleFieldGroup from \"../examples/field-group\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleFieldGroup />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import ExampleFieldGroup from \"../examples/field-group\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <ExampleFieldGroup />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/field/variants/field-group.tsx",
       "target": "@components/showcase/field/variants/field-group.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import ExampleFieldFieldset from \"../examples/field-fieldset\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleFieldFieldset />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import ExampleFieldFieldset from \"../examples/field-fieldset\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <ExampleFieldFieldset />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/field/variants/fieldset.tsx",
       "target": "@components/showcase/field/variants/fieldset.tsx",
       "type": "registry:component"
@@ -145,13 +145,13 @@
       "type": "registry:component"
     },
     {
-      "content": "import ExampleFieldInput from \"../examples/field-input\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleFieldInput />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import ExampleFieldInput from \"../examples/field-input\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <ExampleFieldInput />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/field/variants/input.tsx",
       "target": "@components/showcase/field/variants/input.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import FieldExample from \"../examples/field-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <FieldExample />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import FieldExample from \"../examples/field-demo\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <FieldExample />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/field/variants/overview.tsx",
       "target": "@components/showcase/field/variants/overview.tsx",
       "type": "registry:component"
@@ -163,13 +163,13 @@
       "type": "registry:component"
     },
     {
-      "content": "import ExampleFieldRadio from \"../examples/field-radio\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleFieldRadio />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import ExampleFieldRadio from \"../examples/field-radio\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <ExampleFieldRadio />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/field/variants/radio.tsx",
       "target": "@components/showcase/field/variants/radio.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import ExampleFieldResponsive from \"../examples/field-responsive\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleFieldResponsive />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import ExampleFieldResponsive from \"../examples/field-responsive\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <ExampleFieldResponsive />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/field/variants/responsive-layout.tsx",
       "target": "@components/showcase/field/variants/responsive-layout.tsx",
       "type": "registry:component"
@@ -181,25 +181,25 @@
       "type": "registry:component"
     },
     {
-      "content": "import ExampleFieldSelect from \"../examples/field-select\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleFieldSelect />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import ExampleFieldSelect from \"../examples/field-select\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <ExampleFieldSelect />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/field/variants/select.tsx",
       "target": "@components/showcase/field/variants/select.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import ExampleFieldSlider from \"../examples/field-slider\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleFieldSlider />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import ExampleFieldSlider from \"../examples/field-slider\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <ExampleFieldSlider />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/field/variants/slider.tsx",
       "target": "@components/showcase/field/variants/slider.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import ExampleFieldSwitch from \"../examples/field-switch\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleFieldSwitch />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import ExampleFieldSwitch from \"../examples/field-switch\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <ExampleFieldSwitch />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/field/variants/switch.tsx",
       "target": "@components/showcase/field/variants/switch.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import ExampleFieldTextarea from \"../examples/field-textarea\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleFieldTextarea />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import ExampleFieldTextarea from \"../examples/field-textarea\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <ExampleFieldTextarea />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/field/variants/textarea.tsx",
       "target": "@components/showcase/field/variants/textarea.tsx",
       "type": "registry:component"

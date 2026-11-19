@@ -22,7 +22,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import ExampleButtonGroupPopover from \"../examples/button-group-popover\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleButtonGroupPopover />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import ExampleButtonGroupPopover from \"../examples/button-group-popover\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <ExampleButtonGroupPopover />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/button-group/variants/popover.tsx",
       "target": "@components/showcase/button-group/variants/popover.tsx",
       "type": "registry:component"

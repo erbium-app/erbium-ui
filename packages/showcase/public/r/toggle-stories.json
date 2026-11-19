@@ -64,19 +64,19 @@
       "type": "registry:component"
     },
     {
-      "content": "import ExampleToggleDisabled from \"../examples/toggle-disabled\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleToggleDisabled />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import ExampleToggleDisabled from \"../examples/toggle-disabled\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <ExampleToggleDisabled />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/toggle/variants/disabled.tsx",
       "target": "@components/showcase/toggle/variants/disabled.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import ExampleToggleOutline from \"../examples/toggle-outline\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleToggleOutline />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import ExampleToggleOutline from \"../examples/toggle-outline\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <ExampleToggleOutline />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/toggle/variants/outline.tsx",
       "target": "@components/showcase/toggle/variants/outline.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import ToggleExample from \"../examples/toggle-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ToggleExample />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import ToggleExample from \"../examples/toggle-demo\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <ToggleExample />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/toggle/variants/overview.tsx",
       "target": "@components/showcase/toggle/variants/overview.tsx",
       "type": "registry:component"

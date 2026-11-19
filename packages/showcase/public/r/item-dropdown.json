@@ -20,7 +20,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import ExampleItemDropdown from \"../examples/item-dropdown\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleItemDropdown />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import ExampleItemDropdown from \"../examples/item-dropdown\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <ExampleItemDropdown />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/item/variants/dropdown.tsx",
       "target": "@components/showcase/item/variants/dropdown.tsx",
       "type": "registry:component"

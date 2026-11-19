@@ -86,7 +86,7 @@ const SheetPanel = ({
           data-slot="sheet-panel"
           data-side={side}
           className={cn(
-            "group/sheet-panel relative flex max-h-full min-h-0 flex-col overflow-hidden surface-modal text-caption text-popover-foreground transition duration-200 ease-in-out data-ending-style:opacity-0 data-starting-style:opacity-0 data-[side=bottom]:row-start-2 data-[side=bottom]:w-full data-[side=bottom]:data-ending-style:translate-y-10 data-[side=bottom]:data-starting-style:translate-y-10 data-[side=left]:h-full data-[side=left]:w-3/4 data-[side=left]:data-ending-style:-translate-x-10 rtl:data-[side=left]:data-ending-style:translate-x-10 data-[side=left]:data-starting-style:-translate-x-10 rtl:data-[side=left]:data-starting-style:translate-x-10 data-[side=right]:h-full data-[side=right]:w-3/4 data-[side=right]:data-ending-style:translate-x-10 rtl:data-[side=right]:data-ending-style:-translate-x-10 data-[side=right]:data-starting-style:translate-x-10 rtl:data-[side=right]:data-starting-style:-translate-x-10 data-[side=top]:w-full data-[side=top]:data-ending-style:-translate-y-10 data-[side=top]:data-starting-style:-translate-y-10 data-[side=left]:sm:max-w-sm data-[side=right]:sm:max-w-sm",
+            "group/sheet-panel relative flex max-h-full min-h-0 flex-col overflow-hidden surface-modal text-caption text-popover-foreground transition duration-200 ease-in-out data-ending-style:opacity-0 data-starting-style:opacity-0 data-[side=bottom]:row-start-2 data-[side=bottom]:w-full data-[side=bottom]:data-ending-style:translate-y-10 data-[side=bottom]:data-starting-style:translate-y-10 data-[side=left]:h-full data-[side=left]:w-3/4 data-[side=left]:data-ending-style:-translate-x-10 data-[side=left]:data-starting-style:-translate-x-10 data-[side=right]:h-full data-[side=right]:w-3/4 data-[side=right]:data-ending-style:translate-x-10 data-[side=right]:data-starting-style:translate-x-10 data-[side=top]:w-full data-[side=top]:data-ending-style:-translate-y-10 data-[side=top]:data-starting-style:-translate-y-10 data-[side=left]:sm:max-w-sm data-[side=right]:sm:max-w-sm rtl:data-[side=left]:data-ending-style:translate-x-10 rtl:data-[side=left]:data-starting-style:translate-x-10 rtl:data-[side=right]:data-ending-style:-translate-x-10 rtl:data-[side=right]:data-starting-style:-translate-x-10",
             className,
           )}
           {...props}
@@ -97,7 +97,7 @@ const SheetPanel = ({
               <SheetPrimitive.Close
                 data-slot="sheet-close"
                 render={
-                  <Button variant="ghost" className="absolute top-3 inset-e-3" size="icon-sm" />
+                  <Button variant="ghost" className="absolute inset-e-3 top-3" size="icon-sm" />
                 }
               >
                 <Icon name="x" />
@@ -155,7 +155,7 @@ const SheetContent = ({ className, children, ...props }: React.ComponentProps<"d
       viewportClassName="min-h-0 flex-1 overscroll-contain"
       viewportRender={<div data-slot="sheet-content" {...props} />}
       contentClassName={cn(
-        "separator-inset p-panel group-has-[[data-slot=sheet-header]]/sheet-panel:pt-1",
+        "p-panel separator-inset group-has-[[data-slot=sheet-header]]/sheet-panel:pt-1",
         className,
       )}
     >

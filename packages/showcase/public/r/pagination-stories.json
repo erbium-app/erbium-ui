@@ -63,7 +63,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import PaginationExample from \"../examples/pagination-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <PaginationExample />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import PaginationExample from \"../examples/pagination-demo\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <PaginationExample />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/pagination/variants/overview.tsx",
       "target": "@components/showcase/pagination/variants/overview.tsx",
       "type": "registry:component"

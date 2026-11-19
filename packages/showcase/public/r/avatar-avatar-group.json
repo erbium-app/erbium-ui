@@ -3,7 +3,7 @@
   "name": "avatar-avatar-group",
   "type": "registry:block",
   "title": "Avatar: Avatar Group",
-  "description": "Use the `AvatarGroup` component to overlap a set of avatars. Each avatar is clipped around the avatar above it, leaving a transparent gap instead of a background-colored ring.\n\n`topmost` chooses which avatar stays whole. It defaults to `last`, which keeps a trailing `<AvatarGroupCount>` intact. Use `topmost=\"first\"` when the first avatar should lead the stack.\n\nAdjust the overlap with `--avatar-overlap` and the cut gap with `--avatar-gap`:\n\n```tsx\n<AvatarGroup className=\"[--avatar-overlap:0.625rem] [--avatar-gap:0.125rem]\">\n  <Avatar>...</Avatar>\n  <Avatar>...</Avatar>\n  <AvatarGroupCount>+3</AvatarGroupCount>\n</AvatarGroup>\n```",
+  "description": "Use the `AvatarGroup` component to overlap a set of avatars. Each avatar is clipped around the avatar above it, leaving a transparent gap instead of a background-colored ring.\n\n`topmost` chooses which avatar stays whole. It defaults to `last`, which keeps a trailing `<AvatarGroupCount>` intact. Use `topmost=\"first\"` when the first avatar should lead the stack.\n\nAdjust the overlap with `--avatar-overlap` and the cut gap with `--avatar-gap`:\n\n```tsx\n<AvatarGroup className=\"[--avatar-gap:0.125rem] [--avatar-overlap:0.625rem]\">\n  <Avatar>...</Avatar>\n  <Avatar>...</Avatar>\n  <AvatarGroupCount>+3</AvatarGroupCount>\n</AvatarGroup>\n```",
   "registryDependencies": ["@erbium/avatar", "@erbium/styles"],
   "files": [
     {

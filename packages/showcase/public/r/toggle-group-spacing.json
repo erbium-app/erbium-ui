@@ -13,7 +13,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import ExampleToggleGroupSpacing from \"../examples/toggle-group-spacing\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleToggleGroupSpacing />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import ExampleToggleGroupSpacing from \"../examples/toggle-group-spacing\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <ExampleToggleGroupSpacing />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/toggle-group/variants/spacing.tsx",
       "target": "@components/showcase/toggle-group/variants/spacing.tsx",
       "type": "registry:component"

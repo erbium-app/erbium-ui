@@ -4,7 +4,7 @@
   "type": "registry:item",
   "title": "Command stories",
   "description": "All command variants as portable React CSF stories.",
-  "dependencies": ["@tanstack/react-hotkeys@^0.27.0"],
+  "dependencies": ["@tanstack/react-hotkeys@^0.27.1"],
   "devDependencies": ["@storybook/react@^10.6.1"],
   "registryDependencies": [
     "@erbium/button",
@@ -73,7 +73,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import CommandExample from \"../examples/command-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <CommandExample />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import CommandExample from \"../examples/command-demo\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <CommandExample />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/command/variants/overview.tsx",
       "target": "@components/showcase/command/variants/overview.tsx",
       "type": "registry:component"

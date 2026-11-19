@@ -10,7 +10,7 @@ const Card = ({
     data-slot="card"
     data-size={size}
     className={cn(
-      "group/card flex flex-col gap-(--card-spacing) overflow-hidden rounded-xl surface-panel py-(--card-spacing) text-caption text-card-foreground [--card-spacing:var(--panel-padding)] has-data-[slot=card-footer]:pb-0 has-[>:is(img,[data-slot=card-media]):last-child]:pb-0 has-[>:is(img,[data-slot=card-media]):first-child]:pt-0 data-[size=sm]:[--card-spacing:var(--panel-padding-compact)]",
+      "group/card flex flex-col gap-(--card-spacing) overflow-hidden rounded-xl surface-panel py-(--card-spacing) text-caption text-card-foreground [--card-spacing:var(--panel-padding)] has-data-[slot=card-footer]:pb-0 has-[>:is(img,[data-slot=card-media]):first-child]:pt-0 has-[>:is(img,[data-slot=card-media]):last-child]:pb-0 data-[size=sm]:[--card-spacing:var(--panel-padding-compact)]",
       className,
     )}
     {...props}
@@ -70,7 +70,7 @@ const CardAction = ({ className, ...props }: React.ComponentProps<"div">) => (
 const CardContent = ({ className, ...props }: React.ComponentProps<"div">) => (
   <div
     data-slot="card-content"
-    className={cn("separator-inset px-(--card-spacing)", className)}
+    className={cn("px-(--card-spacing) separator-inset", className)}
     {...props}
   />
 );

@@ -72,7 +72,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import ExampleCarouselApi from \"../examples/carousel-api\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleCarouselApi />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import ExampleCarouselApi from \"../examples/carousel-api\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <ExampleCarouselApi />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/carousel/variants/api.tsx",
       "target": "@components/showcase/carousel/variants/api.tsx",
       "type": "registry:component"
@@ -90,19 +90,19 @@
       "type": "registry:component"
     },
     {
-      "content": "import CarouselLightbox from \"../examples/carousel-lightbox\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <CarouselLightbox />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import CarouselLightbox from \"../examples/carousel-lightbox\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <CarouselLightbox />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/carousel/variants/lightbox.tsx",
       "target": "@components/showcase/carousel/variants/lightbox.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import ExampleCarouselOrientation from \"../examples/carousel-orientation\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleCarouselOrientation />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import ExampleCarouselOrientation from \"../examples/carousel-orientation\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <ExampleCarouselOrientation />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/carousel/variants/orientation.tsx",
       "target": "@components/showcase/carousel/variants/orientation.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import CarouselExample from \"../examples/carousel-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <CarouselExample />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import CarouselExample from \"../examples/carousel-demo\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <CarouselExample />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/carousel/variants/overview.tsx",
       "target": "@components/showcase/carousel/variants/overview.tsx",
       "type": "registry:component"
@@ -114,13 +114,13 @@
       "type": "registry:component"
     },
     {
-      "content": "import ExampleCarouselSize from \"../examples/carousel-size\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleCarouselSize />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import ExampleCarouselSize from \"../examples/carousel-size\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <ExampleCarouselSize />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/carousel/variants/sizes.tsx",
       "target": "@components/showcase/carousel/variants/sizes.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import ExampleCarouselSpacing from \"../examples/carousel-spacing\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleCarouselSpacing />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import ExampleCarouselSpacing from \"../examples/carousel-spacing\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <ExampleCarouselSpacing />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/carousel/variants/spacing.tsx",
       "target": "@components/showcase/carousel/variants/spacing.tsx",
       "type": "registry:component"

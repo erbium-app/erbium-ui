@@ -46,6 +46,9 @@ const projects = [
   { color: "text-tag-blue", icon: "globe-02", id: "website", issues: 15, name: "Website" },
 ] as const;
 
+const toggleSelection = (current: string[], id: string, checked: boolean) =>
+  checked ? [...current, id] : current.filter((selectedId) => selectedId !== id);
+
 export default function ItemJoinedSelectionExample() {
   const [selected, setSelected] = useState<string[]>([
     "gateway",
@@ -82,11 +85,7 @@ export default function ItemJoinedSelectionExample() {
                 checked={selected.includes(project.id)}
                 aria-label={`Select ${project.name}`}
                 onCheckedChange={(checked) => {
-                  setSelected((current) =>
-                    checked
-                      ? [...current, project.id]
-                      : current.filter((selectedId) => selectedId !== project.id),
-                  );
+                  setSelected((current) => toggleSelection(current, project.id, checked));
                 }}
               />
               <ItemMedia variant="icon">
@@ -102,7 +101,7 @@ export default function ItemJoinedSelectionExample() {
                 </ItemTitle>
               </ItemContent>
               <ItemActions>
-                <span className="tabular-nums text-muted-foreground">{project.issues}</span>
+                <span className="text-muted-foreground tabular-nums">{project.issues}</span>
               </ItemActions>
             </Item>
           );

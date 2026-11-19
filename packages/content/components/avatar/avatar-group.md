@@ -10,7 +10,7 @@ Use the `AvatarGroup` component to overlap a set of avatars. Each avatar is clip
 Adjust the overlap with `--avatar-overlap` and the cut gap with `--avatar-gap`:
 
 ```tsx
-<AvatarGroup className="[--avatar-overlap:0.625rem] [--avatar-gap:0.125rem]">
+<AvatarGroup className="[--avatar-gap:0.125rem] [--avatar-overlap:0.625rem]">
   <Avatar>...</Avatar>
   <Avatar>...</Avatar>
   <AvatarGroupCount>+3</AvatarGroupCount>

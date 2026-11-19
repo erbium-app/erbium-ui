@@ -6,7 +6,7 @@ export default function SeparatorFullWidthExample() {
       <div className="overflow-hidden rounded-lg surface-panel py-3">
         <div className="px-3 pb-3 text-caption">Card header</div>
         <Separator />
-        <div className="separator-inset grid gap-3 p-3 text-caption text-muted-foreground">
+        <div className="grid gap-3 p-3 text-caption text-muted-foreground separator-inset">
           Card content
           <Separator />
           Inset content divider

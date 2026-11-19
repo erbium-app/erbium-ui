@@ -116,11 +116,17 @@ describe("Cascader single", () => {
     await user.click(item("Germany"));
     await user.click(item("Berlin"));
 
-    expect(onValueChange).toHaveBeenCalledTimes(1);
+    expect(onValueChange).toHaveBeenCalledOnce();
     const [value, details] = onValueChange.mock.calls[0] ?? [];
-    expect(value).toBe("berlin");
-    expect(details?.reason).toBe("item-press");
-    expect(details?.path.map((node) => node.value)).toEqual(["europe", "germany", "berlin"]);
+    expect({
+      path: details?.path.map((node) => node.value),
+      reason: details?.reason,
+      value,
+    }).toStrictEqual({
+      path: ["europe", "germany", "berlin"],
+      reason: "item-press",
+      value: "berlin",
+    });
     await waitFor(() => {
       expect(screen.queryByRole("menu")).toBeNull();
     });
@@ -143,7 +149,11 @@ describe("Cascader single", () => {
     };
 
     const onValueChange = vi.fn<NonNullable<CascaderRootSingleProps<Place>["onValueChange"]>>();
-    const filter = vi.fn((node: Place, query: string) => node.code === query);
+
+    const filter = vi.fn<(node: Place, query: string) => boolean>(
+      (node, query) => node.code === query,
+    );
+
     const user = userEvent.setup();
 
     render(
@@ -199,7 +209,7 @@ describe("Cascader single", () => {
 
     const europe = item("Europe");
     expect(europe.dataset.kind).toBe("branch");
-    expect(Object.hasOwn(europe.dataset, "selected")).toBe(true);
+    expect(Object.hasOwn(europe.dataset, "selected")).toBeTruthy();
     expect(screen.getByTestId("count-europe").textContent).toBe(
       "2, 2 options, holds the selection",
     );
@@ -308,17 +318,19 @@ describe("Cascader search", () => {
     await openMenu(user);
 
     const group = screen.getByTestId("search-group");
-    expect(Object.hasOwn(group.dataset, "nested")).toBe(false);
+    expect(Object.hasOwn(group.dataset, "nested")).toBeFalsy();
     await user.click(item("Europe"));
-    expect(Object.hasOwn(group.dataset, "nested")).toBe(true);
+    expect(Object.hasOwn(group.dataset, "nested")).toBeTruthy();
 
     const search = screen.getByRole("searchbox", { name: "Search Europe" });
-    search.blur();
+    act(() => {
+      item("Germany").focus();
+    });
     await user.click(group);
     expect(document.activeElement).toBe(search);
 
     await user.click(screen.getByRole("button", { name: "Back to all options" }));
-    expect(Object.hasOwn(group.dataset, "nested")).toBe(false);
+    expect(Object.hasOwn(group.dataset, "nested")).toBeFalsy();
     expect(document.activeElement).toBe(search);
   });
 
@@ -335,7 +347,7 @@ describe("Cascader search", () => {
     });
     expect(queryItem("Berlin")).toBeNull();
     expect(screen.getByTestId("trail-munich").textContent).toBe("Europe / Germany");
-    expect(Object.hasOwn(item("Munich").dataset, "searchResult")).toBe(true);
+    expect(Object.hasOwn(item("Munich").dataset, "searchResult")).toBeTruthy();
   });
 
   it("goes back with Backspace in an empty field and names the level", async () => {
@@ -364,7 +376,7 @@ describe("Cascader search", () => {
     await openMenu(user);
     await user.type(screen.getByRole("searchbox", { name: "Search options" }), "germ");
     await waitFor(() => {
-      expect(Object.hasOwn(item("Germany").dataset, "highlighted")).toBe(true);
+      expect(Object.hasOwn(item("Germany").dataset, "highlighted")).toBeTruthy();
     });
     await user.keyboard("{ArrowRight}");
 
@@ -409,22 +421,23 @@ describe("Cascader multiple", () => {
     await user.click(item("Munich"));
 
     expect(onValueChange).toHaveBeenLastCalledWith(["berlin", "munich"], expect.anything());
-    expect(screen.getByRole("menu")).toBeDefined();
-    expect(
-      [...container.querySelectorAll<HTMLInputElement>("input[name=places]")].map(
+    expect({
+      menuOpen: screen.queryByRole("menu") !== null,
+      submitted: [...container.querySelectorAll<HTMLInputElement>("input[name=places]")].map(
         (input) => input.value,
       ),
-    ).toEqual(["berlin", "munich"]);
+    }).toStrictEqual({ menuOpen: true, submitted: ["berlin", "munich"] });
 
     await user.click(screen.getByRole("menuitem", { name: "Back" }));
     expect(screen.getByTestId("count-germany").textContent).toBe("2, 2 selected");
 
     await user.click(screen.getByRole("button", { name: "Clear" }));
-    expect(onValueChange).toHaveBeenLastCalledWith(
-      [],
-      expect.objectContaining({ reason: "clear-press" }),
-    );
-    expect(screen.getByRole("button", { name: "Clear" }).hasAttribute("disabled")).toBe(true);
+    const [cleared, clearDetails] = onValueChange.mock.lastCall ?? [];
+    expect({
+      clearDisabled: screen.getByRole("button", { name: "Clear" }).hasAttribute("disabled"),
+      reason: clearDetails?.reason,
+      value: cleared,
+    }).toStrictEqual({ clearDisabled: true, reason: "clear-press", value: [] });
   });
 });
 

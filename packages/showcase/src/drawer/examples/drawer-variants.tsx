@@ -44,7 +44,7 @@ export const CustomSizes = () => (
 
 export const Styling = () => (
   <DrawerExample
-    className="[--drawer-inset:--spacing(4)] [--drawer-bleed-background:transparent] rounded-2xl"
+    className="rounded-2xl [--drawer-bleed-background:transparent] [--drawer-inset:--spacing(4)]"
     label="Open inset drawer"
   />
 );

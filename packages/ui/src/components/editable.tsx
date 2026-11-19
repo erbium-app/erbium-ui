@@ -34,7 +34,7 @@ const Editable = ({ triggerMode = "click", className, ...props }: EditableProps)
     activationMode={triggerMode === "doubleClick" ? "dblclick" : "click"}
     data-slot="editable"
     render={<span />}
-    className={cn("relative inline-grid min-w-[2ch] max-w-full align-middle text-field", className)}
+    className={cn("relative inline-grid max-w-full min-w-[2ch] align-middle text-field", className)}
   />
 );
 
@@ -49,7 +49,7 @@ const EditablePreview = ({ className, ...props }: EditablePreviewProps) => (
   <EditablePrimitive.Preview
     data-slot="editable-preview"
     className={cn(
-      "block w-full min-w-0 truncate border-0 bg-transparent p-0 text-start text-inherit text-editable outline-none disabled:cursor-default not-data-readonly:not-data-disabled:cursor-text data-empty:text-muted-foreground",
+      "block w-full min-w-0 truncate border-0 bg-transparent p-0 text-start text-editable text-inherit outline-none not-data-readonly:not-data-disabled:cursor-text disabled:cursor-default data-empty:text-muted-foreground",
       "opacity-0",
       className,
     )}
@@ -69,7 +69,7 @@ const EditableInput = ({ className, ...props }: EditableInputProps) => (
     type="text"
     data-slot="editable-input"
     className={cn(
-      "absolute inset-0 block size-full min-w-0 rounded-none border-0 bg-transparent p-0 text-start text-inherit text-editable outline-none placeholder:text-muted-foreground not-data-editing:pointer-events-none",
+      "absolute inset-0 block size-full min-w-0 rounded-none border-0 bg-transparent p-0 text-start text-editable text-inherit outline-none not-data-editing:pointer-events-none placeholder:text-muted-foreground",
       className,
     )}
     {...props}

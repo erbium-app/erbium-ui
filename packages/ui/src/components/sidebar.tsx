@@ -70,7 +70,7 @@ const sidebarStyles = {
 
 // Router links mark the current page with `aria-current="page"`, which styles the active row.
 const sidebarMenuButtonVariants = cva(
-  "peer/menu-button group/menu-button flex w-full items-center overflow-hidden rounded-md text-start text-control-sm outline-hidden focus-visible:bg-sidebar-accent focus-visible:text-sidebar-accent-foreground transition-sidebar-size group-has-data-[slot=sidebar-menu-action]/menu-item:pe-8 group-data-[collapsible=icon]:size-control! group-data-[collapsible=icon]:p-0! group-data-[collapsible=icon]:justify-center hover:bg-sidebar-accent hover:text-sidebar-accent-foreground active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-open:hover:bg-sidebar-accent data-open:hover:text-sidebar-accent-foreground aria-[current=page]:bg-sidebar-accent aria-[current=page]:text-sidebar-accent-foreground [&_svg]:size-control-icon [&_svg]:shrink-0 [&>span:last-child]:truncate",
+  "peer/menu-button group/menu-button flex w-full items-center overflow-hidden rounded-md text-start text-control-sm outline-hidden transition-sidebar-size group-has-data-[slot=sidebar-menu-action]/menu-item:pe-8 group-data-[collapsible=icon]:size-control! group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:p-0! hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:bg-sidebar-accent focus-visible:text-sidebar-accent-foreground active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 aria-[current=page]:bg-sidebar-accent aria-[current=page]:text-sidebar-accent-foreground data-open:hover:bg-sidebar-accent data-open:hover:text-sidebar-accent-foreground [&_svg]:size-control-icon [&_svg]:shrink-0 [&>span:last-child]:truncate",
   {
     defaultVariants: {
       size: "default",
@@ -78,9 +78,9 @@ const sidebarMenuButtonVariants = cva(
     },
     variants: {
       size: {
-        default: "control-size touch-target text-control-sm",
-        lg: "control-size-lg touch-target [&_svg]:size-control-icon-lg text-control group-data-[collapsible=icon]:p-0!",
-        sm: "control-size-sm touch-target text-control-sm [&_svg]:size-control-icon-sm",
+        default: "touch-target control-size text-control-sm",
+        lg: "touch-target control-size-lg text-control group-data-[collapsible=icon]:p-0! [&_svg]:size-control-icon-lg",
+        sm: "touch-target control-size-sm text-control-sm [&_svg]:size-control-icon-sm",
       },
       variant: {
         default: "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
@@ -458,6 +458,9 @@ const SidebarRail = ({
   };
 
   return (
+    // The title is a hover hint for the pointer gestures; keyboard users get the
+    // splitter's role, value text and arrow keys.
+    // oxlint-disable-next-line github/a11y-no-title-attribute
     <div
       ref={railRef}
       // A focusable window splitter: `hr` is a non-interactive thematic break and cannot take
@@ -547,11 +550,11 @@ const SidebarRail = ({
         drag.current = {
           direction: railSide(event.currentTarget),
           moved: false,
-          open,
           pointerId: event.pointerId,
-          startWidth,
           startX: event.clientX,
           width: startWidth,
+          open,
+          startWidth,
           wrapper,
         };
       }}
@@ -605,10 +608,10 @@ const SidebarRail = ({
         finishDrag(event);
       }}
       className={cn(
-        "absolute inset-y-0 z-20 hidden w-4 touch-none outline-none transition-all duration-panel ease-ui-out motion-reduce:transition-none group-data-[side=left]:-right-4 group-data-[side=right]:left-0 after:absolute after:inset-y-0 after:inset-s-1/2 after:w-0.5 hover:after:bg-sidebar-border focus-visible:after:bg-ring sm:flex ltr:-translate-x-1/2 rtl:-translate-x-1/2",
+        "absolute inset-y-0 z-20 hidden w-4 touch-none transition-all duration-panel ease-ui-out outline-none group-data-[side=left]:-right-4 group-data-[side=right]:left-0 after:absolute after:inset-y-0 after:inset-s-1/2 after:w-0.5 hover:after:bg-sidebar-border focus-visible:after:bg-ring motion-reduce:transition-none sm:flex ltr:-translate-x-1/2 rtl:-translate-x-1/2",
         "cursor-ew-resize",
         "[[data-side=left][data-state=collapsed]_&]:cursor-e-resize rtl:[[data-side=left][data-state=collapsed]_&]:cursor-w-resize [[data-side=right][data-state=collapsed]_&]:cursor-w-resize rtl:[[data-side=right][data-state=collapsed]_&]:cursor-e-resize",
-        "group-data-[collapsible=offcanvas]:translate-x-0 rtl:group-data-[collapsible=offcanvas]:translate-x-0 group-data-[collapsible=offcanvas]:after:inset-s-full hover:group-data-[collapsible=offcanvas]:bg-sidebar",
+        "group-data-[collapsible=offcanvas]:translate-x-0 group-data-[collapsible=offcanvas]:after:inset-s-full hover:group-data-[collapsible=offcanvas]:bg-sidebar rtl:group-data-[collapsible=offcanvas]:translate-x-0",
         "[[data-side=left][data-collapsible=offcanvas]_&]:-inset-e-2",
         "[[data-side=right][data-collapsible=offcanvas]_&]:-inset-s-2",
         "group-data-resizing/sidebar-wrapper:after:bg-ring",
@@ -701,6 +704,7 @@ const SidebarGroupLabel = ({
   ...props
 }: useRender.ComponentProps<"div"> & React.ComponentProps<"div">) =>
   useRender({
+    render,
     defaultTagName: "div",
     props: mergeProps<"div">(
       {
@@ -708,7 +712,6 @@ const SidebarGroupLabel = ({
       },
       props,
     ),
-    render,
     state: {
       slot: "sidebar-group-label",
     },
@@ -720,17 +723,17 @@ const SidebarGroupAction = ({
   ...props
 }: useRender.ComponentProps<"button"> & React.ComponentProps<"button">) =>
   useRender({
+    render,
     defaultTagName: "button",
     props: mergeProps<"button">(
       {
         className: cn(
-          "absolute top-3.5 end-3 flex aspect-square w-5 items-center justify-center rounded-md p-0 text-sidebar-foreground outline-hidden focus-visible:bg-sidebar-accent focus-visible:text-sidebar-accent-foreground transition-transform group-data-[collapsible=icon]:hidden after:absolute after:-inset-2 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground md:after:hidden [&>svg]:size-4 [&>svg]:shrink-0",
+          "absolute end-3 top-3.5 flex aspect-square w-5 items-center justify-center rounded-md p-0 text-sidebar-foreground outline-hidden transition-transform group-data-[collapsible=icon]:hidden after:absolute after:-inset-2 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:bg-sidebar-accent focus-visible:text-sidebar-accent-foreground md:after:hidden [&>svg]:size-4 [&>svg]:shrink-0",
           className,
         ),
       },
       props,
     ),
-    render,
     state: {
       slot: "sidebar-group-action",
     },
@@ -844,11 +847,12 @@ const SidebarMenuAction = ({
     showOnHover?: boolean;
   }) =>
   useRender({
+    render,
     defaultTagName: "button",
     props: mergeProps<"button">(
       {
         className: cn(
-          "absolute top-1.5 end-1 flex aspect-square w-5 items-center justify-center rounded-md p-0 text-sidebar-foreground outline-hidden focus-visible:bg-sidebar-accent focus-visible:text-sidebar-accent-foreground transition-transform group-data-[collapsible=icon]:hidden peer-hover/menu-button:text-sidebar-accent-foreground peer-data-[size=default]/menu-button:top-1.5 peer-data-[size=lg]/menu-button:top-2.5 peer-data-[size=sm]/menu-button:top-1 after:absolute after:-inset-2 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground md:after:hidden [&>svg]:size-4 [&>svg]:shrink-0",
+          "absolute end-1 top-1.5 flex aspect-square w-5 items-center justify-center rounded-md p-0 text-sidebar-foreground outline-hidden transition-transform group-data-[collapsible=icon]:hidden peer-hover/menu-button:text-sidebar-accent-foreground peer-data-[size=default]/menu-button:top-1.5 peer-data-[size=lg]/menu-button:top-2.5 peer-data-[size=sm]/menu-button:top-1 after:absolute after:-inset-2 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:bg-sidebar-accent focus-visible:text-sidebar-accent-foreground md:after:hidden [&>svg]:size-4 [&>svg]:shrink-0",
           showOnHover &&
             "group-focus-within/menu-item:opacity-100 group-hover/menu-item:opacity-100 peer-aria-[current=page]/menu-button:text-sidebar-accent-foreground aria-expanded:opacity-100 md:opacity-0",
           className,
@@ -856,7 +860,6 @@ const SidebarMenuAction = ({
       },
       props,
     ),
-    render,
     state: {
       slot: "sidebar-menu-action",
     },
@@ -866,7 +869,7 @@ const SidebarMenuBadge = ({ className, ...props }: React.ComponentProps<"div">) 
   <div
     data-slot="sidebar-menu-badge"
     className={cn(
-      "pointer-events-none absolute inset-e-1 flex h-5 min-w-5 items-center justify-center rounded-md px-1 text-control-sm text-sidebar-foreground tabular-nums select-none group-data-[collapsible=icon]:hidden peer-hover/menu-button:text-sidebar-accent-foreground peer-data-[size=default]/menu-button:top-1.5 peer-data-[size=lg]/menu-button:top-2.5 peer-data-[size=sm]/menu-button:top-1 peer-aria-[current=page]/menu-button:text-sidebar-accent-foreground",
+      "pointer-events-none absolute inset-e-1 flex h-5 min-w-5 items-center justify-center rounded-md px-1 text-control-sm text-sidebar-foreground tabular-nums select-none group-data-[collapsible=icon]:hidden peer-hover/menu-button:text-sidebar-accent-foreground peer-aria-[current=page]/menu-button:text-sidebar-accent-foreground peer-data-[size=default]/menu-button:top-1.5 peer-data-[size=lg]/menu-button:top-2.5 peer-data-[size=sm]/menu-button:top-1",
       className,
     )}
     {...props}
@@ -907,7 +910,7 @@ const SidebarMenuSub = ({ className, ...props }: React.ComponentProps<"ul">) => 
   <ul
     data-slot="sidebar-menu-sub"
     className={cn(
-      "mx-3.5 flex min-w-0 translate-x-px rtl:-translate-x-px flex-col gap-1 carve-start px-2.5 py-0.5 group-data-[collapsible=icon]:hidden",
+      "mx-3.5 flex min-w-0 translate-x-px flex-col gap-1 carve-start px-2.5 py-0.5 group-data-[collapsible=icon]:hidden rtl:-translate-x-px",
       className,
     )}
     {...props}
@@ -955,7 +958,7 @@ function SidebarMenuSubButton({
     props: mergeProps(
       {
         className: cn(
-          "flex min-h-control-sm min-w-0 -translate-x-px rtl:translate-x-px items-center gap-related overflow-hidden rounded-md px-2 text-sidebar-foreground outline-hidden focus-visible:bg-sidebar-accent focus-visible:text-sidebar-accent-foreground group-data-[collapsible=icon]:hidden hover:bg-sidebar-accent hover:text-sidebar-accent-foreground active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[size=md]:text-control data-[size=sm]:text-control-sm aria-[current=page]:bg-sidebar-accent aria-[current=page]:text-sidebar-accent-foreground [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0 [&>svg]:text-sidebar-accent-foreground",
+          "flex min-h-control-sm min-w-0 -translate-x-px items-center gap-related overflow-hidden rounded-md px-2 text-sidebar-foreground outline-hidden group-data-[collapsible=icon]:hidden hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:bg-sidebar-accent focus-visible:text-sidebar-accent-foreground active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 aria-[current=page]:bg-sidebar-accent aria-[current=page]:text-sidebar-accent-foreground data-[size=md]:text-control data-[size=sm]:text-control-sm rtl:translate-x-px [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0 [&>svg]:text-sidebar-accent-foreground",
           className,
         ),
       },

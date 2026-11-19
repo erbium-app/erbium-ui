@@ -11,7 +11,6 @@
 
   /* Solid error faces retain the Vitesse hue, capped for contrast with white text. */
   --error-fill: oklch(from var(--error) min(l, 0.54) c h);
-
   --error-focus: color-mix(in oklab, var(--error) 40%, transparent);
   --success-focus: color-mix(in oklab, var(--success) 40%, transparent);
   --warning-focus: color-mix(in oklab, var(--warning) 40%, transparent);

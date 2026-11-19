@@ -91,8 +91,8 @@ const ToastViewport = ({ className, ...props }: ToastPrimitive.Viewport.Props) =
       data-slot="toast-viewport"
       dir={direction}
       className={cn(
-        "group/toast-viewport pointer-events-none fixed inset-x-4 bottom-4 z-50 mx-auto w-auto max-w-sm outline-none sm:inset-e-4 sm:inset-s-auto sm:mx-0 sm:w-full",
-        "data-expanded:inset-x-0 data-expanded:bottom-0 data-expanded:flex data-expanded:max-h-dvh data-expanded:max-w-104 data-expanded:flex-col-reverse data-expanded:scroll-fade-y data-expanded:overflow-y-auto data-expanded:p-panel sm:data-expanded:inset-e-0 sm:data-expanded:inset-s-auto",
+        "group/toast-viewport pointer-events-none fixed inset-x-4 bottom-4 z-50 mx-auto w-auto max-w-sm outline-none sm:inset-s-auto sm:inset-e-4 sm:mx-0 sm:w-full",
+        "data-expanded:inset-x-0 data-expanded:bottom-0 data-expanded:flex data-expanded:max-h-dvh data-expanded:max-w-104 data-expanded:scroll-fade-y data-expanded:flex-col-reverse data-expanded:overflow-y-auto data-expanded:p-panel sm:data-expanded:inset-s-auto sm:data-expanded:inset-e-0",
         className,
       )}
       {...props}
@@ -116,11 +116,11 @@ const Toast = ({
       className={cn(
         "group/toast pointer-events-auto absolute inset-e-0 bottom-0 z-[calc(1000-var(--toast-index))] w-full origin-bottom rounded-2xl border will-change-transform outline-none select-none focus-visible:border-ring",
         toastTypes[toastTypeOf(item)].className,
-        "[--gap:0.75rem] [--height:var(--toast-frontmost-height,var(--toast-height))] [--offset-y:calc(var(--toast-offset-y)*-1+calc(var(--toast-index)*var(--gap)*-1)+var(--toast-swipe-movement-y))] [--peek:0.75rem] [--scale:calc(max(0,1-(var(--toast-index)*0.1)))] [--shrink:calc(1-var(--scale))] [--position-y:calc(var(--toast-swipe-movement-y)-(var(--toast-index)*var(--peek))-(var(--shrink)*var(--height)))]",
+        "[--gap:0.75rem] [--height:var(--toast-frontmost-height,var(--toast-height))] [--offset-y:calc(var(--toast-offset-y)*-1+calc(var(--toast-index)*var(--gap)*-1)+var(--toast-swipe-movement-y))] [--peek:0.75rem] [--position-y:calc(var(--toast-swipe-movement-y)-(var(--toast-index)*var(--peek))-(var(--shrink)*var(--height)))] [--scale:calc(max(0,1-(var(--toast-index)*0.1)))] [--shrink:calc(1-var(--scale))]",
         // Layout moves use `--move`, exits are quicker (200ms), and reduced motion keeps only the fades.
         "[--fade:300ms] [--move:500ms] data-ending-style:[--fade:200ms] data-ending-style:[--move:200ms] motion-reduce:[--move:0ms] motion-reduce:data-ending-style:[--move:0ms]",
-        "h-(--height) touch-pan-y transform-[translateX(var(--toast-swipe-movement-x))_translateY(var(--position-y))_scale(var(--scale))] [transition:transform_var(--move)_cubic-bezier(0.22,1,0.36,1),opacity_var(--fade)_ease-out,height_var(--move)_cubic-bezier(0.22,1,0.36,1),visibility_var(--move)] data-swiping:transition-none",
-        "after:absolute after:top-full after:inset-s-0 after:h-[calc(var(--gap)+1px)] after:w-full after:content-['']",
+        "h-(--height) transform-[translateX(var(--toast-swipe-movement-x))_translateY(var(--position-y))_scale(var(--scale))] touch-pan-y [transition:transform_var(--move)_cubic-bezier(0.22,1,0.36,1),opacity_var(--fade)_ease-out,height_var(--move)_cubic-bezier(0.22,1,0.36,1),visibility_var(--move)] data-swiping:transition-none",
+        "after:absolute after:inset-s-0 after:top-full after:h-[calc(var(--gap)+1px)] after:w-full after:content-['']",
         "data-expanded:h-(--toast-height) data-expanded:[--position-y:var(--offset-y)] data-expanded:[--scale:1]",
         "data-limited:invisible data-limited:opacity-0 [&[data-stack-hidden]:not([data-expanded])]:pointer-events-none [&[data-stack-hidden]:not([data-expanded])]:invisible [&[data-stack-hidden]:not([data-expanded])]:opacity-0",
         "data-starting-style:transform-[translateY(150%)] data-starting-style:opacity-0",

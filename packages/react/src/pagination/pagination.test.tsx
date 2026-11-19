@@ -41,7 +41,7 @@ const Pages = (props: Omit<PaginationRootProps, "children">) => (
 
 const ignorePage = (_page: number) => {};
 
-describe("Pagination", () => {
+describe("Pagination parts", () => {
   it("renders buttons that change the page", async () => {
     const user = userEvent.setup();
     const onPageChange = vi.fn<NonNullable<PaginationRootProps["onPageChange"]>>();
@@ -50,25 +50,29 @@ describe("Pagination", () => {
 
     const first = screen.getByRole("button", { name: "1" });
 
-    expect(first.getAttribute("aria-current")).toBe("page");
-    expect(Object.hasOwn(first.dataset, "current")).toBe(true);
-    expect(screen.getByRole("button", { name: "Go to previous page" })).toHaveProperty(
-      "disabled",
-      true,
-    );
+    expect({
+      ariaCurrent: first.getAttribute("aria-current"),
+      dataCurrent: Object.hasOwn(first.dataset, "current"),
+      previousDisabled: screen.getByRole<HTMLButtonElement>("button", {
+        name: "Go to previous page",
+      }).disabled,
+    }).toStrictEqual({ ariaCurrent: "page", dataCurrent: true, previousDisabled: true });
 
     await user.click(screen.getByRole("button", { name: "Go to next page" }));
 
-    expect(onPageChange.mock.calls[0]?.[0]).toBe(2);
-    expect(onPageChange.mock.calls[0]?.[1].reason).toBe("next-press");
-    expect(screen.getByRole("button", { name: "2" }).getAttribute("aria-current")).toBe("page");
+    const [page, details] = onPageChange.mock.calls[0] ?? [];
+    expect({
+      page,
+      ariaCurrent: screen.getByRole("button", { name: "2" }).getAttribute("aria-current"),
+      reason: details?.reason,
+    }).toStrictEqual({ ariaCurrent: "page", page: 2, reason: "next-press" });
 
     await user.click(screen.getByRole("button", { name: "Go to last page" }));
-    expect(screen.getByRole("button", { name: "10" }).getAttribute("aria-current")).toBe("page");
-    expect(screen.getByRole("button", { name: "Go to next page" })).toHaveProperty(
-      "disabled",
-      true,
-    );
+    expect({
+      ariaCurrent: screen.getByRole("button", { name: "10" }).getAttribute("aria-current"),
+      nextDisabled: screen.getByRole<HTMLButtonElement>("button", { name: "Go to next page" })
+        .disabled,
+    }).toStrictEqual({ ariaCurrent: "page", nextDisabled: true });
   });
 
   it("supports uncontrolled button mode and supplies one prefetch destination per control", async () => {
@@ -107,14 +111,15 @@ describe("Pagination", () => {
     const previous = screen.getByRole("button", { name: "Go to previous page" });
     const next = screen.getByRole("button", { name: "Go to next page" });
 
-    expect(Object.hasOwn(previous.dataset, "intent")).toBe(false);
-    expect(screen.getByRole("button", { name: "1" }).className).toBe("current");
-    expect(next.dataset.intent).toBe("2");
+    expect({
+      currentClass: screen.getByRole("button", { name: "1" }).className,
+      nextIntent: next.dataset.intent,
+      previousHasIntent: Object.hasOwn(previous.dataset, "intent"),
+    }).toStrictEqual({ currentClass: "current", nextIntent: "2", previousHasIntent: false });
 
     await user.click(next);
 
-    expect(previous.dataset.intent).toBe("1");
-    expect(next.dataset.intent).toBe("3");
+    expect([previous.dataset.intent, next.dataset.intent]).toStrictEqual(["1", "3"]);
   });
 
   it("preserves standalone control semantics without a pagination root", () => {
@@ -130,7 +135,7 @@ describe("Pagination", () => {
 
     expect(screen.getByRole("link", { name: "1" }).getAttribute("aria-current")).toBe("page");
     const previous = screen.getByRole("link", { name: "Go to previous page" });
-    expect(previous.hasAttribute("href")).toBe(false);
+    expect(previous.hasAttribute("href")).toBeFalsy();
     expect(previous.getAttribute("aria-disabled")).toBe("true");
     expect(screen.getByRole("button", { name: "Go to next page" })).toHaveProperty(
       "disabled",
@@ -170,7 +175,7 @@ describe("Pagination", () => {
 
     const previous = screen.getByRole("link", { name: "Go to previous page" });
 
-    expect(previous.hasAttribute("href")).toBe(false);
+    expect(previous.hasAttribute("href")).toBeFalsy();
     expect(previous.getAttribute("aria-disabled")).toBe("true");
     expect(screen.getByRole("link", { name: "Go to next page" }).getAttribute("href")).toBe(
       "?page=2",

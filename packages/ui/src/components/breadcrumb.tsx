@@ -15,7 +15,7 @@ import { linkFromTarget, linkTarget } from "./link";
 import type { AnyLinkTargetProps, HrefTargetProps, LinkTargetProps, NoTargetProps } from "./link";
 
 const BreadcrumbNav = ({ className, ...props }: React.ComponentProps<"nav">) => (
-  <nav aria-label="breadcrumb" data-slot="breadcrumb" className={cn(className)} {...props} />
+  <nav aria-label="Breadcrumb" data-slot="breadcrumb" className={cn(className)} {...props} />
 );
 
 const BreadcrumbList = ({ className, ...props }: React.ComponentProps<"ol">) => (
@@ -150,7 +150,7 @@ const OverflowMenu = ({
             <Menu.LinkItem
               key={destinationKey(item)}
               render={destinationLink(item)}
-              className="row-size flex items-center rounded-md text-control-sm wrap-anywhere whitespace-normal outline-none data-highlighted:bg-accent data-highlighted:text-accent-foreground"
+              className="flex row-size items-center rounded-md text-control-sm wrap-anywhere whitespace-normal outline-none data-highlighted:bg-accent data-highlighted:text-accent-foreground"
               closeOnClick
             >
               {item.label}
@@ -307,7 +307,7 @@ const BreadcrumbTrail = ({
       <div
         aria-hidden="true"
         inert
-        className="invisible pointer-events-none absolute inset-0 overflow-clip"
+        className="pointer-events-none invisible absolute inset-0 overflow-clip"
       >
         <BreadcrumbList ref={measureRef} className="w-max flex-nowrap whitespace-nowrap">
           {items.map((item) => (

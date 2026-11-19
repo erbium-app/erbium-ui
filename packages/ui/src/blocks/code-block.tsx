@@ -43,7 +43,7 @@ const CodeBlockToken = ({ token }: { token: CodeToken }) => {
       style={tokenStyle}
       data-italic={htmlStyle?.["font-style"] === "italic" ? "" : undefined}
       data-bold={htmlStyle?.["font-weight"] === "bold" ? "" : undefined}
-      className="text-(--shiki-light,inherit) dark:text-(--shiki-dark,inherit) data-italic:italic data-bold:font-bold"
+      className="text-(--shiki-light,inherit) data-bold:font-bold data-italic:italic dark:text-(--shiki-dark,inherit)"
     >
       {token.content}
     </span>
@@ -138,7 +138,7 @@ const CodeBlockActions = ({ className, ...props }: ComponentProps<"div">) => (
       "absolute end-2 top-2 z-10 flex items-center gap-1 rounded-md bg-surface-panel",
       // Over the source, actions appear on hover or focus so they do not cover code while reading;
       // touch screens have no hover, and a header leaves them room, so both keep them shown.
-      "opacity-0 transition-opacity group-focus-within/code-block:opacity-100 group-hover/code-block:opacity-100 group-has-[[data-slot=code-block-header]]/code-block:opacity-100 pointer-coarse:opacity-100 motion-reduce:transition-none",
+      "opacity-0 transition-opacity group-focus-within/code-block:opacity-100 group-hover/code-block:opacity-100 group-has-[[data-slot=code-block-header]]/code-block:opacity-100 motion-reduce:transition-none pointer-coarse:opacity-100",
       className,
     )}
   />
@@ -185,7 +185,7 @@ const CodeBlockTabs = ({
     <TabsList
       {...props}
       aria-label={label}
-      className={cn("h-7 min-w-0 max-w-full overflow-x-auto", className)}
+      className={cn("h-7 max-w-full min-w-0 overflow-x-auto", className)}
     >
       {children ??
         items.map((item) => (
@@ -258,6 +258,7 @@ const codeLines = (
     const reusable = highlighted !== "" && (options.current || text.startsWith(highlighted));
 
     return {
+      text,
       content: reusable ? (
         <>
           {row.map((token, tokenIndex) => (
@@ -267,7 +268,6 @@ const codeLines = (
         </>
       ) : undefined,
       number: options.lineNumbers ? number : undefined,
-      text,
       tone: calledOut.has(number) ? "highlight" : undefined,
     };
   });
@@ -382,7 +382,7 @@ const CodeBlockContent = ({ className, style, ...props }: CodeBlockContentProps)
 const CodeBlockPanel = ({
   value,
   ...props
-}: Omit<TabsPrimitive.Panel.Props, "children"> & { value: string }) => {
+}: Omit<TabsPrimitive.Panel.Props, "children" | "value"> & { value: string }) => {
   const context = useCodeBlock();
 
   const panelContext = useMemo(
@@ -421,11 +421,11 @@ const CodeBlock = ({
     () =>
       providedItems ?? [
         {
-          code: code ?? "",
           highlightLines,
-          label: title ?? language ?? "Code",
           language,
           tokens,
+          code: code ?? "",
+          label: title ?? language ?? "Code",
           value: "code",
         },
       ],
@@ -452,6 +452,20 @@ const CodeBlock = ({
 
   const hasTabs = providedItems !== undefined && items.length > 0;
   const hasTitle = title !== undefined && title !== "";
+
+  const headerContent = hasTabs ? (
+    <div className="flex min-w-0 items-center gap-related">
+      {sharedIcon ? <CodeBlockIcon className="shrink-0 text-muted-foreground" /> : null}
+      <CodeBlockTabs />
+    </div>
+  ) : (
+    <CodeBlockTitle>
+      <CodeBlockIcon />
+      <span className="truncate">{title}</span>
+    </CodeBlockTitle>
+  );
+
+  const header = hasTabs || hasTitle ? <CodeBlockHeader>{headerContent}</CodeBlockHeader> : null;
 
   return (
     <DirectionProvider direction="ltr">
@@ -480,23 +494,7 @@ const CodeBlock = ({
         >
           {children ?? (
             <>
-              {hasTabs || hasTitle ? (
-                <CodeBlockHeader>
-                  {hasTabs ? (
-                    <div className="flex min-w-0 items-center gap-related">
-                      {sharedIcon ? (
-                        <CodeBlockIcon className="shrink-0 text-muted-foreground" />
-                      ) : null}
-                      <CodeBlockTabs />
-                    </div>
-                  ) : (
-                    <CodeBlockTitle>
-                      <CodeBlockIcon />
-                      <span className="truncate">{title}</span>
-                    </CodeBlockTitle>
-                  )}
-                </CodeBlockHeader>
-              ) : null}
+              {header}
               <CodeBlockActions>
                 <CodeBlockCopyButton />
               </CodeBlockActions>

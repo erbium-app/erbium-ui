@@ -100,7 +100,7 @@ const ScrollBar = ({
     data-visibility={visibility}
     orientation={orientation}
     className={cn(
-      "flex touch-none select-none transition-opacity duration-200 data-[orientation=horizontal]:h-scrollbar-track data-[orientation=horizontal]:flex-col data-[orientation=vertical]:h-full data-[orientation=vertical]:w-scrollbar-track",
+      "flex touch-none transition-opacity duration-200 select-none data-[orientation=horizontal]:h-scrollbar-track data-[orientation=horizontal]:flex-col data-[orientation=vertical]:h-full data-[orientation=vertical]:w-scrollbar-track",
       "data-[visibility=hover]:opacity-0 data-[visibility=hover]:data-hovering:opacity-100 data-[visibility=scroll]:opacity-0 data-[visibility=scroll]:data-scrolling:opacity-100",
       "data-[size=default]:data-[orientation=horizontal]:h-scrollbar-track-default data-[size=default]:data-[orientation=vertical]:w-scrollbar-track-default",
       className,
@@ -145,7 +145,7 @@ const ScrollArea = ({
         render={viewportRender}
         className={scrollAreaViewportVariants({
           className: viewportClassName,
-          fade: fade || "none",
+          fade: fade === undefined || fade === false ? "none" : fade,
         })}
       >
         <ScrollAreaContent className={contentClassName}>{children}</ScrollAreaContent>

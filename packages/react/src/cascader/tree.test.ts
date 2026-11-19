@@ -32,9 +32,9 @@ const index = createCascaderIndex(tree);
 const contains = (text: string, query: string) => text.toLowerCase().includes(query.toLowerCase());
 const match = createMatch(contains);
 
-describe("createCascaderIndex", () => {
+describe(createCascaderIndex, () => {
   it("indexes every node with its path from the top", () => {
-    expect(index.get("munich")?.path.map((node) => node.value)).toEqual([
+    expect(index.get("munich")?.path.map((node) => node.value)).toStrictEqual([
       "europe",
       "germany",
       "munich",
@@ -53,11 +53,11 @@ describe("createCascaderIndex", () => {
   });
 });
 
-describe("getLevelRows", () => {
+describe(getLevelRows, () => {
   it("lists the level's nodes without a query", () => {
     const rows = getLevelRows(tree, "", match);
 
-    expect(rows.map((row) => [row.node.value, row.kind, row.trail.length])).toEqual([
+    expect(rows.map((row) => [row.node.value, row.kind, row.trail.length])).toStrictEqual([
       ["europe", "branch", 0],
       ["antarctica", "leaf", 0],
     ]);
@@ -68,11 +68,11 @@ describe("getLevelRows", () => {
 
     expect(rows).toHaveLength(1);
     expect(rows[0]?.node.value).toBe("munich");
-    expect(rows[0]?.trail.map((node) => node.value)).toEqual(["europe", "germany"]);
+    expect(rows[0]?.trail.map((node) => node.value)).toStrictEqual(["europe", "germany"]);
   });
 
   it("matches branches as well as leaves", () => {
-    expect(getLevelRows(tree, "an", match).map((row) => row.node.value)).toEqual([
+    expect(getLevelRows(tree, "an", match).map((row) => row.node.value)).toStrictEqual([
       "germany",
       "france",
       "antarctica",
@@ -84,13 +84,13 @@ describe("selection helpers", () => {
   it("counts selected leaves below each branch", () => {
     const counts = countSelectedBelow(index, ["berlin", "munich", "paris"]);
 
-    expect(Object.fromEntries(counts)).toEqual({ europe: 3, france: 1, germany: 2 });
+    expect(Object.fromEntries(counts)).toStrictEqual({ europe: 3, france: 1, germany: 2 });
   });
 
   it("finds the level that holds a value and the path that opens a branch", () => {
-    expect(getLevelOf(index, "berlin")).toEqual(["europe", "germany"]);
-    expect(getLevelOf(index, "antarctica")).toEqual([]);
-    expect(getLevelOf(index, undefined)).toEqual([]);
-    expect(getPathTo(index, "germany")).toEqual(["europe", "germany"]);
+    expect(getLevelOf(index, "berlin")).toStrictEqual(["europe", "germany"]);
+    expect(getLevelOf(index, "antarctica")).toStrictEqual([]);
+    expect(getLevelOf(index, undefined)).toStrictEqual([]);
+    expect(getPathTo(index, "germany")).toStrictEqual(["europe", "germany"]);
   });
 });

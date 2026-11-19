@@ -13,7 +13,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import ExampleSpinnerInputGroup from \"../examples/spinner-input-group\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleSpinnerInputGroup />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import ExampleSpinnerInputGroup from \"../examples/spinner-input-group\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <ExampleSpinnerInputGroup />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/spinner/variants/input-group.tsx",
       "target": "@components/showcase/spinner/variants/input-group.tsx",
       "type": "registry:component"

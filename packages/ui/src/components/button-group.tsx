@@ -8,7 +8,7 @@ import { Separator } from "./separator";
 // A fieldset gives the group its native group role. min-w-0 resets the
 // fieldset's min-content minimum inline size.
 const buttonGroupVariants = cva(
-  "m-0 flex w-fit min-w-0 items-stretch border-0 p-0 *:focus-visible:relative *:focus-visible:z-10 has-[>[data-slot=button-group]]:gap-related has-[select[aria-hidden=true]:last-child]:[&>[data-slot=select-trigger]:last-of-type]:rounded-e-lg [&>[data-slot=select-trigger]:not([class*='w-'])]:w-fit [&>[data-slot=input-control]]:flex-1",
+  "m-0 flex w-fit min-w-0 items-stretch border-0 p-0 *:focus-visible:relative *:focus-visible:z-10 has-[>[data-slot=button-group]]:gap-related [&>[data-slot=input-control]]:flex-1 has-[select[aria-hidden=true]:last-child]:[&>[data-slot=select-trigger]:last-of-type]:rounded-e-lg [&>[data-slot=select-trigger]:not([class*='w-'])]:w-fit",
   {
     defaultVariants: {
       orientation: "horizontal",
@@ -16,9 +16,9 @@ const buttonGroupVariants = cva(
     variants: {
       orientation: {
         horizontal:
-          "*:data-slot:rounded-e-none [&>[data-slot]:not(:has(~[data-slot]))]:rounded-e-lg! [&>[data-slot]~[data-slot]]:rounded-s-none [&>[data-slot]~[data-slot]]:-ms-px",
+          "*:data-slot:rounded-e-none [&>[data-slot]:not(:has(~[data-slot]))]:rounded-e-lg! [&>[data-slot]~[data-slot]]:-ms-px [&>[data-slot]~[data-slot]]:rounded-s-none",
         vertical:
-          "flex-col *:data-slot:rounded-b-none [&>[data-slot]:not(:has(~[data-slot]))]:rounded-b-lg! [&>[data-slot]~[data-slot]]:rounded-t-none [&>[data-slot]~[data-slot]]:-mt-px",
+          "flex-col *:data-slot:rounded-b-none [&>[data-slot]:not(:has(~[data-slot]))]:rounded-b-lg! [&>[data-slot]~[data-slot]]:-mt-px [&>[data-slot]~[data-slot]]:rounded-t-none",
       },
     },
   },
@@ -39,6 +39,7 @@ const ButtonGroup = ({
 
 const ButtonGroupText = ({ className, render, ...props }: useRender.ComponentProps<"div">) =>
   useRender({
+    render,
     defaultTagName: "div",
     props: mergeProps<"div">(
       {
@@ -49,7 +50,6 @@ const ButtonGroupText = ({ className, render, ...props }: useRender.ComponentPro
       },
       props,
     ),
-    render,
     state: {
       slot: "button-group-text",
     },

@@ -20,7 +20,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import ExampleButtonGroupSelect from \"../examples/button-group-select\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleButtonGroupSelect />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import ExampleButtonGroupSelect from \"../examples/button-group-select\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <ExampleButtonGroupSelect />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/button-group/variants/select.tsx",
       "target": "@components/showcase/button-group/variants/select.tsx",
       "type": "registry:component"

@@ -110,9 +110,9 @@ const fieldVariants = cva("group/field flex w-full gap-related data-invalid:text
   variants: {
     orientation: {
       horizontal:
-        "flex-row items-center has-[>[data-slot=field-content]]:items-start choice-row:items-start choice-row:*:data-choice:choice-first-line *:data-[slot=field-label]:flex-auto",
+        "flex-row items-center has-[>[data-slot=field-content]]:items-start *:data-[slot=field-label]:flex-auto choice-row:items-start choice-row:*:data-choice:choice-first-line",
       responsive:
-        "flex-col *:w-full @md/field-group:flex-row @md/field-group:items-center @md/field-group:*:w-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:choice-row:items-start @md/field-group:choice-row:*:data-choice:choice-first-line @md/field-group:*:data-[slot=field-label]:flex-auto [&>.sr-only]:w-auto",
+        "flex-col *:w-full @md/field-group:flex-row @md/field-group:items-center @md/field-group:*:w-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:*:data-[slot=field-label]:flex-auto @md/field-group:choice-row:items-start @md/field-group:choice-row:*:data-choice:choice-first-line [&>.sr-only]:w-auto",
       vertical: "flex-col *:w-full [&>.sr-only]:w-auto",
     },
     variant: {
@@ -152,7 +152,7 @@ const Field = ({
 const FieldContent = ({ className, ...props }: React.ComponentProps<"div">) => (
   <div
     data-slot="field-content"
-    className={cn("group/field-content flex flex-1 flex-col gap-0.5 ", className)}
+    className={cn("group/field-content flex flex-1 flex-col gap-0.5", className)}
     {...props}
   />
 );
@@ -164,7 +164,7 @@ const FieldLabel = ({ children, className, ...props }: FieldPrimitive.Label.Prop
     <FieldPrimitive.Label
       data-slot="field-label"
       className={cn(
-        "group/field-label peer/field-label flex w-fit gap-related text-control select-none data-disabled:pointer-events-none data-disabled:opacity-50 group-data-[variant=card]/field:w-full group-data-[variant=card]/field:after:absolute group-data-[variant=card]/field:after:inset-0",
+        "group/field-label peer/field-label flex w-fit gap-related text-control select-none group-data-[variant=card]/field:w-full group-data-[variant=card]/field:after:absolute group-data-[variant=card]/field:after:inset-0 data-disabled:pointer-events-none data-disabled:opacity-50",
         className,
       )}
       {...props}

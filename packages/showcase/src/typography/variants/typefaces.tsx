@@ -38,7 +38,7 @@ export default function TypefacesExample() {
           <CardDescription>Code, commands, and identifiers · Paper</CardDescription>
         </CardHeader>
         <CardContent className="grid gap-group">
-          <pre className="text-code-block overflow-x-auto" dir="ltr">
+          <pre className="overflow-x-auto text-code-block" dir="ltr">
             <code>
               {
                 'const project = { name: "Erbium", members: 12 };\nawait workspace.projects.create(project);'

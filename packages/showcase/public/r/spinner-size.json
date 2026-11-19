@@ -13,7 +13,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import ExampleSpinnerSize from \"../examples/spinner-size\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleSpinnerSize />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import ExampleSpinnerSize from \"../examples/spinner-size\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <ExampleSpinnerSize />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/spinner/variants/size.tsx",
       "target": "@components/showcase/spinner/variants/size.tsx",
       "type": "registry:component"

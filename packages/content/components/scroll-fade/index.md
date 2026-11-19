@@ -18,7 +18,7 @@ The utilities are included in Erbium's global stylesheet. Import it once in your
 Apply `scroll-fade` to the element that owns vertical overflow, or `scroll-fade-x` to a horizontal scroller.
 
 ```tsx
-<div className="scroll-fade h-48 overflow-y-auto">{/* scrollable content */}</div>
+<div className="h-48 scroll-fade overflow-y-auto">{/* scrollable content */}</div>
 ```
 
 The fade dissolves the content through a CSS mask, so it works over any background. It tracks the scroll position with CSS scroll-driven animations and falls back to a static fade in browsers without support.

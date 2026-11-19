@@ -6,9 +6,9 @@ import type { PaginationItem } from "./core";
 const labels = (items: PaginationItem[]) =>
   items.map((item) => (item.type === "page" ? String(item.page) : "…"));
 
-describe("getPagination", () => {
+describe(getPagination, () => {
   it("shows every page when they fit", () => {
-    expect(labels(getPagination({ page: 2, pageCount: 5 }).items)).toEqual([
+    expect(labels(getPagination({ page: 2, pageCount: 5 }).items)).toStrictEqual([
       "1",
       "2",
       "3",
@@ -23,11 +23,11 @@ describe("getPagination", () => {
       (_, index) => getPagination({ page: index + 1, pageCount: 20 }).items.length,
     );
 
-    expect(new Set(counts)).toEqual(new Set([7]));
+    expect(new Set(counts)).toStrictEqual(new Set([7]));
   });
 
   it("places gaps around the sibling window", () => {
-    expect(labels(getPagination({ page: 10, pageCount: 20 }).items)).toEqual([
+    expect(labels(getPagination({ page: 10, pageCount: 20 }).items)).toStrictEqual([
       "1",
       "…",
       "9",
@@ -36,7 +36,7 @@ describe("getPagination", () => {
       "…",
       "20",
     ]);
-    expect(labels(getPagination({ page: 1, pageCount: 20 }).items)).toEqual([
+    expect(labels(getPagination({ page: 1, pageCount: 20 }).items)).toStrictEqual([
       "1",
       "2",
       "3",
@@ -48,7 +48,7 @@ describe("getPagination", () => {
   });
 
   it("shows a single hidden page instead of a gap", () => {
-    expect(labels(getPagination({ page: 4, pageCount: 9 }).items)).toEqual([
+    expect(labels(getPagination({ page: 4, pageCount: 9 }).items)).toStrictEqual([
       "1",
       "2",
       "3",
@@ -62,7 +62,7 @@ describe("getPagination", () => {
   it("honours sibling and boundary counts", () => {
     expect(
       labels(getPagination({ boundaryCount: 2, page: 10, pageCount: 20, siblingCount: 0 }).items),
-    ).toEqual(["1", "2", "…", "10", "…", "19", "20"]);
+    ).toStrictEqual(["1", "2", "…", "10", "…", "19", "20"]);
   });
 
   it("clamps the page and the page count", () => {
@@ -78,11 +78,11 @@ describe("getPagination", () => {
   it("marks the current page and the steps", () => {
     const layout = getPagination({ page: 3, pageCount: 5 });
 
-    expect(layout.items.find((item) => item.type === "page" && item.current)).toEqual({
+    expect(layout.items.find((item) => item.type === "page" && item.current)).toStrictEqual({
       current: true,
       page: 3,
       type: "page",
     });
-    expect([layout.previousPage, layout.nextPage]).toEqual([2, 4]);
+    expect([layout.previousPage, layout.nextPage]).toStrictEqual([2, 4]);
   });
 });

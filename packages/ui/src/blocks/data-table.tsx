@@ -520,6 +520,7 @@ const DataTablePagination = ({
   const rowCount = table.getRowCount();
   const selected = table.getSelectedRowIds().length;
   const sizes = pageSizes.includes(pageSize) ? pageSizes : [pageSize, ...pageSizes];
+  const rowLabel = rowCount === 1 ? "row" : "rows";
 
   return (
     <div
@@ -533,7 +534,7 @@ const DataTablePagination = ({
       <span aria-live="polite" className="tabular-nums">
         {selected > 0
           ? `${selected.toLocaleString()} of ${rowCount.toLocaleString()} selected`
-          : `${rowCount.toLocaleString()} ${rowCount === 1 ? "row" : "rows"}`}
+          : `${rowCount.toLocaleString()} ${rowLabel}`}
       </span>
       <div className="flex flex-wrap items-center gap-related">
         <Select
@@ -585,7 +586,7 @@ const DataTableActionBar = ({ className, children, ...props }: React.ComponentPr
       aria-label="Selected rows"
       data-slot="data-table-action-bar"
       className={cn(
-        "sticky bottom-4 z-10 mx-auto flex w-fit items-center gap-related rounded-xl surface-overlay p-1 ps-3 text-caption animate-in fade-in-0 slide-in-from-bottom-2 motion-reduce:animate-none",
+        "sticky bottom-4 z-10 mx-auto flex w-fit animate-in items-center gap-related rounded-xl surface-overlay p-1 ps-3 text-caption fade-in-0 slide-in-from-bottom-2 motion-reduce:animate-none",
         className,
       )}
       {...props}

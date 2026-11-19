@@ -19,7 +19,7 @@ export default function DrawerNonModalExample() {
           <DrawerTitle>Non Modal Drawer</DrawerTitle>
         </DrawerHeader>
         <DrawerContent>
-          <div className="rounded-2xl bg-muted h-80 w-full" />
+          <div className="h-80 w-full rounded-2xl bg-muted" />
         </DrawerContent>
         <DrawerFooter>
           <DrawerClose render={<Button />}>Close</DrawerClose>

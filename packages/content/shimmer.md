@@ -32,7 +32,7 @@ function AgentStatus() {
 Set the highlight color, sweep duration, band width, or angle with utility classes.
 
 ```tsx
-<p className="shimmer shimmer-color-blue-500/60 shimmer-duration-1000 shimmer-spread-24 shimmer-angle-45">
+<p className="shimmer shimmer-color-blue-500/60 shimmer-angle-45 shimmer-duration-1000 shimmer-spread-24">
   Generating response…
 </p>
 ```

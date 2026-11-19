@@ -60,6 +60,8 @@ const CodePanelCopyButton = ({ children, ...props }: CopyButtonProps) => (
   </CopyButton>
 );
 
+type CodePanelLineTone = "addition" | "deletion" | "highlight" | "separator";
+
 interface CodePanelLine {
   /** The line number shown in the gutter; none when line numbers are off. */
   number?: number;
@@ -70,7 +72,7 @@ interface CodePanelLine {
    * Diff changes, `highlight` to call out a line, or `separator` for the bar a diff draws over
    * collapsed unchanged lines.
    */
-  tone?: "addition" | "deletion" | "highlight" | "separator";
+  tone?: CodePanelLineTone;
 }
 
 // Rows the panel body can show before it scrolls; later rows stay out of view, so plain fallbacks
@@ -150,6 +152,7 @@ const CodePanelLines = ({
         ) : (
           <span
             // Rows are positional: a fallback is replaced, never reordered.
+            // oxlint-disable-next-line react-doctor/no-array-index-as-key
             key={`${index}:${line.number ?? ""}`}
             data-slot="code-panel-line"
             data-tone={line.tone}
@@ -162,7 +165,7 @@ const CodePanelLines = ({
             {numbered ? (
               <span
                 aria-hidden="true"
-                className="shrink-0 select-none text-end text-muted-foreground tabular-nums group-data-[tone=highlight]/line:text-foreground"
+                className="shrink-0 text-end text-muted-foreground tabular-nums select-none group-data-[tone=highlight]/line:text-foreground"
                 style={gutter}
               >
                 {line.number}
@@ -172,7 +175,7 @@ const CodePanelLines = ({
               className={cn(
                 "relative min-w-0",
                 codeClassName ?? "pe-4",
-                wrap ? "whitespace-pre-wrap wrap-break-word" : "whitespace-pre",
+                wrap ? "wrap-break-word whitespace-pre-wrap" : "whitespace-pre",
               )}
               style={codeInset}
             >

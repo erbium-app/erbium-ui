@@ -71,7 +71,7 @@ const AlertDescription = ({ className, ...props }: React.ComponentProps<"div">) 
 );
 
 const AlertAction = ({ className, ...props }: React.ComponentProps<"div">) => (
-  <div data-slot="alert-action" className={cn("absolute top-2 inset-e-2", className)} {...props} />
+  <div data-slot="alert-action" className={cn("absolute inset-e-2 top-2", className)} {...props} />
 );
 
 export { Alert, AlertTitle, AlertDescription, AlertAction };

@@ -5,7 +5,7 @@ import { skeletonBlock } from "../lib/skeleton-hints";
 import { cn } from "../lib/utils";
 
 const toggleVariants = cva(
-  "group/toggle inline-flex items-center justify-center gap-1 rounded-lg border border-transparent text-control whitespace-nowrap transition-[color,background-color,box-shadow] duration-150 outline-none motion-reduce:transition-none hover:text-foreground focus-visible:border-ring disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-error aria-invalid:ring-[1.5px] aria-invalid:ring-invalid-halo aria-invalid:focus-visible:border-error aria-invalid:aria-pressed:border-error aria-invalid:data-[state=on]:border-error engaged:text-foreground dark:aria-invalid:border-invalid dark:aria-invalid:focus-visible:border-invalid dark:aria-invalid:aria-pressed:border-invalid dark:aria-invalid:data-[state=on]:border-invalid [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 data-disabled:pointer-events-none data-disabled:opacity-50",
+  "group/toggle inline-flex items-center justify-center gap-1 rounded-lg border border-transparent text-control whitespace-nowrap transition-[color,background-color,box-shadow] duration-150 outline-none hover:text-foreground focus-visible:border-ring disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-error aria-invalid:ring-[1.5px] aria-invalid:ring-invalid-halo aria-invalid:focus-visible:border-error aria-invalid:aria-pressed:border-error aria-invalid:data-[state=on]:border-error motion-reduce:transition-none dark:aria-invalid:border-invalid dark:aria-invalid:focus-visible:border-invalid dark:aria-invalid:aria-pressed:border-invalid dark:aria-invalid:data-[state=on]:border-invalid data-disabled:pointer-events-none data-disabled:opacity-50 engaged:text-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   {
     defaultVariants: {
       size: "default",
@@ -14,9 +14,9 @@ const toggleVariants = cva(
     variants: {
       size: {
         default:
-          "control-size touch-target min-w-control text-control-sm [&_svg:not([class*='size-'])]:size-control-icon",
-        lg: "control-size-lg touch-target min-w-control-lg text-control [&_svg:not([class*='size-'])]:size-control-icon-lg",
-        sm: "control-size-sm touch-target min-w-control-sm text-control-sm [&_svg:not([class*='size-'])]:size-control-icon-sm",
+          "touch-target control-size min-w-control text-control-sm [&_svg:not([class*='size-'])]:size-control-icon",
+        lg: "touch-target control-size-lg min-w-control-lg text-control [&_svg:not([class*='size-'])]:size-control-icon-lg",
+        sm: "touch-target control-size-sm min-w-control-sm text-control-sm [&_svg:not([class*='size-'])]:size-control-icon-sm",
       },
       variant: {
         /* Flat at rest; selection presses a control surface into its plane. */

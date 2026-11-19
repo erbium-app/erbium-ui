@@ -25,6 +25,8 @@ const attachmentVariants = cva(
   },
 );
 
+type AttachmentState = "idle" | "uploading" | "processing" | "error" | "done";
+
 const Attachment = ({
   className,
   state = "done",
@@ -33,7 +35,7 @@ const Attachment = ({
   ...props
 }: React.ComponentProps<"div"> &
   VariantProps<typeof attachmentVariants> & {
-    state?: "idle" | "uploading" | "processing" | "error" | "done";
+    state?: AttachmentState;
   }) => (
   <div
     data-slot="attachment"
@@ -112,7 +114,7 @@ const AttachmentActions = ({ className, ...props }: React.ComponentProps<"div">)
   <div
     data-slot="attachment-actions"
     className={cn(
-      "relative z-20 flex shrink-0 items-center group-data-[orientation=vertical]/attachment:absolute group-data-[orientation=vertical]/attachment:top-3 group-data-[orientation=vertical]/attachment:inset-e-3 group-data-[orientation=vertical]/attachment:gap-1",
+      "relative z-20 flex shrink-0 items-center group-data-[orientation=vertical]/attachment:absolute group-data-[orientation=vertical]/attachment:inset-e-3 group-data-[orientation=vertical]/attachment:top-3 group-data-[orientation=vertical]/attachment:gap-1",
       className,
     )}
     {...props}
@@ -141,6 +143,7 @@ const AttachmentTrigger = ({
   ...props
 }: useRender.ComponentProps<"button">) =>
   useRender({
+    render,
     defaultTagName: "button",
     props: mergeProps<"button">(
       {
@@ -149,7 +152,6 @@ const AttachmentTrigger = ({
       },
       props,
     ),
-    render,
     state: {
       slot: "attachment-trigger",
     },

@@ -110,7 +110,7 @@ const DatePicker = (props: DatePickerProps) => {
   const [input, setInput] = React.useState<HTMLInputElement | null>(null);
 
   // The first pick of each open session starts a new range; the second ends it.
-  const pendingFrom = React.useRef<Date | undefined>(undefined);
+  const pendingFrom = React.useRef<Date | null>(null);
 
   // The last value the picker set itself. A different value came from outside
   // (presets, resets), so the calendar moves to its month.
@@ -144,7 +144,7 @@ const DatePicker = (props: DatePickerProps) => {
         setUncontrolledValue(next);
       }
 
-      onRangeChange?.(next instanceof Date ? { from: next, to: undefined } : next);
+      onRangeChange?.(next instanceof Date ? { from: next } : next);
       onSingleChange?.(next instanceof Date ? next : next?.from);
     };
 
@@ -154,7 +154,7 @@ const DatePicker = (props: DatePickerProps) => {
       }
 
       if (next) {
-        pendingFrom.current = undefined;
+        pendingFrom.current = null;
         setMonth(startOf(value) ?? new Date());
       }
 
@@ -166,7 +166,7 @@ const DatePicker = (props: DatePickerProps) => {
       if (mode === "range") {
         const from = pendingFrom.current;
 
-        pendingFrom.current = from ? undefined : day;
+        pendingFrom.current = from ? null : day;
 
         if (!from) {
           setValue({ from: day });
@@ -346,7 +346,7 @@ const DatePickerTrigger = ({
       data-placeholder={context.text === "" ? "" : undefined}
       disabled={context.disabled}
       className={cn(
-        "flex w-fit min-w-0 items-center gap-control-gap control-size touch-target rounded-lg border surface-control text-control-sm whitespace-nowrap transition-[color,background-color,box-shadow] duration-150 outline-none select-none motion-reduce:transition-none aria-invalid:border-error aria-invalid:ring-[1.5px] aria-invalid:ring-invalid-halo data-placeholder:text-muted-foreground data-disabled:cursor-not-allowed data-disabled:opacity-50 dark:aria-invalid:border-invalid [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-control-icon",
+        "touch-target flex control-size w-fit min-w-0 items-center gap-control-gap rounded-lg border surface-control text-control-sm whitespace-nowrap transition-[color,background-color,box-shadow] duration-150 outline-none select-none aria-invalid:border-error aria-invalid:ring-[1.5px] aria-invalid:ring-invalid-halo data-placeholder:text-muted-foreground motion-reduce:transition-none dark:aria-invalid:border-invalid data-disabled:cursor-not-allowed data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-control-icon",
         className,
       )}
       {...props}

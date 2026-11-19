@@ -20,7 +20,7 @@ const dayButtonClassName = cn(
   "relative size-(--cell-size) rounded-(--cell-radius) p-0 text-control-sm font-normal focus-visible:z-10",
   "in-data-outside:not-in-data-selected:text-muted-foreground",
   "in-data-disabled:line-through",
-  "in-[.range-start:not(.range-end)]:rounded-e-none in-[.range-end:not(.range-start)]:rounded-s-none in-[.range-middle]:rounded-none",
+  "in-[.range-end:not(.range-start)]:rounded-s-none in-[.range-middle]:rounded-none in-[.range-start:not(.range-end)]:rounded-e-none",
   // Today is a dot under the number in the button's text colour.
   "in-data-today:after:pointer-events-none in-data-today:after:absolute in-data-today:after:inset-x-0 in-data-today:after:bottom-1 in-data-today:after:mx-auto in-data-today:after:size-0.75 in-data-today:after:rounded-full in-data-today:after:bg-current",
 );

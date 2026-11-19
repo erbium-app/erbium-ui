@@ -55,15 +55,19 @@ export const TableOfContents = ({
       }
     };
 
-    window.addEventListener("scroll", schedule, { passive: true });
-    window.addEventListener("resize", schedule);
+    // The bottom-of-page check depends on the scroll position itself, which no
+    // observer reports; `schedule` already throttles the work to one frame.
+    // oxlint-disable-next-line github/prefer-observers
+    window.addEventListener("scroll", schedule);
     window.addEventListener("hashchange", schedule);
+    const resize = new ResizeObserver(schedule);
+    resize.observe(document.documentElement);
     schedule();
 
     return () => {
       window.removeEventListener("scroll", schedule);
-      window.removeEventListener("resize", schedule);
       window.removeEventListener("hashchange", schedule);
+      resize.disconnect();
       cancelAnimationFrame(frame);
     };
   }, []);
@@ -75,7 +79,7 @@ export const TableOfContents = ({
   return (
     <aside className="docs-toc text-control">
       <nav ref={nav} aria-label="Table of contents">
-        <ul className="list-none m-0 p-0">
+        <ul className="m-0 list-none p-0">
           {headings.map((heading) => (
             <li key={heading.id}>
               <a href={`#${heading.id}`}>{heading.title}</a>

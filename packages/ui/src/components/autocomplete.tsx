@@ -55,7 +55,7 @@ const autocompleteFieldVariants = cva("", {
 });
 
 const autocompleteActionVariants = cva(
-  "absolute top-1/2 inline-flex size-control-sm shrink-0 -translate-y-1/2 cursor-pointer items-center justify-center rounded-md border border-transparent opacity-80 outline-none transition-colors touch-target hover:opacity-100 has-[+[data-slot=autocomplete-clear]]:hidden [&_svg:not([class*='size-'])]:size-4.5 sm:[&_svg:not([class*='size-'])]:size-control-icon [&_svg]:pointer-events-none [&_svg]:shrink-0",
+  "touch-target absolute top-1/2 inline-flex size-control-sm shrink-0 -translate-y-1/2 cursor-pointer items-center justify-center rounded-md border border-transparent opacity-80 transition-colors outline-none hover:opacity-100 has-[+[data-slot=autocomplete-clear]]:hidden [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4.5 sm:[&_svg:not([class*='size-'])]:size-control-icon",
   {
     variants: {
       size: {
@@ -83,7 +83,7 @@ export const AutocompleteClear = ({
 }: AutocompletePrimitive.Clear.Props): React.ReactElement => (
   <AutocompletePrimitive.Clear
     className={cn(
-      "absolute inset-e-0.5 top-1/2 inline-flex size-control-sm shrink-0 -translate-y-1/2 cursor-pointer items-center justify-center rounded-md border border-transparent opacity-80 outline-none transition-[color,background-color,box-shadow,opacity] touch-target hover:opacity-100 [&_svg:not([class*='size-'])]:size-4.5 sm:[&_svg:not([class*='size-'])]:size-control-icon [&_svg]:pointer-events-none [&_svg]:shrink-0",
+      "touch-target absolute inset-e-0.5 top-1/2 inline-flex size-control-sm shrink-0 -translate-y-1/2 cursor-pointer items-center justify-center rounded-md border border-transparent opacity-80 transition-[color,background-color,box-shadow,opacity] outline-none hover:opacity-100 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4.5 sm:[&_svg:not([class*='size-'])]:size-control-icon",
       className,
     )}
     data-slot="autocomplete-clear"
@@ -92,6 +92,8 @@ export const AutocompleteClear = ({
     <Icon name="x" />
   </AutocompletePrimitive.Clear>
 );
+
+type AutocompleteInputSize = "sm" | "default" | "lg" | number;
 
 export const AutocompleteInput = ({
   className,
@@ -106,7 +108,7 @@ export const AutocompleteInput = ({
   showTrigger?: boolean;
   showClear?: boolean;
   startAddon?: React.ReactNode;
-  size?: "sm" | "default" | "lg" | number;
+  size?: AutocompleteInputSize;
   ref?: React.Ref<HTMLInputElement>;
   triggerProps?: AutocompletePrimitive.Trigger.Props;
   clearProps?: AutocompletePrimitive.Clear.Props;
@@ -117,14 +119,14 @@ export const AutocompleteInput = ({
 
   return (
     <AutocompletePrimitive.InputGroup
-      className="relative not-has-[>*.w-full]:w-fit w-full text-foreground has-disabled:opacity-64"
+      className="relative w-full text-foreground not-has-[>*.w-full]:w-fit has-disabled:opacity-64"
       data-slot="autocomplete-input-group"
     >
       {hasStartAddon && (
         <div
           aria-hidden="true"
           className={cn(
-            "pointer-events-none absolute inset-y-0 inset-s-px z-10 flex items-center opacity-80 [&_svg:not([class*='size-'])]:size-4.5 sm:[&_svg:not([class*='size-'])]:size-control-icon [&_svg]:-mx-0.5",
+            "pointer-events-none absolute inset-y-0 inset-s-px z-10 flex items-center opacity-80 [&_svg]:-mx-0.5 [&_svg:not([class*='size-'])]:size-4.5 sm:[&_svg:not([class*='size-'])]:size-control-icon",
             visualSize === "sm" ? "ps-[calc(--spacing(2.5)-1px)]" : "ps-[calc(--spacing(3)-1px)]",
           )}
           data-slot="autocomplete-start-addon"
@@ -194,12 +196,12 @@ export const AutocompletePopup = ({
     >
       <span
         className={cn(
-          "relative flex min-h-0 max-h-full min-w-(--anchor-width) max-w-(--available-width) origin-(--transform-origin) overflow-hidden rounded-lg surface-overlay transition-[scale,opacity]",
+          "relative flex max-h-full min-h-0 max-w-(--available-width) min-w-(--anchor-width) origin-(--transform-origin) overflow-hidden rounded-lg surface-overlay transition-[scale,opacity]",
           className,
         )}
       >
         <AutocompletePrimitive.Popup
-          className="flex min-h-0 max-h-[min(var(--available-height),23rem)] flex-1 flex-col text-foreground"
+          className="flex max-h-[min(var(--available-height),23rem)] min-h-0 flex-1 flex-col text-foreground"
           data-slot="autocomplete-popup"
           {...props}
         >
@@ -217,7 +219,7 @@ export const AutocompleteItem = ({
 }: AutocompletePrimitive.Item.Props): React.ReactElement => (
   <AutocompletePrimitive.Item
     className={cn(
-      "flex cursor-default select-none items-center rounded-md row-size text-control-sm outline-none data-disabled:pointer-events-none data-highlighted:bg-accent data-highlighted:text-accent-foreground data-disabled:opacity-64",
+      "flex row-size cursor-default items-center rounded-md text-control-sm outline-none select-none data-highlighted:bg-accent data-highlighted:text-accent-foreground data-disabled:pointer-events-none data-disabled:opacity-64",
       className,
     )}
     data-slot="autocomplete-item"
@@ -255,7 +257,7 @@ export const AutocompleteGroupLabel = ({
   ...props
 }: AutocompletePrimitive.GroupLabel.Props): React.ReactElement => (
   <AutocompletePrimitive.GroupLabel
-    className={cn("px-2 py-1.5 text-muted-foreground text-control-sm", className)}
+    className={cn("px-2 py-1.5 text-control-sm text-muted-foreground", className)}
     data-slot="autocomplete-group-label"
     {...props}
   />
@@ -267,7 +269,7 @@ export const AutocompleteEmpty = ({
 }: AutocompletePrimitive.Empty.Props): React.ReactElement => (
   <AutocompletePrimitive.Empty
     className={cn(
-      "not-empty:p-2 text-center text-caption text-muted-foreground empty:p-0",
+      "text-center text-caption text-muted-foreground not-empty:p-2 empty:p-0",
       className,
     )}
     data-slot="autocomplete-empty"
@@ -289,7 +291,7 @@ export const AutocompleteList = ({
   ...props
 }: AutocompletePrimitive.List.Props): React.ReactElement => (
   <ScrollArea
-    className="flex min-h-0 max-h-72 flex-col overflow-hidden overscroll-contain"
+    className="flex max-h-72 min-h-0 flex-col overflow-hidden overscroll-contain"
     fade="vertical"
     scrollbar="thin"
     viewportClassName="min-h-0 max-h-72 flex-1 overflow-x-hidden! scroll-py-1"
@@ -307,7 +309,7 @@ export const AutocompleteStatus = ({
   ...props
 }: AutocompletePrimitive.Status.Props): React.ReactElement => (
   <AutocompletePrimitive.Status
-    className={cn("px-3 py-2 text-muted-foreground text-control-sm empty:m-0 empty:p-0", className)}
+    className={cn("px-3 py-2 text-control-sm text-muted-foreground empty:m-0 empty:p-0", className)}
     data-slot="autocomplete-status"
     {...props}
   />

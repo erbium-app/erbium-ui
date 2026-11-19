@@ -12,7 +12,7 @@ export default function MarkerShimmerExample() {
   return (
     <figure
       aria-label="Shimmer in an agent conversation"
-      className="w-full min-w-0 max-w-lg rounded-xl border bg-background p-4 sm:p-6"
+      className="w-full max-w-lg min-w-0 rounded-xl border bg-background p-4 sm:p-6"
     >
       <MessageGroup className="gap-6">
         <Message align="end">

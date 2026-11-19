@@ -21,34 +21,34 @@ const rule = (overrides: Partial<FilterRule> & Pick<FilterRule, "type">): Filter
   ...overrides,
 });
 
-describe("matchesRule", () => {
+describe(matchesRule, () => {
   it("matches text without case", () => {
-    expect(matchesRule("Fix the API", rule({ type: "text", values: ["api"] }))).toBe(true);
+    expect(matchesRule("Fix the API", rule({ type: "text", values: ["api"] }))).toBeTruthy();
     expect(
       matchesRule(
         "Fix the API",
         rule({ operator: "doesNotContain", type: "text", values: ["api"] }),
       ),
-    ).toBe(false);
+    ).toBeFalsy();
   });
 
   it("matches number ranges with open and reversed ends", () => {
     const between = (values: FilterRule["values"]) =>
       rule({ operator: "between", type: "number", values });
 
-    expect(matchesRule(5, between([2, 8]))).toBe(true);
-    expect(matchesRule(5, between([8, 2]))).toBe(true);
-    expect(matchesRule(9, between([2, null]))).toBe(true);
-    expect(matchesRule("7", rule({ operator: "lessThan", type: "number", values: [5] }))).toBe(
-      false,
-    );
+    expect(matchesRule(5, between([2, 8]))).toBeTruthy();
+    expect(matchesRule(5, between([8, 2]))).toBeTruthy();
+    expect(matchesRule(9, between([2, null]))).toBeTruthy();
+    expect(
+      matchesRule("7", rule({ operator: "lessThan", type: "number", values: [5] })),
+    ).toBeFalsy();
   });
 
   it("matches dates by local day", () => {
     const after = rule({ operator: "onOrAfter", type: "date", values: ["2026-03-01"] });
 
-    expect(matchesRule(new Date(2026, 2, 1, 23), after)).toBe(true);
-    expect(matchesRule("2026-02-28T10:00:00", after)).toBe(false);
+    expect(matchesRule(new Date(2026, 2, 1, 23), after)).toBeTruthy();
+    expect(matchesRule("2026-02-28T10:00:00", after)).toBeFalsy();
   });
 
   it("matches option sets and lets rows without a value pass only negative operators", () => {
@@ -57,15 +57,15 @@ describe("matchesRule", () => {
         ["a", "b"],
         rule({ operator: "includesAllOf", type: "multiOption", values: ["a", "b"] }),
       ),
-    ).toBe(true);
-    expect(matchesRule("c", rule({ type: "option", values: ["a", "b"] }))).toBe(false);
-    expect(matchesRule(undefined, rule({ operator: "isNot", type: "number", values: [1] }))).toBe(
-      true,
-    );
+    ).toBeTruthy();
+    expect(matchesRule("c", rule({ type: "option", values: ["a", "b"] }))).toBeFalsy();
+    expect(
+      matchesRule(undefined, rule({ operator: "isNot", type: "number", values: [1] })),
+    ).toBeTruthy();
   });
 
   it("matches everything while a rule has no values", () => {
-    expect(matchesRule("anything", rule({ type: "text", values: [""] }))).toBe(true);
+    expect(matchesRule("anything", rule({ type: "text", values: [""] }))).toBeTruthy();
   });
 });
 
@@ -73,10 +73,10 @@ describe("operators", () => {
   it("keeps the values that still apply", () => {
     const range = rule({ operator: "between", type: "number", values: [1, 9] });
 
-    expect(changeOperator(range, "is").values).toEqual([1]);
-    expect(changeOperator(rule({ type: "option", values: ["a", "b"] }), "isNoneOf").values).toEqual(
-      ["a", "b"],
-    );
+    expect(changeOperator(range, "is").values).toStrictEqual([1]);
+    expect(
+      changeOperator(rule({ type: "option", values: ["a", "b"] }), "isNoneOf").values,
+    ).toStrictEqual(["a", "b"]);
   });
 
   it("reads option operators as is and is not with one value, and takes replacement words", () => {
@@ -92,11 +92,11 @@ describe("table filter function", () => {
   it("reads the row value and treats non-rules as no filter", () => {
     const row = { getValue: (columnId: string) => (columnId === "status" ? "paid" : 3) };
 
-    expect(filterFn_rule(row, "status", rule({ type: "option", values: ["paid"] }))).toBe(true);
-    expect(filterFn_rule(row, "status", rule({ type: "option", values: ["open"] }))).toBe(false);
-    expect(filterFn_rule(row, "status", "not a rule")).toBe(true);
-    expect(filterFn_rule.autoRemove(undefined)).toBe(true);
-    expect(filterFn_rule.autoRemove(rule({ type: "text" }))).toBe(false);
+    expect(filterFn_rule(row, "status", rule({ type: "option", values: ["paid"] }))).toBeTruthy();
+    expect(filterFn_rule(row, "status", rule({ type: "option", values: ["open"] }))).toBeFalsy();
+    expect(filterFn_rule(row, "status", "not a rule")).toBeTruthy();
+    expect(filterFn_rule.autoRemove(undefined)).toBeTruthy();
+    expect(filterFn_rule.autoRemove(rule({ type: "text" }))).toBeFalsy();
   });
 });
 
@@ -113,7 +113,7 @@ const fieldAt = (filters: Filters, position: number) => {
 const setup = (initial: FilterState) => {
   let state = initial;
 
-  const setState = vi.fn((update: (last: FilterState) => FilterState) => {
+  const setState = vi.fn<(update: (last: FilterState) => FilterState) => void>((update) => {
     state = update(state);
   });
 
@@ -158,8 +158,8 @@ describe("createFilters and field actions", () => {
 
     const filters = build();
 
-    expect(filters.active.map((field) => field.id)).toEqual(["title", "status"]);
-    expect(filters.fields[2]?.options.map((option) => option.value)).toEqual(["a", "b"]);
+    expect(filters.active.map((field) => field.id)).toStrictEqual(["title", "status"]);
+    expect(filters.fields[2]?.options.map((option) => option.value)).toStrictEqual(["a", "b"]);
     expect(filters.fields[2]?.counts?.get("b")).toBe(2);
   });
 
@@ -169,11 +169,11 @@ describe("createFilters and field actions", () => {
 
     getFieldActions(status()).toggleOption("paid", true);
     getFieldActions(status()).toggleOption("open", true);
-    expect(getRuleValues(status())).toEqual(["Paid", "Open"]);
+    expect(getRuleValues(status())).toStrictEqual(["Paid", "Open"]);
 
     getFieldActions(status()).toggleOption("paid", false);
     getFieldActions(status()).toggleOption("open", false);
-    expect(state()).toEqual([]);
+    expect(state()).toStrictEqual([]);
   });
 
   it("sets one value of a range, keeps a changed rule in place, and clears its own rules", () => {
@@ -183,7 +183,7 @@ describe("createFilters and field actions", () => {
     ]);
 
     getFieldActions(fieldAt(build(), 1)).setValue(1, "end");
-    expect(state()[2]?.value).toEqual(rule({ type: "text", values: [null, "end"] }));
+    expect(state()[2]?.value).toStrictEqual(rule({ type: "text", values: [null, "end"] }));
 
     getFieldActions(fieldAt(build(), 0)).setOperator("isNoneOf");
     expect(state()[0]?.id).toBe("status");
@@ -191,7 +191,7 @@ describe("createFilters and field actions", () => {
     getFieldActions(fieldAt(build(), 1)).setValues([""]);
     getFieldActions(fieldAt(build(), 1)).removeIfEmpty();
     build().clear();
-    expect(state()).toEqual([{ id: "other", value: 1 }]);
+    expect(state()).toStrictEqual([{ id: "other", value: 1 }]);
   });
 });
 
@@ -211,16 +211,18 @@ describe("URL codec", () => {
 
     const search = toFilterSearch(state, fields);
 
-    expect(search).toEqual({
+    expect(search).toStrictEqual({
       estimate: "between.2,",
       status: "to%2Cdo,done",
       title: "contains.is.done",
     });
-    expect(parseFilterSearch(search, fields)).toEqual(state);
+    expect(parseFilterSearch(search, fields)).toStrictEqual(state);
   });
 
   it("drops values that do not fit and writes numbers as numbers", () => {
-    expect(validateFilterSearch({ estimate: "lots", status: "paid", title: 3 }, fields)).toEqual({
+    expect(
+      validateFilterSearch({ estimate: "lots", status: "paid", title: 3 }, fields),
+    ).toStrictEqual({
       status: "paid",
       title: 3,
     });

@@ -67,7 +67,7 @@ const CopyButtonIcon = ({
       {pending && (
         <Spinner
           size="sm"
-          className="place-self-center group-[:is([data-size=xs],[data-size=sm],[data-size=icon-xs],[data-size=icon-sm])]/button:size-control-icon-sm group-[:is([data-size=lg],[data-size=icon-lg])]/button:size-control-icon-lg"
+          className="place-self-center group-[:is([data-size=lg],[data-size=icon-lg])]/button:size-control-icon-lg group-[:is([data-size=xs],[data-size=sm],[data-size=icon-xs],[data-size=icon-sm])]/button:size-control-icon-sm"
         />
       )}
     </span>
@@ -106,6 +106,7 @@ const CopyButton = ({
   );
 
   const isDisabled = disabled === true || state.pending;
+  const defaultSize = iconOnly ? "icon" : "default";
   const announcement = { copied: successMessage, error: errorMessage, idle: "" }[status];
 
   const element = useRender({
@@ -127,7 +128,7 @@ const CopyButton = ({
       ),
       "data-loading": state.pending ? "" : undefined,
       focusableWhenDisabled: focusableWhenDisabled === true || state.pending,
-      size: render ? props.size : (props.size ?? (iconOnly ? "icon" : "default")),
+      size: render ? props.size : (props.size ?? defaultSize),
       variant: render ? props.variant : (props.variant ?? "ghost"),
     },
     render: render ?? <Button />,

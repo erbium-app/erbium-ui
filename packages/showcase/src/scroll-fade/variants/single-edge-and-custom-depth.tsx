@@ -6,7 +6,7 @@ import { rows } from "../helpers";
 export default function ScrollFadeSingleEdgeAndCustomDepthExample() {
   return (
     <div className="w-72 overflow-hidden rounded-lg border surface-panel">
-      <div className="scroll-fade-b-8 h-56 overflow-y-auto px-4">
+      <div className="h-56 overflow-y-auto px-4 scroll-fade-b-8">
         {rows.map((row, index) => (
           <Fragment key={row}>
             {index > 0 ? <Separator /> : null}

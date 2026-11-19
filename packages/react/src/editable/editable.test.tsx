@@ -42,23 +42,23 @@ const Controlled = () => {
   );
 };
 
-describe("Editable", () => {
+describe("Editable parts", () => {
   it("shows the value, or the placeholder while empty", () => {
     const { rerender } = render(<Title defaultValue="Draft" />);
 
     expect(preview().textContent).toBe("Draft");
-    expect(Object.hasOwn(preview().dataset, "empty")).toBe(false);
+    expect(Object.hasOwn(preview().dataset, "empty")).toBeFalsy();
 
     rerender(<Title key="empty" />);
     expect(preview().textContent).toBe("Untitled");
-    expect(Object.hasOwn(preview().dataset, "empty")).toBe(true);
+    expect(Object.hasOwn(preview().dataset, "empty")).toBeTruthy();
   });
 
   it("keeps the input inert until editing starts", () => {
     render(<Title defaultValue="Draft" />);
 
     expect(input().getAttribute("tabindex")).toBe("-1");
-    expect(input().hasAttribute("readonly")).toBe(true);
+    expect(input().hasAttribute("readonly")).toBeTruthy();
     expect(input().getAttribute("aria-hidden")).toBe("true");
   });
 
@@ -71,15 +71,17 @@ describe("Editable", () => {
 
     const field = input();
 
-    expect(document.activeElement).toBe(field);
-    expect(Object.hasOwn(field.dataset, "editing")).toBe(true);
-    expect([field.selectionStart, field.selectionEnd]).toEqual([0, 5]);
+    expect({
+      editing: Object.hasOwn(field.dataset, "editing"),
+      focused: document.activeElement === field,
+      selection: [field.selectionStart, field.selectionEnd],
+    }).toStrictEqual({ editing: true, focused: true, selection: [0, 5] });
 
     await user.keyboard("Final{Enter}");
 
-    expect(onValueChange).toHaveBeenCalledTimes(1);
-    expect(onValueChange.mock.calls[0]?.[0]).toBe("Final");
-    expect(onValueChange.mock.calls[0]?.[1].reason).toBe("enter");
+    expect(onValueChange).toHaveBeenCalledOnce();
+    const [value, details] = onValueChange.mock.calls[0] ?? [];
+    expect({ reason: details?.reason, value }).toStrictEqual({ reason: "enter", value: "Final" });
     expect(preview().textContent).toBe("Final");
     expect(document.activeElement).toBe(preview());
   });
@@ -139,7 +141,7 @@ describe("Editable", () => {
     await user.click(preview());
     fireEvent.keyDown(input(), { isComposing: true, key: "Enter", keyCode: 229 });
 
-    expect(Object.hasOwn(input().dataset, "editing")).toBe(true);
+    expect(Object.hasOwn(input().dataset, "editing")).toBeTruthy();
   });
 
   it("rejects a commit when onValueChange cancels it", async () => {
@@ -158,7 +160,7 @@ describe("Editable", () => {
     await user.click(preview());
     await user.keyboard("{Backspace}{Enter}");
 
-    expect(Object.hasOwn(input().dataset, "editing")).toBe(true);
+    expect(Object.hasOwn(input().dataset, "editing")).toBeTruthy();
     expect(document.activeElement).toBe(input());
   });
 
@@ -167,18 +169,18 @@ describe("Editable", () => {
     const { unmount } = render(<Title defaultValue="Draft" activationMode="dblclick" />);
 
     await user.click(preview());
-    expect(Object.hasOwn(input().dataset, "editing")).toBe(false);
+    expect(Object.hasOwn(input().dataset, "editing")).toBeFalsy();
     await user.dblClick(preview());
-    expect(Object.hasOwn(input().dataset, "editing")).toBe(true);
+    expect(Object.hasOwn(input().dataset, "editing")).toBeTruthy();
     unmount();
 
     render(<Title defaultValue="Draft" activationMode="focus" />);
     await user.tab();
-    expect(Object.hasOwn(input().dataset, "editing")).toBe(true);
+    expect(Object.hasOwn(input().dataset, "editing")).toBeTruthy();
     await user.keyboard("{Escape}");
     // Focus returns to the preview without reopening the editor.
     expect(document.activeElement).toBe(preview());
-    expect(Object.hasOwn(input().dataset, "editing")).toBe(false);
+    expect(Object.hasOwn(input().dataset, "editing")).toBeFalsy();
   });
 
   it("does not edit while disabled or read-only", async () => {
@@ -187,8 +189,8 @@ describe("Editable", () => {
     render(<Title defaultValue="Draft" readOnly />);
     await user.click(screen.getByText("Draft"));
 
-    expect(Object.hasOwn(input().dataset, "editing")).toBe(false);
-    expect(Object.hasOwn(input().dataset, "readonly")).toBe(true);
+    expect(Object.hasOwn(input().dataset, "editing")).toBeFalsy();
+    expect(Object.hasOwn(input().dataset, "readonly")).toBeTruthy();
   });
 
   it("uses Trigger, Submit and Cancel buttons and returns focus to the trigger", async () => {
@@ -233,9 +235,9 @@ describe("Editable", () => {
 
     const notes = screen.getByLabelText<HTMLTextAreaElement>("Notes");
 
-    expect(Object.hasOwn(notes.dataset, "editing")).toBe(true);
+    expect(Object.hasOwn(notes.dataset, "editing")).toBeTruthy();
     await user.keyboard("{Control>}{Enter}{/Control}");
-    expect(Object.hasOwn(notes.dataset, "editing")).toBe(false);
+    expect(Object.hasOwn(notes.dataset, "editing")).toBeFalsy();
     expect(notes.value).toBe("One\nTwo");
   });
 

@@ -13,7 +13,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import ItemExample from \"../examples/item-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ItemExample />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import ItemExample from \"../examples/item-demo\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <ItemExample />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/item/variants/overview.tsx",
       "target": "@components/showcase/item/variants/overview.tsx",
       "type": "registry:component"

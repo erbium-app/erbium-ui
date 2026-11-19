@@ -13,7 +13,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import ExampleFieldTextarea from \"../examples/field-textarea\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleFieldTextarea />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import ExampleFieldTextarea from \"../examples/field-textarea\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <ExampleFieldTextarea />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/field/variants/textarea.tsx",
       "target": "@components/showcase/field/variants/textarea.tsx",
       "type": "registry:component"

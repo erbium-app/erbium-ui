@@ -48,7 +48,7 @@ const AvatarBadge = ({ className, ...props }: React.ComponentProps<"span">) => (
   <span
     data-slot="avatar-badge"
     className={cn(
-      "absolute inset-e-0 bottom-0 z-30 inline-flex size-[max(0.5rem,calc(var(--avatar-size,2rem)*0.3125))] items-center justify-center rounded-full bg-primary bg-blend-color text-primary-foreground select-none [&>svg]:size-[calc(var(--avatar-size,2rem)*0.25)]",
+      "absolute inset-e-0 bottom-0 z-30 inline-flex size-[max(0.5rem,calc(var(--avatar-size,2rem)*0.3125))] items-center justify-center rounded-full bg-primary text-primary-foreground bg-blend-color select-none [&>svg]:size-[calc(var(--avatar-size,2rem)*0.25)]",
       className,
     )}
     {...props}

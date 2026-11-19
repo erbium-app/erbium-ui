@@ -13,7 +13,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import InputExample from \"../examples/input-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <InputExample />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import InputExample from \"../examples/input-demo\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <InputExample />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/input/variants/overview.tsx",
       "target": "@components/showcase/input/variants/overview.tsx",
       "type": "registry:component"

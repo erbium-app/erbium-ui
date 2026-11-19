@@ -83,7 +83,7 @@ const FileTree = ({
           dir="ltr"
           data-slot="file-tree"
           className={cn(
-            "min-w-0 w-full overflow-hidden text-sidebar-foreground group-data-[collapsible=icon]:hidden",
+            "w-full min-w-0 overflow-hidden text-sidebar-foreground group-data-[collapsible=icon]:hidden",
             className,
           )}
         >

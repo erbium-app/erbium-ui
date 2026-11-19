@@ -76,7 +76,7 @@ const LightboxBackdrop = ({
   <LightboxPrimitive.Backdrop
     data-slot="lightbox-backdrop"
     className={cn(
-      "fixed inset-0 isolate z-50 bg-overlay-backdrop opacity-0 pointer-coarse:bg-background not-pointer-coarse:supports-backdrop-filter:backdrop-blur-(--overlay-backdrop-blur,2px)",
+      "fixed inset-0 isolate z-50 bg-overlay-backdrop opacity-0 not-pointer-coarse:supports-backdrop-filter:backdrop-blur-(--overlay-backdrop-blur,2px) pointer-coarse:bg-background",
       // Pull-snap timing exists only while a cancelled pull springs back.
       "transition-opacity duration-(--lightbox-pull-snap-duration,var(--lightbox-vt-duration,360ms)) ease-(--lightbox-pull-snap-easing,cubic-bezier(0.16,1,0.3,1))",
       "[--lightbox-backdrop-opacity:calc(1-var(--lightbox-pull-progress,0)*0.6)] data-open:opacity-(--lightbox-backdrop-opacity) data-open:starting:opacity-0",
@@ -104,9 +104,9 @@ const LightboxContent = ({
         className={cn(
           "group/lightbox fixed inset-0 z-50 flex flex-col overscroll-contain opacity-0 outline-none",
           "transition-opacity duration-(--lightbox-vt-duration,360ms) ease-out",
-          "data-open:opacity-100 data-open:starting:opacity-0 motion-reduce:transition-none",
+          "motion-reduce:transition-none data-open:opacity-100 data-open:starting:opacity-0",
           // Shared by the slides, header, and footer so they stay aligned.
-          "[--lb-safe-top:env(safe-area-inset-top,0px)] [--lb-safe-bottom:env(safe-area-inset-bottom,0px)]",
+          "[--lb-safe-bottom:env(safe-area-inset-bottom,0px)] [--lb-safe-top:env(safe-area-inset-top,0px)]",
           "[--lb-inset-bottom:calc(4rem+var(--lb-safe-bottom))] [--lb-inset-top:calc(4rem+var(--lb-safe-top))] [--lb-inset-x:0px]",
           "md:[--lb-inset-bottom:calc(4.5rem+var(--lb-safe-bottom))] md:[--lb-inset-top:calc(4.5rem+var(--lb-safe-top))] md:[--lb-inset-x:4.5rem]",
           "has-data-[slot=lightbox-thumbnail-strip]:[--lb-inset-bottom:calc(8rem+var(--lb-safe-bottom))]",
@@ -115,14 +115,15 @@ const LightboxContent = ({
         onPointerDown={(event) => {
           onPointerDown?.(event);
           const { target, clientX, clientY } = event;
+
           // The scrollport needs to receive touch input even outside the image.
-          backgroundPress.current =
+          const onBackground =
             !event.defaultPrevented &&
             event.button === 0 &&
             target instanceof Element &&
-            target.matches("[data-ramka-slides], [data-ramka-slide]")
-              ? { target, x: clientX, y: clientY }
-              : null;
+            target.matches("[data-ramka-slides], [data-ramka-slide]");
+
+          backgroundPress.current = onBackground ? { target, x: clientX, y: clientY } : null;
         }}
         onClick={(event) => {
           onClick?.(event);
@@ -208,6 +209,10 @@ const LightboxMedia = ({ className, ...props }: ComponentProps<typeof LightboxPr
   />
 );
 
+// Header, footer and controls hide while a pull-to-dismiss gesture runs.
+const hideWhilePulling =
+  "group-data-pull-dismissing/lightbox:invisible group-data-pull-dismissing/lightbox:opacity-0 group-data-pulling/lightbox:invisible group-data-pulling/lightbox:opacity-0";
+
 const hideWhenTouchZoomed =
   "pointer-coarse:group-data-zoomed/lightbox:invisible pointer-coarse:group-data-zoomed/lightbox:opacity-0";
 
@@ -217,7 +222,7 @@ const LightboxHeader = ({ className, ...props }: ComponentProps<"div">) => (
     className={cn(
       "pointer-events-none absolute inset-x-0 top-0 z-10 flex h-(--lb-inset-top) items-center justify-end gap-2 px-3 pt-(--lb-safe-top) *:pointer-events-auto",
       "transition-opacity duration-200 motion-reduce:transition-none",
-      "group-data-pull-dismissing/lightbox:invisible group-data-pull-dismissing/lightbox:opacity-0 group-data-pulling/lightbox:invisible group-data-pulling/lightbox:opacity-0",
+      hideWhilePulling,
       hideWhenTouchZoomed,
       className,
     )}
@@ -231,7 +236,7 @@ const LightboxFooter = ({ className, ...props }: ComponentProps<"div">) => (
     className={cn(
       "pointer-events-none absolute inset-x-0 bottom-0 z-10 flex h-(--lb-inset-bottom) flex-col items-center justify-center gap-2 px-4 pb-(--lb-safe-bottom) text-center *:pointer-events-auto",
       "transition-opacity duration-200 motion-reduce:transition-none",
-      "group-data-pull-dismissing/lightbox:invisible group-data-pull-dismissing/lightbox:opacity-0 group-data-pulling/lightbox:invisible group-data-pulling/lightbox:opacity-0",
+      hideWhilePulling,
       "group-data-zoomed/lightbox:invisible group-data-zoomed/lightbox:opacity-0",
       className,
     )}
@@ -317,7 +322,7 @@ const LightboxPrevious = ({
     render={<Button variant={variant} size={size} />}
     className={cn(
       "absolute inset-s-4 top-1/2 z-10 -translate-y-1/2 max-md:hidden rtl:[&_svg]:rotate-180",
-      "group-data-pull-dismissing/lightbox:invisible group-data-pull-dismissing/lightbox:opacity-0 group-data-pulling/lightbox:invisible group-data-pulling/lightbox:opacity-0",
+      hideWhilePulling,
       hideWhenTouchZoomed,
       className,
     )}
@@ -344,7 +349,7 @@ const LightboxNext = ({
     render={<Button variant={variant} size={size} />}
     className={cn(
       "absolute inset-e-4 top-1/2 z-10 -translate-y-1/2 max-md:hidden rtl:[&_svg]:rotate-180",
-      "group-data-pull-dismissing/lightbox:invisible group-data-pull-dismissing/lightbox:opacity-0 group-data-pulling/lightbox:invisible group-data-pulling/lightbox:opacity-0",
+      hideWhilePulling,
       hideWhenTouchZoomed,
       className,
     )}
@@ -418,9 +423,9 @@ const LightboxThumbnail = ({
   <LightboxPrimitive.Thumbnail
     data-slot="lightbox-thumbnail"
     className={cn(
-      "surface-flat inline-flex size-14 shrink-0 cursor-pointer items-center justify-center rounded-lg border border-transparent p-0.5 outline-none",
-      "transition-button duration-150 motion-reduce:transition-none data-active:border-primary focus-visible:border-ring",
-      "has-[>:is(img,picture):only-child]:image-hairline [--image-hairline-inset:calc(1px+--spacing(0.5))] [--image-hairline-radius:var(--radius-sm)]",
+      "inline-flex size-14 shrink-0 cursor-pointer items-center justify-center rounded-lg border surface-flat border-transparent p-0.5 outline-none",
+      "transition-button duration-150 focus-visible:border-ring motion-reduce:transition-none data-active:border-primary",
+      "[--image-hairline-inset:calc(1px+--spacing(0.5))] [--image-hairline-radius:var(--radius-sm)] has-[>:is(img,picture):only-child]:image-hairline",
       "[&_img]:size-full [&_img]:rounded-sm [&_img]:object-cover",
       className,
     )}

@@ -126,13 +126,13 @@
       "type": "registry:component"
     },
     {
-      "content": "import ExampleInputGroupDropdown from \"../examples/input-group-dropdown\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleInputGroupDropdown />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import ExampleInputGroupDropdown from \"../examples/input-group-dropdown\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <ExampleInputGroupDropdown />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/input-group/variants/dropdown.tsx",
       "target": "@components/showcase/input-group/variants/dropdown.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import ExampleInputGroupIcon from \"../examples/input-group-icon\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleInputGroupIcon />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import ExampleInputGroupIcon from \"../examples/input-group-icon\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <ExampleInputGroupIcon />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/input-group/variants/icon.tsx",
       "target": "@components/showcase/input-group/variants/icon.tsx",
       "type": "registry:component"
@@ -156,7 +156,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import InputGroupExample from \"../examples/input-group-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <InputGroupExample />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import InputGroupExample from \"../examples/input-group-demo\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <InputGroupExample />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/input-group/variants/overview.tsx",
       "target": "@components/showcase/input-group/variants/overview.tsx",
       "type": "registry:component"
@@ -168,7 +168,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import ExampleInputGroupText from \"../examples/input-group-text\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleInputGroupText />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import ExampleInputGroupText from \"../examples/input-group-text\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <ExampleInputGroupText />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/input-group/variants/text.tsx",
       "target": "@components/showcase/input-group/variants/text.tsx",
       "type": "registry:component"

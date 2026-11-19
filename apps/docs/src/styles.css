@@ -139,7 +139,7 @@ body {
 
 @layer components {
   .markdown-copy {
-    @apply min-w-0 [&_p]:max-w-[65ch] [&_>_ul]:max-w-[65ch] [&_>_ol]:max-w-[65ch] [&_a]:text-link [&_a_:is(strong,b)]:text-inherit [&_:not(pre)>code]:surface-frame;
+    @apply min-w-0 [&_:not(pre)>code]:surface-frame [&_>_ol]:max-w-[65ch] [&_>_ul]:max-w-[65ch] [&_a]:text-link [&_a_:is(strong,b)]:text-inherit [&_p]:max-w-[65ch];
   }
 }
 

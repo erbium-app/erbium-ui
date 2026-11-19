@@ -61,19 +61,19 @@
       "type": "registry:file"
     },
     {
-      "content": "import ExampleSpinnerBadge from \"../examples/spinner-badge\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleSpinnerBadge />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import ExampleSpinnerBadge from \"../examples/spinner-badge\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <ExampleSpinnerBadge />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/spinner/variants/badge.tsx",
       "target": "@components/showcase/spinner/variants/badge.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import ExampleSpinnerButton from \"../examples/spinner-button\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleSpinnerButton />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import ExampleSpinnerButton from \"../examples/spinner-button\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <ExampleSpinnerButton />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/spinner/variants/button.tsx",
       "target": "@components/showcase/spinner/variants/button.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import ExampleSpinnerInputGroup from \"../examples/spinner-input-group\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleSpinnerInputGroup />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import ExampleSpinnerInputGroup from \"../examples/spinner-input-group\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <ExampleSpinnerInputGroup />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/spinner/variants/input-group.tsx",
       "target": "@components/showcase/spinner/variants/input-group.tsx",
       "type": "registry:component"
@@ -91,7 +91,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import ExampleSpinnerSize from \"../examples/spinner-size\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleSpinnerSize />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import ExampleSpinnerSize from \"../examples/spinner-size\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <ExampleSpinnerSize />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/spinner/variants/size.tsx",
       "target": "@components/showcase/spinner/variants/size.tsx",
       "type": "registry:component"

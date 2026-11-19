@@ -78,9 +78,7 @@ const publishedWorkspacePackages = new Map(
       );
 
       /** @type {[string, string]} */
-      const entry = [name, `${name}@^${versionOf(workspacePackage)}`];
-
-      return entry;
+      return [name, `${name}@^${versionOf(workspacePackage)}`];
     }),
   ),
 );
@@ -386,9 +384,9 @@ await writeFile(
   path.join(packageRoot, "registry.json"),
   `${JSON.stringify(
     {
+      items,
       $schema: "https://ui.shadcn.com/schema/registry.json",
       homepage: "https://github.com/erbium-app/erbium-ui",
-      items,
       name: "erbium",
     },
     null,

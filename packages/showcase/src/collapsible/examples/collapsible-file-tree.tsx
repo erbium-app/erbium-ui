@@ -12,55 +12,55 @@ import { Tabs, TabsList, TabsTrigger } from "@erbium/ui/components/tabs";
 
 type FileTreeItem = { name: string } | { name: string; items: FileTreeItem[] };
 
-export default function CollapsibleFileTreeExample() {
-  const fileTree: FileTreeItem[] = [
-    {
-      items: [
-        {
-          items: [
-            { name: "button.tsx" },
-            { name: "card.tsx" },
-            { name: "dialog.tsx" },
-            { name: "input.tsx" },
-            { name: "select.tsx" },
-            { name: "table.tsx" },
-          ],
-          name: "ui",
-        },
-        { name: "login-form.tsx" },
-        { name: "register-form.tsx" },
-      ],
-      name: "components",
-    },
-    {
-      items: [{ name: "utils.ts" }, { name: "cn.ts" }, { name: "api.ts" }],
-      name: "lib",
-    },
-    {
-      items: [
-        { name: "use-media-query.ts" },
-        { name: "use-debounce.ts" },
-        { name: "use-local-storage.ts" },
-      ],
-      name: "hooks",
-    },
-    {
-      items: [{ name: "index.d.ts" }, { name: "api.d.ts" }],
-      name: "types",
-    },
-    {
-      items: [{ name: "favicon.ico" }, { name: "logo.svg" }, { name: "images" }],
-      name: "public",
-    },
-    { name: "app.tsx" },
-    { name: "layout.tsx" },
-    { name: "globals.css" },
-    { name: "package.json" },
-    { name: "tsconfig.json" },
-    { name: "README.md" },
-    { name: ".gitignore" },
-  ];
+const fileTree: FileTreeItem[] = [
+  {
+    items: [
+      {
+        items: [
+          { name: "button.tsx" },
+          { name: "card.tsx" },
+          { name: "dialog.tsx" },
+          { name: "input.tsx" },
+          { name: "select.tsx" },
+          { name: "table.tsx" },
+        ],
+        name: "ui",
+      },
+      { name: "login-form.tsx" },
+      { name: "register-form.tsx" },
+    ],
+    name: "components",
+  },
+  {
+    items: [{ name: "utils.ts" }, { name: "cn.ts" }, { name: "api.ts" }],
+    name: "lib",
+  },
+  {
+    items: [
+      { name: "use-media-query.ts" },
+      { name: "use-debounce.ts" },
+      { name: "use-local-storage.ts" },
+    ],
+    name: "hooks",
+  },
+  {
+    items: [{ name: "index.d.ts" }, { name: "api.d.ts" }],
+    name: "types",
+  },
+  {
+    items: [{ name: "favicon.ico" }, { name: "logo.svg" }, { name: "images" }],
+    name: "public",
+  },
+  { name: "app.tsx" },
+  { name: "layout.tsx" },
+  { name: "globals.css" },
+  { name: "package.json" },
+  { name: "tsconfig.json" },
+  { name: "README.md" },
+  { name: ".gitignore" },
+];
 
+export default function CollapsibleFileTreeExample() {
   const renderItem = (fileItem: FileTreeItem) => {
     if ("items" in fileItem) {
       return (
@@ -79,7 +79,7 @@ export default function CollapsibleFileTreeExample() {
             {fileItem.name}
           </CollapsibleTrigger>
           <CollapsibleContent>
-            <div className="mt-1 ms-5 flex flex-col gap-1">
+            <div className="ms-5 mt-1 flex flex-col gap-1">
               {fileItem.items.map((child) => renderItem(child))}
             </div>
           </CollapsibleContent>

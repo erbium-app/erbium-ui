@@ -81,7 +81,7 @@ const DialogPanel = ({
               <DialogPrimitive.Close
                 data-slot="dialog-close"
                 render={
-                  <Button variant="ghost" className="absolute top-2 inset-e-2" size="icon-sm" />
+                  <Button variant="ghost" className="absolute inset-e-2 top-2" size="icon-sm" />
                 }
               >
                 <Icon name="x" />
@@ -125,7 +125,7 @@ const DialogContent = ({ className, children, ...props }: React.ComponentProps<"
       viewportClassName="min-h-0 flex-1 overscroll-contain"
       viewportRender={<div data-slot="dialog-content" {...props} />}
       contentClassName={cn(
-        "separator-inset p-panel group-has-[[data-slot=dialog-header]]/dialog-panel:pt-2",
+        "p-panel separator-inset group-has-[[data-slot=dialog-header]]/dialog-panel:pt-2",
         className,
       )}
     >

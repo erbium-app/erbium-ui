@@ -13,7 +13,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import ToggleGroupExample from \"../examples/toggle-group-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ToggleGroupExample />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import ToggleGroupExample from \"../examples/toggle-group-demo\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <ToggleGroupExample />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/toggle-group/variants/overview.tsx",
       "target": "@components/showcase/toggle-group/variants/overview.tsx",
       "type": "registry:component"

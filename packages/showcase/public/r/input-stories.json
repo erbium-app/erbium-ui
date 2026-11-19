@@ -138,7 +138,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import ExampleInputDisabled from \"../examples/input-disabled\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleInputDisabled />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import ExampleInputDisabled from \"../examples/input-disabled\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <ExampleInputDisabled />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/input/variants/disabled.tsx",
       "target": "@components/showcase/input/variants/disabled.tsx",
       "type": "registry:component"
@@ -162,7 +162,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import ExampleInputFile from \"../examples/input-file\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleInputFile />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import ExampleInputFile from \"../examples/input-file\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <ExampleInputFile />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/input/variants/file.tsx",
       "target": "@components/showcase/input/variants/file.tsx",
       "type": "registry:component"
@@ -198,7 +198,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import InputExample from \"../examples/input-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <InputExample />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import InputExample from \"../examples/input-demo\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <InputExample />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/input/variants/overview.tsx",
       "target": "@components/showcase/input/variants/overview.tsx",
       "type": "registry:component"

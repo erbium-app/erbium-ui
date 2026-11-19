@@ -116,6 +116,14 @@ export default defineConfig({
     // surfaces in review without failing the gate.
     "no-console": "warn",
     "no-debugger": "error",
+    // Sonar's default camelCase pattern rejects React components, which must
+    // be PascalCase for JSX to treat them as components.
+    "sonarjs/function-name": ["error", { format: "^(?:[_a-z][a-zA-Z0-9]*|[A-Z][a-zA-Z0-9]*)$" }],
+    // `prop?: T | undefined` is deliberate: registry components are copied into
+    // projects that may enable exactOptionalPropertyTypes, where the explicit
+    // `| undefined` lets callers pass a possibly-undefined value (as Base UI's
+    // own prop types do).
+    "sonarjs/no-redundant-optional": "off",
     "shadcn/no-restyle": [
       "error",
       {

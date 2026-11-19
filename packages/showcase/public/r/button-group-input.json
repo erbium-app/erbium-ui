@@ -19,7 +19,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import ExampleButtonGroupInput from \"../examples/button-group-input\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleButtonGroupInput />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import ExampleButtonGroupInput from \"../examples/button-group-input\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <ExampleButtonGroupInput />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/button-group/variants/input.tsx",
       "target": "@components/showcase/button-group/variants/input.tsx",
       "type": "registry:component"

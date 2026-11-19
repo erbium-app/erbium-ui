@@ -21,6 +21,14 @@ type Args = NonNullable<ShowcaseStory["args"]>;
 
 type Row = ReturnType<typeof controlRows>[number];
 
+// Controls the panel can edit inline; rows with options are editable as selects.
+const EDITABLE_CONTROLS: ReadonlySet<Row["control"]> = new Set([
+  "boolean",
+  "text",
+  "number",
+  "range",
+]);
+
 // The intrinsic validates string values without coercing objects into input text.
 const parseText = (value: Row["value"]): string => {
   try {
@@ -127,12 +135,7 @@ export const Controls = ({
   onReset: () => void;
 }) => {
   const rows = controlRows({ argTypes, args: defaults, render: () => null }).filter(
-    (row) =>
-      Boolean(row.options?.length) ||
-      row.control === "boolean" ||
-      row.control === "text" ||
-      row.control === "number" ||
-      row.control === "range",
+    (row) => Boolean(row.options?.length) || EDITABLE_CONTROLS.has(row.control),
   );
 
   if (!rows.length) {
@@ -140,8 +143,8 @@ export const Controls = ({
   }
 
   return (
-    <section className="mt-4 surface-panel rounded-xl overflow-hidden">
-      <div className="flex items-center justify-between gap-group p-4 carve-bottom">
+    <section className="mt-4 overflow-hidden rounded-xl surface-panel">
+      <div className="flex items-center justify-between gap-group carve-bottom p-4">
         <h3 className="text-caption font-semibold">Props</h3>
         <Button variant="outline" size="xs" onClick={onReset}>
           Reset

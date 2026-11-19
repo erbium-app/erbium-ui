@@ -53,7 +53,7 @@ const MenuSearch = ({
  */
 const MenuScroll = ({ children }: { children: React.ReactNode }) => (
   <ScrollArea
-    className="flex min-h-0 max-h-72 flex-col overflow-hidden overscroll-contain"
+    className="flex max-h-72 min-h-0 flex-col overflow-hidden overscroll-contain"
     fade="vertical"
     scrollbar="thin"
     viewportClassName="min-h-0 max-h-72 flex-1 overflow-x-hidden! scroll-py-1"

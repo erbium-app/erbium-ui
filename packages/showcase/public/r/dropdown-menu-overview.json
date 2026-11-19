@@ -13,7 +13,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import DropdownMenuExample from \"../examples/dropdown-menu-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <DropdownMenuExample />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import DropdownMenuExample from \"../examples/dropdown-menu-demo\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <DropdownMenuExample />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/dropdown-menu/variants/overview.tsx",
       "target": "@components/showcase/dropdown-menu/variants/overview.tsx",
       "type": "registry:component"

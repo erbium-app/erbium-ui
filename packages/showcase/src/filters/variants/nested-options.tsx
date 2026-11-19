@@ -51,7 +51,7 @@ export default function FiltersNestedOptionsExample() {
   const { filters, items } = useListFilters({ fields, items: tasks });
 
   return (
-    <div className="flex w-full min-w-72 max-w-2xl flex-col gap-group p-4">
+    <div className="flex w-full max-w-2xl min-w-72 flex-col gap-group p-4">
       <FilterFacets filters={filters} />
       <p aria-live="polite" className="text-caption text-muted-foreground">
         {items.length} of {tasks.length} tasks

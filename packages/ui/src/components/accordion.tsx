@@ -27,7 +27,7 @@ const AccordionTrigger = ({ className, children, ...props }: AccordionPrimitive.
     <AccordionPrimitive.Trigger
       data-slot="accordion-trigger"
       className={cn(
-        "group group/accordion-trigger relative flex flex-1 items-start justify-between rounded-lg border border-transparent min-h-control py-related text-start text-control-sm transition-colors outline-none hover:underline data-panel-open:rounded-b-none group-has-[[data-slot=accordion-content]:not([hidden])]/accordion-item:rounded-b-none focus-visible:border-ring focus-visible:after:border-ring **:data-[slot=accordion-trigger-icon]:ms-auto **:data-[slot=accordion-trigger-icon]:size-4 **:data-[slot=accordion-trigger-icon]:text-muted-foreground data-disabled:pointer-events-none data-disabled:opacity-50",
+        "group group/accordion-trigger relative flex min-h-control flex-1 items-start justify-between rounded-lg border border-transparent py-related text-start text-control-sm transition-colors outline-none group-has-[[data-slot=accordion-content]:not([hidden])]/accordion-item:rounded-b-none hover:underline focus-visible:border-ring focus-visible:after:border-ring data-panel-open:rounded-b-none **:data-[slot=accordion-trigger-icon]:ms-auto **:data-[slot=accordion-trigger-icon]:size-4 **:data-[slot=accordion-trigger-icon]:text-muted-foreground data-disabled:pointer-events-none data-disabled:opacity-50",
         className,
       )}
       {...props}

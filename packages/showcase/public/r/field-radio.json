@@ -13,7 +13,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import ExampleFieldRadio from \"../examples/field-radio\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleFieldRadio />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import ExampleFieldRadio from \"../examples/field-radio\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <ExampleFieldRadio />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/field/variants/radio.tsx",
       "target": "@components/showcase/field/variants/radio.tsx",
       "type": "registry:component"

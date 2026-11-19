@@ -286,7 +286,7 @@ const DrawerPanel = ({
                       render={
                         <Button
                           variant="ghost"
-                          className="absolute top-2 inset-e-2"
+                          className="absolute inset-e-2 top-2"
                           size="icon-sm"
                         />
                       }
@@ -314,7 +314,7 @@ const DrawerHeader = ({ className, ...props }: React.ComponentProps<"div">) => {
     <div
       data-slot="drawer-header"
       className={cn(
-        "flex shrink-0 flex-col gap-related p-panel pb-3 text-center md:text-start max-sm:pb-4",
+        "flex shrink-0 flex-col gap-related p-panel pb-3 text-center max-sm:pb-4 md:text-start",
         className,
       )}
       {...props}
@@ -339,7 +339,7 @@ const DrawerContent = ({ className, children, ...props }: React.ComponentProps<"
         scrollbar="thin"
         viewportClassName="min-h-0 flex-1 overscroll-contain"
         contentClassName={cn(
-          "separator-inset p-panel group-has-[[data-slot=drawer-header]]/drawer-popup:pt-1 group-not-has-[[data-slot=drawer-footer]]/drawer-popup:pb-[calc(env(safe-area-inset-bottom,0px)+var(--panel-padding))]",
+          "p-panel separator-inset group-not-has-[[data-slot=drawer-footer]]/drawer-popup:pb-[calc(env(safe-area-inset-bottom,0px)+var(--panel-padding))] group-has-[[data-slot=drawer-header]]/drawer-popup:pt-1",
           className,
         )}
       >

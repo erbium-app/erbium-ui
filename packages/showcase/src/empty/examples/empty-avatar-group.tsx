@@ -16,7 +16,7 @@ export default function EmptyAvatarGroupExample() {
     <Empty>
       <EmptyHeader>
         <EmptyMedia>
-          <AvatarGroup className="[--avatar-size:3rem] grayscale">
+          <AvatarGroup className="grayscale [--avatar-size:3rem]">
             <Avatar>
               <AvatarImage
                 src="https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=256&h=256&fit=crop"

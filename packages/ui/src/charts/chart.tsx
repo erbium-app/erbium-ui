@@ -172,12 +172,12 @@ const chartValueTooltip = ({
   indexFormat,
   locale,
 }: ChartTooltipFormatOptions) => {
-  const valueOf = (point: ChartPoint) => Number(valueAxis === "y" ? point.yValue : point.xValue);
+  const valueAt = (point: ChartPoint) => Number(valueAxis === "y" ? point.yValue : point.xValue);
   const indexOf = (point: ChartPoint) => (valueAxis === "y" ? point.xValue : point.yValue);
 
   return {
     ...chartTooltip,
-    format: (point: ChartPoint) => formatChartNumber(valueOf(point), format),
+    format: (point: ChartPoint) => formatChartNumber(valueAt(point), format),
     formatGroup: (points: readonly ChartPoint[]) => {
       const [first] = points;
 
@@ -215,10 +215,11 @@ const useChartSeries = <TKey extends string>(
   const hidden = hiddenSeries ?? uncontrolled;
   const all = React.useMemo(() => resolveChartSeries(series), [series]);
 
-  const visible = React.useMemo(
-    () => all.filter((item) => !hidden.includes(item.key)),
-    [all, hidden],
-  );
+  const visible = React.useMemo(() => {
+    const hiddenKeys = new Set(hidden);
+
+    return all.filter((item) => !hiddenKeys.has(item.key));
+  }, [all, hidden]);
 
   const toggle = React.useCallback(
     (key: string) => {
@@ -262,46 +263,50 @@ const ChartLegend = ({
   hiddenSeries = noSeries,
   onToggleSeries,
   ...props
-}: ChartLegendProps) => (
-  <ul
-    data-slot="chart-legend"
-    className={cn("flex flex-wrap items-center gap-x-1 gap-y-0.5 text-metadata", className)}
-    {...props}
-  >
-    {series.map((item) => {
-      const isHidden = hiddenSeries.includes(item.key);
+}: ChartLegendProps) => {
+  const hiddenKeys = new Set(hiddenSeries);
 
-      const content = (
-        <>
-          <ChartSwatch color={item.color} />
-          {item.label}
-        </>
-      );
+  return (
+    <ul
+      data-slot="chart-legend"
+      className={cn("flex flex-wrap items-center gap-x-1 gap-y-0.5 text-metadata", className)}
+      {...props}
+    >
+      {series.map((item) => {
+        const isHidden = hiddenKeys.has(item.key);
 
-      return (
-        <li key={item.key}>
-          {onToggleSeries ? (
-            <button
-              type="button"
-              aria-pressed={!isHidden}
-              data-hidden={isHidden ? "" : undefined}
-              onClick={() => {
-                onToggleSeries(item.key);
-              }}
-              className="inline-flex items-center gap-1.5 rounded-lg border border-transparent px-1.5 py-0.5 text-foreground outline-none transition-colors duration-150 motion-reduce:transition-none hover:bg-accent focus-visible:border-ring data-hidden:text-muted-foreground data-hidden:line-through data-hidden:[&>[data-slot=chart-swatch]]:opacity-40"
-            >
-              {content}
-            </button>
-          ) : (
-            <span className="inline-flex items-center gap-1.5 px-1.5 py-0.5 text-foreground">
-              {content}
-            </span>
-          )}
-        </li>
-      );
-    })}
-  </ul>
-);
+        const content = (
+          <>
+            <ChartSwatch color={item.color} />
+            {item.label}
+          </>
+        );
+
+        return (
+          <li key={item.key}>
+            {onToggleSeries ? (
+              <button
+                type="button"
+                aria-pressed={!isHidden}
+                data-hidden={isHidden ? "" : undefined}
+                onClick={() => {
+                  onToggleSeries(item.key);
+                }}
+                className="inline-flex items-center gap-1.5 rounded-lg border border-transparent px-1.5 py-0.5 text-foreground transition-colors duration-150 outline-none hover:bg-accent focus-visible:border-ring data-hidden:text-muted-foreground data-hidden:line-through motion-reduce:transition-none data-hidden:[&>[data-slot=chart-swatch]]:opacity-40"
+              >
+                {content}
+              </button>
+            ) : (
+              <span className="inline-flex items-center gap-1.5 px-1.5 py-0.5 text-foreground">
+                {content}
+              </span>
+            )}
+          </li>
+        );
+      })}
+    </ul>
+  );
+};
 
 /**
  * TanStack Charts drops its own card styles when a custom body renders, so the

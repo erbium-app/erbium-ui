@@ -13,7 +13,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import ExampleEmptyAvatar from \"../examples/empty-avatar\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleEmptyAvatar />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import ExampleEmptyAvatar from \"../examples/empty-avatar\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <ExampleEmptyAvatar />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/empty/variants/avatar.tsx",
       "target": "@components/showcase/empty/variants/avatar.tsx",
       "type": "registry:component"

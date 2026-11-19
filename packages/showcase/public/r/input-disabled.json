@@ -13,7 +13,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import ExampleInputDisabled from \"../examples/input-disabled\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleInputDisabled />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import ExampleInputDisabled from \"../examples/input-disabled\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <ExampleInputDisabled />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/input/variants/disabled.tsx",
       "target": "@components/showcase/input/variants/disabled.tsx",
       "type": "registry:component"

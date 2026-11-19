@@ -60,7 +60,7 @@ const Brand = () => {
         className="inline-flex items-baseline gap-(--docs-tight-gap) text-subtitle whitespace-nowrap"
         aria-hidden="true"
       >
-        Erbium <span className="text-link font-medium">UI</span>
+        Erbium <span className="font-medium text-link">UI</span>
       </span>
     </Link>
   );

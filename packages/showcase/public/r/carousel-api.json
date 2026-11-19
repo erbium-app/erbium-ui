@@ -13,7 +13,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import ExampleCarouselApi from \"../examples/carousel-api\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleCarouselApi />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import ExampleCarouselApi from \"../examples/carousel-api\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <ExampleCarouselApi />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/carousel/variants/api.tsx",
       "target": "@components/showcase/carousel/variants/api.tsx",
       "type": "registry:component"

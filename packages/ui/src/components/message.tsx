@@ -62,7 +62,7 @@ const MessageFooter = ({ className, ...props }: React.ComponentProps<"div">) => 
   <div
     data-slot="message-footer"
     className={cn(
-      "flex max-w-full min-w-0 items-center rounded-md carve-top bg-footer px-3 py-1 text-metadata font-medium text-muted-foreground group-has-data-[variant=ghost]/message:px-0 group-data-[align=end]/message:justify-end",
+      "flex max-w-full min-w-0 items-center rounded-md bg-footer carve-top px-3 py-1 text-metadata font-medium text-muted-foreground group-has-data-[variant=ghost]/message:px-0 group-data-[align=end]/message:justify-end",
       className,
     )}
     {...props}

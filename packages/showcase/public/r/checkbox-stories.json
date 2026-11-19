@@ -117,7 +117,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import ExampleCheckboxDisabled from \"../examples/checkbox-disabled\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleCheckboxDisabled />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import ExampleCheckboxDisabled from \"../examples/checkbox-disabled\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <ExampleCheckboxDisabled />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/checkbox/variants/disabled.tsx",
       "target": "@components/showcase/checkbox/variants/disabled.tsx",
       "type": "registry:component"
@@ -147,7 +147,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import CheckboxExample from \"../examples/checkbox-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <CheckboxExample />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import CheckboxExample from \"../examples/checkbox-demo\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <CheckboxExample />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/checkbox/variants/overview.tsx",
       "target": "@components/showcase/checkbox/variants/overview.tsx",
       "type": "registry:component"

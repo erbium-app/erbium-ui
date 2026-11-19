@@ -42,7 +42,7 @@ const OTPFieldInput = ({ className, render, ...props }: OTPFieldPrimitive.Input.
                 aria-hidden
                 className="pointer-events-none absolute inset-0 flex items-center justify-center text-field text-muted-foreground"
               >
-                <span className="shimmer motion-reduce:animate-none [--shimmer-color:color-mix(in_oklab,currentColor_35%,transparent)] [--shimmer-spread:1.5ch]">
+                <span className="shimmer [--shimmer-color:color-mix(in_oklab,currentColor_35%,transparent)] [--shimmer-spread:1.5ch] motion-reduce:animate-none">
                   {state.value}
                 </span>
               </span>
@@ -51,7 +51,7 @@ const OTPFieldInput = ({ className, render, ...props }: OTPFieldPrimitive.Input.
         ))
       }
       className={cn(
-        "relative size-control min-w-0 rounded-lg border surface-field text-center text-field outline-none transition-[color,background-color,border-color,box-shadow] duration-150 focus-visible:z-10 focus-visible:border-ring focus-visible:ring-[1.5px] focus-visible:ring-focus-halo-strong motion-reduce:transition-none data-invalid:border-error data-[status=error]:border-error focus-visible:data-invalid:ring-0 data-disabled:cursor-not-allowed data-disabled:opacity-50 dark:data-invalid:border-invalid dark:data-[status=error]:border-invalid data-[status=success]:border-success data-[status=success]:text-success-soft-foreground data-[status=loading]:text-transparent motion-safe:data-[status=loading]:animate-pulse",
+        "relative size-control min-w-0 rounded-lg border surface-field text-center text-field transition-[color,background-color,border-color,box-shadow] duration-150 outline-none focus-visible:z-10 focus-visible:border-ring focus-visible:ring-[1.5px] focus-visible:ring-focus-halo-strong data-invalid:border-error focus-visible:data-invalid:ring-0 data-[status=error]:border-error data-[status=loading]:text-transparent data-[status=success]:border-success data-[status=success]:text-success-soft-foreground motion-safe:data-[status=loading]:animate-pulse motion-reduce:transition-none dark:data-invalid:border-invalid dark:data-[status=error]:border-invalid data-disabled:cursor-not-allowed data-disabled:opacity-50",
         className,
       )}
       {...props}
@@ -82,6 +82,8 @@ const OTPFieldSlots = ({ groups, length }: { groups?: number[]; length: number }
     index += size;
 
     return (
+      // Groups are positional: a group is identified by its first slot.
+      // oxlint-disable-next-line react-doctor/no-array-index-as-key
       <React.Fragment key={start}>
         {groupIndex > 0 && <OTPFieldSeparator />}
         <OTPFieldGroup>

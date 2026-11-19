@@ -17,7 +17,7 @@ export default function InterfaceExample() {
         <h1 className="text-display">A place for your team</h1>
         <h2 className="text-title">Work together</h2>
         <h3 className="text-subtitle">Keep projects moving</h3>
-        <p className="text-body max-w-[65ch]">
+        <p className="max-w-[65ch] text-body">
           Share progress, invite collaborators, and give every project a clear next step.
         </p>
         <p className="text-caption text-muted-foreground">

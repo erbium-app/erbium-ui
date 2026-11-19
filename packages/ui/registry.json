@@ -1,6 +1,4 @@
 {
-  "$schema": "https://ui.shadcn.com/schema/registry.json",
-  "homepage": "https://github.com/erbium-app/erbium-ui",
   "items": [
     {
       "name": "accordion",
@@ -2406,5 +2404,7 @@
       ]
     }
   ],
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "homepage": "https://github.com/erbium-app/erbium-ui",
   "name": "erbium"
 }

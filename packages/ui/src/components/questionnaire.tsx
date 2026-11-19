@@ -220,9 +220,12 @@ const Questionnaire = ({
   );
 };
 
+// The step indicator props the questionnaire passes through to its StepIndicator.
+type StepIndicatorPassthrough = "aria-label" | "onValueChange" | "orientation" | "reach";
+
 interface QuestionnaireStepsProps extends Pick<
   React.ComponentProps<typeof StepIndicator>,
-  "aria-label" | "onValueChange" | "orientation" | "reach"
+  StepIndicatorPassthrough
 > {
   current: number;
   total: number;
@@ -272,10 +275,7 @@ const QuestionnaireStepIndicator = ({
   "aria-label": ariaLabel,
   ...props
 }: Omit<React.ComponentProps<typeof QuestionnairePrimitive.Progress>, "render" | "children"> &
-  Pick<
-    React.ComponentProps<typeof StepIndicator>,
-    "aria-label" | "onValueChange" | "orientation" | "reach"
-  >) => {
+  Pick<React.ComponentProps<typeof StepIndicator>, StepIndicatorPassthrough>) => {
   const navigation = React.use(QuestionnaireNavigationContext);
   const interactive = onValueChange !== undefined || navigation !== null;
 
@@ -283,31 +283,31 @@ const QuestionnaireStepIndicator = ({
     <QuestionnairePrimitive.Progress
       data-slot="questionnaire-step-indicator"
       className={cn("w-fit", className)}
-      render={(progressProps, state) => (
-        <div
-          {...progressProps}
-          // A progressbar hides its descendants from assistive tech, which would
-          // hide the step buttons. Interactive indicators are a plain group.
-          {...(interactive
-            ? {
-                "aria-valuemax": undefined,
-                "aria-valuemin": undefined,
-                "aria-valuenow": undefined,
-                "aria-valuetext": undefined,
-                role: "group",
-              }
-            : {})}
-        >
-          <QuestionnaireSteps
-            current={state.current}
-            total={state.total}
-            onValueChange={onValueChange}
-            reach={reach}
-            orientation={orientation}
-            aria-label={ariaLabel}
-          />
-        </div>
-      )}
+      render={(progressProps, state) => {
+        // A progressbar hides its descendants from assistive tech, which would
+        // hide the step buttons. Interactive indicators are a plain group, so
+        // they drop the progressbar's value attributes.
+        const {
+          "aria-valuemax": _valueMax,
+          "aria-valuemin": _valueMin,
+          "aria-valuenow": _valueNow,
+          "aria-valuetext": _valueText,
+          ...groupProps
+        } = progressProps;
+
+        return (
+          <div {...(interactive ? { ...groupProps, role: "group" } : progressProps)}>
+            <QuestionnaireSteps
+              current={state.current}
+              total={state.total}
+              onValueChange={onValueChange}
+              reach={reach}
+              orientation={orientation}
+              aria-label={ariaLabel}
+            />
+          </div>
+        );
+      }}
       {...props}
     />
   );
@@ -481,7 +481,7 @@ const QuestionnaireChoice = ({
     <QuestionnairePrimitive.ChoiceShortcut
       data-slot="questionnaire-choice-shortcut"
       render={<Kbd />}
-      className="ms-auto hidden shrink-0 choice-first-line [--choice-height:--spacing(5)] group-data-shortcut/questionnaire-choice:inline-flex"
+      className="ms-auto choice-first-line hidden shrink-0 [--choice-height:--spacing(5)] group-data-shortcut/questionnaire-choice:inline-flex"
     />
   </QuestionnairePrimitive.Choice>
 );
@@ -519,7 +519,7 @@ const QuestionnaireError = ({
   <QuestionnairePrimitive.Error
     data-slot="questionnaire-error"
     className={cn(
-      "mt-2 text-caption text-error transition-opacity duration-200 ease-out starting:opacity-0 motion-reduce:transition-none",
+      "mt-2 text-caption text-error transition-opacity duration-200 ease-out motion-reduce:transition-none starting:opacity-0",
       className,
     )}
     {...props}

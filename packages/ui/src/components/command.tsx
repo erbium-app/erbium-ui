@@ -106,7 +106,7 @@ const CommandDialog = ({
               <DialogPrimitive.Close
                 data-slot="dialog-close"
                 render={
-                  <Button variant="ghost" className="absolute top-2 inset-e-2" size="icon-sm" />
+                  <Button variant="ghost" className="absolute inset-e-2 top-2" size="icon-sm" />
                 }
               >
                 <Icon name="x" />
@@ -148,14 +148,14 @@ const CommandInput = ({ className, ...props }: CommandPrimitive.Input.Props) => 
 
 const CommandList = ({ className, children, ...props }: CommandPrimitive.List.Props) => (
   <ScrollArea
-    className="flex min-h-0 max-h-72 flex-col overflow-hidden overscroll-contain"
+    className="flex max-h-72 min-h-0 flex-col overflow-hidden overscroll-contain"
     fade="vertical"
     scrollbar="thin"
     viewportClassName="min-h-0 max-h-72 flex-1 overflow-x-hidden! scroll-py-1"
   >
     <CommandPrimitive.List
       data-slot="command-list"
-      className={cn("not-empty:p-1 outline-none", className)}
+      className={cn("outline-none not-empty:p-1", className)}
       {...props}
     >
       {children}
@@ -166,7 +166,7 @@ const CommandList = ({ className, children, ...props }: CommandPrimitive.List.Pr
 const CommandEmpty = ({ className, ...props }: CommandPrimitive.Empty.Props) => (
   <CommandPrimitive.Empty
     data-slot="command-empty"
-    className={cn("not-empty:py-6 text-center text-control empty:py-0", className)}
+    className={cn("text-center text-control not-empty:py-6 empty:py-0", className)}
     {...props}
   />
 );
@@ -192,7 +192,7 @@ const CommandItem = ({ className, children, ...props }: CommandPrimitive.Item.Pr
   <CommandPrimitive.Item
     data-slot="command-item"
     className={cn(
-      "group/command-item relative flex cursor-default items-center rounded-md row-size text-control-sm whitespace-nowrap outline-hidden select-none hover:bg-accent hover:text-accent-foreground data-disabled:pointer-events-none data-disabled:opacity-50 data-highlighted:bg-accent data-highlighted:text-accent-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-control-icon hover:*:[svg]:text-accent-foreground data-highlighted:*:[svg]:text-accent-foreground",
+      "group/command-item relative flex row-size cursor-default items-center rounded-md text-control-sm whitespace-nowrap outline-hidden select-none hover:bg-accent hover:text-accent-foreground data-highlighted:bg-accent data-highlighted:text-accent-foreground data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-control-icon hover:*:[svg]:text-accent-foreground data-highlighted:*:[svg]:text-accent-foreground",
       className,
     )}
     {...props}

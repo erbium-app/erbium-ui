@@ -131,10 +131,10 @@ const StatefulButton = ({
         className,
       )}
     >
-      <span className="grid gap-[inherit] items-center justify-items-center *:col-start-1 *:row-start-1 *:flex *:items-center *:justify-center *:gap-[inherit]">
+      <span className="grid items-center justify-items-center gap-[inherit] *:col-start-1 *:row-start-1 *:flex *:items-center *:justify-center *:gap-[inherit]">
         <span
           aria-hidden={state !== "idle"}
-          className="pointer-events-none opacity-0 transition-[opacity,translate] duration-150 -translate-y-1 group-data-[state=idle]/stateful-button:translate-y-0 group-data-[state=idle]/stateful-button:opacity-100 motion-reduce:transition-none"
+          className="pointer-events-none -translate-y-1 opacity-0 transition-[opacity,translate] duration-150 group-data-[state=idle]/stateful-button:translate-y-0 group-data-[state=idle]/stateful-button:opacity-100 motion-reduce:transition-none"
         >
           {children}
         </span>

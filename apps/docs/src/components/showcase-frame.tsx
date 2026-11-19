@@ -1,5 +1,8 @@
 import { createContext, use, useCallback, useMemo, useSyncExternalStore, Suspense } from "react";
 import type { ReactNode, Ref } from "react";
+// changeTheme reads the new palette right after its callback returns, so the
+// theme state has to commit synchronously inside it.
+// oxlint-disable-next-line react-doctor/no-flush-sync
 import { flushSync } from "react-dom";
 import { CatchBoundary } from "@tanstack/react-router";
 import type { ShowcaseStory } from "@erbium/showcase/catalog";
@@ -76,6 +79,13 @@ const createShowcaseStore = () => {
 };
 
 type ShowcaseStore = ReturnType<typeof createShowcaseStore>;
+
+// Apply a theme state update inside changeTheme, committed before it returns.
+const changeThemeNow = (apply: () => void) => {
+  changeTheme(() => {
+    flushSync(apply);
+  });
+};
 
 const ShowcaseStoreContext = createContext<ShowcaseStore | null>(null);
 
@@ -176,7 +186,7 @@ const ShowcaseFrame = ({
           fill && "flex size-full flex-col overflow-auto overscroll-contain",
         )}
       >
-        <Toolbar aria-label="Showcase controls" className="absolute top-2 end-2 z-1">
+        <Toolbar aria-label="Showcase controls" className="absolute end-2 top-2 z-1">
           <ToolbarButton
             size="icon-sm"
             aria-label="Refresh this showcase"
@@ -192,10 +202,8 @@ const ShowcaseFrame = ({
               dark ? "Use light theme for this showcase" : "Use dark theme for this showcase"
             }
             onClick={() => {
-              changeTheme(() => {
-                flushSync(() => {
-                  update((state) => ({ ...state, appearance: dark ? "light" : "dark" }));
-                });
+              changeThemeNow(() => {
+                update((state) => ({ ...state, appearance: dark ? "light" : "dark" }));
               });
             }}
           >

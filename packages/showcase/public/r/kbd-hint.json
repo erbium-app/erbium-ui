@@ -19,7 +19,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import ExampleKbdHint from \"../examples/kbd-hint\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleKbdHint />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import ExampleKbdHint from \"../examples/kbd-hint\";\n\nconst Example = () => (\n  <div className=\"w-full max-w-2xl min-w-72 p-4\">\n    <ExampleKbdHint />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/kbd/variants/hint.tsx",
       "target": "@components/showcase/kbd/variants/hint.tsx",
       "type": "registry:component"
