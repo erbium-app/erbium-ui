@@ -1,8 +1,16 @@
 // Pierre's internals live in a shadow root. Inherit Erbium's explicit scheme
 // rather than letting the operating system choose light-dark() colors.
+import { canUseWASM } from "@pierre/diffs";
+import type { HighlighterTypes } from "@pierre/diffs";
 import { controlShadow } from "./surface-shadows";
 
 const diffTheme = { dark: "vitesse-dark", light: "vitesse-light" };
+
+/**
+ * Highlights, the backend Code Block uses, so a page loads one highlighter. It needs WebAssembly
+ * with SIMD; where that is missing or blocked, Shiki's JavaScript engine takes over.
+ */
+const diffHighlighter = (): HighlighterTypes => (canUseWASM() ? "highlights" : "shiki-js");
 
 const diffThemeCSS = `
 :host {
@@ -84,4 +92,4 @@ pre { font-variant-ligatures: none; }
 }
 `;
 
-export { diffTheme, diffThemeCSS };
+export { diffHighlighter, diffTheme, diffThemeCSS };

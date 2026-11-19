@@ -1,5 +1,5 @@
 import { parseDiffFromFile, parsePatchFiles } from "@pierre/diffs";
-import type { DiffFileInput, FileDiffMetadata } from "@pierre/diffs";
+import type { ChangeContent, ContextContent, DiffFileInput, FileDiffMetadata } from "@pierre/diffs";
 import { FileDiff } from "@pierre/diffs/react";
 import type { FileDiffProps, FileDiffOptions } from "@pierre/diffs/react";
 import { createContext, use, useMemo, useState } from "react";
@@ -8,7 +8,7 @@ import { Icon } from "../components/icon";
 import { applyDiffIcons } from "../lib/diff-icons";
 import { enhanceDiffAccessibility } from "../lib/diff-accessibility";
 import { fileIconName } from "../lib/file-icons";
-import { diffTheme, diffThemeCSS } from "../lib/diff-theme";
+import { diffHighlighter, diffTheme, diffThemeCSS } from "../lib/diff-theme";
 import { cn } from "../lib/utils";
 import {
   CodePanel,
@@ -24,6 +24,7 @@ import type { CodePanelContentProps, CodePanelLine, CodePanelProps } from "./cod
 import type { CopyButtonProps } from "./copy-button";
 
 type OwnedOptions =
+  | "preferredHighlighter"
   | "theme"
   | "themeType"
   | "unsafeCSS"
@@ -113,18 +114,13 @@ const DiffViewHeader = (props: ComponentProps<typeof CodePanelHeader>) => (
 
 const DiffViewTitle = ({ children, ...props }: ComponentProps<typeof CodePanelTitle>) => {
   const { fileDiff } = useDiffView();
+  const { name, prevName = "" } = fileDiff;
+  const renamed = prevName !== "" && prevName !== name;
 
   return (
     <CodePanelTitle {...props} data-slot="diff-view-title">
-      <Icon name={fileIconName(fileDiff.name)} className="size-4.5" />
-      <span className="truncate">
-        {children ??
-          (fileDiff.prevName !== undefined &&
-          fileDiff.prevName !== "" &&
-          fileDiff.prevName !== fileDiff.name
-            ? `${fileDiff.prevName} → ${fileDiff.name}`
-            : fileDiff.name)}
-      </span>
+      <Icon name={fileIconName(name)} className="size-4.5" />
+      <span className="truncate">{children ?? (renamed ? `${prevName} → ${name}` : name)}</span>
     </CodePanelTitle>
   );
 };
@@ -217,6 +213,83 @@ const gapRows = (
     : [separatorRow(split)];
 };
 
+/** The next old and new line numbers. */
+interface DiffCursor {
+  old: number;
+  new: number;
+}
+
+/** Unchanged lines inside a hunk, from `cursor`. */
+const contextRows = (
+  fileDiff: FileDiffMetadata,
+  split: boolean,
+  block: ContextContent,
+  cursor: DiffCursor,
+): DiffRow[] =>
+  Array.from({ length: block.lines }, (_, offset) => {
+    const text = stripEOL(fileDiff.additionLines[block.additionLineIndex + offset]);
+    const newLine = { number: cursor.new + offset, text };
+
+    return split ? { new: newLine, old: { number: cursor.old + offset, text } } : { new: newLine };
+  });
+
+/** Deleted then added lines, side by side for `split`, from `cursor`. */
+const changeRows = (
+  fileDiff: FileDiffMetadata,
+  split: boolean,
+  block: ChangeContent,
+  cursor: DiffCursor,
+): DiffRow[] => {
+  const deletions = changedLines(
+    fileDiff.deletionLines,
+    block.deletionLineIndex,
+    block.deletions,
+    cursor.old,
+    "deletion",
+  );
+
+  const additions = changedLines(
+    fileDiff.additionLines,
+    block.additionLineIndex,
+    block.additions,
+    cursor.new,
+    "addition",
+  );
+
+  if (!split) {
+    return [...deletions, ...additions].map((line) => ({ new: line }));
+  }
+
+  return Array.from({ length: Math.max(deletions.length, additions.length) }, (_, index) => ({
+    new: additions[index] ?? { text: "" },
+    old: deletions[index] ?? { text: "" },
+  }));
+};
+
+/** The first line number of a hunk side; an empty side starts after its anchor line. */
+const hunkStart = (start: number, count: number) => (count === 0 ? start + 1 : start);
+
+/** Unchanged lines after the last hunk, which a partial patch does not know. */
+const trailingRows = (
+  fileDiff: FileDiffMetadata,
+  split: boolean,
+  collapse: number,
+  cursor: DiffCursor,
+): DiffRow[] => {
+  const trailing = fileDiff.additionLines.length - cursor.new + 1;
+  const known = !fileDiff.isPartial && fileDiff.deletionLines.length > 0;
+
+  if (!known || fileDiff.hunks.length === 0 || trailing <= 0) {
+    return [];
+  }
+
+  return gapRows(fileDiff, split, collapse, {
+    count: trailing,
+    oldEnd: cursor.old + trailing,
+    newEnd: cursor.new + trailing,
+  });
+};
+
 /**
  * The diff's rows as plain text, in Pierre's layout: one column for `unified`, old and new side by
  * side for `split`, with Pierre's separators. Shown until Pierre's first render, so the code reads
@@ -224,101 +297,53 @@ const gapRows = (
  */
 const diffRows = (fileDiff: FileDiffMetadata, split: boolean, collapse: number): DiffRow[] => {
   const rows: DiffRow[] = [];
-  let oldNumber = 1;
-  let newNumber = 1;
+  let cursor: DiffCursor = { new: 1, old: 1 };
 
   for (const hunk of fileDiff.hunks) {
-    oldNumber = hunk.deletionCount === 0 ? hunk.deletionStart + 1 : hunk.deletionStart;
-    newNumber = hunk.additionCount === 0 ? hunk.additionStart + 1 : hunk.additionStart;
+    cursor = {
+      new: hunkStart(hunk.additionStart, hunk.additionCount),
+      old: hunkStart(hunk.deletionStart, hunk.deletionCount),
+    };
+
     rows.push(
       ...gapRows(fileDiff, split, collapse, {
         count: hunk.collapsedBefore,
-        oldEnd: oldNumber,
-        newEnd: newNumber,
+        oldEnd: cursor.old,
+        newEnd: cursor.new,
       }),
     );
 
     for (const block of hunk.hunkContent) {
       if (block.type === "context") {
-        for (let offset = 0; offset < block.lines; offset += 1) {
-          const text = stripEOL(fileDiff.additionLines[block.additionLineIndex + offset]);
-          const newLine = { number: newNumber, text };
-          rows.push(split ? { new: newLine, old: { number: oldNumber, text } } : { new: newLine });
-          oldNumber += 1;
-          newNumber += 1;
-        }
-
-        continue;
-      }
-
-      const deletions = changedLines(
-        fileDiff.deletionLines,
-        block.deletionLineIndex,
-        block.deletions,
-        oldNumber,
-        "deletion",
-      );
-
-      const additions = changedLines(
-        fileDiff.additionLines,
-        block.additionLineIndex,
-        block.additions,
-        newNumber,
-        "addition",
-      );
-
-      oldNumber += block.deletions;
-      newNumber += block.additions;
-
-      if (split) {
-        for (let index = 0; index < Math.max(deletions.length, additions.length); index += 1) {
-          rows.push({
-            new: additions[index] ?? { text: "" },
-            old: deletions[index] ?? { text: "" },
-          });
-        }
+        rows.push(...contextRows(fileDiff, split, block, cursor));
+        cursor = { new: cursor.new + block.lines, old: cursor.old + block.lines };
       } else {
-        rows.push(
-          ...deletions.map((line) => ({ new: line })),
-          ...additions.map((line) => ({ new: line })),
-        );
+        rows.push(...changeRows(fileDiff, split, block, cursor));
+        cursor = { new: cursor.new + block.additions, old: cursor.old + block.deletions };
       }
     }
   }
 
-  // Unchanged lines after the last hunk, which a partial patch does not know.
-  const trailing = fileDiff.additionLines.length - newNumber + 1;
-
-  if (
-    !fileDiff.isPartial &&
-    fileDiff.hunks.length > 0 &&
-    fileDiff.deletionLines.length > 0 &&
-    trailing > 0
-  ) {
-    rows.push(
-      ...gapRows(fileDiff, split, collapse, {
-        count: trailing,
-        oldEnd: oldNumber + trailing,
-        newEnd: newNumber + trailing,
-      }),
-    );
-  }
+  rows.push(...trailingRows(fileDiff, split, collapse, cursor));
 
   return rows;
 };
+
+/** The last line number of a hunk side, or its anchor line when the side is empty. */
+const hunkEnd = (start: number, count: number) => (count === 0 ? start : start + count - 1);
 
 /** The digits Pierre sizes its number column for: the longest side of the file. */
 const diffDigits = (fileDiff: FileDiffMetadata) => {
   const last = fileDiff.hunks.at(-1);
 
-  const hunkEnd = last
+  const lastLine = last
     ? Math.max(
-        last.additionStart + last.additionCount - (last.additionCount === 0 ? 0 : 1),
-        last.deletionStart + last.deletionCount - (last.deletionCount === 0 ? 0 : 1),
+        hunkEnd(last.additionStart, last.additionCount),
+        hunkEnd(last.deletionStart, last.deletionCount),
       )
     : 0;
 
-  return String(Math.max(hunkEnd, fileDiff.additionLines.length, fileDiff.deletionLines.length, 1))
+  return String(Math.max(lastLine, fileDiff.additionLines.length, fileDiff.deletionLines.length, 1))
     .length;
 };
 
@@ -329,9 +354,9 @@ const DiffViewFallback = () => {
 
   const side = (key: "old" | "new") =>
     rows.map((row) => {
-      const line = row[key] ?? { text: "" };
+      const { number, ...unnumbered } = row[key] ?? { text: "" };
 
-      return numbered ? line : { ...line, number: undefined };
+      return numbered ? { ...unnumbered, number } : unnumbered;
     });
 
   // Pierre leaves out the empty side of an added or deleted file.
@@ -432,6 +457,7 @@ const DiffView = <Annotation = undefined,>({
     (): FileDiffOptions<Annotation, undefined> => ({
       diffIndicators: "classic",
       ...options,
+      preferredHighlighter: diffHighlighter(),
       theme: diffTheme,
       themeType: "system",
       disableFileHeader: true,

@@ -440,9 +440,8 @@
       "type": "registry:block",
       "title": "Code Block",
       "description": "Erbium code block block.",
-      "dependencies": ["@base-ui/react", "shiki"],
+      "dependencies": ["@base-ui/react", "@pierre/highlights"],
       "registryDependencies": [
-        "@erbium/code-highlighter",
         "@erbium/code-language-icon",
         "@erbium/code-panel",
         "@erbium/copy-button",
@@ -460,26 +459,11 @@
       ]
     },
     {
-      "name": "code-highlighter",
-      "type": "registry:lib",
-      "title": "Code Highlighter",
-      "description": "Erbium code highlighter lib.",
-      "dependencies": ["shiki"],
-      "files": [
-        {
-          "path": "src/lib/code-highlighter.ts",
-          "target": "@lib/code-highlighter.ts",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
       "name": "code-language-icon",
       "type": "registry:lib",
       "title": "Code Language Icon",
       "description": "Erbium code language icon lib.",
       "dependencies": ["@erbium/icons"],
-      "registryDependencies": ["@erbium/code-highlighter"],
       "files": [
         {
           "path": "src/lib/code-language-icon.ts",
@@ -805,6 +789,7 @@
       "type": "registry:lib",
       "title": "Diff Theme",
       "description": "Erbium diff theme lib.",
+      "dependencies": ["@pierre/diffs"],
       "registryDependencies": ["@erbium/surface-shadows"],
       "files": [
         {

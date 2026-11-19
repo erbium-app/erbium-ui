@@ -1,13 +1,11 @@
 import { Tabs as TabsPrimitive } from "@base-ui/react/tabs";
-import { createContext, use, useEffect, useMemo, useRef, useState } from "react";
+import { createContext, use, useMemo, useState, useSyncExternalStore } from "react";
 import type { ComponentProps } from "react";
-import type { TokensResult } from "shiki/core";
+import type { TokensResult } from "@pierre/highlights";
 import { TabsList, TabsTrigger } from "../components/tabs";
 import { DirectionProvider } from "../components/direction";
 import { Icon } from "../components/icon";
 import { codeLanguageIcon } from "../lib/code-language-icon";
-import { normalizeCodeLanguage, updateCodeHighlight } from "../lib/code-highlighter";
-import type { CodeHighlight } from "../lib/code-highlighter";
 import { cn } from "../lib/utils";
 import type { CSSVariableStyle } from "../lib/utils";
 import {
@@ -28,24 +26,98 @@ const lineBreak = /\r\n|\n|\r/u;
 const plaintext = new Set(["text", "plaintext", "plain", "txt", ""]);
 
 /** Highlighted output from `highlightCode`, for code tokenized ahead of render. */
-type CodeBlockTokens = Pick<TokensResult, "tokens" | "rootStyle">;
+type CodeBlockTokens = Pick<TokensResult, "tokens">;
 
-const CodeBlockToken = ({ token }: { token: CodeToken }) => {
-  const htmlStyle = "htmlStyle" in token ? token.htmlStyle : undefined;
+type Highlight = (code: string, language: string) => TokensResult;
 
-  const tokenStyle: CSSVariableStyle = {
-    "--shiki-dark": htmlStyle?.["--shiki-dark"],
-    "--shiki-light": htmlStyle?.["--shiki-light"],
+let highlight: Highlight | null = null;
+let loading: Promise<Highlight> | null = null;
+
+// Highlights compiles its WebAssembly at import, so it loads the first time a block needs it.
+// Diff View and File View select the same backend, so a page loads it once.
+const createHighlight = async (): Promise<Highlight> => {
+  const [{ codeToTokens, isSupportedLanguage }, light, dark] = await Promise.all([
+    import("@pierre/highlights"),
+    import("@pierre/highlights/themes/vitesse-light"),
+    import("@pierre/highlights/themes/vitesse-dark"),
+  ]);
+
+  const themes = { dark: dark.default, light: light.default };
+
+  // `defaultColor: false` gives only `--hls-light-*` and `--hls-dark-*` properties, which the
+  // page's scheme picks between. Highlights keeps a lone CR inside a line, but a displayed line
+  // ends there, so it becomes LF; the length and token offsets are unchanged.
+  return (code, language) =>
+    codeToTokens(code.replaceAll(/\r(?!\n)/gu, "\n"), {
+      defaultColor: false,
+      lang: isSupportedLanguage(language) ? language : "plain",
+      themes,
+    });
+};
+
+const loadHighlight = async () => {
+  try {
+    loading ??= createHighlight();
+    highlight = await loading;
+
+    return highlight;
+  } catch (error) {
+    // The next block retries a failed load.
+    loading = null;
+    throw error;
+  }
+};
+
+/** Tokenizes `code` ahead of render, for example on the server, to pass as `tokens`. */
+const highlightCode = async (code: string, language: string) =>
+  (await loadHighlight())(code, language);
+
+// Subscribing loads the highlighter and re-renders once it is ready. The server snapshot is null,
+// so hydration renders the server's plain source first.
+const subscribeHighlight = (onLoad: () => void) => {
+  let subscribed = true;
+
+  const run = async () => {
+    try {
+      await loadHighlight();
+
+      if (subscribed) {
+        onLoad();
+      }
+    } catch {
+      // Source stays readable as plain text where WebAssembly is unavailable or blocked.
+    }
+  };
+
+  void run();
+
+  return () => {
+    subscribed = false;
+  };
+};
+
+const skipHighlight = () => () => null;
+const getHighlight = () => highlight;
+const getServerHighlight = () => null;
+
+// Colors and ANSI backgrounds are custom properties per theme; an unset background stays clear.
+// Vitesse and ANSI style fonts the same in both themes, so the light keys decide them.
+const CodeBlockToken = ({ token: { content, htmlStyle } }: { token: CodeToken }) => {
+  const colors: CSSVariableStyle = {
+    "--hls-dark": htmlStyle?.["--hls-dark"],
+    "--hls-dark-bg": htmlStyle?.["--hls-dark-bg"],
+    "--hls-light": htmlStyle?.["--hls-light"],
+    "--hls-light-bg": htmlStyle?.["--hls-light-bg"],
   };
 
   return (
     <span
-      style={tokenStyle}
-      data-italic={htmlStyle?.["font-style"] === "italic" ? "" : undefined}
-      data-bold={htmlStyle?.["font-weight"] === "bold" ? "" : undefined}
-      className="text-(--shiki-light,inherit) data-bold:font-bold data-italic:italic dark:text-(--shiki-dark,inherit)"
+      style={colors}
+      data-italic={htmlStyle?.["--hls-light-font-style"] === "italic" ? "" : undefined}
+      data-bold={htmlStyle?.["--hls-light-font-weight"] === undefined ? undefined : ""}
+      className="bg-(--hls-light-bg) text-(--hls-light) data-bold:font-bold data-italic:italic dark:bg-(--hls-dark-bg) dark:text-(--hls-dark)"
     >
-      {token.content}
+      {content}
     </span>
   );
 };
@@ -225,16 +297,11 @@ interface CodeLinesOptions {
   lineNumbers: boolean;
   startLine: number;
   highlightLines?: readonly number[];
-  /** The tokens were highlighted from this exact source. */
-  current: boolean;
   /** The source is terminal output, whose escape codes are never shown as text. */
   ansi: boolean;
 }
 
-/**
- * The source as panel rows. Tokens from an earlier version of a changing source keep coloring the
- * lines whose text is unchanged or has only grown, while the new version highlights.
- */
+/** The source as panel rows, colored by `result` once it exists and plain until then. */
 const codeLines = (
   code: string,
   result: CodeBlockTokens | undefined,
@@ -252,34 +319,17 @@ const codeLines = (
   return texts.map((text, index) => {
     const number = options.startLine + index;
     const row = result?.tokens[index] ?? [];
-    const highlighted = row.map((token) => token.content).join("");
-    // A line that grew since it was highlighted, as a streamed line does, keeps its colors and
-    // shows the new text plainly until the next highlight.
-    const reusable = highlighted !== "" && (options.current || text.startsWith(highlighted));
 
     return {
       text,
-      content: reusable ? (
-        <>
-          {row.map((token, tokenIndex) => (
-            <CodeBlockToken key={tokenIndex} token={token} />
-          ))}
-          {options.current ? null : text.slice(highlighted.length)}
-        </>
-      ) : undefined,
+      content:
+        row.length > 0
+          ? row.map((token, tokenIndex) => <CodeBlockToken key={tokenIndex} token={token} />)
+          : undefined,
       number: options.lineNumbers ? number : undefined,
       tone: calledOut.has(number) ? "highlight" : undefined,
     };
   });
-};
-
-/** A theme color from the highlighter's root style, which is `false` when the theme sets none. */
-const themeColor = (result: CodeBlockTokens | undefined, name: string) => {
-  const rootStyle = result?.rootStyle;
-  const declarations = rootStyle === undefined || rootStyle === false ? [] : rootStyle.split(";");
-  const declaration = declarations.find((entry) => entry.startsWith(`${name}:`));
-
-  return declaration?.slice(name.length + 1);
 };
 
 type CodeBlockContentProps = Omit<
@@ -292,40 +342,18 @@ const CodeBlockContent = ({ className, style, ...props }: CodeBlockContentProps)
   const code = active?.code ?? "";
   const language = active?.language ?? "text";
   const tokens = active?.tokens;
+  // Provided tokens render on the server and skip the client highlighter.
+  const highlighted = tokens === undefined && !plaintext.has(language);
 
-  const [highlight, setHighlight] = useState<CodeHighlight>();
-  // The latest highlight, which a growing source continues from.
-  const latest = useRef<CodeHighlight>(undefined);
+  const highlighter = useSyncExternalStore(
+    highlighted ? subscribeHighlight : skipHighlight,
+    getHighlight,
+    getServerHighlight,
+  );
 
-  useEffect(() => {
-    let current = true;
-
-    const run = async () => {
-      try {
-        const next = await updateCodeHighlight(latest.current, code, language);
-
-        if (current) {
-          latest.current = next;
-          setHighlight(next);
-        }
-      } catch {
-        // Source remains readable as plain text when highlighting is unavailable.
-      }
-    };
-
-    // Provided tokens render on the server and skip the client highlighter.
-    if (tokens === undefined && !plaintext.has(language)) {
-      void run();
-    }
-
-    return () => {
-      current = false;
-    };
-  }, [code, language, tokens]);
-
-  // Until the current source is highlighted, the previous highlight colors the lines it shares.
-  const sameLanguage = highlight?.language === normalizeCodeLanguage(language);
-  const result = tokens ?? (sameLanguage ? highlight?.result : undefined);
+  // Tokenizing is synchronous once the highlighter has loaded, so a changing or streamed source
+  // highlights in full on each render and never shows stale colors.
+  const result = tokens ?? (highlighted ? highlighter?.(code, language) : undefined);
 
   // Numbered rows use the file and diff view gutter; plain rows pad to the panel. The code column
   // keeps clear of the anchored actions, so row tints still reach both edges.
@@ -339,18 +367,11 @@ const CodeBlockContent = ({ className, style, ...props }: CodeBlockContentProps)
     : plainInset;
 
   const lines = codeLines(code, result, {
-    ansi: normalizeCodeLanguage(language) === "ansi",
-    current: tokens !== undefined || (sameLanguage && highlight?.code === code),
+    ansi: language.toLowerCase() === "ansi",
     highlightLines: active?.highlightLines,
     lineNumbers,
     startLine,
   });
-
-  const blockStyle: CSSVariableStyle = {
-    "--shiki-dark": themeColor(result, "--shiki-dark"),
-    "--shiki-light": themeColor(result, "--shiki-light"),
-    ...style,
-  };
 
   return (
     <pre
@@ -362,9 +383,9 @@ const CodeBlockContent = ({ className, style, ...props }: CodeBlockContentProps)
       data-slot="code-block-content"
       data-language={language}
       dir="ltr"
-      style={blockStyle}
+      style={style}
       className={cn(
-        "m-0 max-h-120 overflow-auto text-code-block [tab-size:2] text-(--shiki-light,inherit) dark:text-(--shiki-dark,inherit)",
+        "m-0 max-h-120 overflow-auto text-code-block [tab-size:2]",
         codePanelFocusRing,
         surface === "command" ? "px-3 py-3" : "p-panel",
         // Rows pad themselves so highlighted lines reach both edges.
@@ -523,6 +544,7 @@ export {
   CodeBlockPanel,
   CodeBlockContent,
   CodeBlockCopyButton,
+  highlightCode,
 };
 
 export type { CodeBlockProps, CodeBlockItem, CodeBlockContentProps, CodeBlockTokens };

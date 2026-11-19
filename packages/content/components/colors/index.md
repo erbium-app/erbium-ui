@@ -15,7 +15,7 @@ Shadcn's current base themes already use OKLCH. Our difference is **the palette 
 
 ## Why this palette
 
-We adopted Vitesse because it gives the interface and its code examples a shared palette. [Shiki supports Vitesse themes](https://shiki.style/guide/install), and our TanStack Highlight theme maps the same Vitesse colors to its syntax roles. Code highlighting and interface colors therefore stay visually consistent across light and dark appearances, using warm neutral text, quiet backgrounds, and restrained syntax hues.
+We adopted Vitesse because it gives the interface and its code examples a shared palette. Code blocks, diff views, and file views highlight with the Vitesse light and dark themes that ship with Pierre's [Highlights](https://diffs.com/docs#highlights). Code highlighting and interface colors therefore stay visually consistent across light and dark appearances, using warm neutral text, quiet backgrounds, and restrained syntax hues.
 
 Erbium adapts that palette into semantic interface roles. Primary actions are neutral; purple distinguishes links, selection, and keyboard focus. Status colors describe feedback, while category and chart tokens retain separate meanings even when they share a color.
 

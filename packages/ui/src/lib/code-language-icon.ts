@@ -1,41 +1,35 @@
 import type { IconName } from "@erbium/icons";
-import { normalizeCodeLanguage } from "./code-highlighter";
 
-const languageIcons = new Map<string, IconName>([
-  ["ansi", "bash-duo"],
-  ["astro", "astro"],
-  ["c", "lang-c"],
-  ["cpp", "lang-c"],
-  ["css", "lang-css-duo"],
-  ["diff", "git"],
-  ["go", "lang-go"],
-  ["graphql", "graphql"],
-  ["html", "lang-html-duo"],
-  ["js", "lang-javascript-duo"],
-  ["json", "braces"],
-  ["jsonc", "braces"],
-  ["jsx", "react"],
-  ["markdown", "lang-markdown"],
-  ["mdx", "lang-markdown"],
-  ["plain", "file-text-duo"],
-  ["plaintext", "file-text-duo"],
-  ["python", "lang-python"],
-  ["ruby", "lang-ruby"],
-  ["rust", "lang-rust"],
-  ["sass", "sass"],
-  ["scss", "sass"],
-  ["shell", "bash-duo"],
-  ["sql", "file-table-duo"],
-  ["svelte", "svelte"],
-  ["swift", "lang-swift"],
-  ["text", "file-text-duo"],
-  ["ts", "lang-typescript-duo"],
-  ["tsx", "react"],
-  ["txt", "file-text-duo"],
-  ["vue", "vue"],
-  ["yaml", "yml"],
-  ["zsh", "bash-duo"],
-]);
+// Each icon with the language names and aliases it covers.
+const icons: [IconName, string[]][] = [
+  ["astro", ["astro"]],
+  ["bash-duo", ["ansi", "bash", "sh", "shell", "shellscript", "zsh"]],
+  ["braces", ["json", "jsonc"]],
+  ["file-table-duo", ["sql"]],
+  ["file-text-duo", ["plain", "plaintext", "text", "txt"]],
+  ["git", ["diff", "patch"]],
+  ["graphql", ["graphql"]],
+  ["lang-c", ["c", "cpp"]],
+  ["lang-css-duo", ["css"]],
+  ["lang-go", ["go"]],
+  ["lang-html-duo", ["html"]],
+  ["lang-javascript-duo", ["javascript", "js"]],
+  ["lang-markdown", ["markdown", "md", "mdx"]],
+  ["lang-python", ["py", "python"]],
+  ["lang-ruby", ["ruby"]],
+  ["lang-rust", ["rust"]],
+  ["lang-swift", ["swift"]],
+  ["lang-typescript-duo", ["ts", "typescript"]],
+  ["react", ["jsx", "tsx"]],
+  ["sass", ["sass", "scss"]],
+  ["svelte", ["svelte"]],
+  ["vue", ["vue"]],
+  ["yml", ["yaml", "yml"]],
+];
 
-export const codeLanguageIcon = (language?: string): IconName =>
-  languageIcons.get(normalizeCodeLanguage(language ?? "text")) ?? "file-duo";
+const languageIcons = new Map(
+  icons.flatMap(([icon, languages]) => languages.map((language) => [language, icon] as const)),
+);
+
+export const codeLanguageIcon = (language = "text"): IconName =>
+  languageIcons.get(language.trim().toLowerCase()) ?? "file-duo";

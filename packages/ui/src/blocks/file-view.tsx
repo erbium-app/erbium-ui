@@ -6,7 +6,7 @@ import type { ComponentProps, ReactNode } from "react";
 import { Icon } from "../components/icon";
 import { enhanceDiffAccessibility } from "../lib/diff-accessibility";
 import { applyDiffIcons } from "../lib/diff-icons";
-import { diffTheme, diffThemeCSS } from "../lib/diff-theme";
+import { diffHighlighter, diffTheme, diffThemeCSS } from "../lib/diff-theme";
 import { fileIconName } from "../lib/file-icons";
 import {
   CodePanel,
@@ -24,6 +24,7 @@ import type { CopyButtonProps } from "./copy-button";
 
 type FileViewOptions<Annotation = undefined> = Omit<
   FileOptions<Annotation, undefined>,
+  | "preferredHighlighter"
   | "theme"
   | "themeType"
   | "unsafeCSS"
@@ -141,6 +142,8 @@ const FileView = <Annotation = undefined,>({
 
   const context = useMemo(
     () => ({
+      file,
+      numbered,
       content: (
         <PierreFile
           file={file}
@@ -158,6 +161,7 @@ const FileView = <Annotation = undefined,>({
 
               return options?.onPostRender?.(node, instance, phase);
             },
+            preferredHighlighter: diffHighlighter(),
             theme: diffTheme,
             themeType: "system",
             unsafeCSS: diffThemeCSS,
@@ -171,8 +175,6 @@ const FileView = <Annotation = undefined,>({
           disableWorkerPool={disableWorkerPool}
         />
       ),
-      file,
-      numbered,
       rendered: ready,
     }),
     [

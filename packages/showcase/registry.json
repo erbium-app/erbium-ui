@@ -6775,7 +6775,6 @@
       "registryDependencies": [
         "@erbium/button",
         "@erbium/code-block",
-        "@erbium/code-highlighter",
         "@erbium/copy-button",
         "@erbium/csp-provider",
         "@erbium/icon",

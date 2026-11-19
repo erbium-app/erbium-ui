@@ -14,7 +14,7 @@ Import from `@erbium/ui/blocks/diff-view`.
 />
 ```
 
-The default layout shows the filename, added/deleted line counts, an exact-source copy action for the new file, and a split diff. Classic plus/minus indicators communicate changes alongside color. Syntax highlighting uses Vitesse light and dark; Erbium controls surfaces, typography, change colors, and selection. The viewer inherits the application's CSS `color-scheme`, including manually selected themes. There is no theme or highlighting-engine prop at the root.
+The default layout shows the filename, added/deleted line counts, an exact-source copy action for the new file, and a split diff. Classic plus/minus indicators communicate changes alongside color. Syntax highlighting uses Vitesse light and dark; Erbium controls surfaces, typography, change colors, and selection. The viewer inherits the application's CSS `color-scheme`, including manually selected themes. Highlighting runs on [Highlights](https://diffs.com/docs#highlights), the same WebAssembly highlighter as Code Block, and falls back to Shiki's JavaScript engine where WebAssembly is unavailable. There is no theme or highlighting-engine prop at the root.
 
 Filenames determine syntax highlighting. Use the optional file `lang` for an explicit language override. Unknown file extensions render as plaintext. Pass `oldFile={null}` for a new file or `newFile={null}` for a deleted file; at least one side must exist. Empty source strings are valid. Source strings are not formatted or normalized for copying.
 

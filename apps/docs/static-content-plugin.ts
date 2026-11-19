@@ -30,14 +30,18 @@ const examplesPrefix = `${examplesId}/`;
 // The client files each page's examples need, captured from the client build for the server build.
 const preloadsId = "virtual:docs-example-preloads";
 
-// Content modules use Node-only packages (gray-matter, Shiki, Satori, Sharp), so
+// Content modules use Node-only packages (gray-matter, Satori, Sharp), so
 // they run in this Node environment instead of the Worker.
 const environmentName = "content";
+
+/** One entry of a virtual index module: a page path and a lazy import of its module. */
+const lazyImport = (prefix: string, path: string) =>
+  `${JSON.stringify(path)}: () => import(${JSON.stringify(prefix + path)})`;
 
 /** Compile content and native image dependencies on Node, never in the Worker. */
 export const staticContentPlugin = ({ root, pagePaths, toolingPlugins }: Options): Plugin => {
   let devServer: ViteDevServer | undefined;
-  let buildEnvironment: Promise<RunnableDevEnvironment> | undefined;
+  let buildEnvironment: Promise<RunnableDevEnvironment> | null = null;
 
   // Dev runs content in an environment of the same server, so it shares the
   // watcher and module graph. `vite build` has no dev server, so it creates the
@@ -77,7 +81,7 @@ export const staticContentPlugin = ({ root, pagePaths, toolingPlugins }: Options
 
   const closeBuildEnvironment = async () => {
     const pending = buildEnvironment;
-    buildEnvironment = undefined;
+    buildEnvironment = null;
     const content = await pending;
     await content?.close();
   };
@@ -90,7 +94,7 @@ export const staticContentPlugin = ({ root, pagePaths, toolingPlugins }: Options
 
   // A changed source gives the page builder a new module instance, which drops
   // every page compiled from the old one.
-  let compiled: { module: typeof ContentPages; pages: Map<string, Promise<DocPage>> } | undefined;
+  let compiled: { module: typeof ContentPages; pages: Map<string, Promise<DocPage>> } | null = null;
 
   const page = async (path: string) => {
     const module = await load<typeof ContentPages>("/src/build/content/pages.ts");
@@ -122,6 +126,28 @@ export const staticContentPlugin = ({ root, pagePaths, toolingPlugins }: Options
 
     return module.artifacts;
   };
+
+  const resource = async (path: string) => {
+    const artifacts = await resources();
+
+    return artifacts.find((entry) => entry.path === path);
+  };
+
+  // `export default` of a lazy import per page, for the page and example index modules.
+  const lazyImports = (prefix: string) =>
+    `export default {${pagePaths.map((path) => lazyImport(prefix, path)).join(",")}};`;
+
+  const exampleFile = (variant: { name: string; slug: string }) =>
+    nodePath.resolve(
+      root,
+      "../../packages/showcase/src",
+      variant.name,
+      "variants",
+      `${variant.slug}.tsx`,
+    );
+
+  const virtualIds = new Set([virtualId, examplesId, preloadsId]);
+  const virtualPrefixes = [pagePrefix, examplesPrefix];
 
   const image = async (path: string) => {
     const { ogPages } = await load<typeof OgPages>("/src/build/seo/og-pages.ts");
@@ -253,7 +279,7 @@ export const staticContentPlugin = ({ root, pagePaths, toolingPlugins }: Options
     },
     configureServer(vite) {
       devServer = vite;
-      compiled = undefined;
+      compiled = null;
       served.clear();
 
       const reloadChangedPages = async () => {
@@ -374,8 +400,7 @@ export const staticContentPlugin = ({ root, pagePaths, toolingPlugins }: Options
               return;
             }
 
-            const artifacts = await resources();
-            const artifact = artifacts.find((entry) => entry.path === path);
+            const artifact = await resource(path);
 
             if (!artifact) {
               forward();
@@ -453,7 +478,7 @@ export const staticContentPlugin = ({ root, pagePaths, toolingPlugins }: Options
         }
 
         if (id === `\0${examplesId}`) {
-          return `export default {${pagePaths.map((path) => `${JSON.stringify(path)}: () => import(${JSON.stringify(examplesPrefix + path)})`).join(",")}};`;
+          return lazyImports(examplesPrefix);
         }
 
         if (id.startsWith(`\0${examplesPrefix}`)) {
@@ -461,19 +486,20 @@ export const staticContentPlugin = ({ root, pagePaths, toolingPlugins }: Options
 
           const imports = variants.map(
             (variant, index) =>
-              `import example${index} from ${JSON.stringify(nodePath.resolve(root, "../../packages/showcase/src", variant.name, "variants", `${variant.slug}.tsx`))};`,
+              `import example${index} from ${JSON.stringify(exampleFile(variant))};`,
           );
 
-          const entries = variants.map(
-            (variant, index) =>
-              `${JSON.stringify(`${variant.name}/${variant.slug}`)}: example${index}`,
-          );
+          const entries = variants.map((variant, index) => {
+            const key = JSON.stringify(`${variant.name}/${variant.slug}`);
+
+            return `${key}: example${index}`;
+          });
 
           return `${imports.join("\n")}\nexport default {${entries.join(",")}};`;
         }
 
         if (id === resolvedId) {
-          return `export default {${pagePaths.map((path) => `${JSON.stringify(path)}: () => import(${JSON.stringify(pagePrefix + path)})`).join(",")}};`;
+          return lazyImports(pagePrefix);
         }
 
         if (id.startsWith(`\0${pagePrefix}`)) {
@@ -499,13 +525,10 @@ export const staticContentPlugin = ({ root, pagePaths, toolingPlugins }: Options
     resolveId: {
       filter: { id: /^virtual:docs-(?:page|example)/u },
       handler(id) {
-        return id === virtualId ||
-          id.startsWith(pagePrefix) ||
-          id === examplesId ||
-          id.startsWith(examplesPrefix) ||
-          id === preloadsId
-          ? `\0${id}`
-          : null;
+        const virtual =
+          virtualIds.has(id) || virtualPrefixes.some((prefix) => id.startsWith(prefix));
+
+        return virtual ? `\0${id}` : null;
       },
     },
   };

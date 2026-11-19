@@ -1,4 +1,4 @@
-import { mkdir, readFile, readdir, stat, writeFile } from "node:fs/promises";
+import { mkdir, readFile, readdir, stat, unlink, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 /** @typedef {"registry:ui" | "registry:block" | "registry:component" | "registry:hook" | "registry:lib"} SourceType */
@@ -464,3 +464,21 @@ await writeFile(
   path.join(packageRoot, "public/r/registry.json"),
   `${JSON.stringify({ $schema: "https://ui.shadcn.com/schema/registry.json", homepage: "https://github.com/erbium-app/erbium-ui", items: publicItems, name: "erbium" }, null, 2)}\n`,
 );
+
+// A deleted source leaves its public file behind, which the registry would keep serving. Remove
+// every file that no current item writes, as the showcase registry does.
+const publicDirectory = path.join(packageRoot, "public/r");
+const expectedFiles = new Set(["registry.json", ...items.map((item) => `${item.name}.json`)]);
+
+const publicFiles = await readdir(publicDirectory);
+const orphans = publicFiles.filter((file) => file.endsWith(".json") && !expectedFiles.has(file));
+
+await Promise.all(
+  orphans.map(async (file) => {
+    await unlink(path.join(publicDirectory, file));
+  }),
+);
+
+if (orphans.length > 0) {
+  process.stdout.write(`Removed orphaned registry items: ${orphans.join(", ")}\n`);
+}
