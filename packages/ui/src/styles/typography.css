@@ -49,33 +49,9 @@
   text-wrap: balance;
 }
 
-/* Selected labels. Going from a control role's 500 to 600 widens a label by up
-   to 6.3px at 14px, which pushes its neighbors or moves its ellipsis. Cal Sans
-   narrows as its optical size rises, so each control role pairs 600 with a
-   raised opsz, measured to hold 5–30 character labels within 1px of their
-   500 width: 18.5 at 14px, 17 at 12px. Vazirmatn has no opsz axis and ignores
-   the setting. Use font-selected inside a control role; outside one it is a
-   plain 600. */
-@layer base {
-  :root {
-    --text-control--selected-variation: "opsz" 18.5;
-    --text-control-sm--selected-variation: "opsz" 17;
-  }
-}
-
-@utility text-control {
-  --selected-variation: var(--text-control--selected-variation);
-}
-
-@utility text-control-sm {
-  --selected-variation: var(--text-control-sm--selected-variation);
-}
-
+/* Paint emphasis without changing weight, glyph advances, or truncation. */
 @utility font-selected {
-  --tw-font-weight: 600;
-
-  font-variation-settings: var(--selected-variation, normal);
-  font-weight: 600;
+  -webkit-text-stroke: 0.025em currentcolor;
 }
 
 /* Body and caption carry no wrap style: an element that takes the role passes
