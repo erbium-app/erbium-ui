@@ -3,7 +3,7 @@ import {
   LightboxCaption,
   LightboxClose,
   LightboxContent,
-  LightboxCounter,
+  LightboxStepIndicator,
   LightboxFooter,
   LightboxHeader,
   LightboxItem,
@@ -100,7 +100,7 @@ export default function GalleryExample() {
 
         <LightboxFooter>
           <LightboxCaption />
-          <LightboxCounter />
+          <LightboxStepIndicator />
           <LightboxThumbnailStrip>
             <LightboxThumbnailStripTrack aria-label="Workspace photo thumbnails">
               {photos.map((photo, index) => (

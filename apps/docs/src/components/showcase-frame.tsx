@@ -10,7 +10,7 @@ import { ShowcaseProviders, ShowcaseSurface } from "@erbium/showcase/preview";
 import { Alert, AlertTitle, AlertDescription } from "@erbium/ui/components/alert";
 import { Icon } from "@erbium/ui/components/icon";
 import { ThemeToggleIcon } from "@erbium/ui/components/stateful-icon";
-import { Toolbar, ToolbarButton } from "@erbium/ui/components/toolbar";
+import { Toolbar, ToolbarButton, ToolbarSeparator } from "@erbium/ui/components/toolbar";
 import { codePanelSurface } from "@erbium/ui/blocks/code-panel";
 import { changeTheme } from "@erbium/ui/lib/change-theme";
 import { cn } from "@erbium/ui/lib/utils";
@@ -177,16 +177,19 @@ const ShowcaseFrame = ({
     // full-screen morph clips its snapshot to the morph element's box. This transparent box
     // reaches 8px past the panel (the panel's shadow reaches 6px) so the snapshot keeps the whole
     // surface; its negative margin keeps the page layout as it was.
-    <div ref={ref} data-slot="showcase-frame" className={fill ? "size-full p-2" : "-m-2 p-2"}>
+    <div ref={ref} data-slot="showcase-frame" className={fill ? "size-full md:p-2" : "-m-2 p-2"}>
       <div
         className={cn(
           "showcase-content relative",
           codePanelSurface,
           appearance,
-          fill && "flex size-full flex-col overflow-auto overscroll-contain",
+          fill && "flex size-full flex-col overflow-hidden max-md:rounded-none",
         )}
       >
-        <Toolbar aria-label="Showcase controls" className="absolute end-2 top-2 z-1">
+        <Toolbar
+          aria-label="Showcase controls"
+          className={cn("z-1", fill ? "m-2 shrink-0 self-end" : "absolute end-2 top-2")}
+        >
           <ToolbarButton
             size="icon-sm"
             aria-label="Refresh this showcase"
@@ -209,21 +212,33 @@ const ShowcaseFrame = ({
           >
             <ThemeToggleIcon theme={dark ? "dark" : "light"} />
           </ToolbarButton>
-          {actions}
+          {actions !== undefined && (
+            <>
+              <ToolbarSeparator />
+              {actions}
+            </>
+          )}
         </Toolbar>
-        <CatchBoundary getResetKey={() => mount} errorComponent={PreviewError}>
-          <ShowcaseProviders key={mount}>
-            <ShowcaseSurface fill={fill}>
-              <Suspense fallback={<PreviewLoading />}>
-                <PreviewContent
-                  path={path}
-                  example={`${variant.name}/${variant.slug}`}
-                  args={args}
-                />
-              </Suspense>
-            </ShowcaseSurface>
-          </ShowcaseProviders>
-        </CatchBoundary>
+        <div
+          className={cn(
+            fill &&
+              "min-h-0 flex-1 overflow-auto overscroll-contain [&>[data-slot=component-preview]]:min-h-full",
+          )}
+        >
+          <CatchBoundary getResetKey={() => mount} errorComponent={PreviewError}>
+            <ShowcaseProviders key={mount}>
+              <ShowcaseSurface fill={fill}>
+                <Suspense fallback={<PreviewLoading />}>
+                  <PreviewContent
+                    path={path}
+                    example={`${variant.name}/${variant.slug}`}
+                    args={args}
+                  />
+                </Suspense>
+              </ShowcaseSurface>
+            </ShowcaseProviders>
+          </CatchBoundary>
+        </div>
       </div>
     </div>
   );

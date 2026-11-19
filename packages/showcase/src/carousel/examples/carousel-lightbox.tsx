@@ -5,7 +5,7 @@ import {
   LightboxCaption,
   LightboxClose,
   LightboxContent,
-  LightboxCounter,
+  LightboxStepIndicator,
   LightboxFooter,
   LightboxHeader,
   LightboxItem,
@@ -117,7 +117,7 @@ export default function CarouselLightboxExample() {
 
         <LightboxFooter>
           <LightboxCaption />
-          <LightboxCounter />
+          <LightboxStepIndicator />
         </LightboxFooter>
       </LightboxContent>
     </Lightbox>

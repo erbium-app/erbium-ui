@@ -4,7 +4,8 @@ import {
   LightboxCaption,
   LightboxClose,
   LightboxContent,
-  LightboxCounter,
+  LightboxStepIndicator,
+  LightboxHeader,
   LightboxFooter,
   LightboxItem,
   LightboxNext,
@@ -48,9 +49,12 @@ const ShowcaseGallery = ({
         aria-label="Showcases"
         // Examples scroll and drag, so a pull must not close the viewer.
         pullToClose={false}
-        // No header: the frame carries its own toolbar, so the slide starts near the top edge.
-        className="[--lb-inset-top:calc(1rem+var(--lb-safe-top))] md:[--lb-inset-top:calc(1.5rem+var(--lb-safe-top))]"
+        // Keep navigation and dismissal outside the interactive, scrolling examples.
+        className="[--lb-inset-bottom:calc(3.5rem+var(--lb-safe-bottom))] [--lb-inset-top:calc(2.5rem+var(--lb-safe-top))] md:[--lb-inset-bottom:calc(4.5rem+var(--lb-safe-bottom))]"
       >
+        <LightboxHeader className="justify-center">
+          <LightboxStepIndicator labels={variants.map((variant) => variant.title)} />
+        </LightboxHeader>
         <LightboxSlides aria-label="Showcases" aria-roledescription="carousel">
           {variants.map((variant, index) => (
             <LightboxSlide key={variant.anchor}>
@@ -72,7 +76,7 @@ const ShowcaseGallery = ({
                         aria-label="Exit full screen"
                         render={<ToolbarButton size="icon-sm" />}
                       >
-                        <Icon name="arrow-shrink-01" />
+                        <Icon name="cancel-01" />
                       </LightboxClose>
                     }
                   />
@@ -82,12 +86,28 @@ const ShowcaseGallery = ({
           ))}
         </LightboxSlides>
 
-        <LightboxPrevious aria-label="Previous showcase" />
-        <LightboxNext aria-label="Next showcase" />
-
-        <LightboxFooter>
-          <LightboxCaption />
-          <LightboxCounter />
+        {variants.length > 1 && (
+          <>
+            <LightboxPrevious aria-label="Previous showcase" />
+            <LightboxNext aria-label="Next showcase" />
+          </>
+        )}
+        <LightboxFooter className="flex-row gap-2 px-2 md:px-4">
+          {variants.length > 1 && (
+            <LightboxPrevious
+              aria-label="Previous showcase"
+              className="static size-11 shrink-0 translate-y-0 max-md:inline-flex md:hidden"
+            />
+          )}
+          <div className="flex min-w-0 flex-1 items-center justify-center gap-3">
+            <LightboxCaption className="min-w-0" />
+          </div>
+          {variants.length > 1 && (
+            <LightboxNext
+              aria-label="Next showcase"
+              className="static size-11 shrink-0 translate-y-0 max-md:inline-flex md:hidden"
+            />
+          )}
         </LightboxFooter>
       </LightboxContent>
     </Lightbox>

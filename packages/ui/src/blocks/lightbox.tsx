@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import type { ComponentProps } from "react";
+import { useLightboxContext } from "@ramka/react";
 import * as LightboxPrimitive from "@ramka/react/lightbox";
 import {
   ArrowLeft01Icon,
@@ -12,6 +13,7 @@ import { HugeiconsIcon } from "@hugeicons/react";
 
 import { cn } from "../lib/utils";
 import { Button } from "../components/button";
+import { StepIndicator, StepIndicatorItem } from "./step-indicator";
 
 /*!
  * Adapted from https://chanhdai.com/components/lightbox
@@ -364,16 +366,51 @@ const LightboxNext = ({
   </LightboxPrimitive.Next>
 );
 
-const LightboxCounter = ({
-  className,
-  ...props
-}: ComponentProps<typeof LightboxPrimitive.Counter>) => (
-  <LightboxPrimitive.Counter
-    data-slot="lightbox-counter"
-    className={cn("text-control-sm text-muted-foreground tabular-nums", className)}
-    {...props}
-  />
-);
+type LightboxStepIndicatorProps = Omit<
+  ComponentProps<typeof StepIndicator>,
+  | "value"
+  | "defaultValue"
+  | "onValueChange"
+  | "count"
+  | "children"
+  | "reach"
+  | "autoplay"
+  | "variant"
+> & {
+  /** Accessible slide names in gallery order. Defaults to "Slide N". */
+  labels?: string[];
+};
+
+const LightboxStepIndicator = ({ labels, className, ...props }: LightboxStepIndicatorProps) => {
+  const { activeIndex, itemCount, setActiveIndex } = useLightboxContext();
+
+  return (
+    <div
+      data-slot="lightbox-step-indicator"
+      className={cn("max-w-full scrollbar-none overflow-x-auto", className)}
+    >
+      <StepIndicator
+        aria-label="Choose a slide"
+        {...props}
+        variant="dots"
+        value={activeIndex}
+        count={itemCount}
+        onValueChange={(index) => {
+          setActiveIndex(index, "button");
+        }}
+      >
+        {Array.from({ length: itemCount }, (_, index) => (
+          <StepIndicatorItem
+            key={index}
+            index={index}
+            label={labels?.[index] ?? `Slide ${index + 1}`}
+          />
+        ))}
+      </StepIndicator>
+      <LightboxPrimitive.Counter className="sr-only" />
+    </div>
+  );
+};
 
 const LightboxCaption = ({
   className,
@@ -440,7 +477,7 @@ export {
   LightboxCaption,
   LightboxClose,
   LightboxContent,
-  LightboxCounter,
+  LightboxStepIndicator,
   LightboxFooter,
   LightboxHeader,
   LightboxItem,
@@ -461,4 +498,4 @@ export {
   LightboxZoomOut,
 };
 
-export type { LightboxHandle };
+export type { LightboxHandle, LightboxStepIndicatorProps };
