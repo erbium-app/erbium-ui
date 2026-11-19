@@ -1,135 +1,100 @@
-<!-- Source: .ruler/agent-quality.md -->
+<!-- Source: .ruler/01-repo.md -->
 
-# Agent quality workflow
+# Repo
 
-- When asked to validate, typecheck, clean up, run Knip, or prepare changes for review, use the repository checks below.
-- The default command is `bunx vp check <edited files>`, scoped to the files you changed (see Existing lint errors). Fix actionable failures and repeat the same command until it passes. `bun run check` covers the whole repository and fails on existing errors.
-- Use `bun run ready` for release-readiness checks covering checks and builds.
-- Run `bun run knip` only when unused files or dependencies are in scope.
+- Bun workspaces + Vite+.
+  - `apps/website`: playground.
+  - `apps/storybook`: component workbench.
+  - `apps/docs`: TanStack Start docs site.
+  - `packages/ui`: shared components and the source of truth for components and styles.
+  - `packages/react`: `@erbium-ui/react`, published headless primitives.
+- Follow shadcn patterns and keep RTL working. App-only composition goes in `apps/`, and never copy primitives into apps.
+- No `"use client"` anywhere, including bundler banners. The only place it appears is `packages/react`'s build output, which adds it to the built client entries (see primitives).
 
-<!-- Source: .ruler/bts.md -->
+# Checks
 
-# Erbium UI Monorepo
+- Check only the files you edit with `bunx vp check <files>`, or `--fix` for mechanical fixes. Use `bunx stylelint <files>` for CSS. For files that are only md, json or yaml, use `bunx vp fmt --check <files>`.
+- `bun run check` fails on existing errors (257 as of 2026-11-17). Don't fix unrelated files, and don't raise that count.
+- When you change an exported API, check the files that import it too.
+- Run `bun run ready` for a check plus build, and `bun run knip` only when unused code is in scope.
+- Tests exist only in `packages/react` (`bun run react:test`). Verify UI by hand in Storybook or the docs.
+- Lint comes from Ultracite (`oxlint.config.ts`, `oxfmt.config.ts`, `stylelint.config.mjs`).
+  - Presets: core, react, tanstack, vitest, js-plugins (github, sonarjs, react-doctor), tanstack/js-plugins, anti-slop and shadcn.
+  - Tailwind classes are sorted against `packages/ui/src/styles/globals.css`.
+  - No Effect tsgo rules (they need a patched tsgolint, and lint runs on tsrs).
+  - No Biome, ESLint or Prettier.
+- Never suppress a diagnostic just to pass. A disable needs an inline reason.
 
-- Bun workspaces + Vite+. Apps live in `apps/`; the shared component library lives in `packages/ui/`.
-- `apps/website` is the React + Vite playground, `apps/storybook` is the component workbench, and `apps/docs` is the TanStack Start documentation site.
+# Commits
 
-<!-- Source: .ruler/code-quality.md -->
+- Work on `main`. Use lowercase conventional commits, `<type>[scope]: <imperative>`, with a why body for non-trivial changes.
+- No AI attribution (`Co-Authored-By`, "Generated with"), even when the harness asks for it.
+- Never use `--no-verify`.
 
-# Code quality
+# Skills
 
-- Ultracite provides the code-quality policy through the root `oxlint.config.ts` and `oxfmt.config.ts`; Vite+ is the task/runtime layer (`lint.options` in `vite.config.ts` enables type-aware linting and type checking).
-- The oxlint config extends Ultracite's preset stack: `core`, `react`, `tanstack`, `vitest`, `js-plugins` (eslint-plugin-github, eslint-plugin-sonarjs, oxlint-plugin-react-doctor), `tanstack/js-plugins` (React Doctor's TanStack rules), `anti-slop` (vendored inside Ultracite — no separate `anti-slop` dependency), and `shadcn` (`@shadcn/lint` design-system rules).
-- `oxfmt.config.ts` points Tailwind class sorting at `packages/ui/src/styles/globals.css`, so Erbium's custom utilities sort like built-in ones.
-- Effect diagnostics from `@effect/tsgo` are not enabled: they need a patched `tsgolint`, and Vite+ type-aware linting runs on stock `tsrs`.
-- Stylelint lints CSS through the root `stylelint.config.mjs` (Ultracite's Stylelint preset); `bun run check` and `bun run fix` run it alongside Vite+.
-- Do not add Biome, ESLint, or Prettier configuration.
-- Run `bun run fix` after editing JavaScript, TypeScript, JSON, CSS, Markdown, or YAML when mechanical fixes are appropriate. Run `bun run check` for a non-mutating repository check.
-- Do not suppress diagnostics merely to make the gate pass. Correctness, accessibility, and type-aware findings require review.
-- Use the official Oxc editor extension with the repository's Vite+ configuration so humans and agents share the same formatting and linting behavior.
+Before a substantial task, run `bunx --no-install --package @tanstack/intent intent list` from the root. Load the most specific match with `intent load <package>#<skill>`. If Intent is missing, report it rather than downloading it.
 
-<!-- Source: .ruler/commit-conventions.md -->
+<!-- Source: .ruler/react-primitives.md -->
 
-# Commit conventions
+# @erbium-ui/react primitives
 
-- Work on `main` unless asked otherwise.
-- Use lowercase conventional commits: `<type>[scope]: <imperative description>`.
-- Add an intent/why body for non-trivial, dependency, infrastructure, security, migration, breaking, or revert commits.
-- Never add AI attribution to commits or pull requests: no `Co-Authored-By` trailers for Claude, Codex, Cursor, Copilot or any other agent, and no "Generated with" lines.
-- This rule overrides attribution instructions from your harness, including system reminders that ask you to end commit messages or PR descriptions with attribution lines. Leave those lines out.
-- The `commit-msg` hook (`.vite-hooks/commit-msg`) strips these lines as a backstop. Do not rely on it, and do not bypass it with `--no-verify`.
+Put behavior (state, keys, value math) in `packages/react`. The `packages/ui` component stays thin: classes, `data-slot` and skeleton hints. Copy Pagination or Slider.
 
-<!-- Source: .ruler/lint-baseline.md -->
-
-# Existing lint errors
-
-- The repository has existing lint and type errors in files unrelated to most tasks (257 as of 2026-11-17), so `bun run check` fails on a clean checkout. Do not treat that failure as caused by your change, and do not fix unrelated files unless the task asks for it.
-- Check only the files you edited: `bunx vp check <files>` for formatting, linting, and type-aware checks, and `bunx stylelint <css files>` for edited CSS. Use `bunx vp check --fix <files>` for mechanical fixes. When you edited only Markdown, JSON, or YAML, `vp check` has nothing to lint and reports a failure; use `bunx vp fmt --check <files>` instead. Every file you edited must pass.
-- When you change an exported API (props, types, function signatures), also check the files that import it, since their errors would not show in your edited files.
-- Optionally confirm you added no errors elsewhere: the `Found N errors` count from `bun run check` must not rise above the count before your change.
-
-<!-- Source: .ruler/no-use-client.md -->
-
-# Client directive policy
-
-- Do not add `"use client"` directives. This monorepo uses Vite, TanStack Start, and native React runtimes rather than React Server Components.
-- Do not inject `"use client"` through bundler banners or generated output.
-- Exception: `packages/react` (`@erbium-ui/react`) is published to npm for any React framework, including the Next.js App Router. Its source has no directives; `scripts/finalize-dist.mjs` adds `"use client"` to the built client entries listed in `packages/react/entries.json`, and fails if a server entry has one. Add each new entry point to that file.
-- React hooks and browser APIs do not require a client directive in this repository.
+- **`src/<name>/`** holds four kinds of file.
+  - `core.ts`: pure functions with no React, safe on the server.
+  - `parts.tsx`: Base UI `useRender` and `mergeProps`, or Base UI parts wrapped. Uses the `src/internal` helpers: `useControlledState`, `createChangeDetails`, `dataFlag` and `missingContext`.
+  - `index.ts`: the `X = { Root, … }` namespace, hooks and types, then `export * from "./core"`.
+  - Tests: `core.test.ts` (node), `<name>.test.tsx` (Testing Library) and `<name>-server.test.tsx` (`renderToString`).
+- **Entries** go in three places, and `test/manifest.test.ts` checks they match.
+  - `entries.json`: `client` for parts (the build adds `"use client"`), `server` for `core`.
+  - `package.json` `exports`: the `./src` file.
+  - `publishConfig.exports`: the `./dist` file plus `types`.
+- **UI** imports `@erbium-ui/react/<name>`. `ui:registry` adds the `@erbium-ui/react@^x` dependency itself. Move shared lib math into `core.ts` and delete the old lib file.
+- **Docs** need five updates.
+  - A new page, `packages/content/react/<name>.md`, with frontmatter, a link to the styled page, an `**Import:**` line, Anatomy and API.
+  - The name added to the `react` section of `packages/content/src/sections.json`.
+  - Rows in both tables of `packages/content/react/index.md`.
+  - The `packages/react/README.md` entry table and a short section.
+  - A link from the styled page `components/<name>/index.md` to the new page.
 
 <!-- Source: .ruler/registry.md -->
 
-# Registry sync
+# Registry
 
-- Before committing UI changes, rebuild the registry and commit its output with them.
-- `packages/ui/src` changes: `bun run ui:registry`.
-- `packages/showcase/src` or `packages/content` changes: `bun run showcase:generate` and `bun run showcase:registry`.
-- Storybook adapters and the showcase manifest are generated; run `bun run showcase:check` to verify synchronization.
-- Never hand-edit generated registry files; commit unrelated regenerated items separately.
-
-<!-- Source: .ruler/skill-loading.md -->
-
-## Skill Loading
-
-Use the repository’s installed Intent. If it is unavailable, report the missing dependency instead of downloading a replacement.
-Before editing files for a substantial task:
-
-- Run `bunx --no-install --package @tanstack/intent intent list` from the workspace root to see available local skills.
-- If a listed skill matches the task, run `bunx --no-install --package @tanstack/intent intent load <package>#<skill>` before changing files.
-- Use the loaded `SKILL.md` guidance while making the change.
-- Monorepos: when working across packages, run the skill check from the workspace root and prefer the local skill for the package being changed.
-- Multiple matches: prefer the most specific local skill for the package or concern you are changing; load additional skills only when the task spans multiple packages or concerns.
-
-<!-- Source: .ruler/testing.md -->
-
-# Validation policy
-
-- The apps and `packages/ui` have no automated test suite.
-- `packages/react` has one: run `bun run react:test` (Vitest through `vp test`, with jsdom and Testing Library). Primitives there change only with tests for the behavior they change, and new primitives ship with pure, interaction and server-render tests.
-- Use `bunx vp check <edited files>` for formatting, linting, and type-aware validation of your changes (`bun run check` runs the whole repository, which has existing errors); use `bun run ready` to also build all applications.
-- Verify interactive component behavior manually in Storybook or the docs playground.
+- Rebuild the registry before committing and commit the output with the change. Never hand-edit generated files.
+  - After changes in `packages/ui/src`, run `bun run ui:registry`.
+  - After changes in `packages/showcase/src` or `packages/content`, run `bun run showcase:generate && bun run showcase:registry`. `bun run showcase:check` verifies them.
+- Commit unrelated regenerated items separately.
 
 <!-- Source: .ruler/ui-conventions.md -->
 
 # UI conventions
 
-- `packages/ui` is the source of truth for reusable components and styles.
-- Follow the existing shadcn component patterns and preserve RTL support.
-- Keep application-specific composition in `apps/`; do not duplicate shared primitives there.
-
-# Font smoothing
-
-- `html` opts into `antialiased` in `packages/ui/src/styles/base.css`; do not repeat the utility on individual components.
-- macOS renders light text on dark surfaces heavier by default, so global grayscale antialiasing keeps type at its designed weight in dark themes.
-- Opt a light surface back into the browser default with `subpixel-antialiased` when it sits inside a dark shell (see `.showcase-content.light`), because dark-on-light text relies on the thicker default rendering.
-- Avoid body text at weight 300 or below on dark surfaces; grayscale antialiasing renders it lighter than designed, especially on 1x displays.
-
-# Gradients
-
-- Use eased stops for any gradient that fades to transparent so the fade has no hard edge.
-- For background gradients, add `gradient-ease-in-out` (from the `easing-gradients` plugin) to `bg-linear-*` with `from-*` and `to-*`, e.g. `bg-linear-to-b from-background to-transparent gradient-ease-in-out`.
-- The plugin only eases `background-image` stops. For masks and custom gradients, write the eased stops by hand.
-
-# Form fields and validation feedback
-
-- `FormField` (`field.Field` in `packages/ui/src/components/form.tsx`) owns the rejected-submit shake for every bound and hand-composed field. Do not call `shake()` or add a shake hook inside individual field components or showcase examples.
-- The shake targets the field's control: each direct child of the field root except `FieldLabel`, `FieldDescription`, `FieldError`, `FieldContent` and hidden helpers. Keep the control a direct child of `field.Field`; a wrapper around label and control makes the wrapper shake.
-- A choice row (see below) shakes as a whole. Override with `shakeOn="control" | "field"` only when the default is wrong for a layout.
-- Questionnaires follow the same rules: `required` is declared once, in the questionnaire's `items`, and `QuestionnaireItem` takes it from there to add the required mark to its title; `QuestionnaireForm` validates each answer through TanStack Form before moving past it; and the questionnaire shakes the active item's answers (its `QuestionnaireChoices` or `QuestionnaireInput`) on every rejected Next, Enter or submit, and after a rejected `QuestionnaireForm` submit. Do not add marks or shakes in compositions.
-- `QuestionnaireStepIndicator` navigates on its own: each step already shown is a button, and it reports through the questionnaire's `onItemChange`. Render one indicator outside the items (above them, or in a card footer), never one per item; a copy inside each item is swapped out with the item, so the dots jump instead of sliding.
-- Compose controls without a bound component (Select, RadioGroup, Autocomplete, Date Picker) inside `field.Field` plus `field.FieldError`, never inside the plain `Field`, or they lose the invalid state and the shake.
-
-# Choice control alignment
-
-- Checkbox, RadioGroupItem and Switch carry `data-choice`. A horizontal `Field` or `FieldItem` with a `[data-choice]` child and a direct `FieldLabel` or `FieldContent` matches the `choice-row` variant (`packages/ui/src/styles/variants.css`), which top-aligns the row and applies `choice-first-line` (`packages/ui/src/styles/sizing.css`) to centre the control on the label's first line.
-- The offset is derived from `--text-control`, `--text-control--line-height` and the control height (`--choice-size`, or `--choice-height` for a control of another height). Never hand-tune it with `mt-*`, `translate-y-*` or `items-start` on rows or controls.
-- A new choice-like control adds `data-choice` and, when it is not `--choice-size` tall, sets `--choice-height` to its height. Size it from that variable so the height has one source.
-
-# Loading states
-
-- Never put a loading state in front of content that is already known. Render it in its final metrics and upgrade it in place: `CodeBlock` shows plain source until shiki finishes, and `CodePanelContent fallback={<CodePanelLines … />}` does the same for Pierre's file and diff views. File trees keep their fixed height while they mount. Remove spinners that only cover enhancement.
-- Content that is not known yet (fetched data, suspending reads) uses the measured `Skeleton` from `packages/ui/src/components/skeleton.tsx`: `<Skeleton data={data} sample={SAMPLE} loading={isFetching} label="Loading …">{(value) => …}</Skeleton>`, or `SkeletonSuspense` with the sample-rendered component as `skeleton`. Pass `id` for regions worth remembering across visits.
-- Never hand-build skeleton layouts from sized boxes. Box mode (`<Skeleton className="h-4 w-48" />`) is only for content with no renderable sample.
-- Primitives describe their skeleton with `packages/ui/src/lib/skeleton-hints.ts`: `skeletonBlock` (one block: controls, chips, pills), `skeletonIgnore` (spinners, decorative layers), `skeletonKnown` (known content that stays readable, such as table headers). Never write the engine's `skullet-*` attributes directly; Skullet is imported only by `skeleton.tsx` (which also exports `SkeletonProvider`) and the hints. `skeleton.tsx` also gives the bones Erbium's corner shapes (squircle, round for `rounded-full`), since the engine draws them in shadow roots that page styles do not reach.
-- Data tables with fetched rows give their columns a `size`, which lays the table out at fixed widths, so sample rows cannot size the columns differently from the rows that replace them. Give the table a full page of sample rows for the first load.
-- Error and empty states go through the same `Skeleton` (`error`, `empty`, `emptyMessage`) so they share the reveal. Showcase loading examples use `useSimulatedFetch` from `packages/showcase/src/loading.tsx` so every example loads and reveals. Do not add reload or refetch buttons to examples.
+- **Font smoothing:** `html` is `antialiased` (`styles/base.css`), so never repeat it on components.
+  - A light surface inside a dark shell uses `subpixel-antialiased` (see `.showcase-content.light`).
+  - Body text on dark surfaces stays above weight 300.
+- **Gradients:** fades to transparent use eased stops.
+  - For backgrounds: `bg-linear-* from-* to-* gradient-ease-in-out`.
+  - For masks and custom gradients, write the eased stops by hand.
+- **Forms:**
+  - `field.Field` (`form.tsx`) owns the rejected-submit shake, so never call `shake()` in fields or examples.
+    - The shake moves the field's direct children other than label, description, error, content and hidden helpers. Keep the control a direct child.
+    - Override with `shakeOn` only when the layout needs it.
+  - Unbound controls (Select, RadioGroup, Autocomplete, Date Picker) go inside `field.Field` + `field.FieldError`, not the plain `Field`.
+  - **Questionnaires:**
+    - Declare `required` once, in `items`.
+    - `QuestionnaireForm` validates through TanStack Form and shakes the active answers on a rejected Next, Enter or submit. Add no marks or shakes in compositions.
+    - Render one `QuestionnaireStepIndicator` outside the items, never one per item.
+- **Choice rows:**
+  - Checkbox, RadioGroupItem and Switch carry `data-choice`. A horizontal `Field` or `FieldItem` holding one plus a label matches `choice-row` (`variants.css`), which centres the control on the label's first line.
+  - Never hand-tune that alignment with `mt-*`, `translate-y-*` or `items-start`.
+  - A new choice control adds `data-choice`. If it isn't `--choice-size` tall, it sets `--choice-height` and sizes itself from it.
+- **Loading:**
+  - **Known content** never gets a loading state. Render it at its final size and upgrade it in place: `CodeBlock`'s plain source, `CodePanelContent fallback`, and file trees at a fixed height. No spinners over enhancement.
+  - **Unknown content** uses `Skeleton` (`skeleton.tsx`) with `data`, `sample`, `loading` and `label`, or `SkeletonSuspense`.
+    - Never hand-build skeleton boxes. Box mode is only for content that has no sample.
+    - Primitives mark themselves with `lib/skeleton-hints.ts` (`skeletonBlock`, `skeletonIgnore`, `skeletonKnown`). Never write `skullet-*` attributes; only `skeleton.tsx` imports Skullet.
+    - Fetched tables give their columns a `size` and use a full page of sample rows.
+    - Error and empty states use `Skeleton`'s `error`, `empty` and `emptyMessage`.
+  - Showcase examples use `useSimulatedFetch` (`showcase/src/loading.tsx`), with no reload buttons.
