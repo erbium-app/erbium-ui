@@ -19,7 +19,9 @@
 # Code quality
 
 - Ultracite provides the code-quality policy through the root `oxlint.config.ts` and `oxfmt.config.ts`; Vite+ is the task/runtime layer (`lint.options` in `vite.config.ts` enables type-aware linting and type checking).
-- The oxlint config extends Ultracite's full preset stack: `core`, `react`, `anti-slop` (vendored inside Ultracite — no separate `anti-slop` dependency), and `shadcn` (`@shadcn/lint` design-system rules).
+- The oxlint config extends Ultracite's preset stack: `core`, `react`, `tanstack`, `vitest`, `js-plugins` (eslint-plugin-github, eslint-plugin-sonarjs, oxlint-plugin-react-doctor), `tanstack/js-plugins` (React Doctor's TanStack rules), `anti-slop` (vendored inside Ultracite — no separate `anti-slop` dependency), and `shadcn` (`@shadcn/lint` design-system rules).
+- `oxfmt.config.ts` points Tailwind class sorting at `packages/ui/src/styles/globals.css`, so Erbium's custom utilities sort like built-in ones.
+- Effect diagnostics from `@effect/tsgo` are not enabled: they need a patched `tsgolint`, and Vite+ type-aware linting runs on stock `tsrs`.
 - Stylelint lints CSS through the root `stylelint.config.mjs` (Ultracite's Stylelint preset); `bun run check` and `bun run fix` run it alongside Vite+.
 - Do not add Biome, ESLint, or Prettier configuration.
 - Run `bun run fix` after editing JavaScript, TypeScript, JSON, CSS, Markdown, or YAML when mechanical fixes are appropriate. Run `bun run check` for a non-mutating repository check.

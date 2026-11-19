@@ -1,18 +1,26 @@
 import { defineConfig } from "oxlint";
 import antiSlop from "ultracite/oxlint/anti-slop";
 import core from "ultracite/oxlint/core";
+import jsPlugins, { jsPluginSettings } from "ultracite/oxlint/js-plugins";
 import react from "ultracite/oxlint/react";
 import shadcn from "ultracite/oxlint/shadcn";
+import tanstack from "ultracite/oxlint/tanstack";
+import tanstackJsPlugins from "ultracite/oxlint/tanstack/js-plugins";
+import vitest from "ultracite/oxlint/vitest";
 
-// Ultracite's full preset stack, in the documented order:
-// core (the ESLint-equivalent rule floor), react (react, react-perf, and
-// jsx-a11y), anti-slop, and shadcn (@shadcn/lint design-system rules).
-// Later presets win conflicts — anti-slop turns off the core rules whose
-// autofixes loop against its own. The anti-slop plugin is vendored inside
-// Ultracite (`ultracite/oxlint/anti-slop`), so no separate `anti-slop`
-// dependency is needed.
+// Ultracite's preset stack, in the documented order:
+// - core: the ESLint-equivalent rule floor.
+// - react: react, react-perf, and jsx-a11y.
+// - tanstack: file-based route filenames (`__root.tsx`, `$slug.tsx`).
+// - vitest: rules for `*.test.*` files (packages/react).
+// - js-plugins: eslint-plugin-github, eslint-plugin-sonarjs, and React Doctor,
+//   run through oxlint's JS plugin bridge for ESLint parity.
+// - tanstack/js-plugins: React Doctor's TanStack Router/Start/Query rules.
+// - anti-slop and shadcn last: later presets win conflicts, and anti-slop
+//   turns off the core rules whose autofixes loop against its own.
 export default defineConfig({
-  extends: [core, react, antiSlop, shadcn],
+  env: core.env,
+  extends: [core, react, tanstack, vitest, jsPlugins, tanstackJsPlugins, antiSlop, shadcn],
   // Core's canonical ignore list already covers node_modules, dist,
   // storybook-static, and generated files (`**/*.gen.*` matches
   // routeTree.gen.ts). The Cloudflare/SSR build outputs and the registry
@@ -20,8 +28,10 @@ export default defineConfig({
   ignorePatterns: [...(core.ignorePatterns ?? []), "**/dist-ssr", "packages/ui/.registry-build"],
   jsPlugins: [
     // Re-declared on the root config so dependency analyzers (Knip) can see
-    // the `@shadcn/lint` package; oxlint loads it from the extended preset
-    // either way.
+    // the plugin packages; oxlint loads them from the extended presets either
+    // way. `jsPlugins.jsPlugins` already lists React Doctor, which
+    // tanstack/js-plugins also loads.
+    ...jsPlugins.jsPlugins,
     ...shadcn.jsPlugins,
     { name: "vite-plus", specifier: "vite-plus/oxlint-plugin" },
     { name: "erbium-typography", specifier: "./scripts/typography-lint.mjs" },
@@ -100,25 +110,6 @@ export default defineConfig({
       files: ["apps/docs/src/routes/**/*.{ts,tsx}"],
       rules: { "typescript/only-throw-error": "off" },
     },
-    {
-      // Ultracite's react preset configures this rule for shadcn-style
-      // design systems after 8.0.1; mirror those options until the release
-      // carries them. Count the design-system Label and control components
-      // as a label/control pair, and look one level deeper than the default
-      // depth of 2 so a control wrapped in two elements inside its label is
-      // still found.
-      files: ["**/*.{ts,tsx}"],
-      rules: {
-        "jsx-a11y/label-has-associated-control": [
-          "error",
-          {
-            controlComponents: ["Input", "Select", "Textarea", "Checkbox", "Radio"],
-            depth: 3,
-            labelComponents: ["Label"],
-          },
-        ],
-      },
-    },
   ],
   rules: {
     // Core leaves no-console off; Erbium keeps the warning so stray logging
@@ -135,6 +126,10 @@ export default defineConfig({
     "vite-plus/prefer-vite-plus-imports": "error",
   },
   settings: {
+    // Oxlint does not merge `settings` from extended configs, so the root
+    // config applies the js-plugins settings itself (React Doctor's curated
+    // mode for ported rules such as only-export-components).
+    ...jsPluginSettings,
     shadcn: {
       ui: ["@erbium/ui/components", "@erbium/ui/blocks"],
       // `buttonVariants` is a cva function, so its calls produce design-system classes the
