@@ -132,7 +132,7 @@
     "stylelint-config-standard": "^41.0.0",
     "taze": "^21.3.0",
     "typescript": "catalog:",
-    "ultracite": "^8.3.0",
+    "ultracite": "^8.3.1",
     "vite": "catalog:",
     "vite-plus": "catalog:"
   },
@@ -142,7 +142,7 @@
   "devEngines": {
     "packageManager": {
       "name": "bun",
-      "version": "1.4.4",
+      "version": "1.4.5",
       "onFail": "download"
     }
   },
