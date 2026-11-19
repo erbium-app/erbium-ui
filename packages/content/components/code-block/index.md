@@ -11,6 +11,8 @@ Import from `@erbium/ui/blocks/code-block`.
 <CodeBlock code={source} language="tsx" title="app.tsx" />
 ```
 
+`CodeBlock` highlights with [Highlights](https://diffs.com/docs#highlights) (`@pierre/highlights`), Pierre's WebAssembly highlighter, which Diff View and File View use too. Highlights is in beta; its API may still change, and the block keeps it behind its own props.
+
 The default layout includes the source and an anchored icon copy button. A header and separator appear only when you provide a `title` or tabbed `items`; the language does not create a header. Actions stay at the block’s top inline end while the source scrolls. Without a header they sit over the source, so they appear when the pointer is over the block or focus is inside it, and stay shown on touch screens. Vitesse light and dark syntax colors follow the application's appearance. There is no theme or highlighting-engine setting. Code surfaces scroll horizontally by default and have a bounded height; use `wrap` or `lineNumbers` when appropriate.
 
 ## Line numbers

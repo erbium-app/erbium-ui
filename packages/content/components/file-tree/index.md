@@ -17,6 +17,8 @@ const { model } = useFileTree({
 <FileTree model={model} aria-label="Workspace files" />;
 ```
 
+`FileTree` wraps Pierre's [Trees](https://trees.software) (`@pierre/trees`).
+
 Paths infer the directory hierarchy. A trailing slash represents an explicit directory, including an empty one. Pierre handles virtualized rows, keyboard navigation, expansion, and selection; Erbium owns typography, colors, density, and the sidebar navigation surface.
 
 ## Model lifecycle
