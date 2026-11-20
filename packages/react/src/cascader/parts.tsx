@@ -1,4 +1,7 @@
 import * as React from "react";
+// A level change made from a row unmounts the focused row, so the new rows must be in the DOM
+// before focus moves to one of them.
+// oxlint-disable-next-line react-doctor/no-flush-sync
 import { flushSync } from "react-dom";
 import { useDirection } from "@base-ui/react/direction-provider";
 import { Menu } from "@base-ui/react/menu";
@@ -45,6 +48,18 @@ const changeLevel = (row: HTMLElement, change: () => void, returnTo?: string) =>
 
   target?.focus();
 };
+
+/**
+ * Focus for the buttons around the search field. A pointer press never moves focus, as with Base
+ * UI's `Menu.Clear`: a mouse leaves it in the field, where the popup returns it on hover, and a tap
+ * leaves the on-screen keyboard as it was. Only a keyboard or screen reader puts focus on the
+ * button, and that focus moves to the field before the button goes away or turns disabled.
+ */
+const keepFocus = (event: React.MouseEvent) => {
+  event.preventDefault();
+};
+
+const isFocused = (element: Element) => element.ownerDocument.activeElement === element;
 
 type ClassName<TState> = StateProp<string | undefined, TState>;
 
@@ -97,7 +112,7 @@ const CascaderValue = <TNode extends CascaderNode>({
       : paths[0].map((node) => node.label).join(" / ");
   }
 
-  const valueState = { multiple: state.multiple, paths, placeholder: text === null, text };
+  const valueState = { multiple: state.multiple, placeholder: text === null, paths, text };
 
   const content =
     children === undefined ? (text ?? placeholder) : resolveStateProp(children, valueState);
@@ -108,9 +123,9 @@ const CascaderValue = <TNode extends CascaderNode>({
       { children: content, className: resolveStateProp(className, valueState) },
       props,
     ),
-    render,
     state: valueState,
     stateAttributesMapping: { paths: () => null, text: () => null },
+    render,
   });
 };
 
@@ -125,6 +140,18 @@ const CascaderTrigger = (props: Menu.Trigger.Props) => {
 
 // Search
 
+/** A primary press on the search group's own surface, not on a control inside it. */
+const isSurfacePress = (event: React.PointerEvent) => {
+  const { target } = event;
+
+  return (
+    event.button === 0 &&
+    !event.defaultPrevented &&
+    target instanceof Element &&
+    target.closest("input, button, a, select, textarea, [role=button], [contenteditable]") === null
+  );
+};
+
 /** Groups the search field and its controls. Pressing the surrounding surface focuses the field. */
 const CascaderSearchGroup = ({ render, ...props }: useRender.ComponentProps<"div">) => {
   const { actions, state } = useSearchable("Cascader.SearchGroup");
@@ -134,26 +161,15 @@ const CascaderSearchGroup = ({ render, ...props }: useRender.ComponentProps<"div
     props: mergeProps<"div">(
       {
         onPointerDown(event) {
-          const { target } = event;
-
-          if (
-            event.button === 0 &&
-            !event.defaultPrevented &&
-            !state.disabled &&
-            target instanceof Element &&
-            !target.closest(
-              "input, button, a, select, textarea, [role=button], [contenteditable]",
-            ) &&
-            actions.focusSearch()
-          ) {
+          if (!state.disabled && isSurfacePress(event) && actions.focusSearch()) {
             event.preventDefault();
           }
         },
       },
       props,
     ),
-    render,
     state: { nested: state.levelNode !== null },
+    render,
   });
 };
 
@@ -200,11 +216,10 @@ const CascaderSearch = ({
     const input = event.currentTarget;
     const caret = input.selectionStart === input.selectionEnd ? input.selectionStart : null;
 
-    if (
-      level !== null &&
-      ((event.key === "Backspace" && input.value === "") ||
-        (event.key === keys.back && caret === 0))
-    ) {
+    const backKey =
+      (event.key === "Backspace" && input.value === "") || (event.key === keys.back && caret === 0);
+
+    if (level !== null && backKey) {
       event.preventDefault();
       actions.back({
         event: event.nativeEvent,
@@ -245,11 +260,26 @@ const CascaderSearch = ({
   );
 };
 
-/** Clears the search text. Base UI's `Menu.Clear`. */
+/**
+ * Clears the search text. Base UI's `Menu.Clear`, without its focus on the field, which would raise
+ * the on-screen keyboard after a tap.
+ */
 const CascaderSearchClear = (props: Menu.Clear.Props) => {
-  useSearchable("Cascader.SearchClear");
+  const { actions } = useSearchable("Cascader.SearchClear");
 
-  return <Menu.Clear {...props} />;
+  return (
+    <Menu.Clear
+      {...mergeProps<typeof Menu.Clear>(
+        {
+          onClick(event) {
+            event.preventBaseUIHandler();
+            actions.clearSearch();
+          },
+        },
+        props,
+      )}
+    />
+  );
 };
 
 /** Shown when the search of the open level matches nothing. Base UI's `Menu.Empty`. */
@@ -266,7 +296,7 @@ interface CascaderBackProps extends Omit<useRender.ComponentProps<"button">, "ar
   "aria-label"?: StateProp<string, CascaderNode | null>;
 }
 
-/** A button back to the parent level that refocuses the search. Renders nothing at the top level. */
+/** A button back to the parent level. Renders nothing at the top level. */
 const CascaderBack = ({ "aria-label": ariaLabel, render, ...props }: CascaderBackProps) => {
   const { actions, state } = useCascaderContext("Cascader.Back");
   const parent = state.parentNode;
@@ -283,9 +313,15 @@ const CascaderBack = ({ "aria-label": ariaLabel, render, ...props }: CascaderBac
       {
         "aria-label": label,
         onClick: (event) => {
+          const focused = isFocused(event.currentTarget);
+
           actions.back({ event: event.nativeEvent, reason: "back-press" });
-          actions.focusSearch();
+
+          if (focused) {
+            actions.focusSearch();
+          }
         },
+        onMouseDown: keepFocus,
         type: "button",
       },
       props,
@@ -485,11 +521,11 @@ const CascaderItem = ({
   const selected = (selectedCounts.get(node.value) ?? 0) > 0;
 
   const toState = (base: BaseItemState): CascaderItemState => ({
-    checked,
     disabled: base.disabled,
     highlighted: base.highlighted,
     kind: row.kind,
     searchResult: row.trail.length > 0,
+    checked,
     selected,
   });
 
@@ -667,9 +703,9 @@ const CascaderItemCount = ({
   const childCount = row.node.children?.length ?? 0;
 
   const countState: CascaderItemCountState = {
-    childCount,
     count: state.multiple && selected > 0 ? selected : childCount,
     multiple: state.multiple,
+    childCount,
     selected,
   };
 
@@ -696,7 +732,7 @@ const CascaderItemCount = ({
 
 // Clear
 
-/** Clears the selection and refocuses the search. Disabled while nothing is selected. */
+/** Clears the selection. Disabled while nothing is selected. */
 const CascaderClear = ({ render, ...props }: useRender.ComponentProps<"button">) => {
   const { actions, state } = useCascaderContext("Cascader.Clear");
   const empty = state.selected.length === 0;
@@ -707,15 +743,21 @@ const CascaderClear = ({ render, ...props }: useRender.ComponentProps<"button">)
       {
         disabled: empty,
         onClick: (event) => {
+          const focused = isFocused(event.currentTarget);
+
           actions.clear(event.nativeEvent);
-          actions.focusSearch();
+
+          if (focused) {
+            actions.focusSearch();
+          }
         },
+        onMouseDown: keepFocus,
         type: "button",
       },
       props,
     ),
-    render,
     state: { disabled: empty },
+    render,
   });
 };
 

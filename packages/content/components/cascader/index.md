@@ -140,6 +140,8 @@ With a search field, focus stays in the field and the arrow keys move the highli
 
 Without a search field, focus moves through the rows, and `→`, `←` and `Enter` work the same way. Opening a level focuses its first option, and going back focuses the row of the level you left. In right-to-left layouts, `←` and `→` swap.
 
+On a phone, the on-screen keyboard opens only when you tap the search field. Tapping back, clear or a level leaves it as it was.
+
 ## Accessibility
 
 - The trigger is a button that opens a menu. Name it with a `FieldLabel htmlFor` its `id`, or with `aria-label`.

@@ -108,6 +108,8 @@ The open level is the list of branch values from the top. It can be controlled w
 
 Focus stays in the search field while levels change. Without one, focus moves to the row just left when going back, or to the first row when going in.
 
+A press on `Back`, `Clear` or `SearchClear` never moves focus, so on touch screens only a tap on the search field raises the on-screen keyboard, and a keyboard that is already open stays open. When a keyboard or screen reader has focus on `Back` or `Clear`, focus moves to the search field as the button goes away or turns disabled.
+
 ## API reference
 
 ### Root

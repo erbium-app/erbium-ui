@@ -53,6 +53,8 @@ interface CascaderActions {
   /** Checks or unchecks a leaf in a multiple cascader. */
   toggle: (node: CascaderNode, checked: boolean, event?: Event) => void;
   clear: (event?: Event) => void;
+  /** Empties the search field without moving focus. */
+  clearSearch: () => void;
   /** Opens a branch's level, with its ancestors, in place of the current one. */
   enter: (node: CascaderNode, cause?: CascaderLevelChangeCause) => void;
   /** Returns to the parent level. */

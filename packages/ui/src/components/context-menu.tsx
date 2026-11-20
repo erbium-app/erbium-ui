@@ -1,11 +1,11 @@
 import * as React from "react";
 import { ContextMenu as ContextMenuPrimitive } from "@base-ui/react/context-menu";
-import { Menu as MenuPrimitive } from "@base-ui/react/menu";
 import { cn } from "../lib/utils";
 import { Kbd } from "./kbd";
 import { Separator } from "./separator";
 
 import { Icon } from "./icon";
+import { MenuSearchProvider } from "./menu-search";
 import { CheckboxStateIcon, RotatingChevron } from "./stateful-icon";
 
 const ContextMenu = ({
@@ -17,11 +17,7 @@ const ContextMenu = ({
 }) => {
   const menu = <ContextMenuPrimitive.Root data-slot="context-menu" {...props} />;
 
-  return searchable ? (
-    <MenuPrimitive.FilterProvider autoHighlight>{menu}</MenuPrimitive.FilterProvider>
-  ) : (
-    menu
-  );
+  return searchable ? <MenuSearchProvider>{menu}</MenuSearchProvider> : menu;
 };
 
 const ContextMenuPortal = ({ ...props }: ContextMenuPrimitive.Portal.Props) => (
@@ -117,11 +113,7 @@ const ContextMenuSub = ({
 }) => {
   const menu = <ContextMenuPrimitive.SubmenuRoot data-slot="context-menu-sub" {...props} />;
 
-  return searchable ? (
-    <MenuPrimitive.FilterProvider autoHighlight>{menu}</MenuPrimitive.FilterProvider>
-  ) : (
-    menu
-  );
+  return searchable ? <MenuSearchProvider>{menu}</MenuSearchProvider> : menu;
 };
 
 const ContextMenuSubTrigger = ({

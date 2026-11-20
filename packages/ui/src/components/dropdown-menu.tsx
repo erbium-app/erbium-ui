@@ -13,6 +13,7 @@ import { Kbd } from "./kbd";
 import { Separator } from "./separator";
 
 import { Icon } from "./icon";
+import { MenuSearchProvider } from "./menu-search";
 import { CheckboxStateIcon, RotatingChevron } from "./stateful-icon";
 
 const DropdownMenu = ({
@@ -24,11 +25,7 @@ const DropdownMenu = ({
 }) => {
   const menu = <MenuPrimitive.Root data-slot="dropdown-menu" {...props} />;
 
-  return searchable ? (
-    <MenuPrimitive.FilterProvider autoHighlight>{menu}</MenuPrimitive.FilterProvider>
-  ) : (
-    menu
-  );
+  return searchable ? <MenuSearchProvider>{menu}</MenuSearchProvider> : menu;
 };
 
 const DropdownMenuPortal = ({ ...props }: MenuPrimitive.Portal.Props) => (
@@ -118,11 +115,7 @@ const DropdownMenuSub = ({
 }) => {
   const menu = <MenuPrimitive.SubmenuRoot data-slot="dropdown-menu-sub" {...props} />;
 
-  return searchable ? (
-    <MenuPrimitive.FilterProvider autoHighlight>{menu}</MenuPrimitive.FilterProvider>
-  ) : (
-    menu
-  );
+  return searchable ? <MenuSearchProvider>{menu}</MenuSearchProvider> : menu;
 };
 
 const DropdownMenuSubTrigger = ({

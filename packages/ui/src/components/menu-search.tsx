@@ -1,4 +1,4 @@
-import type * as React from "react";
+import * as React from "react";
 import { Menu as MenuPrimitive } from "@base-ui/react/menu";
 import { Icon } from "./icon";
 import { menuEmptyClassName, menuListClassName } from "../lib/menu-styles";
@@ -7,6 +7,48 @@ import { focusSearchInput } from "../lib/focus-search-input";
 import { Button } from "./button";
 import { Separator } from "./separator";
 import { ScrollArea } from "./scroll-area";
+
+const MenuSearchContext = React.createContext<(() => void) | null>(null);
+
+/**
+ * Base UI's `Menu.FilterProvider`, holding the query so the search clear can empty it. Base UI's
+ * clear also focuses the field, which raises the on-screen keyboard after a tap; with a mouse, the
+ * popup already keeps focus in the field.
+ */
+const MenuSearchProvider = ({ children }: { children: React.ReactNode }) => {
+  const [query, setQuery] = React.useState("");
+
+  const clear = React.useCallback(() => {
+    setQuery("");
+  }, []);
+
+  return (
+    <MenuSearchContext value={clear}>
+      <MenuPrimitive.FilterProvider autoHighlight value={query} onValueChange={setQuery}>
+        {children}
+      </MenuPrimitive.FilterProvider>
+    </MenuSearchContext>
+  );
+};
+
+const MenuSearchClear = () => {
+  const clear = React.use(MenuSearchContext);
+
+  return (
+    <MenuPrimitive.Clear
+      aria-label="Clear search"
+      render={<Button variant="ghost" size="icon-xs" />}
+      onClick={(event) => {
+        if (clear !== null) {
+          event.preventBaseUIHandler();
+          clear();
+        }
+      }}
+    >
+      <Icon name="x" aria-hidden="true" />
+    </MenuPrimitive.Clear>
+  );
+};
 
 /** Fixed flush header. Menu owns filtering, focus, and keyboard navigation. */
 const MenuSearch = ({
@@ -36,12 +78,7 @@ const MenuSearch = ({
         )}
         {...props}
       />
-      <MenuPrimitive.Clear
-        aria-label="Clear search"
-        render={<Button variant="ghost" size="icon-xs" />}
-      >
-        <Icon name="x" aria-hidden="true" />
-      </MenuPrimitive.Clear>
+      <MenuSearchClear />
     </div>
     <Separator variant="full" />
   </div>
@@ -88,4 +125,4 @@ const MenuEmpty = ({
   </MenuPrimitive.Empty>
 );
 
-export { MenuSearch, MenuList, MenuEmpty, MenuScroll };
+export { MenuSearch, MenuSearchProvider, MenuList, MenuEmpty, MenuScroll };

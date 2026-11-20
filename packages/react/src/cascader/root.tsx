@@ -82,12 +82,12 @@ const selectionOf = <TNode extends CascaderNode>(props: CascaderRootProps<TNode>
     ? {
         defaultValue: props.defaultValue ?? [],
         onMultipleChange: props.onValueChange,
-        onSingleChange: undefined,
+        onSingleChange: null,
         value: props.value,
       }
     : {
         defaultValue: toList(props.defaultValue ?? null),
-        onMultipleChange: undefined,
+        onMultipleChange: null,
         onSingleChange: props.onValueChange,
         value: props.value === undefined ? undefined : toList(props.value),
       };
@@ -209,6 +209,9 @@ function CascaderRoot<TNode extends CascaderTreeNode<TNode>>(props: CascaderRoot
         if (selected.length > 0) {
           commit([], "clear-press", null, event);
         }
+      },
+      clearSearch: () => {
+        setQuery("");
       },
       // A search match can sit deeper than the open level, so its whole path opens.
       enter: (node, { reason = "branch-press", event }: CascaderLevelChangeCause = {}) => {

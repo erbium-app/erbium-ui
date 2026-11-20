@@ -334,6 +334,64 @@ describe("Cascader search", () => {
     expect(document.activeElement).toBe(search);
   });
 
+  it("leaves focus alone after a tap so the on-screen keyboard stays closed", async () => {
+    const user = userEvent.setup();
+    const onValueChange = vi.fn<MultipleChange>();
+    render(
+      <Fixture
+        searchable
+        multiple
+        withClear
+        defaultValue={["paris"]}
+        onValueChange={onValueChange}
+      />,
+    );
+    await openMenu(user);
+    await user.click(item("Europe"));
+
+    const back = screen.getByRole("button", { name: "Back to all options" });
+    act(() => {
+      item("Germany").focus();
+    });
+    await user.pointer({ keys: "[TouchA]", target: back });
+    expect(screen.getByRole("searchbox", { name: "Search options" })).toBeDefined();
+    expect(document.activeElement).not.toBe(screen.getByRole("searchbox"));
+
+    await user.pointer({ keys: "[TouchA]", target: screen.getByRole("button", { name: "Clear" }) });
+    expect(onValueChange).toHaveBeenLastCalledWith([], expect.anything());
+    expect(document.activeElement).not.toBe(screen.getByRole("searchbox"));
+  });
+
+  it("keeps the field focused through a tap that started there", async () => {
+    const user = userEvent.setup();
+    render(<Fixture searchable />);
+    await openMenu(user);
+    await user.click(item("Europe"));
+
+    const search = screen.getByRole("searchbox", { name: "Search Europe" });
+    act(() => {
+      search.focus();
+    });
+    await user.pointer({
+      keys: "[TouchA]",
+      target: screen.getByRole("button", { name: "Back to all options" }),
+    });
+    expect(document.activeElement).toBe(screen.getByRole("searchbox", { name: "Search options" }));
+  });
+
+  it("moves focus to the field when the keyboard presses Back", async () => {
+    const user = userEvent.setup();
+    render(<Fixture searchable />);
+    await openMenu(user);
+    await user.click(item("Europe"));
+
+    act(() => {
+      screen.getByRole("button", { name: "Back to all options" }).focus();
+    });
+    await user.keyboard("{Enter}");
+    expect(document.activeElement).toBe(screen.getByRole("searchbox", { name: "Search options" }));
+  });
+
   it("finds options below the level and shows their trail", async () => {
     const user = userEvent.setup();
 
