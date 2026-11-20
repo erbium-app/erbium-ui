@@ -14,6 +14,7 @@ storybook-static
 dist-ssr
 *.local
 *.bak
+*.bak.*
 packages/ui/.registry-build/
 
 # dotenv environment variable files
@@ -33,8 +34,10 @@ packages/ui/.registry-build/
 *.sln
 *.sw?
 
-# AI agent worktrees
+# AI agent local state
 .claude/worktrees/
+.claude/settings.local.json
+.serena/
 
 # Generated TanStack docs theme
 apps/docs/.cache/
