@@ -1,91 +1,48 @@
-# Erbium UI
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="apps/docs/public/brand/erbium-logo-dark.svg">
+    <img src="apps/docs/public/brand/erbium-logo-light.svg" alt="Erbium" width="64" height="64">
+  </picture>
+</p>
 
-Erbium UI is a composable React component library for product interfaces. It uses Base UI for accessible behavior, follows familiar shadcn/ui naming and registry conventions, and adapts useful Coss UI concepts into one Erbium design language. Components are styled with shared tokens and support RTL where relevant.
+<h1 align="center">Erbium UI</h1>
 
-Erbium UI is developed by [erbium-app](https://github.com/erbium-app).
+<p align="center">An agent-ready design system with taste built in.</p>
 
-## Workspace
+<p align="center">
+  <a href="https://ui.erbium.app">Docs</a> ·
+  <a href="https://ui.erbium.app/docs/installation">Install</a> ·
+  <a href="https://ui.erbium.app/docs/roadmap">Roadmap</a> ·
+  <a href="./LICENSE">MIT License</a>
+</p>
 
-- `packages/content` — shared Markdown documentation consumed by the docs site and Storybook.
-- `packages/ui` — reusable components, hooks, styles, and the UI registry.
-- `apps/website` — React and Vite playground for application composition.
-- `apps/storybook` — component stories, examples, and the example registry.
-- `apps/docs` — TanStack Start documentation site.
+Erbium UI is the open-source component library and design system behind [Erbium](https://erbium.app). Copy styled components and blocks into your project and own the source, or build your own interfaces with [`@erbium-ui/react`](packages/react), Erbium's unstyled primitives.
 
-React is the current component target. React Native is a longer-term direction, not a current implementation.
+- **Built on Base UI**, with shadcn/ui registry conventions. Accessible, RTL-ready, and reduced-motion aware.
+- **Own the source.** Install with shadcn or the Erbium CLI, then track and merge upstream changes with `erbium status`, `diff`, and `update`.
+- **Opinionated defaults.** Loading, error, and empty states, motion, and depth tokens are designed in, not left to each screen.
+- **Ready for agents.** Every docs page has a Markdown version, plus `llms.txt` and a JSON API. Includes building blocks for agentic interfaces: code blocks, diffs, file trees, steppers, and matrix loaders.
 
 ## Development
 
-Requires Bun and Node.js 22.18 or newer.
+Requires Bun and Node.js 22.18+.
 
 ```bash
 bun install
-bun run dev                  # start the website, Storybook, and docs
-bun run website              # start only the website
-bun run storybook            # start only Storybook
-bun run docs                 # start only the docs
-bun run check                # format, lint, and type-aware checks
-bun run fix                  # apply mechanical formatting and lint fixes
-bun run typecheck            # run workspace TypeScript checks
-bun run build                # build the workspaces
-bun run build:cached         # opt into Vite Task build caching
-bun run ready                # check and build
-bun run knip                 # find unused files and dependencies
+bun run dev    # website, Storybook, and docs
+bun run ready  # check and build
 ```
 
-Vite+ and its Vite core alias are pinned together in the root Bun catalog. Run
-`bunx --no-install vp migrate --no-interactive --no-agent --no-editor --no-hooks`
-from the workspace root to upgrade them together. Keep the direct `vite` catalog
-references and root override: Bun needs the core alias to resolve framework peers.
-Storybook keeps its own CLI; `vp run` schedules workspace scripts.
+| Path               | Purpose                                     |
+| ------------------ | ------------------------------------------- |
+| `packages/ui`      | Styled components, styles, and the registry |
+| `packages/react`   | `@erbium-ui/react` headless primitives      |
+| `packages/content` | Shared Markdown docs                        |
+| `apps/docs`        | Documentation site                          |
+| `apps/storybook`   | Component workbench                         |
 
-The root `vite.config.ts` imports the Ultracite policy from `oxlint.config.ts` and
-`oxfmt.config.ts`. The Oxc editor extension reads that same Vite+ config. Standalone
-Oxc config dependencies match Vite+'s bundled versions; keep them aligned when
-upgrading. `prepare` installs Vite+'s hook dispatcher, and `.vite-hooks/pre-commit`
-runs `vp staged`. Check the hook installation with `bunx --no-install vp hooks status`.
+Contributor conventions are in [AGENTS.md](./AGENTS.md).
 
-Package scripts execute without caching by default. Use `build:cached` for automatic
-input tracking and output restoration across app builds. `ready` always runs fresh
-checks and builds. Infrastructure commands and generators also run fresh.
+## License
 
-Run `bun run ui:registry` after changing UI source. Shared showcases live in `packages/showcase`; Markdown lives in `packages/content`. Run `bun run showcase:generate` and `bun run showcase:registry` after changing either, then `bun run showcase:check` to verify synchronization and both site builds. Commit generated output with its source changes.
-
-See [shared showcase authoring](packages/showcase/README.md) for the component folder layout, variant catalogs, and installable examples and stories.
-
-## Using components
-
-Within this workspace, import a component and the shared stylesheet:
-
-```tsx
-import "@erbium/ui/globals.css";
-import { Button } from "@erbium/ui/components/button";
-```
-
-The UI registry at `packages/ui/registry.json` generates installable items in `packages/ui/public/r`. The example registry at `apps/storybook/registry.json` generates items in `apps/storybook/public/r`; its examples install their UI component dependencies through the UI registry.
-
-To use the copyable registries in another project, host both `public/r` directories and point its `components.json` at those URLs:
-
-```json
-{
-  "registries": {
-    "@erbium": "https://your-domain.example/ui/r/{name}.json",
-    "@erbium-examples": "https://your-domain.example/storybook/r/{name}.json"
-  }
-}
-```
-
-Then install the shared styles and an example:
-
-```bash
-bunx shadcn@latest add @erbium/styles
-bunx shadcn@latest add @erbium-examples/button-demo
-```
-
-Import `src/styles/globals.css` from the consuming app's stylesheet entry. The style item includes Erbium's tokens, fonts, and Tailwind utilities.
-
-## Quality
-
-New components need clear composition, accessible interaction, RTL behavior where relevant, a registry entry, and examples. Use `bun run check` for routine validation and `bun run ready` before a release review.
-
-Repository conventions are in [AGENTS.md](./AGENTS.md). The remaining design and API decisions are tracked in [todo](./todo/README.md).
+[MIT](./LICENSE) © 2026 AvanVision Pty Ltd
