@@ -13,7 +13,7 @@
     "@erbium/icons": "workspace:*",
     "@erbium/showcase": "workspace:*",
     "@erbium/ui": "workspace:*",
-    "@tanstack/markdown": "^1.2.0",
+    "@tanstack/markdown": "^1.2.1",
     "@tanstack/react-hotkeys": "catalog:",
     "@tanstack/react-router": "catalog:",
     "@tanstack/react-start": "1.169.7",
