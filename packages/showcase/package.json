@@ -31,7 +31,7 @@
     "@tanstack/react-pacer": "catalog:",
     "@tanstack/react-router": "catalog:",
     "@tanstack/react-table": "catalog:",
-    "effect": "4.1.4",
+    "effect": "4.1.5",
     "react": "catalog:",
     "react-dom": "catalog:",
     "react-textarea-autosize": "^8.5.9"
