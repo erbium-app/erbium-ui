@@ -5,6 +5,7 @@ import { Attachment } from "@erbium/ui/components/attachment";
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
 import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
+import type { PlaygroundArgs } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
@@ -49,18 +50,8 @@ export default meta;
 
 type Story = StoryObj;
 
-export const Playground: StoryObj<{
-  state: "idle" | "uploading" | "processing" | "error" | "done";
-  size: "default" | "sm" | "xs";
-  orientation: "horizontal" | "vertical";
-  mediaVariant: "icon" | "image";
-  className: string;
-  title: string;
-  actionSize: "icon-xs" | "icon-sm" | "icon";
-  triggerAsLink: boolean;
-}> = {
+export const Playground: StoryObj<PlaygroundArgs> = {
   argTypes: {
-    actionSize: { control: "select", options: ["icon-xs", "icon-sm", "icon"] },
     className: { control: "text" },
     mediaVariant: { control: "select", options: ["icon", "image"] },
     orientation: { control: "select", options: ["horizontal", "vertical"] },

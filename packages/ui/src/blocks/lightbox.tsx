@@ -52,13 +52,14 @@ const Lightbox = (props: ComponentProps<typeof LightboxPrimitive.Root>) => (
   <LightboxPrimitive.Root {...props} />
 );
 
-// A trigger rendered as another control, such as a full-screen button, keeps that control's look.
+// A trigger rendered as another control, such as a full-screen button or an AttachmentTrigger,
+// keeps that control's look and data-slot, so the control's own styles still find it.
 const LightboxTrigger = ({
   className,
   ...props
 }: ComponentProps<typeof LightboxPrimitive.Trigger>) => (
   <LightboxPrimitive.Trigger
-    data-slot="lightbox-trigger"
+    {...(props.render === undefined && { "data-slot": "lightbox-trigger" })}
     className={cn(
       props.render === undefined &&
         "cursor-zoom-in outline-none focus-visible:ring-control focus-visible:ring-ring has-[>:is(img,picture):only-child]:image-hairline",

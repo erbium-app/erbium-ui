@@ -1245,8 +1245,13 @@
       "name": "attachment-group",
       "type": "registry:block",
       "title": "Attachment: Group",
-      "description": "Wrap attachments in `AttachmentGroup` to lay them out in a horizontally scrollable, snapping row with an edge fade.",
-      "registryDependencies": ["@erbium/attachment", "@erbium/icon", "@erbium/styles"],
+      "description": "Wrap attachments in `AttachmentGroup` to lay them out in a horizontally scrollable, snapping row with an edge fade. In a mixed group, only the image attachments open the lightbox. Number their triggers among the images alone, so each `index` matches its slide.",
+      "registryDependencies": [
+        "@erbium/attachment",
+        "@erbium/icon",
+        "@erbium/lightbox",
+        "@erbium/styles"
+      ],
       "files": [
         {
           "path": "src/attachment/examples/attachment-group.tsx",
@@ -1264,8 +1269,8 @@
       "name": "attachment-image",
       "type": "registry:block",
       "title": "Attachment: Image",
-      "description": "Set `variant=\"image\"` on `AttachmentMedia` and render an `<img>` inside it. Use `orientation=\"vertical\"` to stack the media above the content.",
-      "registryDependencies": ["@erbium/attachment", "@erbium/icon", "@erbium/styles"],
+      "description": "Set `variant=\"image\"` on `AttachmentMedia` and render an `<img>` inside it. Use `orientation=\"vertical\"` to stack the media above the content. Vertical image media sits flush with the card's top edge like `CardMedia`, as a 4:3 photo above the content or a square that fills the card on its own.\n\nImage attachments open in a [Lightbox](/docs/components/lightbox). Wrap the media in `LightboxTrigger`, render it as an `AttachmentTrigger`, and attach the trigger's `imageRef` to the thumbnail. The trigger takes the media's place, so the open transition grows the thumbnail into the slide and reuses its pixels until the full image loads, while the whole card stays clickable. Match each trigger's `index` to its `LightboxItem`, starting at zero.\n\n```tsx\n<Lightbox>\n  <AttachmentGroup>\n    {images.map((image, index) => (\n      <Attachment key={image.name} orientation=\"vertical\">\n        <LightboxTrigger\n          aria-label={`Open ${image.name}`}\n          index={index}\n          render={<AttachmentTrigger />}\n        >\n          {({ imageRef }) => (\n            <AttachmentMedia variant=\"image\">\n              <img ref={imageRef} src={image.thumbnail} alt={image.alt} />\n            </AttachmentMedia>\n          )}\n        </LightboxTrigger>\n        <AttachmentContent>{/* title and description */}</AttachmentContent>\n        <AttachmentRemove aria-label={`Remove ${image.name}`} />\n      </Attachment>\n    ))}\n  </AttachmentGroup>\n  <LightboxContent aria-label=\"Attached images\">{/* one LightboxItem per image */}</LightboxContent>\n</Lightbox>\n```",
+      "registryDependencies": ["@erbium/attachment", "@erbium/lightbox", "@erbium/styles"],
       "files": [
         {
           "path": "src/attachment/examples/attachment-image.tsx",
@@ -1367,6 +1372,7 @@
         "@erbium/csp-provider",
         "@erbium/dialog",
         "@erbium/icon",
+        "@erbium/lightbox",
         "@erbium/skeleton",
         "@erbium/spinner",
         "@erbium/styles",
@@ -1455,7 +1461,7 @@
       "name": "attachment-trigger",
       "type": "registry:block",
       "title": "Attachment: Trigger",
-      "description": "Add an `AttachmentTrigger` to make the whole card open a link or dialog. It fills the card behind the actions, so the actions stay clickable.\n\n```tsx\n<Dialog>\n  <Attachment>\n    {/* media, content, actions */}\n    <DialogTrigger render={<AttachmentTrigger aria-label=\"Preview research-summary.pdf\" />} />\n  </Attachment>\n  <DialogPanel>{/* ... */}</DialogPanel>\n</Dialog>\n```",
+      "description": "Add an `AttachmentTrigger` to make the whole card open a link or dialog. Empty, it fills the card behind the actions, so the actions stay clickable.\n\n```tsx\n<Dialog>\n  <Attachment>\n    {/* media, content, actions */}\n    <DialogTrigger render={<AttachmentTrigger aria-label=\"Preview research-summary.pdf\" />} />\n  </Attachment>\n  <DialogPanel>{/* ... */}</DialogPanel>\n</Dialog>\n```\n\nWrap `AttachmentMedia` in the trigger instead when the opened view grows out of the media, as a lightbox does. The trigger then takes the media's place and is the box the transition starts from, and its hit area still stretches over the whole card. See [Image](#image) for the lightbox composition.",
       "registryDependencies": [
         "@erbium/attachment",
         "@erbium/copy-button",

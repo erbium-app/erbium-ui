@@ -114,7 +114,12 @@
       "title": "Attachment",
       "description": "Erbium attachment component.",
       "dependencies": ["@base-ui/react", "class-variance-authority"],
-      "registryDependencies": ["@erbium/button", "@erbium/scroll-area", "@erbium/utils"],
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/icon",
+        "@erbium/scroll-area",
+        "@erbium/utils"
+      ],
       "files": [
         {
           "path": "src/components/attachment.tsx",
@@ -1929,6 +1934,11 @@
       ],
       "description": "Erbium global styles, theme tokens, fonts, and Tailwind utilities.",
       "files": [
+        {
+          "path": "src/styles/attachment.css",
+          "target": "~/src/styles/attachment.css",
+          "type": "registry:file"
+        },
         {
           "path": "src/styles/avatar.css",
           "target": "~/src/styles/avatar.css",

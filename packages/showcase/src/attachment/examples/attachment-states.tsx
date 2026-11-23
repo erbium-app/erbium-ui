@@ -7,6 +7,7 @@ import {
   AttachmentContent,
   AttachmentDescription,
   AttachmentMedia,
+  AttachmentRemove,
   AttachmentTitle,
 } from "@erbium/ui/components/attachment";
 import { Spinner } from "@erbium/ui/components/spinner";
@@ -22,11 +23,7 @@ export default function AttachmentStatesExample() {
           <AttachmentTitle>selected-file.pdf</AttachmentTitle>
           <AttachmentDescription>Ready to upload</AttachmentDescription>
         </AttachmentContent>
-        <AttachmentActions>
-          <AttachmentAction aria-label="Remove selected-file.pdf">
-            <Icon name="x" />
-          </AttachmentAction>
-        </AttachmentActions>
+        <AttachmentRemove aria-label="Remove selected-file.pdf" />
       </Attachment>
       <Attachment state="uploading" className="w-full">
         <AttachmentMedia>
@@ -36,11 +33,7 @@ export default function AttachmentStatesExample() {
           <AttachmentTitle>design-system.zip</AttachmentTitle>
           <AttachmentDescription>Uploading · 64%</AttachmentDescription>
         </AttachmentContent>
-        <AttachmentActions>
-          <AttachmentAction aria-label="Cancel upload">
-            <Icon name="x" />
-          </AttachmentAction>
-        </AttachmentActions>
+        <AttachmentRemove aria-label="Cancel upload" />
       </Attachment>
       <Attachment state="processing" className="w-full">
         <AttachmentMedia>
@@ -50,11 +43,7 @@ export default function AttachmentStatesExample() {
           <AttachmentTitle>market-research.pdf</AttachmentTitle>
           <AttachmentDescription>Processing document</AttachmentDescription>
         </AttachmentContent>
-        <AttachmentActions>
-          <AttachmentAction aria-label="Remove market-research.pdf">
-            <Icon name="x" />
-          </AttachmentAction>
-        </AttachmentActions>
+        <AttachmentRemove aria-label="Remove market-research.pdf" />
       </Attachment>
       <Attachment state="error" className="w-full">
         <AttachmentMedia>
@@ -68,10 +57,8 @@ export default function AttachmentStatesExample() {
           <AttachmentAction aria-label="Retry upload">
             <Icon name="refresh-cw" />
           </AttachmentAction>
-          <AttachmentAction aria-label="Remove financial-model.xlsx">
-            <Icon name="x" />
-          </AttachmentAction>
         </AttachmentActions>
+        <AttachmentRemove aria-label="Remove financial-model.xlsx" />
       </Attachment>
       <Attachment state="done" className="w-full">
         <AttachmentMedia>
@@ -81,11 +68,7 @@ export default function AttachmentStatesExample() {
           <AttachmentTitle>uploaded-report.pdf</AttachmentTitle>
           <AttachmentDescription>Uploaded · 1.8 MB</AttachmentDescription>
         </AttachmentContent>
-        <AttachmentActions>
-          <AttachmentAction aria-label="Remove uploaded-report.pdf">
-            <Icon name="x" />
-          </AttachmentAction>
-        </AttachmentActions>
+        <AttachmentRemove aria-label="Remove uploaded-report.pdf" />
       </Attachment>
     </div>
   );

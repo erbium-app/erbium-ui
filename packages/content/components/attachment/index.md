@@ -14,11 +14,10 @@ Compose file or image attachments with media, metadata, upload state, and action
 ```tsx
 import {
   Attachment,
-  AttachmentAction,
-  AttachmentActions,
   AttachmentContent,
   AttachmentDescription,
   AttachmentMedia,
+  AttachmentRemove,
   AttachmentTitle,
 } from "@erbium/ui/components/attachment";
 ```
@@ -32,11 +31,7 @@ import {
     <AttachmentTitle>sales-dashboard.pdf</AttachmentTitle>
     <AttachmentDescription>PDF · 2.4 MB</AttachmentDescription>
   </AttachmentContent>
-  <AttachmentActions>
-    <AttachmentAction aria-label="Remove sales-dashboard.pdf">
-      <XIcon />
-    </AttachmentAction>
-  </AttachmentActions>
+  <AttachmentRemove aria-label="Remove sales-dashboard.pdf" />
 </Attachment>
 ```
 
@@ -54,7 +49,8 @@ Attachment
 │   └── AttachmentDescription
 ├── AttachmentActions
 │   └── AttachmentAction
-└── AttachmentTrigger
+├── AttachmentTrigger
+└── AttachmentRemove
 ```
 
 ```text
@@ -71,11 +67,36 @@ AttachmentGroup
 
 - Three sizes and horizontal or vertical orientation
 
-- A full-card `AttachmentTrigger` that opens a link or dialog while the actions stay independently clickable
+- An `AttachmentRemove` badge on the top-end corner, set into a notch in the card like an avatar badge. It appears on hover or focus, and stays visible on touch screens
+
+- A full-card `AttachmentTrigger` that opens a link, dialog, or lightbox while the actions stay independently clickable. It can wrap the media, so a lightbox opens out of the thumbnail
 
 - Scrollable, snapping `AttachmentGroup` with an edge fade
 
 - Customizable styling through the `className` prop on every part
+
+## Viewing in a lightbox
+
+`Lightbox` triggers wrap the thumbnail they open from, and `AttachmentTrigger` follows that contract. Render a `LightboxTrigger` as an `AttachmentTrigger` around the `AttachmentMedia`: the lightbox keeps the attachment's styling and focus ring, morphs from the media, and reuses the thumbnail through `imageRef`. No other wiring is needed. See [Image](#image) for a gallery and [Group](#group) for a mixed row.
+
+Other file types can join the same lightbox as viewers arrive. A PDF or spreadsheet attachment wraps its icon media in a `LightboxTrigger` the same way, adds `crossfade="both"` because the icon and the viewer look different, and gets a `LightboxItem` whose child is the viewer instead of `LightboxZoom` and `LightboxMedia`. Attach the item's `morphRef` to the viewer's frame so the transition lands on it.
+
+```tsx
+<LightboxTrigger
+  aria-label="Open briefing-notes.pdf"
+  crossfade="both"
+  index={index}
+  render={<AttachmentTrigger />}
+>
+  <AttachmentMedia>
+    <FileTextIcon />
+  </AttachmentMedia>
+</LightboxTrigger>
+
+<LightboxItem caption="briefing-notes.pdf" index={index}>
+  {({ morphRef }) => <PdfViewer ref={morphRef} src={url} />}
+</LightboxItem>
+```
 
 ## Accessibility
 
@@ -83,7 +104,9 @@ AttachmentGroup
 
 `AttachmentAction` is usually icon-only, so give each one an `aria-label` describing the action and its target.
 
-`AttachmentTrigger` covers the card with no text of its own, so give it an `aria-label` for what activating it does.
+`AttachmentRemove` shows an × by default, so give it an `aria-label` naming the file, such as "Remove sales-dashboard.pdf" or "Cancel upload". It is hidden until hover only on devices that can hover, and it appears whenever focus is inside the card, so keyboard users reach it by tabbing.
+
+`AttachmentTrigger` has no text of its own, whether it covers the card or wraps the media, so give it an `aria-label` for what activating it does, such as "Open workspace.png".
 
 The trigger sits behind the actions in the stacking order, so an `AttachmentAction` and the `AttachmentTrigger` never trap each other — both remain separately focusable and clickable.
 

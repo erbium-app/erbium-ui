@@ -1,17 +1,29 @@
 import { Icon } from "@erbium/ui/components/icon";
+import type * as React from "react";
 import {
   AttachmentMedia,
   AttachmentContent,
   AttachmentTitle,
   AttachmentDescription,
-  AttachmentActions,
-  AttachmentAction,
+  AttachmentRemove,
   AttachmentTrigger,
   Attachment,
 } from "@erbium/ui/components/attachment";
 
+type AttachmentProps = React.ComponentProps<typeof Attachment>;
+
+// Control values come from the components' own props, so the controls track their variants.
+export interface PlaygroundArgs {
+  state: NonNullable<AttachmentProps["state"]>;
+  size: NonNullable<AttachmentProps["size"]>;
+  orientation: NonNullable<AttachmentProps["orientation"]>;
+  mediaVariant: NonNullable<React.ComponentProps<typeof AttachmentMedia>["variant"]>;
+  className: string;
+  title: string;
+  triggerAsLink: boolean;
+}
+
 export const defaultProps = {
-  actionSize: "icon-xs",
   className: "",
   mediaVariant: "icon",
   orientation: "horizontal",
@@ -19,29 +31,9 @@ export const defaultProps = {
   state: "done",
   title: "document.pdf",
   triggerAsLink: false,
-} satisfies {
-  state: "idle" | "uploading" | "processing" | "error" | "done";
-  size: "default" | "sm" | "xs";
-  orientation: "horizontal" | "vertical";
-  mediaVariant: "icon" | "image";
-  className: string;
-  title: string;
-  actionSize: "icon-xs" | "icon-sm" | "icon";
-  triggerAsLink: boolean;
-};
+} satisfies PlaygroundArgs;
 
-export default function AttachmentPlaygroundExample(
-  args: {
-    state: "idle" | "uploading" | "processing" | "error" | "done";
-    size: "default" | "sm" | "xs";
-    orientation: "horizontal" | "vertical";
-    mediaVariant: "icon" | "image";
-    className: string;
-    title: string;
-    actionSize: "icon-xs" | "icon-sm" | "icon";
-    triggerAsLink: boolean;
-  } = defaultProps,
-) {
+export default function AttachmentPlaygroundExample(args: PlaygroundArgs = defaultProps) {
   return (
     <Attachment
       state={args.state}
@@ -56,15 +48,11 @@ export default function AttachmentPlaygroundExample(
         <AttachmentTitle>{args.title}</AttachmentTitle>
         <AttachmentDescription>2.4 MB</AttachmentDescription>
       </AttachmentContent>
-      <AttachmentActions>
-        <AttachmentAction size={args.actionSize} aria-label="Remove attachment">
-          <Icon name="cancel-01" aria-hidden="true" />
-        </AttachmentAction>
-      </AttachmentActions>
       <AttachmentTrigger
         aria-label={`Open ${args.title}`}
         render={args.triggerAsLink ? <a aria-label="View details" href="#overview" /> : undefined}
       />
+      <AttachmentRemove aria-label="Remove attachment" />
     </Attachment>
   );
 }

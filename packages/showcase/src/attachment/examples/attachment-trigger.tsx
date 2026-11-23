@@ -8,6 +8,7 @@ import {
   AttachmentContent,
   AttachmentDescription,
   AttachmentMedia,
+  AttachmentRemove,
   AttachmentTitle,
   AttachmentTrigger,
 } from "@erbium/ui/components/attachment";
@@ -39,10 +40,8 @@ export default function AttachmentTriggerExample() {
               aria-label="Copy attachment link"
               render={<AttachmentAction />}
             />
-            <AttachmentAction aria-label="Remove research-summary.pdf">
-              <Icon name="x" />
-            </AttachmentAction>
           </AttachmentActions>
+          <AttachmentRemove aria-label="Remove research-summary.pdf" />
           <DialogTrigger render={<AttachmentTrigger aria-label="Preview research-summary.pdf" />} />
         </Attachment>
         <DialogPanel className="sm:max-w-md">

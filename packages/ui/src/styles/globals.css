@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "shadcn/tailwind.css";
 @import "./avatar.css";
+@import "./attachment.css";
 
 @source "../";
 

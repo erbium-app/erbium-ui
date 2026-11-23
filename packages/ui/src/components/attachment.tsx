@@ -5,21 +5,28 @@ import { cva } from "class-variance-authority";
 import type { VariantProps } from "class-variance-authority";
 import { cn } from "../lib/utils";
 import { Button } from "./button";
+import { Icon } from "./icon";
 import { ScrollArea } from "./scroll-area";
 
+/* A raised panel. The trigger is a sibling overlay, so the root paints its hover, press, and
+   focus through the surface tokens. Idle files are not attached yet: they drop the elevation
+   and trace a dashed outline, which sits where the rim does, so the box does not move. Focus
+   uses an arbitrary variant because those sort last, so the ring beats the error rim and the
+   idle outline. The size sets the padding as variables, so flush image media can bleed by it.
+   The corner remove badge and its notch live in styles/attachment.css. */
 const attachmentVariants = cva(
-  "group/attachment relative flex w-fit max-w-full min-w-0 shrink-0 flex-wrap rounded-xl border bg-card text-card-foreground transition-colors focus-within:border-ring has-[>a,>button]:hover:bg-muted-hover data-[state=error]:border-error/30 data-[state=idle]:border-dashed",
+  "group/attachment relative flex w-fit max-w-full min-w-0 shrink-0 flex-wrap rounded-xl surface-panel px-(--attachment-px) py-(--attachment-py) text-card-foreground transition-[color,background-color,box-shadow,outline-color,--attachment-notch] duration-150 has-[>[data-slot=attachment-trigger]]:hover:[--surface-tint:var(--surface-tint-hover)] has-[>[data-slot=attachment-trigger]:active]:[--surface-tint:var(--surface-tint-pressed)] data-[state=error]:[--surface-rim:color-mix(in_oklab,var(--error)_30%,transparent)] data-[state=idle]:shadow-none data-[state=idle]:outline-1 data-[state=idle]:outline-border data-[state=idle]:outline-dashed motion-reduce:transition-none [&:has(>[data-slot=attachment-trigger]:focus-visible)]:outline-ring [&:has(>[data-slot=attachment-trigger]:focus-visible)]:[--surface-rim:var(--ring)]",
   {
     variants: {
       orientation: {
         horizontal: "min-w-40 items-center",
-        vertical: "w-24 flex-col has-data-[slot=attachment-content]:w-30",
+        vertical: "w-24 flex-col has-data-[slot=attachment-content]:w-40",
       },
       size: {
         default:
-          "gap-related text-caption has-data-[slot=attachment-content]:px-2.5 has-data-[slot=attachment-content]:py-2 has-data-[slot=attachment-media]:p-2",
-        sm: "gap-2.5 text-metadata has-data-[slot=attachment-content]:px-2 has-data-[slot=attachment-content]:py-1.5 has-data-[slot=attachment-media]:p-1.5",
-        xs: "gap-1.5 rounded-lg text-metadata has-data-[slot=attachment-content]:px-1.5 has-data-[slot=attachment-content]:py-1 has-data-[slot=attachment-media]:p-1",
+          "gap-related text-caption [--attachment-px:--spacing(2)] [--attachment-py:--spacing(2)] has-data-[slot=attachment-content]:[--attachment-px:--spacing(2.5)]",
+        sm: "gap-2.5 text-metadata [--attachment-px:--spacing(1.5)] [--attachment-py:--spacing(1.5)] has-data-[slot=attachment-content]:[--attachment-px:--spacing(2)]",
+        xs: "gap-1.5 rounded-lg text-metadata [--attachment-px:--spacing(1)] [--attachment-py:--spacing(1)] has-data-[slot=attachment-content]:[--attachment-px:--spacing(1.5)]",
       },
     },
   },
@@ -47,6 +54,8 @@ const Attachment = ({
   />
 );
 
+/* Vertical image media sits flush like CardMedia; the rules live in styles/attachment.css so
+   they also cover media wrapped in a trigger. */
 const attachmentMediaVariants = cva(
   "relative flex aspect-square w-10 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-muted text-foreground group-data-[orientation=vertical]/attachment:w-full group-data-[size=sm]/attachment:w-8 group-data-[size=xs]/attachment:w-7 group-data-[size=xs]/attachment:rounded-md group-data-[state=error]/attachment:bg-error/10 group-data-[state=error]/attachment:text-error group-data-[orientation=vertical]/attachment:*:data-[slot=spinner]:size-6! [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 group-data-[orientation=vertical]/attachment:[&_svg:not([class*='size-'])]:size-6 group-data-[size=xs]/attachment:[&_svg:not([class*='size-'])]:size-3.5",
   {
@@ -57,7 +66,7 @@ const attachmentMediaVariants = cva(
       variant: {
         icon: "",
         image:
-          "image-hairline opacity-60 group-data-[state=done]/attachment:opacity-100 group-data-[state=idle]/attachment:opacity-100 *:[img]:aspect-square *:[img]:w-full *:[img]:object-cover",
+          "image-hairline opacity-60 group-data-[state=done]/attachment:opacity-100 group-data-[state=idle]/attachment:opacity-100 *:[img]:size-full *:[img]:object-cover",
       },
     },
   },
@@ -136,6 +145,11 @@ const AttachmentAction = ({
   />
 );
 
+/* Empty, the trigger is an overlay over the whole card. Wrapping AttachmentMedia, it takes the
+   media's place, so a trigger that morphs from its own box (LightboxTrigger) morphs from the
+   media, and a stretched ::before still makes the whole card its hit area. Actions and the
+   remove badge stack above either way. Wrapping, it matches the media's radius, which the
+   morph reads. */
 const AttachmentTrigger = ({
   className,
   render,
@@ -147,13 +161,44 @@ const AttachmentTrigger = ({
     defaultTagName: "button",
     props: mergeProps<"button">(
       {
-        className: cn("absolute inset-0 z-10 outline-none", className),
+        className: cn(
+          "shrink-0 outline-none not-empty:rounded-lg group-data-[size=xs]/attachment:not-empty:rounded-md not-empty:before:absolute not-empty:before:inset-0 not-empty:before:z-10 empty:absolute empty:inset-0 empty:z-10",
+          className,
+        ),
         type: render ? type : (type ?? "button"),
       },
       props,
     ),
     state: {
       slot: "attachment-trigger",
+    },
+  });
+
+/* A round control that straddles the top-end corner. The card is notched around it, like an
+   avatar badge, and it shows on hover or focus, or always where there is no hover. */
+const AttachmentRemove = ({
+  className,
+  render,
+  type,
+  children,
+  ...props
+}: useRender.ComponentProps<"button">) =>
+  useRender({
+    render,
+    defaultTagName: "button",
+    props: mergeProps<"button">(
+      {
+        children: children ?? <Icon name="x" />,
+        className: cn(
+          "touch-target absolute -inset-e-(--attachment-remove-offset) -top-(--attachment-remove-offset) z-30 inline-flex size-(--attachment-remove-size) items-center justify-center rounded-full surface-control text-muted-foreground transition-[opacity,scale,color,box-shadow] duration-150 outline-none hover:text-foreground focus-visible:[--surface-rim:var(--ring)] motion-reduce:transition-none [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-3",
+          className,
+        ),
+        type: render ? type : (type ?? "button"),
+      },
+      props,
+    ),
+    state: {
+      slot: "attachment-remove",
     },
   });
 
@@ -170,7 +215,7 @@ const AttachmentGroup = ({ className, children, ...props }: React.ComponentProps
         {...props}
       />
     }
-    contentClassName="flex min-w-full gap-3 py-1 *:data-[slot=attachment]:flex-none *:data-[slot=attachment]:snap-start"
+    contentClassName="flex min-w-full gap-3 py-1 has-data-[slot=attachment-remove]:pt-2 has-data-[slot=attachment-remove]:pe-2 *:data-[slot=attachment]:flex-none *:data-[slot=attachment]:snap-start"
   >
     {children}
   </ScrollArea>
@@ -186,4 +231,5 @@ export {
   AttachmentActions,
   AttachmentAction,
   AttachmentTrigger,
+  AttachmentRemove,
 };
