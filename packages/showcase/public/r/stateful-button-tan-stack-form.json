@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Stateful Button: Tan Stack Form",
   "description": "",
-  "dependencies": ["effect@4.1.4"],
+  "dependencies": ["effect@4.1.5"],
   "registryDependencies": ["@erbium/form", "@erbium/styles"],
   "files": [
     {

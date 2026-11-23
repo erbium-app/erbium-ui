@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "OTP Field: Status",
   "description": "`field.OTPField` passes TanStack Form's field metadata as `validation`. `isValidating` gently pulses\nthe normal field surfaces and shimmers the digits. A touched invalid value shows an\nerror. Success appears only when the current complete value matches `verifiedValue`,\nwhich the demo sets after verification finishes.\n\nValidation keeps editing enabled. This demo uses `onChangeAsync` to check every complete\nchanged code, including corrections made while a previous check is pending. A server check\nis not a schema rule, so it stays a validator function that returns its message. Demo code: 123456.\n\nIncomplete values clear verification feedback without checking the code. Verification\nstarts only when all six digits are present. The simulated check takes 1.5 seconds so\nits loading treatment is visible in Storybook and the docs playground.",
-  "dependencies": ["effect@4.1.4"],
+  "dependencies": ["effect@4.1.5"],
   "registryDependencies": ["@erbium/field", "@erbium/form", "@erbium/styles"],
   "files": [
     {

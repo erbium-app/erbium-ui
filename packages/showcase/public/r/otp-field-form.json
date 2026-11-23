@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "OTP Field: Form",
   "description": "A verification card owned by TanStack Form. Two Effect Schemas validate the code: one on change that rejects a complete wrong code, and one on submit that requires all six digits. `form.SubmitButton` shows submission feedback. Resend resets the demo form. The demo checks 123456 locally; production verification belongs in a server validator.",
-  "dependencies": ["effect@4.1.4"],
+  "dependencies": ["effect@4.1.5"],
   "registryDependencies": [
     "@erbium/button",
     "@erbium/card",
