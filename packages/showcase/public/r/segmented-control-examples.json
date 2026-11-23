@@ -5,7 +5,8 @@
   "registryDependencies": [
     "@erbium-examples/segmented-control-overview",
     "@erbium-examples/segmented-control-filter",
-    "@erbium-examples/segmented-control-navigation"
+    "@erbium-examples/segmented-control-navigation",
+    "@erbium-examples/segmented-control-form"
   ],
   "title": "Segmented Control examples",
   "type": "registry:item"

@@ -56,26 +56,27 @@ TanStack Form passes the encoded values to `onSubmit`. Decode them with the same
 
 Inside `form.AppField`, the `field` render argument carries Erbium's bound components:
 
-| Component             | Use                                                                                     |
-| --------------------- | --------------------------------------------------------------------------------------- |
-| `field.TextField`     | Label, `Input`, description, and error for a string.                                    |
-| `field.PasswordField` | Label, `PasswordInput`, description, and error for a password string.                   |
-| `field.TextareaField` | Label, `Textarea`, description, and error for a string.                                 |
-| `field.CheckboxField` | `Checkbox` with its label and description for a boolean.                                |
-| `field.SwitchField`   | `Switch` after its label and description for a boolean.                                 |
-| `field.OTPField`      | `OTPField` bound to a string. Validation drives its pending, error, and success states. |
-| `field.Field`         | `Field` with `name`, `invalid`, `touched`, and `dirty` bound, for your own composition. |
-| `field.FieldError`    | `FieldError` showing the field's messages.                                              |
+| Component              | Use                                                                                     |
+| ---------------------- | --------------------------------------------------------------------------------------- |
+| `field.TextField`      | Label, `Input`, description, and error for a string.                                    |
+| `field.PasswordField`  | Label, `PasswordInput`, description, and error for a password string.                   |
+| `field.TextareaField`  | Label, `Textarea`, description, and error for a string.                                 |
+| `field.CheckboxField`  | `Checkbox` with its label and description for a boolean.                                |
+| `field.SwitchField`    | `Switch` after its label and description for a boolean.                                 |
+| `field.SegmentedField` | Label, `SegmentedControl`, description, and error for one of a few string `options`.    |
+| `field.OTPField`       | `OTPField` bound to a string. Validation drives its pending, error, and success states. |
+| `field.Field`          | `Field` with `name`, `invalid`, `touched`, and `dirty` bound, for your own composition. |
+| `field.FieldError`     | `FieldError` showing the field's messages.                                              |
 
 Use `field.PasswordField` for passwords rather than `field.TextField` with `type="password"`: it adds the show and hide toggle, and pressing the toggle does not touch the field. See [Password Input](/docs/components/password-input).
 
 A field shows its errors only after it is touched; typing, blurring, and submitting all touch it. Errors are decoded from strings or Standard Schema issues, so Effect Schema messages and plain validator strings render the same way. `FieldDescription` steps aside while an error shows.
 
-Each rejected submit shakes every invalid field. `field.Field` owns the shake, so the bound fields and your own compositions behave the same: a Select, Radio Group, Autocomplete, or OTP field inside `field.Field` shakes without extra wiring. The shake targets the field's control, meaning each direct child of `field.Field` other than its label, description, error, and hidden helpers. Keep the control a direct child of `field.Field` rather than wrapping it in another element with the label. A choice field, where a checkbox, radio, or switch sits beside its label, shakes as a whole row. Pass `shakeOn="control"` or `shakeOn="field"` to override the default `"auto"`.
+Each rejected submit shakes every invalid field. `field.Field` owns the shake, so the bound fields and your own compositions behave the same: a Select, Radio Group, Segmented Control, Autocomplete, or OTP field inside `field.Field` shakes without extra wiring. The shake targets the field's control, meaning each direct child of `field.Field` other than its label, description, error, and hidden helpers. Keep the control a direct child of `field.Field` rather than wrapping it in another element with the label. A choice field, where a checkbox, radio, or switch sits beside its label, shakes as a whole row. Pass `shakeOn="control"` or `shakeOn="field"` to override the default `"auto"`.
 
 A toggle that must be on, such as accepting terms, needs no error text: its label already says what is expected, and the invalid outline plus the shake say it is required. `CheckboxField` and `SwitchField` therefore shake the control together with its label and keep the message for assistive technology only. Pass `showError` to show it.
 
-Set `required` on a bound text, password, textarea, checkbox, or switch field to mark the label and set the control's required state. Standard Schema validators describe how to validate a value. Declare required state in the field UI and enforce it in the validator.
+Set `required` on a bound text, password, textarea, checkbox, switch, or segmented field to mark the label and set the control's required state. Standard Schema validators describe how to validate a value. Declare required state in the field UI and enforce it in the validator.
 
 For a custom composition, set `required` on `field.Field` to mark its label. `field.OTPField` and `FieldControl` inherit this setting. For other controls, use their `required` prop to convey the same state.
 

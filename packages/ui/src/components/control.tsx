@@ -172,7 +172,7 @@ const Segments = ({ options, className, onValueChange, ...props }: SegmentsProps
       {options.map((option) => (
         <SegmentedControlItem
           key={option.value}
-          className="min-h-0 min-w-0 rounded-sm px-2"
+          className="min-h-0 min-w-0 flex-initial rounded-sm px-2"
           render={<RadioPrimitive.Root value={option.value} />}
         >
           <span className="min-w-0 truncate">{option.label}</span>

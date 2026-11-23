@@ -13,9 +13,12 @@ import { cn } from "../lib/utils";
 const segmentedTrackClass =
   "relative isolate inline-flex min-h-control w-fit items-center justify-center rounded-lg surface-well p-0.75 text-muted-foreground";
 
-/** One segment. It stays transparent and draws above the indicator. */
+/**
+ * One segment. It stays transparent and draws above the indicator. Segments share a track that
+ * is stretched, as in a vertical field, and keep their content width in a track that fits them.
+ */
 const segmentedItemClass =
-  "relative z-10 inline-flex segmented-size cursor-pointer items-center justify-center gap-control-gap rounded-md border border-transparent bg-transparent px-control-inset py-0 text-control-sm whitespace-nowrap text-muted-foreground transition-colors select-none duration-150 hover:text-foreground focus-visible:border-ring has-data-[icon=inline-end]:pe-1 has-data-[icon=inline-start]:ps-1 motion-reduce:transition-none data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-control-icon";
+  "relative z-10 inline-flex segmented-size flex-1 cursor-pointer items-center justify-center gap-control-gap rounded-md border border-transparent bg-transparent px-control-inset py-0 text-control-sm whitespace-nowrap text-muted-foreground transition-colors select-none duration-150 hover:text-foreground focus-visible:border-ring has-data-[icon=inline-end]:pe-1 has-data-[icon=inline-start]:ps-1 motion-reduce:transition-none data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-control-icon";
 
 /**
  * The raised pill under the active segment. Its position comes from list-relative variables, so
@@ -56,6 +59,9 @@ const SegmentedControl = ({ className, children, render, ...props }: SegmentedCo
           // Until the indicator measures (server render, no JavaScript), the active segment
           // paints the pill itself.
           "[&:has(>[data-slot=segmented-control-indicator][hidden])>:is([data-checked],[data-pressed],[aria-current=page])]:surface-control [&:has(>[data-slot=segmented-control-indicator][hidden])>:is([data-checked],[data-pressed],[aria-current=page])]:border-border",
+          // A radio group in an invalid field: the same rim and halo as an invalid input, drawn
+          // inside the track so it keeps its size.
+          "data-invalid:ring-control data-invalid:ring-invalid-halo data-invalid:outline-1 data-invalid:-outline-offset-1 data-invalid:outline-error dark:data-invalid:outline-invalid",
           className,
         ),
         ...dataAttributes({ "data-slot": "segmented-control" }),

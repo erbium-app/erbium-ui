@@ -4357,6 +4357,13 @@
         "source": "src/segmented-control/variants/navigation.tsx",
         "usage": ["src/segmented-control/examples/segmented-control-navigation.tsx"],
         "title": "Navigation"
+      },
+      {
+        "exportName": "Form",
+        "slug": "form",
+        "source": "src/segmented-control/variants/form.tsx",
+        "usage": ["src/segmented-control/examples/segmented-control-form.tsx"],
+        "title": "Form"
       }
     ]
   },

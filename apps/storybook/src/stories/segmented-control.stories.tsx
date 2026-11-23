@@ -8,3 +8,5 @@ export const Overview = { ...showcases.Overview, name: "Overview" };
 export const Filter = { ...showcases.Filter, name: "Filter" };
 
 export const Navigation = { ...showcases.Navigation, name: "Navigation" };
+
+export const Form = { ...showcases.Form, name: "Form" };

@@ -16,6 +16,10 @@ import NavigationExample from "./variants/navigation";
 
 import NavigationSource from "./examples/segmented-control-navigation.tsx?raw";
 
+import FormExample from "./variants/form";
+
+import FormSource from "./examples/segmented-control-form.tsx?raw";
+
 const name = "segmented-control";
 
 const meta = {
@@ -63,4 +67,14 @@ export const Navigation: Story = {
     },
   },
   render: NavigationExample,
+};
+
+export const Form: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation(name, "form") },
+      source: { code: FormSource },
+    },
+  },
+  render: FormExample,
 };

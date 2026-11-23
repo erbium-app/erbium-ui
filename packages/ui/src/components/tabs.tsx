@@ -45,7 +45,7 @@ const TabsTrigger = ({ className, ...props }: TabsPrimitive.Tab.Props) => (
     data-slot="tabs-trigger"
     className={cn(
       segmentedItemClass,
-      "flex-1 group-data-vertical/tabs:w-full group-data-vertical/tabs:justify-start data-active:text-foreground",
+      "group-data-vertical/tabs:w-full group-data-vertical/tabs:justify-start data-active:text-foreground",
       className,
     )}
     {...props}

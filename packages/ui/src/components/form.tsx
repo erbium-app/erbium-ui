@@ -1,4 +1,6 @@
 import * as React from "react";
+import { Radio as RadioPrimitive } from "@base-ui/react/radio";
+import { RadioGroup as RadioGroupPrimitive } from "@base-ui/react/radio-group";
 import { useMergedRefs } from "@base-ui/utils/useMergedRefs";
 import {
   createFormHook,
@@ -22,6 +24,7 @@ import { Input } from "./input";
 import { OTPField as OTPFieldControl } from "./otp-field";
 import { PasswordInput } from "./password-input";
 import type { OTPFieldProps } from "./otp-field";
+import { SegmentedControl, SegmentedControlItem } from "./segmented-control";
 import { StatefulButton } from "./stateful-button";
 import type { StatefulButtonProps, StatefulButtonState } from "./stateful-button";
 import { Switch } from "./switch";
@@ -419,6 +422,84 @@ const SwitchField = ({
   );
 };
 
+/** One segment of a `SegmentedField`. */
+interface SegmentedFieldOption {
+  value: string;
+  label: React.ReactNode;
+  disabled?: boolean;
+}
+
+type SegmentedFieldProps = LabelledFieldProps &
+  Omit<
+    RadioGroupPrimitive.Props<string>,
+    | "children"
+    | "className"
+    | "defaultValue"
+    | "hidden"
+    | "inputRef"
+    | "name"
+    | "onBlur"
+    | "onValueChange"
+    | "ref"
+    | "render"
+    | "value"
+  > & {
+    /** The segments, in order. Keep them to a few short labels; use a Select for more. */
+    options: readonly SegmentedFieldOption[];
+  };
+
+/**
+ * A labelled `SegmentedControl` for a string field: one value from a few options shown side by
+ * side. It is a Base UI Radio Group, so the field's label names it, it submits under the field's
+ * name, and arrow keys move between segments. Start the field at `""` for no segment selected
+ * until the user picks one. A rejected submit shakes the track.
+ */
+const SegmentedField = ({
+  className,
+  description,
+  hidden,
+  label,
+  options,
+  orientation,
+  required,
+  ...props
+}: SegmentedFieldProps) => {
+  const field = useFieldContext<string>();
+
+  return (
+    <FormField className={className} hidden={hidden} orientation={orientation} required={required}>
+      {/* A group has no single control for a native label; Base UI names the group with it. */}
+      <FieldLabel nativeLabel={false} render={<div />}>
+        {label}
+      </FieldLabel>
+      <SegmentedControl
+        render={
+          <RadioGroupPrimitive<string>
+            value={field.state.value}
+            onValueChange={(value) => {
+              field.handleChange(value);
+            }}
+            onBlur={field.handleBlur}
+            required={required}
+            {...props}
+          />
+        }
+      >
+        {options.map((option) => (
+          <SegmentedControlItem
+            key={option.value}
+            render={<RadioPrimitive.Root value={option.value} disabled={option.disabled} />}
+          >
+            {option.label}
+          </SegmentedControlItem>
+        ))}
+      </SegmentedControl>
+      <Description>{description}</Description>
+      <FormFieldError />
+    </FormField>
+  );
+};
+
 /**
  * `OTPField` bound to a string field. Validation metadata drives its pending,
  * error and success states; leaving the whole group marks the field touched.
@@ -495,17 +576,18 @@ const {
   withForm,
 } = createFormHook({
   fieldComponents: {
-    CheckboxField,
     Field: FormField,
     FieldError: FormFieldError,
     OTPField: FormOTPField,
+    CheckboxField,
     PasswordField,
+    SegmentedField,
     SwitchField,
     TextField,
     TextareaField,
   },
-  fieldContext,
   formComponents: { SubmitButton },
+  fieldContext,
   formContext,
 });
 
@@ -549,6 +631,7 @@ export {
   FormFieldError,
   FormOTPField,
   PasswordField,
+  SegmentedField,
   SubmitButton,
   SwitchField,
   TextareaField,
@@ -563,3 +646,5 @@ export {
   withFieldGroup,
   withForm,
 };
+
+export type { SegmentedFieldOption, SegmentedFieldProps };

@@ -19809,7 +19809,8 @@
       "registryDependencies": [
         "@erbium-examples/segmented-control-overview",
         "@erbium-examples/segmented-control-filter",
-        "@erbium-examples/segmented-control-navigation"
+        "@erbium-examples/segmented-control-navigation",
+        "@erbium-examples/segmented-control-form"
       ],
       "title": "Segmented Control examples",
       "type": "registry:item"
@@ -19830,6 +19831,25 @@
         {
           "path": "src/segmented-control/variants/filter.tsx",
           "target": "@components/showcase/segmented-control/variants/filter.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "segmented-control-form",
+      "type": "registry:block",
+      "title": "Segmented Control: Form",
+      "description": "Bind a choice to a form with `field.SegmentedField`. It starts at `\"\"`, so no plan is chosen until the user picks one. Submitting without a choice outlines the track, shakes it and reports the error below it.",
+      "registryDependencies": ["@erbium/code-block", "@erbium/form", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/segmented-control/examples/segmented-control-form.tsx",
+          "target": "@components/showcase/segmented-control/examples/segmented-control-form.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/segmented-control/variants/form.tsx",
+          "target": "@components/showcase/segmented-control/variants/form.tsx",
           "type": "registry:component"
         }
       ]
@@ -19881,7 +19901,9 @@
       "dependencies": ["@base-ui/react@^1.9.0"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
+        "@erbium/code-block",
         "@erbium/csp-provider",
+        "@erbium/form",
         "@erbium/segmented-control",
         "@erbium/skeleton",
         "@erbium/styles",
@@ -19905,6 +19927,11 @@
           "type": "registry:component"
         },
         {
+          "path": "src/segmented-control/examples/segmented-control-form.tsx",
+          "target": "@components/showcase/segmented-control/examples/segmented-control-form.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/segmented-control/examples/segmented-control-navigation.tsx",
           "target": "@components/showcase/segmented-control/examples/segmented-control-navigation.tsx",
           "type": "registry:component"
@@ -19917,6 +19944,11 @@
         {
           "path": "src/segmented-control/variants/filter.tsx",
           "target": "@components/showcase/segmented-control/variants/filter.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/segmented-control/variants/form.tsx",
+          "target": "@components/showcase/segmented-control/variants/form.tsx",
           "type": "registry:component"
         },
         {

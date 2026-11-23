@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "segmented-control-form",
+  "type": "registry:block",
+  "title": "Segmented Control: Form",
+  "description": "Bind a choice to a form with `field.SegmentedField`. It starts at `\"\"`, so no plan is chosen until the user picks one. Submitting without a choice outlines the track, shakes it and reports the error below it.",
+  "registryDependencies": ["@erbium/code-block", "@erbium/form", "@erbium/styles"],
+  "files": [
+    {
+      "content": "import { CodeBlock } from \"@/registry/erbium/blocks/code-block\";\nimport { Form, useAppForm } from \"@/registry/erbium/ui/form\";\n\nconst plans = [\n  { label: \"Starter\", value: \"starter\" },\n  { label: \"Team\", value: \"team\" },\n  { label: \"Enterprise\", value: \"enterprise\" },\n] as const;\n\nexport default function SegmentedControlFormExample() {\n  const form = useAppForm({ defaultValues: { plan: \"\" } });\n\n  return (\n    <Form form={form} className=\"flex w-80 flex-col gap-group\">\n      <form.AppField\n        name=\"plan\"\n        validators={{ onDynamic: ({ value }) => (value ? undefined : \"Choose a plan.\") }}\n      >\n        {(field) => (\n          <field.SegmentedField\n            label=\"Plan\"\n            description=\"You can change plans at any time.\"\n            options={plans}\n            required\n          />\n        )}\n      </form.AppField>\n      <form.SubmitButton className=\"self-start\">Continue</form.SubmitButton>\n      <form.Subscribe\n        selector={(state) =>\n          state.isSubmitSuccessful && !state.isSubmitting ? state.values : undefined\n        }\n      >\n        {(values) =>\n          values && (\n            <CodeBlock\n              code={JSON.stringify(values, null, 2)}\n              language=\"json\"\n              title=\"Submitted values\"\n            />\n          )\n        }\n      </form.Subscribe>\n    </Form>\n  );\n}\n",
+      "path": "src/segmented-control/examples/segmented-control-form.tsx",
+      "target": "@components/showcase/segmented-control/examples/segmented-control-form.tsx",
+      "type": "registry:component"
+    },
+    {
+      "content": "import SegmentedControlFormExample from \"../examples/segmented-control-form\";\n\nconst Example = () => <SegmentedControlFormExample />;\n\nexport default Example;\n",
+      "path": "src/segmented-control/variants/form.tsx",
+      "target": "@components/showcase/segmented-control/variants/form.tsx",
+      "type": "registry:component"
+    }
+  ]
+}
