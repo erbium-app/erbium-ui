@@ -30,18 +30,19 @@ const handleSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
 
 export default function QuestionnaireConditionalExample() {
   const [runtime, setRuntime] = React.useState("local");
+  const environmentDisabled = runtime !== "cloud";
 
   const items = React.useMemo(
     () => [
       { name: "runtime", required: true },
       {
-        disabled: runtime !== "cloud",
+        disabled: environmentDisabled,
         name: "environment",
         required: true,
       },
       { name: "approval", required: true },
     ],
-    [runtime],
+    [environmentDisabled],
   );
 
   return (
@@ -81,7 +82,7 @@ export default function QuestionnaireConditionalExample() {
         <QuestionnaireError />
       </QuestionnaireItem>
 
-      <QuestionnaireItem disabled={runtime !== "cloud"} name="environment">
+      <QuestionnaireItem disabled={environmentDisabled} name="environment">
         <QuestionnaireTitle>Which cloud environment should it use?</QuestionnaireTitle>
         <QuestionnaireChoices>
           <QuestionnaireChoice value="preview">Preview</QuestionnaireChoice>
