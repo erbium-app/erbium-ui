@@ -17,12 +17,14 @@ const Card = ({
   />
 );
 
+/* Media spans the card's width, so its sides sit on the card rim: inside a card the hairline
+   only draws the edges that meet other sections, and none when the media fills the card. */
 const CardMedia = ({ className, ...props }: React.ComponentProps<"div">) => (
   <div
     data-slot="card-media"
     className={cn(
       "image-hairline overflow-hidden",
-      "[[data-slot=card]>&:first-child]:after:[box-shadow:inset_0_-0.5px_var(--image-hairline)] [[data-slot=card]>&:last-child]:after:[box-shadow:inset_0_0.5px_var(--image-hairline)] [[data-slot=card]>&:only-child]:after:content-none",
+      "[[data-slot=card]>&]:after:[box-shadow:inset_0_0.5px_var(--image-hairline),inset_0_-0.5px_var(--image-hairline)] [[data-slot=card]>&:first-child]:after:[box-shadow:inset_0_-0.5px_var(--image-hairline)] [[data-slot=card]>&:last-child]:after:[box-shadow:inset_0_0.5px_var(--image-hairline)] [[data-slot=card]>&:only-child]:after:content-none",
       className,
     )}
     {...props}
