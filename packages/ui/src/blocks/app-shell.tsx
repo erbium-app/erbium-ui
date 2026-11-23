@@ -252,6 +252,32 @@ const AppShellSidebarFooter = (props: React.ComponentProps<typeof SidebarFooter>
 );
 
 /*
+ * Scrolls the sidebar's own viewport by the least amount that shows the row, like
+ * `scrollIntoView({ block: "nearest" })`. That method also scrolls every scrolling ancestor,
+ * so a shell rendered inside a page, such as a preview on a documentation page, would scroll
+ * the page to its sidebar on mount and after each of its navigations.
+ */
+const revealRow = (row: HTMLElement) => {
+  const viewport = row.closest<HTMLElement>('[data-slot="sidebar-content"]');
+
+  if (!viewport) {
+    return;
+  }
+
+  const rowRect = row.getBoundingClientRect();
+  const viewportRect = viewport.getBoundingClientRect();
+
+  if (rowRect.top < viewportRect.top) {
+    viewport.scrollTop += rowRect.top - viewportRect.top;
+  } else if (rowRect.bottom > viewportRect.bottom) {
+    viewport.scrollTop += Math.min(
+      rowRect.bottom - viewportRect.bottom,
+      rowRect.top - viewportRect.top,
+    );
+  }
+};
+
+/*
  * Scrolls the current page's row into view when the shell mounts and after each navigation,
  * so a long navigation never hides where the reader is. Router links mark that row with
  * `aria-current="page"`; the frame waits for the links to render the new location.
@@ -265,7 +291,11 @@ const useRevealCurrentRow = (nav: React.RefObject<HTMLElement | null>) => {
     const reveal = () => {
       cancelAnimationFrame(frame);
       frame = requestAnimationFrame(() => {
-        nav.current?.querySelector('[aria-current="page"]')?.scrollIntoView({ block: "nearest" });
+        const row = nav.current?.querySelector<HTMLElement>('[aria-current="page"]');
+
+        if (row) {
+          revealRow(row);
+        }
       });
     };
 
