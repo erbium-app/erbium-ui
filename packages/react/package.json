@@ -9,6 +9,7 @@
     "erbium",
     "filters",
     "headless",
+    "image",
     "pagination",
     "primitives",
     "react",
@@ -37,6 +38,8 @@
     "./cascader": "./src/cascader/index.ts",
     "./editable": "./src/editable/index.ts",
     "./filters": "./src/filters/index.ts",
+    "./image": "./src/image/index.ts",
+    "./image/core": "./src/image/core.ts",
     "./pagination": "./src/pagination/index.ts",
     "./pagination/core": "./src/pagination/core.ts",
     "./segmented-control": "./src/segmented-control/index.ts",
@@ -58,6 +61,14 @@
       "./filters": {
         "types": "./dist/filters/index.d.ts",
         "default": "./dist/filters/index.js"
+      },
+      "./image": {
+        "types": "./dist/image/index.d.ts",
+        "default": "./dist/image/index.js"
+      },
+      "./image/core": {
+        "types": "./dist/image/core.d.ts",
+        "default": "./dist/image/core.js"
       },
       "./pagination": {
         "types": "./dist/pagination/index.d.ts",
