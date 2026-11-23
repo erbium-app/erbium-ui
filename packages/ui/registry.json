@@ -590,6 +590,7 @@
         "@erbium/collapsible",
         "@erbium/icon",
         "@erbium/scroll-area",
+        "@erbium/segmented-control",
         "@erbium/separator",
         "@erbium/stateful-icon",
         "@erbium/text-morph",
@@ -1690,6 +1691,21 @@
       ]
     },
     {
+      "name": "segmented-control",
+      "type": "registry:ui",
+      "title": "Segmented Control",
+      "description": "Erbium segmented control component.",
+      "dependencies": ["@base-ui/react", "@erbium-ui/react@^0.1.0"],
+      "registryDependencies": ["@erbium/utils"],
+      "files": [
+        {
+          "path": "src/components/segmented-control.tsx",
+          "target": "@ui/segmented-control.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "select",
       "type": "registry:ui",
       "title": "Select",
@@ -2071,8 +2087,8 @@
       "type": "registry:ui",
       "title": "Tabs",
       "description": "Erbium tabs component.",
-      "dependencies": ["@base-ui/react", "motion"],
-      "registryDependencies": ["@erbium/utils"],
+      "dependencies": ["@base-ui/react"],
+      "registryDependencies": ["@erbium/segmented-control", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/tabs.tsx",

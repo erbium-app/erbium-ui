@@ -63,6 +63,7 @@
       "radio-group",
       "resizable",
       "scroll-area",
+      "segmented-control",
       "select",
       "separator",
       "sheet",
@@ -144,6 +145,6 @@
     "title": "@erbium-ui/react",
     "slug": "react",
     "kind": "primitive",
-    "names": ["cascader", "filters", "editable", "pagination", "slider"]
+    "names": ["cascader", "filters", "editable", "pagination", "segmented-control", "slider"]
   }
 ]

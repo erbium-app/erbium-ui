@@ -1,0 +1,12 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "description": "All segmented-control examples.",
+  "name": "segmented-control-examples",
+  "registryDependencies": [
+    "@erbium-examples/segmented-control-overview",
+    "@erbium-examples/segmented-control-filter",
+    "@erbium-examples/segmented-control-navigation"
+  ],
+  "title": "Segmented Control examples",
+  "type": "registry:item"
+}

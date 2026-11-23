@@ -4334,6 +4334,33 @@
     ]
   },
   {
+    "name": "segmented-control",
+    "title": "Components/Segmented Control",
+    "variants": [
+      {
+        "exportName": "Overview",
+        "slug": "overview",
+        "source": "src/segmented-control/variants/overview.tsx",
+        "usage": ["src/segmented-control/examples/segmented-control-demo.tsx"],
+        "title": "Overview"
+      },
+      {
+        "exportName": "Filter",
+        "slug": "filter",
+        "source": "src/segmented-control/variants/filter.tsx",
+        "usage": ["src/segmented-control/examples/segmented-control-filter.tsx"],
+        "title": "Filter"
+      },
+      {
+        "exportName": "Navigation",
+        "slug": "navigation",
+        "source": "src/segmented-control/variants/navigation.tsx",
+        "usage": ["src/segmented-control/examples/segmented-control-navigation.tsx"],
+        "title": "Navigation"
+      }
+    ]
+  },
+  {
     "name": "select",
     "title": "Components/Select",
     "variants": [

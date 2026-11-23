@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "segmented-control-overview",
+  "type": "registry:block",
+  "title": "Segmented Control: Overview",
+  "description": "A Base UI Radio Group picks one value. It always keeps a value, and it submits under `name` inside a form.",
+  "dependencies": ["@base-ui/react@^1.9.0"],
+  "registryDependencies": ["@erbium/segmented-control", "@erbium/styles"],
+  "files": [
+    {
+      "content": "import { Radio } from \"@base-ui/react/radio\";\nimport { RadioGroup } from \"@base-ui/react/radio-group\";\nimport { SegmentedControl, SegmentedControlItem } from \"@/registry/erbium/ui/segmented-control\";\n\nexport default function SegmentedControlDemoExample() {\n  return (\n    <SegmentedControl aria-label=\"Billing period\" render={<RadioGroup defaultValue=\"monthly\" />}>\n      <SegmentedControlItem render={<Radio.Root value=\"monthly\" />}>Monthly</SegmentedControlItem>\n      <SegmentedControlItem render={<Radio.Root value=\"yearly\" />}>Yearly</SegmentedControlItem>\n      <SegmentedControlItem render={<Radio.Root value=\"lifetime\" />}>Lifetime</SegmentedControlItem>\n    </SegmentedControl>\n  );\n}\n",
+      "path": "src/segmented-control/examples/segmented-control-demo.tsx",
+      "target": "@components/showcase/segmented-control/examples/segmented-control-demo.tsx",
+      "type": "registry:component"
+    },
+    {
+      "content": "import SegmentedControlDemoExample from \"../examples/segmented-control-demo\";\n\nconst Example = () => <SegmentedControlDemoExample />;\n\nexport default Example;\n",
+      "path": "src/segmented-control/variants/overview.tsx",
+      "target": "@components/showcase/segmented-control/variants/overview.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

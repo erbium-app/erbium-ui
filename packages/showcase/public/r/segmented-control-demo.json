@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "segmented-control-demo",
+  "type": "registry:component",
+  "title": "segmented control demo",
+  "description": "Erbium segmented control demo example.",
+  "dependencies": ["@base-ui/react@^1.9.0"],
+  "registryDependencies": ["@erbium/segmented-control", "@erbium/styles"],
+  "files": [
+    {
+      "content": "import { Radio } from \"@base-ui/react/radio\";\nimport { RadioGroup } from \"@base-ui/react/radio-group\";\nimport { SegmentedControl, SegmentedControlItem } from \"@/registry/erbium/ui/segmented-control\";\n\nexport default function SegmentedControlDemoExample() {\n  return (\n    <SegmentedControl aria-label=\"Billing period\" render={<RadioGroup defaultValue=\"monthly\" />}>\n      <SegmentedControlItem render={<Radio.Root value=\"monthly\" />}>Monthly</SegmentedControlItem>\n      <SegmentedControlItem render={<Radio.Root value=\"yearly\" />}>Yearly</SegmentedControlItem>\n      <SegmentedControlItem render={<Radio.Root value=\"lifetime\" />}>Lifetime</SegmentedControlItem>\n    </SegmentedControl>\n  );\n}\n",
+      "path": "src/segmented-control/examples/segmented-control-demo.tsx",
+      "target": "@components/showcase/segmented-control/examples/segmented-control-demo.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

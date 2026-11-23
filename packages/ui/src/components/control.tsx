@@ -18,10 +18,10 @@ import {
   snapValue,
 } from "@erbium-ui/react/slider/core";
 import type { SliderAxis, SliderScaleOption } from "@erbium-ui/react/slider/core";
-import { animate, domMax, LazyMotion, useReducedMotion } from "motion/react";
+import { animate } from "motion/react";
 import type { AnimationPlaybackControls } from "motion/react";
-import * as m from "motion/react-m";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./collapsible";
+import { SegmentedControl, SegmentedControlItem } from "./segmented-control";
 import { Separator } from "./separator";
 import { ScrollArea } from "./scroll-area";
 import { TextMorph } from "./text-morph";
@@ -153,49 +153,32 @@ interface SegmentsProps {
   className?: string | undefined;
 }
 
-const segmentTransition = { damping: 35, stiffness: 400, type: "spring" } as const;
-
 /** A radio group drawn as segments, labelled by its row. The selection slides between them. */
 const Segments = ({ options, className, onValueChange, ...props }: SegmentsProps) => {
   const { labelId } = useControlRow("Control.Segments");
-  const layoutId = React.useId();
-  const shouldReduceMotion = useReducedMotion();
 
   return (
-    <LazyMotion features={domMax}>
-      <RadioGroupPrimitive
-        aria-labelledby={labelId}
-        onValueChange={onValueChange}
-        className={cn(
-          "relative isolate ms-auto flex min-w-0 self-stretch rounded-md surface-well p-0.5",
-          className,
-        )}
-        {...props}
-      >
-        {options.map((option) => (
-          <RadioPrimitive.Root
-            key={option.value}
-            value={option.value}
-            className="relative flex min-w-0 items-center justify-center rounded-sm px-2 text-center text-control-sm text-muted-foreground transition-colors duration-150 outline-none hover:text-foreground motion-reduce:transition-none data-checked:text-foreground"
-            render={(radioProps, state) => (
-              <span {...radioProps}>
-                {state.checked ? (
-                  <m.span
-                    data-slot="control-segment-indicator"
-                    aria-hidden="true"
-                    layoutId={layoutId}
-                    initial={false}
-                    transition={shouldReduceMotion === true ? { duration: 0 } : segmentTransition}
-                    className="pointer-events-none absolute inset-0 z-0 rounded-sm border surface-control"
-                  />
-                ) : null}
-                <span className="relative z-10 min-w-0 truncate">{option.label}</span>
-              </span>
-            )}
-          />
-        ))}
-      </RadioGroupPrimitive>
-    </LazyMotion>
+    // The track fills the row instead of a control height, so its segments and indicator shrink
+    // to the row's tighter radii.
+    <SegmentedControl
+      className={cn(
+        "ms-auto flex min-h-0 min-w-0 self-stretch rounded-md p-0.5 *:data-[slot=segmented-control-indicator]:rounded-sm",
+        className,
+      )}
+      render={
+        <RadioGroupPrimitive aria-labelledby={labelId} onValueChange={onValueChange} {...props} />
+      }
+    >
+      {options.map((option) => (
+        <SegmentedControlItem
+          key={option.value}
+          className="min-h-0 min-w-0 rounded-sm px-2"
+          render={<RadioPrimitive.Root value={option.value} />}
+        >
+          <span className="min-w-0 truncate">{option.label}</span>
+        </SegmentedControlItem>
+      ))}
+    </SegmentedControl>
   );
 };
 

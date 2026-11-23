@@ -5,7 +5,7 @@ description: "Switch between related panels of content."
 
 ## Usage
 
-Display one tab panel at a time, switching between related sections of content.
+Display one tab panel at a time, switching between related sections of content. To pick a value, filter or route without panels, use [Segmented Control](/docs/components/segmented-control), which shares this look.
 
 **Import:** `@erbium/ui/components/tabs`
 

@@ -175,6 +175,7 @@
     "packages/showcase": {
       "name": "@erbium/showcase",
       "dependencies": {
+        "@base-ui/react": "^1.9.0",
         "@daypicker/persian": "^10.0.2",
         "@daypicker/react": "catalog:",
         "@erbium/content": "workspace:*",

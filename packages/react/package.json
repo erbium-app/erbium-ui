@@ -39,6 +39,8 @@
     "./filters": "./src/filters/index.ts",
     "./pagination": "./src/pagination/index.ts",
     "./pagination/core": "./src/pagination/core.ts",
+    "./segmented-control": "./src/segmented-control/index.ts",
+    "./segmented-control/core": "./src/segmented-control/core.ts",
     "./slider": "./src/slider/index.ts",
     "./slider/core": "./src/slider/core.ts",
     "./package.json": "./package.json"
@@ -64,6 +66,14 @@
       "./pagination/core": {
         "types": "./dist/pagination/core.d.ts",
         "default": "./dist/pagination/core.js"
+      },
+      "./segmented-control": {
+        "types": "./dist/segmented-control/index.d.ts",
+        "default": "./dist/segmented-control/index.js"
+      },
+      "./segmented-control/core": {
+        "types": "./dist/segmented-control/core.d.ts",
+        "default": "./dist/segmented-control/core.js"
       },
       "./slider": {
         "types": "./dist/slider/index.d.ts",

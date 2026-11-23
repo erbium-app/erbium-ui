@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "segmented-control-navigation",
+  "type": "registry:block",
+  "title": "Segmented Control: Navigation",
+  "description": "Links move between routes. Render the control as `<nav>`, and set `aria-current=\"page\"` on the current link.",
+  "registryDependencies": ["@erbium/segmented-control", "@erbium/styles"],
+  "files": [
+    {
+      "content": "import { useState } from \"react\";\nimport { SegmentedControl, SegmentedControlItem } from \"@/registry/erbium/ui/segmented-control\";\n\nconst sections = [\n  { href: \"#overview\", label: \"Overview\" },\n  { href: \"#activity\", label: \"Activity\" },\n  { href: \"#settings\", label: \"Settings\" },\n];\n\nexport default function SegmentedControlNavigationExample() {\n  // A router would derive the current link from the location instead.\n  const [current, setCurrent] = useState(\"#overview\");\n\n  return (\n    <SegmentedControl aria-label=\"Project sections\" render={<nav />}>\n      {sections.map((section) => (\n        <SegmentedControlItem\n          key={section.href}\n          render={\n            <a\n              href={section.href}\n              aria-current={section.href === current ? \"page\" : undefined}\n              onClick={() => {\n                setCurrent(section.href);\n              }}\n            >\n              {section.label}\n            </a>\n          }\n        />\n      ))}\n    </SegmentedControl>\n  );\n}\n",
+      "path": "src/segmented-control/examples/segmented-control-navigation.tsx",
+      "target": "@components/showcase/segmented-control/examples/segmented-control-navigation.tsx",
+      "type": "registry:component"
+    },
+    {
+      "content": "import SegmentedControlNavigationExample from \"../examples/segmented-control-navigation\";\n\nconst Example = () => <SegmentedControlNavigationExample />;\n\nexport default Example;\n",
+      "path": "src/segmented-control/variants/navigation.tsx",
+      "target": "@components/showcase/segmented-control/variants/navigation.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

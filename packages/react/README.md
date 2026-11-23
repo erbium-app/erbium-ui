@@ -1,6 +1,6 @@
 # @erbium-ui/react
 
-Unstyled, accessible React primitives for components that hold real behavior: cascading selects, filter builders, inline editing, pagination and sliders. Each primitive is a set of parts in the style of [Base UI](https://base-ui.com): you render the parts, style them with `className`, and read their state from `data-*` attributes.
+Unstyled, accessible React primitives for components that hold real behavior: cascading selects, filter builders, inline editing, pagination, segmented controls and sliders. Each primitive is a set of parts in the style of [Base UI](https://base-ui.com): you render the parts, style them with `className`, and read their state from `data-*` attributes.
 
 Erbium UI's styled components are built on these primitives. Use this package directly when you want the behavior with your own design.
 
@@ -14,15 +14,17 @@ React 19 and `@base-ui/react` 1.9 or later are peer dependencies.
 
 ## Entry points
 
-| Import                             | Contents                                          | Runs on                                                   |
-| ---------------------------------- | ------------------------------------------------- | --------------------------------------------------------- |
-| `@erbium-ui/react/cascader`        | `Cascader` parts                                  | Client                                                    |
-| `@erbium-ui/react/filters`         | Filters parts, adapters and utilities             | Utilities on server or client. Parts and hooks on client. |
-| `@erbium-ui/react/editable`        | `Editable` parts                                  | Client                                                    |
-| `@erbium-ui/react/pagination`      | `Pagination` parts, `usePagination`, and the core | Client                                                    |
-| `@erbium-ui/react/pagination/core` | `getPagination` page layout                       | Server or client                                          |
-| `@erbium-ui/react/slider`          | `Slider` parts, `useSlider`, and the core         | Client                                                    |
-| `@erbium-ui/react/slider/core`     | Scales, steps and marks                           | Server or client                                          |
+| Import                                    | Contents                                          | Runs on                                                   |
+| ----------------------------------------- | ------------------------------------------------- | --------------------------------------------------------- |
+| `@erbium-ui/react/cascader`               | `Cascader` parts                                  | Client                                                    |
+| `@erbium-ui/react/filters`                | Filters parts, adapters and utilities             | Utilities on server or client. Parts and hooks on client. |
+| `@erbium-ui/react/editable`               | `Editable` parts                                  | Client                                                    |
+| `@erbium-ui/react/pagination`             | `Pagination` parts, `usePagination`, and the core | Client                                                    |
+| `@erbium-ui/react/pagination/core`        | `getPagination` page layout                       | Server or client                                          |
+| `@erbium-ui/react/segmented-control`      | `SegmentedControl.Indicator` and the core         | Client                                                    |
+| `@erbium-ui/react/segmented-control/core` | Measuring math for the indicator                  | Server or client                                          |
+| `@erbium-ui/react/slider`                 | `Slider` parts, `useSlider`, and the core         | Client                                                    |
+| `@erbium-ui/react/slider/core`            | Scales, steps and marks                           | Server or client                                          |
 
 Client entries start with `"use client"`, so React Server Components frameworks such as the Next.js App Router can render their parts from a server component. Entries marked server or client are plain functions and import nothing from React.
 
@@ -150,6 +152,26 @@ import { Pagination } from "@erbium-ui/react/pagination";
   </Pagination.Root>
 </nav>;
 ```
+
+## Segmented Control
+
+A sliding indicator for segments whose behavior comes from Base UI: a Radio Group for a value, a Toggle Group for a filter that can be cleared, or links for navigation. Base UI's `Tabs.Indicator` only follows tabs, so this one follows the active direct child of any control: `data-checked`, `data-pressed` or `aria-current="page"`.
+
+```tsx
+import { Radio } from "@base-ui/react/radio";
+import { RadioGroup } from "@base-ui/react/radio-group";
+import { SegmentedControl } from "@erbium-ui/react/segmented-control";
+
+export const BillingPeriod = () => (
+  <RadioGroup aria-label="Billing period" defaultValue="monthly" className="track">
+    <Radio.Root value="monthly">Monthly</Radio.Root>
+    <Radio.Root value="yearly">Yearly</Radio.Root>
+    <SegmentedControl.Indicator className="indicator" />
+  </RadioGroup>
+);
+```
+
+The indicator sets `--active-segment-left`, `--active-segment-top`, `--active-segment-width` and `--active-segment-height`, measured inside the control, and stays `hidden` until a segment is active. Position it absolutely in the control and transition `translate`, `width` and `height`.
 
 ## Slider
 

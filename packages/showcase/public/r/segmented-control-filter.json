@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "segmented-control-filter",
+  "type": "registry:block",
+  "title": "Segmented Control: Filter",
+  "description": "A Base UI Toggle Group applies a filter or mode. Pressing the active segment again clears it.",
+  "dependencies": ["@base-ui/react@^1.9.0"],
+  "registryDependencies": ["@erbium/segmented-control", "@erbium/styles"],
+  "files": [
+    {
+      "content": "import { Toggle } from \"@base-ui/react/toggle\";\nimport { ToggleGroup } from \"@base-ui/react/toggle-group\";\nimport { SegmentedControl, SegmentedControlItem } from \"@/registry/erbium/ui/segmented-control\";\n\nexport default function SegmentedControlFilterExample() {\n  return (\n    <SegmentedControl render={<ToggleGroup aria-label=\"Issue status\" defaultValue={[\"open\"]} />}>\n      <SegmentedControlItem render={<Toggle value=\"open\" />}>Open</SegmentedControlItem>\n      <SegmentedControlItem render={<Toggle value=\"closed\" />}>Closed</SegmentedControlItem>\n      <SegmentedControlItem render={<Toggle value=\"draft\" />}>Draft</SegmentedControlItem>\n    </SegmentedControl>\n  );\n}\n",
+      "path": "src/segmented-control/examples/segmented-control-filter.tsx",
+      "target": "@components/showcase/segmented-control/examples/segmented-control-filter.tsx",
+      "type": "registry:component"
+    },
+    {
+      "content": "import SegmentedControlFilterExample from \"../examples/segmented-control-filter\";\n\nconst Example = () => <SegmentedControlFilterExample />;\n\nexport default Example;\n",
+      "path": "src/segmented-control/variants/filter.tsx",
+      "target": "@components/showcase/segmented-control/variants/filter.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

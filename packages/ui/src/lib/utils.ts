@@ -33,6 +33,11 @@ export const cn = createCn({
       duration: [{ duration: ["ui-fast", "ui", "ui-slow", "panel", "drawer"] }],
       ease: [{ ease: ["ui-out", "ui-move", "ui-drawer"] }],
       gap: [{ gap: ["related", "group", "section", "control-gap"] }],
+      // Minimum heights from sizing.css, so a later `min-h-*` replaces them.
+      "min-h": [
+        { "min-h": ["control-xs", "control-sm", "control", "control-lg"] },
+        "segmented-size",
+      ],
       p: [{ p: ["panel", "panel-sm"] }],
       px: [{ px: ["panel", "related", "control-inset"] }],
       py: [{ py: ["panel", "related", "control-gap"] }],

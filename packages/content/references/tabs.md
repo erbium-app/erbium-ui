@@ -1,6 +1,5 @@
 ## External documentation
 
-Explore the underlying Base UI tabs API and Motion for React, used for the animated indicator.
+Explore the underlying Base UI tabs API. Its indicator places the raised selection, and a CSS transition slides it.
 
 - [Tabs](https://base-ui.com/react/components/tabs)
-- [Motion for React](https://motion.dev/docs/react)

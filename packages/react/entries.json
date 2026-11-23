@@ -1,6 +1,12 @@
 {
-  "client": ["cascader/index", "editable/index", "pagination/index", "slider/index"],
-  "server": ["pagination/core", "slider/core"],
+  "client": [
+    "cascader/index",
+    "editable/index",
+    "pagination/index",
+    "segmented-control/index",
+    "slider/index"
+  ],
+  "server": ["pagination/core", "segmented-control/core", "slider/core"],
   "facades": {
     "filters/index": "filters/client"
   }

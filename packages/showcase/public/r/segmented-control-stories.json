@@ -1,0 +1,67 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "segmented-control-stories",
+  "type": "registry:item",
+  "title": "Segmented Control stories",
+  "description": "All segmented-control variants as portable React CSF stories.",
+  "dependencies": ["@base-ui/react@^1.9.0"],
+  "devDependencies": ["@storybook/react@^10.6.1"],
+  "registryDependencies": [
+    "@erbium/csp-provider",
+    "@erbium/segmented-control",
+    "@erbium/skeleton",
+    "@erbium/styles",
+    "@erbium/toast",
+    "@erbium/utils"
+  ],
+  "files": [
+    {
+      "content": "import { CSPProvider } from \"@/registry/erbium/ui/csp-provider\";\nimport { SkeletonProvider } from \"@/registry/erbium/ui/skeleton\";\nimport { Toaster } from \"@/registry/erbium/ui/toast\";\nimport { cn } from \"@/registry/erbium/lib/erbium-utils\";\nimport type { ReactNode } from \"react\";\n\nexport const ShowcaseProviders = ({\n  children,\n  toast = false,\n}: {\n  children?: ReactNode;\n  toast?: boolean;\n}) => (\n  <CSPProvider disableStyleElements>\n    <SkeletonProvider>\n      {children}\n      {toast && <Toaster />}\n    </SkeletonProvider>\n  </CSPProvider>\n);\n\n/**\n * The box an example renders in. Inline it is capped to the reading width; with `fill` (a\n * full-screen slide) it takes the whole panel, so an example sized from its container (`w-full`,\n * `h-full` with a minimum) grows with it, while one with a natural size stays centred.\n */\nexport const ShowcaseSurface = ({\n  children,\n  fill = false,\n}: {\n  children?: ReactNode;\n  fill?: boolean;\n}) => (\n  <div\n    data-slot=\"component-preview\"\n    className={cn(\n      \"relative isolate mx-auto flex w-full min-w-0 items-center justify-center gap-section p-5 font-sans text-foreground contain-layout sm:p-8 [&>.min-w-72.max-w-2xl]:flex [&>.min-w-72.max-w-2xl]:flex-col [&>.min-w-72.max-w-2xl]:items-center [&>.min-w-72.max-w-2xl]:justify-center\",\n      fill ? \"flex-1\" : \"min-h-64 max-w-3xl\",\n    )}\n  >\n    {children}\n  </div>\n);\n",
+      "path": "src/preview.tsx",
+      "target": "@components/showcase/preview.tsx",
+      "type": "registry:component"
+    },
+    {
+      "content": "import { Radio } from \"@base-ui/react/radio\";\nimport { RadioGroup } from \"@base-ui/react/radio-group\";\nimport { SegmentedControl, SegmentedControlItem } from \"@/registry/erbium/ui/segmented-control\";\n\nexport default function SegmentedControlDemoExample() {\n  return (\n    <SegmentedControl aria-label=\"Billing period\" render={<RadioGroup defaultValue=\"monthly\" />}>\n      <SegmentedControlItem render={<Radio.Root value=\"monthly\" />}>Monthly</SegmentedControlItem>\n      <SegmentedControlItem render={<Radio.Root value=\"yearly\" />}>Yearly</SegmentedControlItem>\n      <SegmentedControlItem render={<Radio.Root value=\"lifetime\" />}>Lifetime</SegmentedControlItem>\n    </SegmentedControl>\n  );\n}\n",
+      "path": "src/segmented-control/examples/segmented-control-demo.tsx",
+      "target": "@components/showcase/segmented-control/examples/segmented-control-demo.tsx",
+      "type": "registry:component"
+    },
+    {
+      "content": "import { Toggle } from \"@base-ui/react/toggle\";\nimport { ToggleGroup } from \"@base-ui/react/toggle-group\";\nimport { SegmentedControl, SegmentedControlItem } from \"@/registry/erbium/ui/segmented-control\";\n\nexport default function SegmentedControlFilterExample() {\n  return (\n    <SegmentedControl render={<ToggleGroup aria-label=\"Issue status\" defaultValue={[\"open\"]} />}>\n      <SegmentedControlItem render={<Toggle value=\"open\" />}>Open</SegmentedControlItem>\n      <SegmentedControlItem render={<Toggle value=\"closed\" />}>Closed</SegmentedControlItem>\n      <SegmentedControlItem render={<Toggle value=\"draft\" />}>Draft</SegmentedControlItem>\n    </SegmentedControl>\n  );\n}\n",
+      "path": "src/segmented-control/examples/segmented-control-filter.tsx",
+      "target": "@components/showcase/segmented-control/examples/segmented-control-filter.tsx",
+      "type": "registry:component"
+    },
+    {
+      "content": "import { useState } from \"react\";\nimport { SegmentedControl, SegmentedControlItem } from \"@/registry/erbium/ui/segmented-control\";\n\nconst sections = [\n  { href: \"#overview\", label: \"Overview\" },\n  { href: \"#activity\", label: \"Activity\" },\n  { href: \"#settings\", label: \"Settings\" },\n];\n\nexport default function SegmentedControlNavigationExample() {\n  // A router would derive the current link from the location instead.\n  const [current, setCurrent] = useState(\"#overview\");\n\n  return (\n    <SegmentedControl aria-label=\"Project sections\" render={<nav />}>\n      {sections.map((section) => (\n        <SegmentedControlItem\n          key={section.href}\n          render={\n            <a\n              href={section.href}\n              aria-current={section.href === current ? \"page\" : undefined}\n              onClick={() => {\n                setCurrent(section.href);\n              }}\n            >\n              {section.label}\n            </a>\n          }\n        />\n      ))}\n    </SegmentedControl>\n  );\n}\n",
+      "path": "src/segmented-control/examples/segmented-control-navigation.tsx",
+      "target": "@components/showcase/segmented-control/examples/segmented-control-navigation.tsx",
+      "type": "registry:component"
+    },
+    {
+      "content": "// Generated from the Erbium showcase catalog and shared Markdown.\nimport { ShowcaseProviders, ShowcaseSurface } from \"../preview\";\nimport type { Meta, StoryObj } from \"@storybook/react\";\n\nimport { SegmentedControl } from \"@/registry/erbium/ui/segmented-control\";\n\nimport OverviewExample from \"./variants/overview\";\n\n\n\nimport FilterExample from \"./variants/filter\";\n\n\n\nimport NavigationExample from \"./variants/navigation\";\n\n\n\nconst name = \"segmented-control\";\n\nconst meta = {\n  component: SegmentedControl,\n  parameters: {\n    docs: {\n      description: {\n        component: componentDocumentation(name),\n      },\n    },\n    layout: \"centered\",\n  },\n  tags: [\"autodocs\"],\n} satisfies Meta<typeof SegmentedControl>;\n\nexport default { ...meta, title: \"Components/Segmented Control\",  decorators: [(Story, context) => <ShowcaseProviders toast={false && context.viewMode !== \"docs\"}><ShowcaseSurface><Story /></ShowcaseSurface></ShowcaseProviders>] } satisfies Meta;\n\ntype Story = StoryObj;\n\nexport const Overview: Story = {\n  parameters: {\n    docs: {\n      description: { story: variantDocumentation(name, \"overview\") },\n      source: { code: \"import { Radio } from \\\"@base-ui/react/radio\\\";\\nimport { RadioGroup } from \\\"@base-ui/react/radio-group\\\";\\nimport { SegmentedControl, SegmentedControlItem } from \\\"@/registry/erbium/ui/segmented-control\\\";\\n\\nexport default function SegmentedControlDemoExample() {\\n  return (\\n    <SegmentedControl aria-label=\\\"Billing period\\\" render={<RadioGroup defaultValue=\\\"monthly\\\" />}>\\n      <SegmentedControlItem render={<Radio.Root value=\\\"monthly\\\" />}>Monthly</SegmentedControlItem>\\n      <SegmentedControlItem render={<Radio.Root value=\\\"yearly\\\" />}>Yearly</SegmentedControlItem>\\n      <SegmentedControlItem render={<Radio.Root value=\\\"lifetime\\\" />}>Lifetime</SegmentedControlItem>\\n    </SegmentedControl>\\n  );\\n}\\n\" },\n    },\n  },\n  render: OverviewExample,\n};\n\nexport const Filter: Story = {\n  parameters: {\n    docs: {\n      description: { story: variantDocumentation(name, \"filter\") },\n      source: { code: \"import { Toggle } from \\\"@base-ui/react/toggle\\\";\\nimport { ToggleGroup } from \\\"@base-ui/react/toggle-group\\\";\\nimport { SegmentedControl, SegmentedControlItem } from \\\"@/registry/erbium/ui/segmented-control\\\";\\n\\nexport default function SegmentedControlFilterExample() {\\n  return (\\n    <SegmentedControl render={<ToggleGroup aria-label=\\\"Issue status\\\" defaultValue={[\\\"open\\\"]} />}>\\n      <SegmentedControlItem render={<Toggle value=\\\"open\\\" />}>Open</SegmentedControlItem>\\n      <SegmentedControlItem render={<Toggle value=\\\"closed\\\" />}>Closed</SegmentedControlItem>\\n      <SegmentedControlItem render={<Toggle value=\\\"draft\\\" />}>Draft</SegmentedControlItem>\\n    </SegmentedControl>\\n  );\\n}\\n\" },\n    },\n  },\n  render: FilterExample,\n};\n\nexport const Navigation: Story = {\n  parameters: {\n    docs: {\n      description: { story: variantDocumentation(name, \"navigation\") },\n      source: { code: \"import { useState } from \\\"react\\\";\\nimport { SegmentedControl, SegmentedControlItem } from \\\"@/registry/erbium/ui/segmented-control\\\";\\n\\nconst sections = [\\n  { href: \\\"#overview\\\", label: \\\"Overview\\\" },\\n  { href: \\\"#activity\\\", label: \\\"Activity\\\" },\\n  { href: \\\"#settings\\\", label: \\\"Settings\\\" },\\n];\\n\\nexport default function SegmentedControlNavigationExample() {\\n  // A router would derive the current link from the location instead.\\n  const [current, setCurrent] = useState(\\\"#overview\\\");\\n\\n  return (\\n    <SegmentedControl aria-label=\\\"Project sections\\\" render={<nav />}>\\n      {sections.map((section) => (\\n        <SegmentedControlItem\\n          key={section.href}\\n          render={\\n            <a\\n              href={section.href}\\n              aria-current={section.href === current ? \\\"page\\\" : undefined}\\n              onClick={() => {\\n                setCurrent(section.href);\\n              }}\\n            >\\n              {section.label}\\n            </a>\\n          }\\n        />\\n      ))}\\n    </SegmentedControl>\\n  );\\n}\\n\" },\n    },\n  },\n  render: NavigationExample,\n};\n",
+      "path": "src/segmented-control/segmented-control.stories.tsx",
+      "target": "@components/showcase/segmented-control/segmented-control.stories.tsx",
+      "type": "registry:file"
+    },
+    {
+      "content": "import SegmentedControlFilterExample from \"../examples/segmented-control-filter\";\n\nconst Example = () => <SegmentedControlFilterExample />;\n\nexport default Example;\n",
+      "path": "src/segmented-control/variants/filter.tsx",
+      "target": "@components/showcase/segmented-control/variants/filter.tsx",
+      "type": "registry:component"
+    },
+    {
+      "content": "import SegmentedControlNavigationExample from \"../examples/segmented-control-navigation\";\n\nconst Example = () => <SegmentedControlNavigationExample />;\n\nexport default Example;\n",
+      "path": "src/segmented-control/variants/navigation.tsx",
+      "target": "@components/showcase/segmented-control/variants/navigation.tsx",
+      "type": "registry:component"
+    },
+    {
+      "content": "import SegmentedControlDemoExample from \"../examples/segmented-control-demo\";\n\nconst Example = () => <SegmentedControlDemoExample />;\n\nexport default Example;\n",
+      "path": "src/segmented-control/variants/overview.tsx",
+      "target": "@components/showcase/segmented-control/variants/overview.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

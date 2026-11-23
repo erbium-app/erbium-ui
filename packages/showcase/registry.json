@@ -19789,6 +19789,149 @@
       ]
     },
     {
+      "name": "segmented-control-demo",
+      "type": "registry:component",
+      "title": "segmented control demo",
+      "description": "Erbium segmented control demo example.",
+      "dependencies": ["@base-ui/react@^1.9.0"],
+      "registryDependencies": ["@erbium/segmented-control", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/segmented-control/examples/segmented-control-demo.tsx",
+          "target": "@components/showcase/segmented-control/examples/segmented-control-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "description": "All segmented-control examples.",
+      "name": "segmented-control-examples",
+      "registryDependencies": [
+        "@erbium-examples/segmented-control-overview",
+        "@erbium-examples/segmented-control-filter",
+        "@erbium-examples/segmented-control-navigation"
+      ],
+      "title": "Segmented Control examples",
+      "type": "registry:item"
+    },
+    {
+      "name": "segmented-control-filter",
+      "type": "registry:block",
+      "title": "Segmented Control: Filter",
+      "description": "A Base UI Toggle Group applies a filter or mode. Pressing the active segment again clears it.",
+      "dependencies": ["@base-ui/react@^1.9.0"],
+      "registryDependencies": ["@erbium/segmented-control", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/segmented-control/examples/segmented-control-filter.tsx",
+          "target": "@components/showcase/segmented-control/examples/segmented-control-filter.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/segmented-control/variants/filter.tsx",
+          "target": "@components/showcase/segmented-control/variants/filter.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "segmented-control-navigation",
+      "type": "registry:block",
+      "title": "Segmented Control: Navigation",
+      "description": "Links move between routes. Render the control as `<nav>`, and set `aria-current=\"page\"` on the current link.",
+      "registryDependencies": ["@erbium/segmented-control", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/segmented-control/examples/segmented-control-navigation.tsx",
+          "target": "@components/showcase/segmented-control/examples/segmented-control-navigation.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/segmented-control/variants/navigation.tsx",
+          "target": "@components/showcase/segmented-control/variants/navigation.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "segmented-control-overview",
+      "type": "registry:block",
+      "title": "Segmented Control: Overview",
+      "description": "A Base UI Radio Group picks one value. It always keeps a value, and it submits under `name` inside a form.",
+      "dependencies": ["@base-ui/react@^1.9.0"],
+      "registryDependencies": ["@erbium/segmented-control", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/segmented-control/examples/segmented-control-demo.tsx",
+          "target": "@components/showcase/segmented-control/examples/segmented-control-demo.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/segmented-control/variants/overview.tsx",
+          "target": "@components/showcase/segmented-control/variants/overview.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "segmented-control-stories",
+      "type": "registry:item",
+      "title": "Segmented Control stories",
+      "description": "All segmented-control variants as portable React CSF stories.",
+      "dependencies": ["@base-ui/react@^1.9.0"],
+      "devDependencies": ["@storybook/react@^10.6.1"],
+      "registryDependencies": [
+        "@erbium/csp-provider",
+        "@erbium/segmented-control",
+        "@erbium/skeleton",
+        "@erbium/styles",
+        "@erbium/toast",
+        "@erbium/utils"
+      ],
+      "files": [
+        {
+          "path": "src/preview.tsx",
+          "target": "@components/showcase/preview.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/segmented-control/examples/segmented-control-demo.tsx",
+          "target": "@components/showcase/segmented-control/examples/segmented-control-demo.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/segmented-control/examples/segmented-control-filter.tsx",
+          "target": "@components/showcase/segmented-control/examples/segmented-control-filter.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/segmented-control/examples/segmented-control-navigation.tsx",
+          "target": "@components/showcase/segmented-control/examples/segmented-control-navigation.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/segmented-control/segmented-control.stories.tsx",
+          "target": "@components/showcase/segmented-control/segmented-control.stories.tsx",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/segmented-control/variants/filter.tsx",
+          "target": "@components/showcase/segmented-control/variants/filter.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/segmented-control/variants/navigation.tsx",
+          "target": "@components/showcase/segmented-control/variants/navigation.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/segmented-control/variants/overview.tsx",
+          "target": "@components/showcase/segmented-control/variants/overview.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "select-align-item",
       "type": "registry:component",
       "title": "select align item",
