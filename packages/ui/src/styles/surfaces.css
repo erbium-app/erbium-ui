@@ -436,10 +436,13 @@
     isolation: isolate;
   }
 
+  /* The base layer squircles elements, not pseudo-elements, so the edge takes the image's
+     corner shape too; a plain rounded edge would drift off a squircle clip at the corners. */
   &::after {
     position: absolute;
     z-index: 20;
     border-radius: var(--image-hairline-radius, inherit);
+    corner-shape: inherit;
     box-shadow: inset 0 0 0 0.5px var(--image-hairline);
     content: "";
     inset: var(--image-hairline-inset, 0);
