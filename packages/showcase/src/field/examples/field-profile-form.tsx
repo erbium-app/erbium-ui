@@ -34,7 +34,7 @@ export default function FieldResponsiveExample() {
                 />
               )}
             </form.AppField>
-            <Field orientation="responsive">
+            <Field orientation="horizontal">
               <form.SubmitButton>Submit</form.SubmitButton>
               <Button
                 type="button"

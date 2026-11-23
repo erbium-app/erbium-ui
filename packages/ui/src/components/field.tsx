@@ -111,8 +111,9 @@ const fieldVariants = cva("group/field flex w-full gap-related data-invalid:text
     orientation: {
       horizontal:
         "flex-row items-center has-[>[data-slot=field-content]]:items-start *:data-[slot=field-label]:flex-auto choice-row:items-start choice-row:*:data-choice:choice-first-line",
+      // Wide enough: the label in the first column, the control, description and error in the second.
       responsive:
-        "flex-col *:w-full @md/field-group:flex-row @md/field-group:items-center @md/field-group:*:w-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:*:data-[slot=field-label]:flex-auto @md/field-group:choice-row:items-start @md/field-group:choice-row:*:data-choice:choice-first-line [&>.sr-only]:w-auto",
+        "flex-col *:w-full @md/field-group:grid @md/field-group:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] @md/field-group:*:col-start-2 @md/field-group:*:data-[slot=field-label]:col-start-1 @md/field-group:*:data-[slot=field-label]:row-start-1 [&>.sr-only]:w-auto",
       vertical: "flex-col *:w-full [&>.sr-only]:w-auto",
     },
     variant: {
