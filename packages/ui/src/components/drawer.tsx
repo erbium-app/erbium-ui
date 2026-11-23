@@ -135,7 +135,14 @@ const DrawerIndent = ({ className, ref, ...props }: DrawerPrimitive.Indent.Props
     <>
       <DrawerPrimitive.IndentBackground
         data-slot="drawer-indent-background"
-        className="fixed inset-0 bg-overlay-base"
+        className={cn(
+          // At rest the layer is the page canvas, so overscrolling the document past its edges
+          // shows the page colour rather than the dark layer behind an inset page.
+          "fixed inset-0 bg-background",
+          // It turns dark at once when a drawer opens, and on close holds until the page has
+          // eased back over it.
+          "transition-[background-color] delay-(--transition-duration-drawer) duration-0 motion-reduce:delay-0 data-active:bg-overlay-base data-active:delay-0",
+        )}
       />
       <DrawerPrimitive.Indent
         ref={mergedRef}
