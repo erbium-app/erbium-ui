@@ -1504,13 +1504,6 @@
         "title": "Overview"
       },
       {
-        "exportName": "FileTree",
-        "slug": "file-tree",
-        "source": "src/collapsible/variants/file-tree.tsx",
-        "usage": ["src/collapsible/examples/collapsible-file-tree.tsx"],
-        "title": "File Tree"
-      },
-      {
         "exportName": "Basic",
         "slug": "basic",
         "source": "src/collapsible/variants/basic.tsx",

@@ -7,8 +7,6 @@ export const Playground = { ...showcases.Playground, name: "Playground" };
 
 export const Overview = { ...showcases.Overview, name: "Overview" };
 
-export const FileTree = { ...showcases.FileTree, name: "File Tree" };
-
 export const Basic = { ...showcases.Basic, name: "Basic" };
 
 export const SettingsPanel = { ...showcases.SettingsPanel, name: "Settings Panel" };

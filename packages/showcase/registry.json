@@ -6950,40 +6950,12 @@
       "registryDependencies": [
         "@erbium-examples/collapsible-playground",
         "@erbium-examples/collapsible-overview",
-        "@erbium-examples/collapsible-file-tree",
         "@erbium-examples/collapsible-basic",
         "@erbium-examples/collapsible-settings-panel",
         "@erbium-examples/collapsible-controlled-state"
       ],
       "title": "Collapsible examples",
       "type": "registry:item"
-    },
-    {
-      "name": "collapsible-file-tree",
-      "type": "registry:block",
-      "title": "Collapsible: File Tree",
-      "description": "Use nested collapsibles to build a file tree.",
-      "registryDependencies": [
-        "@erbium/button",
-        "@erbium/card",
-        "@erbium/collapsible",
-        "@erbium/icon",
-        "@erbium/stateful-icon",
-        "@erbium/styles",
-        "@erbium/tabs"
-      ],
-      "files": [
-        {
-          "path": "src/collapsible/examples/collapsible-file-tree.tsx",
-          "target": "@components/showcase/collapsible/examples/collapsible-file-tree.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/collapsible/variants/file-tree.tsx",
-          "target": "@components/showcase/collapsible/variants/file-tree.tsx",
-          "type": "registry:component"
-        }
-      ]
     },
     {
       "name": "collapsible-overview",
@@ -7098,7 +7070,6 @@
         "@erbium/skeleton",
         "@erbium/stateful-icon",
         "@erbium/styles",
-        "@erbium/tabs",
         "@erbium/toast",
         "@erbium/utils"
       ],
@@ -7119,11 +7090,6 @@
           "type": "registry:component"
         },
         {
-          "path": "src/collapsible/examples/collapsible-file-tree.tsx",
-          "target": "@components/showcase/collapsible/examples/collapsible-file-tree.tsx",
-          "type": "registry:component"
-        },
-        {
           "path": "src/collapsible/examples/collapsible-settings.tsx",
           "target": "@components/showcase/collapsible/examples/collapsible-settings.tsx",
           "type": "registry:component"
@@ -7136,11 +7102,6 @@
         {
           "path": "src/collapsible/variants/controlled-state.tsx",
           "target": "@components/showcase/collapsible/variants/controlled-state.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/collapsible/variants/file-tree.tsx",
-          "target": "@components/showcase/collapsible/variants/file-tree.tsx",
           "type": "registry:component"
         },
         {

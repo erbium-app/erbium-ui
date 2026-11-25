@@ -5,7 +5,6 @@
   "registryDependencies": [
     "@erbium-examples/collapsible-playground",
     "@erbium-examples/collapsible-overview",
-    "@erbium-examples/collapsible-file-tree",
     "@erbium-examples/collapsible-basic",
     "@erbium-examples/collapsible-settings-panel",
     "@erbium-examples/collapsible-controlled-state"

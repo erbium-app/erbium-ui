@@ -12,10 +12,6 @@ import OverviewExample from "./variants/overview";
 
 import OverviewSource from "./examples/collapsible-demo.tsx?raw";
 
-import FileTreeExample from "./variants/file-tree";
-
-import FileTreeSource from "./examples/collapsible-file-tree.tsx?raw";
-
 import BasicExample from "./variants/basic";
 
 import BasicSource from "./examples/collapsible-basic.tsx?raw";
@@ -64,16 +60,6 @@ export const Overview: Story = {
     },
   },
   render: OverviewExample,
-};
-
-export const FileTree: Story = {
-  parameters: {
-    docs: {
-      description: { story: variantDocumentation("collapsible", "file-tree") },
-      source: { code: FileTreeSource },
-    },
-  },
-  render: FileTreeExample,
 };
 
 export const Basic: Story = {
