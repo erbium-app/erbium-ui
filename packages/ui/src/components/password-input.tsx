@@ -112,21 +112,15 @@ const PasswordInputRoot = ({
     const saved = selection.current;
     selection.current = null;
 
-    if (
-      input === null ||
-      saved === null ||
-      saved.selectionStart === null ||
-      saved.selectionEnd === null ||
-      input.ownerDocument.activeElement !== input
-    ) {
+    if (input === null || saved === null || input.ownerDocument.activeElement !== input) {
       return;
     }
 
-    input.setSelectionRange(
-      saved.selectionStart,
-      saved.selectionEnd,
-      saved.selectionDirection ?? undefined,
-    );
+    const { selectionDirection, selectionEnd, selectionStart } = saved;
+
+    if (selectionStart !== null && selectionEnd !== null) {
+      input.setSelectionRange(selectionStart, selectionEnd, selectionDirection ?? undefined);
+    }
   });
 
   const context = React.useMemo<PasswordInputContextValue>(
@@ -177,13 +171,15 @@ const PasswordInputControl = ({
   const { controlId, inputRef, setControlDisabled, setControlId, setVisible, visible } = context;
   const inputId = id ?? controlId;
 
-  React.useEffect(() => {
-    setControlId(inputId);
-  }, [inputId, setControlId]);
-
-  // A disabled Field disables the input without a prop; mirror it on the toggle.
+  // Mirror the rendered input on the toggle: its id for `aria-controls`, and
+  // its disabled state, which a disabled Field sets without a prop.
   React.useLayoutEffect(() => {
-    setControlDisabled(inputRef.current?.disabled ?? false);
+    const input = inputRef.current;
+
+    if (input !== null) {
+      setControlDisabled(input.disabled);
+      setControlId(input.id);
+    }
   });
 
   // Hide the password when the form is sent or reset.
