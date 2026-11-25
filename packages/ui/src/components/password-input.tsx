@@ -29,7 +29,8 @@ interface PasswordInputVisibilityChangeDetails {
 
 interface PasswordInputContextValue {
   controlDisabled: boolean;
-  controlId: string;
+  /** The rendered input's id, for the toggle's `aria-controls`. */
+  controlId: string | undefined;
   disabled: boolean;
   inputRef: React.RefObject<HTMLInputElement | null>;
   setControlDisabled: (disabled: boolean) => void;
@@ -74,8 +75,7 @@ const PasswordInputRoot = ({
 }: PasswordInputRootProps) => {
   const [uncontrolledVisible, setUncontrolledVisible] = React.useState(defaultVisible);
   const visible = visibleProp ?? uncontrolledVisible;
-  const generatedId = React.useId();
-  const [controlId, setControlId] = React.useState(generatedId);
+  const [controlId, setControlId] = React.useState<string>();
   const [controlDisabled, setControlDisabled] = React.useState(false);
   const inputRef = React.useRef<HTMLInputElement | null>(null);
   const selection = React.useRef<Selection | null>(null);
@@ -168,11 +168,12 @@ const PasswordInputControl = ({
   ...props
 }: PasswordInputControlProps) => {
   const context = usePasswordInputContext("PasswordInputControl");
-  const { controlId, inputRef, setControlDisabled, setControlId, setVisible, visible } = context;
-  const inputId = id ?? controlId;
+  const { inputRef, setControlDisabled, setControlId, setVisible, visible } = context;
 
   // Mirror the rendered input on the toggle: its id for `aria-controls`, and
-  // its disabled state, which a disabled Field sets without a prop.
+  // its disabled state, which a disabled Field sets without a prop. The mirrored
+  // id must never be passed back to the input: Field picks the input's id, so
+  // feeding it back makes the two swap ids until React gives up.
   React.useLayoutEffect(() => {
     const input = inputRef.current;
 
@@ -212,7 +213,7 @@ const PasswordInputControl = ({
       className: cn("[&::-ms-clear]:hidden [&::-ms-reveal]:hidden", className),
       "data-visible": visible ? "" : undefined,
       disabled: context.disabled || disabled,
-      id: inputId,
+      id,
       spellCheck,
       type: visible ? "text" : "password",
     },
