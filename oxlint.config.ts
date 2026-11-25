@@ -8,6 +8,18 @@ import tanstack from "ultracite/oxlint/tanstack";
 import tanstackJsPlugins from "ultracite/oxlint/tanstack/js-plugins";
 import vitest from "ultracite/oxlint/vitest";
 
+// eslint-plugin-sonarjs leaves choosing test files to the lint config (since
+// 4.2.3 no rule reads the filename), and Ultracite enables these rules for every
+// file. They are off in the root `rules` and turned on for test files below.
+// `no-empty-test-file` takes only files that declare tests, so it must not match
+// helpers or mocks.
+const sonarTestFiles = ["**/*.{test,spec,cy}.{js,mjs,cjs,jsx,ts,mts,cts,tsx}"];
+
+const sonarTestRelatedFiles = [
+  "**/*.{test,spec,cy,e2e,mock}.{js,mjs,cjs,jsx,ts,mts,cts,tsx}",
+  "**/{__tests__,__mocks__}/**",
+];
+
 // Ultracite's preset stack, in the documented order:
 // - core: the ESLint-equivalent rule floor.
 // - react: react, react-perf, and jsx-a11y.
@@ -39,6 +51,18 @@ export default defineConfig({
     { name: "erbium-controls", specifier: "./scripts/controls-lint.mjs" },
   ],
   overrides: [
+    {
+      files: sonarTestFiles,
+      rules: { "sonarjs/no-empty-test-file": "error" },
+    },
+    {
+      files: sonarTestRelatedFiles,
+      rules: {
+        "sonarjs/no-debug-commands-in-ui-tests": "error",
+        "sonarjs/no-fixed-wait-in-tests": "error",
+        "sonarjs/prefer-cypress-should": "error",
+      },
+    },
     {
       files: ["packages/showcase/src/**/*.{ts,tsx}"],
       rules: { "erbium-controls/use-slider": "error" },
@@ -116,6 +140,11 @@ export default defineConfig({
     // surfaces in review without failing the gate.
     "no-console": "warn",
     "no-debugger": "error",
+    // Test-only Sonar rules; the overrides above turn them on for test files.
+    "sonarjs/no-debug-commands-in-ui-tests": "off",
+    "sonarjs/no-empty-test-file": "off",
+    "sonarjs/no-fixed-wait-in-tests": "off",
+    "sonarjs/prefer-cypress-should": "off",
     // Sonar's default camelCase pattern rejects React components, which must
     // be PascalCase for JSX to treat them as components.
     "sonarjs/function-name": ["error", { format: "^(?:[_a-z][a-zA-Z0-9]*|[A-Z][a-zA-Z0-9]*)$" }],
