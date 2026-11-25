@@ -1,4 +1,5 @@
 import * as React from "react";
+import { DEFAULT_TEXT_MORPH_OPTIONS } from "torph";
 import { useTextMorph as useTextMorphPrimitive } from "torph/react";
 import { cn } from "../lib/utils";
 
@@ -20,14 +21,6 @@ const useTextMorph = ({ ease = textMorphSpring, ...options }: TextMorphOptions =
 
   return { ref: setRef, update };
 };
-
-const escapeHtml = (value: string) =>
-  value.replaceAll(
-    /[&<>"']/g,
-    (character) =>
-      ({ '"': "&quot;", "&": "&amp;", "'": "&#39;", "<": "&lt;", ">": "&gt;" })[character] ??
-      character,
-  );
 
 type TextMorphProps = TextMorphOptions &
   Omit<React.ComponentProps<"span">, "children" | "dangerouslySetInnerHTML" | "ref"> & {
@@ -75,17 +68,17 @@ const TextMorph = ({
     cursorRef.current = cursorIndex;
   }, [cursorIndex]);
 
-  // torph owns the DOM after mount; a stable object keeps React from rewriting it.
-  const [initialHtml] = React.useState(() => ({
-    __html: escapeHtml(
-      typeof children === "number"
-        ? children.toLocaleString(locale, {
-            maximumFractionDigits: decimals,
-            minimumFractionDigits: decimals,
-          })
-        : children,
-    ).replaceAll("\n", "<br>"),
-  }));
+  // torph replaces this text node after mount, so React must never write to it again.
+  // oxlint-disable-next-line react/hook-use-state -- the first value is kept on purpose and never set: later values reach the DOM through `update`.
+  const [initialText] = React.useState(() =>
+    // oxlint-disable-next-line anti-slop/no-runtime-typeof -- `children` is this component's `string | number` prop contract; only numbers are formatted, as torph's `update` does.
+    typeof children === "number"
+      ? children.toLocaleString(locale ?? DEFAULT_TEXT_MORPH_OPTIONS.locale, {
+          maximumFractionDigits: decimals,
+          minimumFractionDigits: decimals,
+        })
+      : children,
+  );
 
   React.useEffect(() => {
     update(children, cursorRef.current);
@@ -96,9 +89,10 @@ const TextMorph = ({
       ref={ref}
       data-slot="text-morph"
       className={cn("whitespace-pre tabular-nums", className)}
-      dangerouslySetInnerHTML={initialHtml}
       {...props}
-    />
+    >
+      {initialText}
+    </span>
   );
 };
 
