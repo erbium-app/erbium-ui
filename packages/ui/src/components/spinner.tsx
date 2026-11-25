@@ -41,14 +41,20 @@ const Spinner = ({
       className={cn(spinnerVariants({ className, size }))}
       {...props}
     >
-      <svg className="size-full" fill="none" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+      <svg
+        aria-hidden="true"
+        className="size-full"
+        fill="none"
+        viewBox="0 0 18 18"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <path
-          d="M9 16.25C13.0041 16.25 16.25 13.0041 16.25 9C16.25 4.99594 13.0041 1.75 9 1.75"
+          d="M9 16.25C13 16.25 16.25 13 16.25 9C16.25 5 13 1.75 9 1.75"
           stroke={`url(#${leadingId})`}
           strokeWidth="1.5"
         />
         <path
-          d="M9 16.25C4.99594 16.25 1.75 13.0041 1.75 9C1.75 4.99594 4.99594 1.75 9 1.75"
+          d="M9 16.25C5 16.25 1.75 13 1.75 9C1.75 5 5 1.75 9 1.75"
           stroke={`url(#${trailingId})`}
           strokeWidth="1.5"
         />
