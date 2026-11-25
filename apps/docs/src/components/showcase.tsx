@@ -120,7 +120,7 @@ export const Showcase = ({
       />
       <Collapsible className="mt-3">
         <CollapsibleTrigger render={<Button variant="ghost" size="sm" />}>
-          <RotatingChevron scope="collapsible" className="size-4" />
+          <RotatingChevron className="size-4" />
           Install this example
         </CollapsibleTrigger>
         <CollapsibleContent>

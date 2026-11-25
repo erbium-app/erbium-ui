@@ -100,7 +100,7 @@ const CascaderTrigger = ({
       <CascaderPrimitive.Trigger
         data-slot="cascader-trigger"
         render={render}
-        className={cn("group", className)}
+        className={cn("group/disclosure", className)}
         {...props}
       >
         {children}
@@ -114,7 +114,7 @@ const CascaderTrigger = ({
       {...skeletonBlock}
       data-size={size}
       className={cn(
-        "group touch-target flex control-size w-fit min-w-0 items-center justify-between gap-control-gap rounded-lg border surface-control text-control-sm whitespace-nowrap transition-[color,background-color,box-shadow] duration-150 outline-none select-none group-data-invalid/field:border-error group-data-invalid/field:ring-[1.5px] group-data-invalid/field:ring-invalid-halo aria-invalid:border-error aria-invalid:ring-[1.5px] aria-invalid:ring-invalid-halo data-placeholder:text-muted-foreground data-[size=sm]:control-size-sm data-[size=sm]:rounded-[min(var(--radius-md),10px)] motion-reduce:transition-none dark:group-data-invalid/field:border-invalid dark:aria-invalid:border-invalid data-disabled:cursor-not-allowed data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-control-icon",
+        "group/disclosure touch-target flex control-size w-fit min-w-0 items-center justify-between gap-control-gap rounded-lg border surface-control text-control-sm whitespace-nowrap transition-[color,background-color,box-shadow] duration-150 outline-none select-none group-data-invalid/field:border-error group-data-invalid/field:ring-[1.5px] group-data-invalid/field:ring-invalid-halo aria-invalid:border-error aria-invalid:ring-[1.5px] aria-invalid:ring-invalid-halo data-placeholder:text-muted-foreground data-[size=sm]:control-size-sm data-[size=sm]:rounded-[min(var(--radius-md),10px)] motion-reduce:transition-none dark:group-data-invalid/field:border-invalid dark:aria-invalid:border-invalid data-disabled:cursor-not-allowed data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-control-icon",
         className,
       )}
       {...props}

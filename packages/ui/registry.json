@@ -1803,7 +1803,6 @@
         "@erbium/separator",
         "@erbium/sheet",
         "@erbium/skeleton",
-        "@erbium/stateful-icon",
         "@erbium/tooltip",
         "@erbium/use-is-mobile",
         "@erbium/utils"
@@ -1899,7 +1898,6 @@
       "type": "registry:ui",
       "title": "Stateful Icon",
       "description": "Erbium stateful icon component.",
-      "dependencies": ["motion"],
       "registryDependencies": ["@erbium/icon", "@erbium/utils"],
       "files": [
         {

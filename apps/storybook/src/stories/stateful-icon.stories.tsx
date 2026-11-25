@@ -7,10 +7,4 @@ export const CopyFeedback = { ...showcases.CopyFeedback, name: "Copy Feedback" }
 
 export const RotatingChevron = { ...showcases.RotatingChevron, name: "Rotating Chevron" };
 
-export const ExpandableChevron = { ...showcases.ExpandableChevron, name: "Expandable Chevron" };
-
-export const SidebarToggleIcon = { ...showcases.SidebarToggleIcon, name: "Sidebar Toggle Icon" };
-
-export const ThemeToggleIcon = { ...showcases.ThemeToggleIcon, name: "Theme Toggle Icon" };
-
 export const CheckboxState = { ...showcases.CheckboxState, name: "Checkbox state" };

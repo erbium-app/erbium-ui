@@ -18,7 +18,6 @@ import { Button } from "@erbium/ui/components/button";
 import { buttonVariants } from "@erbium/ui/lib/button-variants";
 import { Icon } from "@erbium/ui/components/icon";
 import { Kbd } from "@erbium/ui/components/kbd";
-import { ThemeToggleIcon } from "@erbium/ui/components/stateful-icon";
 import { useSidebar } from "@erbium/ui/components/sidebar";
 import {
   Command,
@@ -39,6 +38,7 @@ import { LogoLoader } from "@erbium/ui/components/logo-loader";
 import type { LogoLoaderHandle } from "@erbium/ui/components/logo-loader";
 import { useRouterPending } from "@erbium/ui/hooks/use-router-pending";
 import { useTheme, toggleTheme } from "./theme";
+import { ThemeIcon } from "./theme-icon";
 
 // Navigations that resolve faster than this never move the logo.
 const navigationIndicatorDelay = 150;
@@ -123,7 +123,7 @@ const ThemeToggle = () => {
       aria-label={dark ? "Use light theme" : "Use dark theme"}
       aria-pressed={dark}
     >
-      <ThemeToggleIcon theme={dark ? "dark" : "light"} />
+      <ThemeIcon />
     </Button>
   );
 };

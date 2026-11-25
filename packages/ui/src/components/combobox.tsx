@@ -23,7 +23,7 @@ const ComboboxTrigger = ({ className, children, ...props }: ComboboxPrimitive.Tr
     data-slot="combobox-trigger"
     {...skeletonBlock}
     className={cn(
-      "group group/combobox-trigger [&_svg:not([class*='size-'])]:size-control-icon",
+      "group/combobox-trigger group/disclosure [&_svg:not([class*='size-'])]:size-control-icon",
       className,
     )}
     {...props}

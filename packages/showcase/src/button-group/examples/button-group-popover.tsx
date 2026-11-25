@@ -22,12 +22,7 @@ export default function ButtonGroupPopoverExample() {
       <Popover>
         <PopoverTrigger
           render={
-            <Button
-              variant="outline"
-              size="icon"
-              aria-label="Open Popover"
-              className="group group/popover-trigger"
-            >
+            <Button variant="outline" size="icon" aria-label="Open Popover">
               <RotatingChevron />
             </Button>
           }

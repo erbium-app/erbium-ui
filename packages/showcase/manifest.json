@@ -4927,36 +4927,6 @@
         "title": "Rotating Chevron"
       },
       {
-        "exportName": "ExpandableChevron",
-        "slug": "expandable-chevron",
-        "source": "src/stateful-icon/variants/expandable-chevron.tsx",
-        "usage": [
-          "src/stateful-icon/variants/expandable-chevron.tsx",
-          "src/stateful-icon/helpers.tsx"
-        ],
-        "title": "Expandable Chevron"
-      },
-      {
-        "exportName": "SidebarToggleIcon",
-        "slug": "sidebar-toggle-icon",
-        "source": "src/stateful-icon/variants/sidebar-toggle-icon.tsx",
-        "usage": [
-          "src/stateful-icon/variants/sidebar-toggle-icon.tsx",
-          "src/stateful-icon/helpers.tsx"
-        ],
-        "title": "Sidebar Toggle Icon"
-      },
-      {
-        "exportName": "ThemeToggleIcon",
-        "slug": "theme-toggle-icon",
-        "source": "src/stateful-icon/variants/theme-toggle-icon.tsx",
-        "usage": [
-          "src/stateful-icon/variants/theme-toggle-icon.tsx",
-          "src/stateful-icon/helpers.tsx"
-        ],
-        "title": "Theme Toggle Icon"
-      },
-      {
         "exportName": "CheckboxState",
         "slug": "checkbox-state",
         "source": "src/stateful-icon/variants/checkbox-state.tsx",

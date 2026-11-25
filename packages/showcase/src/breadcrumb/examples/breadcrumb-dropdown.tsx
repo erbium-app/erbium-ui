@@ -30,7 +30,7 @@ export default function BreadcrumbDropdownExample() {
         </BreadcrumbSeparator>
         <BreadcrumbItem>
           <DropdownMenu>
-            <DropdownMenuTrigger className="group/breadcrumb-menu-trigger flex items-center gap-1">
+            <DropdownMenuTrigger className="flex items-center gap-1">
               Components
               <RotatingChevron className="size-3.5" />
             </DropdownMenuTrigger>

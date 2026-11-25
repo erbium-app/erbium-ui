@@ -6,8 +6,12 @@ const Popover = ({ ...props }: PopoverPrimitive.Root.Props) => (
   <PopoverPrimitive.Root data-slot="popover" {...props} />
 );
 
-const PopoverTrigger = ({ ...props }: PopoverPrimitive.Trigger.Props) => (
-  <PopoverPrimitive.Trigger data-slot="popover-trigger" {...props} />
+const PopoverTrigger = ({ className, ...props }: PopoverPrimitive.Trigger.Props) => (
+  <PopoverPrimitive.Trigger
+    data-slot="popover-trigger"
+    className={cn("group/disclosure", className)}
+    {...props}
+  />
 );
 
 const PopoverContent = ({

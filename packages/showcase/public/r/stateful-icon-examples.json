@@ -5,9 +5,6 @@
   "registryDependencies": [
     "@erbium-examples/stateful-icon-copy-feedback",
     "@erbium-examples/stateful-icon-rotating-chevron",
-    "@erbium-examples/stateful-icon-expandable-chevron",
-    "@erbium-examples/stateful-icon-sidebar-toggle-icon",
-    "@erbium-examples/stateful-icon-theme-toggle-icon",
     "@erbium-examples/stateful-icon-checkbox-state"
   ],
   "title": "Stateful Icon examples",

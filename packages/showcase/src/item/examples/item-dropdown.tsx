@@ -43,7 +43,7 @@ export default function ItemDropdownExample() {
       <DropdownMenu>
         <DropdownMenuTrigger
           render={
-            <Button variant="outline" size="sm" className="group group/item-menu-trigger w-fit">
+            <Button variant="outline" size="sm" className="w-fit">
               Select <RotatingChevron />
             </Button>
           }

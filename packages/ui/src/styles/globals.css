@@ -21,9 +21,11 @@
 
 @plugin "easing-gradients";
 
-/* Only suppress transitions for the palette swap; normal interaction motion resumes afterward. */
+/* Only suppress transitions for the palette swap; normal interaction motion resumes afterward.
+   Content under `data-theme-motion` keeps moving, such as a theme toggle's icon: give it
+   transform and opacity transitions only, never colors. */
 html[data-theme-changing],
-html[data-theme-changing] *,
+html[data-theme-changing] *:not([data-theme-motion] *),
 html[data-theme-changing] *::before,
 html[data-theme-changing] *::after {
   transition: none !important;

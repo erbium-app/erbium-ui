@@ -8,7 +8,7 @@ const Collapsible = ({ ...props }: CollapsiblePrimitive.Root.Props) => (
 const CollapsibleTrigger = ({ className, ...props }: CollapsiblePrimitive.Trigger.Props) => (
   <CollapsiblePrimitive.Trigger
     data-slot="collapsible-trigger"
-    className={cn("group/collapsible-trigger", className)}
+    className={cn("group/disclosure", className)}
     {...props}
   />
 );

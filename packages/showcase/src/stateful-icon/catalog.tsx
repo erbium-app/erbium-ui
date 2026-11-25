@@ -1,3 +1,4 @@
+// oxlint-disable sonarjs/no-duplicate-string -- the registry build inlines these docs calls by their literal text
 import CheckboxStateExample from "./variants/checkbox-state";
 import CheckboxStateSource from "./variants/checkbox-state.tsx?raw";
 import type { Meta, StoryObj } from "../types";
@@ -11,18 +12,6 @@ import CopyFeedbackSource from "./examples/stateful-icon-demo.tsx?raw";
 import RotatingChevronExample from "./variants/rotating-chevron";
 
 import RotatingChevronSource from "./variants/rotating-chevron.tsx?raw";
-
-import ExpandableChevronExample from "./variants/expandable-chevron";
-
-import ExpandableChevronSource from "./variants/expandable-chevron.tsx?raw";
-
-import SidebarToggleIconExample from "./variants/sidebar-toggle-icon";
-
-import SidebarToggleIconSource from "./variants/sidebar-toggle-icon.tsx?raw";
-
-import ThemeToggleIconExample from "./variants/theme-toggle-icon";
-
-import ThemeToggleIconSource from "./variants/theme-toggle-icon.tsx?raw";
 
 const meta = {
   parameters: {
@@ -56,36 +45,6 @@ export const RotatingChevron: Story = {
     },
   },
   render: RotatingChevronExample,
-};
-
-export const ExpandableChevron: Story = {
-  parameters: {
-    docs: {
-      description: { story: variantDocumentation("stateful-icon", "expandable-chevron") },
-      source: { code: ExpandableChevronSource },
-    },
-  },
-  render: ExpandableChevronExample,
-};
-
-export const SidebarToggleIcon: Story = {
-  parameters: {
-    docs: {
-      description: { story: variantDocumentation("stateful-icon", "sidebar-toggle-icon") },
-      source: { code: SidebarToggleIconSource },
-    },
-  },
-  render: SidebarToggleIconExample,
-};
-
-export const ThemeToggleIcon: Story = {
-  parameters: {
-    docs: {
-      description: { story: variantDocumentation("stateful-icon", "theme-toggle-icon") },
-      source: { code: ThemeToggleIconSource },
-    },
-  },
-  render: ThemeToggleIconExample,
 };
 
 export const CheckboxState: Story = {

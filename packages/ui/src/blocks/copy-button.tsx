@@ -43,7 +43,8 @@ type CopyButtonProps = Omit<ComponentProps<"button">, "onCopy" | "value"> &
 const CopyButtonIcon = ({
   className,
   "data-icon": placement = "inline-start",
-}: Omit<ComponentProps<typeof StatefulIcon>, "state" | "icons" | "labels">) => {
+  ...props
+}: ComponentProps<"span"> & { "data-icon"?: "inline-start" | "inline-end" }) => {
   const { pending, status } = useCopyButtonState();
 
   return (
@@ -53,6 +54,7 @@ const CopyButtonIcon = ({
         .filter(Boolean)
         .join(" ")}
       data-icon={placement}
+      {...props}
     >
       {/* Keep the icon mounted so the settled state can animate from the prior state. */}
       <StatefulIcon

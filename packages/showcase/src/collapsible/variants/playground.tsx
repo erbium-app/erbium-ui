@@ -19,9 +19,9 @@ export default function CollapsiblePlaygroundExample(
   return (
     <Card className="w-72 gap-0 p-0" size="sm">
       <Collapsible key={String(args.defaultOpen)} {...args}>
-        <CollapsibleTrigger className="group group/playground flex w-full items-center rounded-xl px-3 py-2 text-start text-caption font-medium outline-none hover:bg-accent focus-visible:ring-2 focus-visible:ring-focus-halo data-panel-open:rounded-b-none [&:has(+_[data-slot=collapsible-content]:not([hidden]))]:rounded-b-none">
+        <CollapsibleTrigger className="flex w-full items-center rounded-xl px-3 py-2 text-start text-caption font-medium outline-none hover:bg-accent focus-visible:ring-2 focus-visible:ring-focus-halo data-panel-open:rounded-b-none [&:has(+_[data-slot=collapsible-content]:not([hidden]))]:rounded-b-none">
           Show details
-          <RotatingChevron direction="right" className="ms-auto size-4 text-muted-foreground" />
+          <RotatingChevron className="ms-auto size-4 text-muted-foreground" />
         </CollapsibleTrigger>
         <CollapsibleContent>
           <Separator />

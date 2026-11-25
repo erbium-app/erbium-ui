@@ -19,7 +19,6 @@ import { Separator } from "./separator";
 import { Sheet, SheetPanel, SheetDescription, SheetHeader, SheetTitle } from "./sheet";
 import { Skeleton } from "./skeleton";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./tooltip";
-import { SidebarToggleIcon } from "./stateful-icon";
 
 const SIDEBAR_KEYBOARD_SHORTCUT = "Mod+B";
 
@@ -345,6 +344,37 @@ const Sidebar = ({
   );
 };
 
+/** Sidebar frame whose inner panel widens while the sidebar is open. */
+const SidebarToggleIcon = ({ isOpen, side }: { isOpen: boolean; side: "left" | "right" }) => (
+  <svg
+    aria-hidden="true"
+    className={cn(
+      "size-3.75 text-muted-foreground rtl:rotate-180",
+      side === "right" && "-scale-x-100",
+    )}
+    data-slot="sidebar-toggle-icon"
+    data-state={isOpen ? "open" : "closed"}
+    fill="none"
+    focusable="false"
+    viewBox="0 0 24 24"
+  >
+    <rect height="18" rx="4" stroke="currentColor" strokeWidth="2" width="20" x="2" y="3" />
+    {/* Scaled rather than resized, so the transition skips layout. */}
+    <rect
+      className={cn(
+        "origin-left transition-[scale] duration-panel ease-ui-out [transform-box:fill-box] motion-reduce:transition-none",
+        isOpen ? "scale-x-100" : "scale-x-33",
+      )}
+      fill="currentColor"
+      height="12"
+      rx="1"
+      width="6"
+      x="5"
+      y="6"
+    />
+  </svg>
+);
+
 const SidebarTrigger = ({
   className,
   onClick,
@@ -371,7 +401,7 @@ const SidebarTrigger = ({
       }}
       {...props}
     >
-      <SidebarToggleIcon isOpen={isOpen} side={side} className="rtl:rotate-180" />
+      <SidebarToggleIcon isOpen={isOpen} side={side} />
       {children ?? <span className="sr-only">Toggle Sidebar</span>}
       <KbdHint hotkey={SIDEBAR_KEYBOARD_SHORTCUT} />
     </Button>

@@ -49,10 +49,7 @@ export default function InputGroupDropdownExample() {
           <DropdownMenu>
             <DropdownMenuTrigger
               render={
-                <InputGroupButton
-                  variant="ghost"
-                  className="group group/search-menu-trigger text-metadata"
-                >
+                <InputGroupButton variant="ghost" className="text-metadata">
                   Search In... <RotatingChevron className="size-3" />
                 </InputGroupButton>
               }

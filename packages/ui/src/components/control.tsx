@@ -88,9 +88,9 @@ const Section = ({
     className={cn("w-full min-w-0", className)}
   >
     <Separator className="mb-2" />
-    <CollapsibleTrigger className="group group/section flex w-full items-center justify-between text-start text-control text-muted-foreground outline-none hover:text-foreground">
+    <CollapsibleTrigger className="flex w-full items-center justify-between text-start text-control text-muted-foreground outline-none hover:text-foreground">
       {title}
-      <RotatingChevron scope="collapsible" className="size-4" />
+      <RotatingChevron className="size-4" />
     </CollapsibleTrigger>
     <CollapsibleContent className="data-open:overflow-visible">
       <Group className="py-2">{children}</Group>
@@ -771,7 +771,7 @@ const Select = ({
     <SelectPrimitive.Trigger
       data-slot="control-select"
       aria-label={label}
-      className={cn(rowClass, "group group/control-select justify-between outline-none", className)}
+      className={cn(rowClass, "group/disclosure justify-between outline-none", className)}
     >
       <span className={labelClass}>{label}</span>
       <span className="ms-auto flex min-w-0 items-center gap-related text-muted-foreground">
@@ -847,7 +847,7 @@ const ImageSelect = ({
       <SelectPrimitive.Trigger
         data-slot="control-image-select"
         aria-label={label}
-        className="group group/control-select ms-auto flex min-w-0 items-center gap-related rounded-sm text-control text-muted-foreground outline-none hover:text-foreground"
+        className="group/disclosure ms-auto flex min-w-0 items-center gap-related rounded-sm text-control text-muted-foreground outline-none hover:text-foreground"
       >
         <SelectPrimitive.Value className="flex min-w-0 items-center gap-related">
           {(selected: string | null) => {

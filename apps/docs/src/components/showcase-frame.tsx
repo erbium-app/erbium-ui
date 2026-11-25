@@ -9,7 +9,6 @@ import type { ShowcaseStory } from "@erbium/showcase/catalog";
 import { ShowcaseProviders, ShowcaseSurface } from "@erbium/showcase/preview";
 import { Alert, AlertTitle, AlertDescription } from "@erbium/ui/components/alert";
 import { Icon } from "@erbium/ui/components/icon";
-import { ThemeToggleIcon } from "@erbium/ui/components/stateful-icon";
 import { Toolbar, ToolbarButton, ToolbarSeparator } from "@erbium/ui/components/toolbar";
 import { codePanelSurface } from "@erbium/ui/blocks/code-panel";
 import { changeTheme } from "@erbium/ui/lib/change-theme";
@@ -17,6 +16,7 @@ import { cn } from "@erbium/ui/lib/utils";
 import { examplesRequest } from "./preview-resources";
 import { useTheme } from "./theme";
 import type { DocPage } from "@/content/types";
+import { ThemeIcon } from "./theme-icon";
 
 type Args = NonNullable<ShowcaseStory["args"]>;
 
@@ -210,7 +210,7 @@ const ShowcaseFrame = ({
               });
             }}
           >
-            <ThemeToggleIcon theme={dark ? "dark" : "light"} />
+            <ThemeIcon />
           </ToolbarButton>
           {actions !== undefined && (
             <>
