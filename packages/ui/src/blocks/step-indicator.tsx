@@ -266,19 +266,19 @@ const useStepIndicatorProgress = ({
   const followed = isProgressSource(progress) ? progress : null;
   const fixed = isProgressSource(progress) ? undefined : progress;
 
-  const autoplaying = settings !== null && progress === undefined;
+  const usesClock = settings !== null && progress === undefined;
 
   const clock = useAutoplayProgress({
     count,
+    onAdvance,
+    value,
     duration: settings?.duration ?? 3000,
     held: settings?.paused,
     loop: settings?.loop,
-    onAdvance,
-    playing: autoplaying,
-    value,
+    playing: usesClock,
   });
 
-  const source: MotionValue<number> | null = followed ?? (autoplaying ? clock : null);
+  const source: MotionValue<number> | null = followed ?? (usesClock ? clock : null);
   const rootRef = useRef<HTMLOListElement>(null);
 
   useEffect(() => {
@@ -295,8 +295,11 @@ const useStepIndicatorProgress = ({
     };
 
     write(source.get());
+    const unsubscribe = source.on("change", write);
 
-    return source.on("change", write);
+    return () => {
+      unsubscribe();
+    };
   }, [source]);
 
   const progressStyle: CSSVariableStyle = {
@@ -340,11 +343,12 @@ const StepIndicator = ({
   );
 
   const state: StepIndicatorState = { count, interactive, orientation, value, variant };
+  const stepCount = count ?? 0;
 
   const { live, progressStyle, rootRef } = useStepIndicatorProgress({
-    autoplay,
-    count: count ?? 0,
+    count: stepCount,
     onAdvance: select,
+    autoplay,
     progress,
     style,
     value,
@@ -362,7 +366,7 @@ const StepIndicator = ({
         }),
         children:
           children ??
-          Array.from({ length: count ?? 0 }, (_, index) => (
+          Array.from({ length: stepCount }, (_, index) => (
             <StepIndicatorItem key={index} index={index} />
           )),
         className: cn(
