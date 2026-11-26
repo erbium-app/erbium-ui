@@ -35,9 +35,13 @@ const TextInput = ({ field, label }: { field: AnyFieldApi; label: string }) => (
 );
 
 const StepForm = ({ group, children }: { group: StepperFormGroup; children: React.ReactNode }) => {
-  const { formProps } = useStepperFormGroup(group);
+  const { attempts, formProps } = useStepperFormGroup(group);
 
-  return <form {...formProps}>{children}</form>;
+  return (
+    <form aria-label={`${group.name} form`} data-attempts={attempts} {...formProps}>
+      {children}
+    </form>
+  );
 };
 
 const Wizard = ({
@@ -132,6 +136,20 @@ describe("Stepper with TanStack Form", () => {
     await user.type(screen.getByLabelText("Email"), "a@b.co");
 
     expect(screen.getByRole("button", { name: /^account/u }).dataset.invalid).toBeUndefined();
+  });
+
+  it("counts each rejected Next as a submit of the step's group", async () => {
+    const user = userEvent.setup();
+
+    render(<Wizard onSubmit={vi.fn<OnSubmit>()} />);
+    await user.click(screen.getByRole("button", { name: "Next" }));
+    await screen.findByText("Required");
+    await user.click(screen.getByRole("button", { name: "Next" }));
+
+    // Fields replay their rejected-submit shake from this count.
+    await waitFor(() => {
+      expect(screen.getByRole("form", { name: "account form" }).dataset.attempts).toBe("2");
+    });
   });
 
   it("moves on Enter, skips an untouched optional step, and reopens a step edited after completion", async () => {

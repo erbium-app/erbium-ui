@@ -17,9 +17,13 @@ interface StepperFormGroup {
   name: string;
   state: {
     value: unknown;
-    meta: { isValid: boolean; errors: readonly unknown[] };
-    submissionAttempts?: number;
-    isSubmitting?: boolean;
+    /** TanStack keeps a group's submit counters on its meta, beside its validity. */
+    meta: {
+      isValid: boolean;
+      errors: readonly unknown[];
+      submissionAttempts?: number;
+      isSubmitting?: boolean;
+    };
   };
   store: { subscribe: (listener: () => void) => Unsubscribe };
   handleSubmit: () => Promise<void>;
@@ -201,8 +205,8 @@ const useStepperFormGroup = (
   );
 
   // Each Next submits the group, so its fields can replay a rejected-submit effect.
-  const readAttempts = () => group.state.submissionAttempts ?? 0;
-  const readSubmitting = () => group.state.isSubmitting === true;
+  const readAttempts = () => group.state.meta.submissionAttempts ?? 0;
+  const readSubmitting = () => group.state.meta.isSubmitting === true;
   const attempts = React.useSyncExternalStore(subscribe, readAttempts, readAttempts);
   const submitting = React.useSyncExternalStore(subscribe, readSubmitting, readSubmitting);
 
