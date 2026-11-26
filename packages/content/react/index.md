@@ -1,9 +1,9 @@
 ---
 title: "@erbium-ui/react"
-description: "Unstyled React primitives for Cascader, Filters, Editable, Pagination, Segmented Control, and Slider."
+description: "Unstyled React primitives for Cascader, Filters, Editable, Pagination, Segmented Control, Slider, and Stepper."
 ---
 
-`@erbium-ui/react` provides the state, interactions, and accessibility behind six Erbium components. Install it as an npm dependency to build those interfaces with your own markup and styles. The primitives handle behavior such as keyboard navigation, focus management, and selection.
+`@erbium-ui/react` provides the state, interactions, and accessibility behind seven Erbium components. Install it as an npm dependency to build those interfaces with your own markup and styles. The primitives handle behavior such as keyboard navigation, focus management, and selection.
 
 Install styled Erbium components through the [Erbium registry](/docs/installation) for ready-to-use layouts and styles you can customize in your project. Registry items that use these primitives install `@erbium-ui/react` as a dependency.
 
@@ -17,6 +17,7 @@ Install styled Erbium components through the [Erbium registry](/docs/installatio
 | Navigate between pages                 | [Unstyled Pagination](/docs/react/pagination)               | [Styled Pagination](/docs/components/pagination)               |
 | Pick one of a few options side by side | [Unstyled Segmented Control](/docs/react/segmented-control) | [Styled Segmented Control](/docs/components/segmented-control) |
 | Pick a value on a track                | [Unstyled Slider](/docs/react/slider)                       | [Styled Slider](/docs/components/slider)                       |
+| Walk through a multi-step flow         | [Unstyled Stepper](/docs/react/stepper)                     | [Styled Stepper](/docs/components/stepper)                     |
 
 ## Installation
 
@@ -41,8 +42,10 @@ Each primitive has its own entry point, so you load only what you use.
 | `@erbium-ui/react/segmented-control/core` | Indicator measuring math                  | Server or client                                          |
 | `@erbium-ui/react/slider`                 | `Slider` parts, `useSlider`, and the core | Client                                                    |
 | `@erbium-ui/react/slider/core`            | Scales, steps, and marks                  | Server or client                                          |
+| `@erbium-ui/react/stepper`                | `Stepper` parts, hooks, and form adapter  | Client                                                    |
+| `@erbium-ui/react/stepper/core`           | The flow's state machine                  | Server or client                                          |
 
-Compose interactive parts and hooks in a client component when using React Server Components. The Filters utilities, `pagination/core`, `segmented-control/core`, and `slider/core` can also run in loaders, route validation, and API handlers.
+Compose interactive parts and hooks in a client component when using React Server Components. The Filters utilities, `pagination/core`, `segmented-control/core`, `slider/core`, and `stepper/core` can also run in loaders, route validation, and API handlers.
 
 ## Conventions
 

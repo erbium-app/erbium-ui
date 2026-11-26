@@ -1,6 +1,6 @@
 # @erbium-ui/react
 
-Unstyled, accessible React primitives for components that hold real behavior: cascading selects, filter builders, inline editing, pagination, segmented controls and sliders. Each primitive is a set of parts in the style of [Base UI](https://base-ui.com): you render the parts, style them with `className`, and read their state from `data-*` attributes.
+Unstyled, accessible React primitives for components that hold real behavior: cascading selects, filter builders, inline editing, pagination, segmented controls, sliders and multi-step flows. Each primitive is a set of parts in the style of [Base UI](https://base-ui.com): you render the parts, style them with `className`, and read their state from `data-*` attributes.
 
 Erbium UI's styled components are built on these primitives. Use this package directly when you want the behavior with your own design.
 
@@ -25,6 +25,8 @@ React 19 and `@base-ui/react` 1.9 or later are peer dependencies.
 | `@erbium-ui/react/segmented-control/core` | Measuring math for the indicator                  | Server or client                                          |
 | `@erbium-ui/react/slider`                 | `Slider` parts, `useSlider`, and the core         | Client                                                    |
 | `@erbium-ui/react/slider/core`            | Scales, steps and marks                           | Server or client                                          |
+| `@erbium-ui/react/stepper`                | `Stepper` parts, hooks, TanStack Form adapter     | Client                                                    |
+| `@erbium-ui/react/stepper/core`           | The flow's pure state machine                     | Server or client                                          |
 
 Client entries start with `"use client"`, so React Server Components frameworks such as the Next.js App Router can render their parts from a server component. Entries marked server or client are plain functions and import nothing from React.
 
@@ -190,6 +192,32 @@ import { Slider } from "@erbium-ui/react/slider";
   </Slider.Control>
 </Slider.Root>;
 ```
+
+## Stepper
+
+A multi-step flow: steps identified by id, required, optional, disabled or a final review, with guards that check the current step before it is left. The flow is a pure state machine in `stepper/core`; every action resolves to a result with a reason, and only one move runs at a time.
+
+```tsx
+import { Stepper } from "@erbium-ui/react/stepper";
+
+<Stepper.Root steps={[{ id: "account" }, { id: "extras", optional: true }]} guard={check}>
+  <Stepper.List aria-label="Checkout">
+    <Stepper.Item value="account">
+      <Stepper.Trigger>Account</Stepper.Trigger>
+    </Stepper.Item>
+    <Stepper.Item value="extras">
+      <Stepper.Trigger>Extras</Stepper.Trigger>
+    </Stepper.Item>
+  </Stepper.List>
+  <Stepper.Panel value="account">…</Stepper.Panel>
+  <Stepper.Panel value="extras">…</Stepper.Panel>
+  <Stepper.Previous>Back</Stepper.Previous>
+  <Stepper.Skip>Skip</Stepper.Skip>
+  <Stepper.Next>Next</Stepper.Next>
+</Stepper.Root>;
+```
+
+`useStepperFormGroup` binds a TanStack Form `FormGroup` named after its step, and `createStepperFormFinish` submits the whole form and returns to the first failing step. TanStack Form is read structurally, not depended on.
 
 ## License
 

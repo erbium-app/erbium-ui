@@ -5,9 +5,16 @@
     "image/index",
     "pagination/index",
     "segmented-control/index",
-    "slider/index"
+    "slider/index",
+    "stepper/index"
   ],
-  "server": ["image/core", "pagination/core", "segmented-control/core", "slider/core"],
+  "server": [
+    "image/core",
+    "pagination/core",
+    "segmented-control/core",
+    "slider/core",
+    "stepper/core"
+  ],
   "facades": {
     "filters/index": "filters/client"
   }

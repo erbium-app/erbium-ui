@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "stepper-overview",
+  "type": "registry:component",
+  "title": "Stepper: Overview",
+  "description": "Next checks the step and moves on, Back moves back without checking, and the triggers jump to any step the flow can reach.",
+  "registryDependencies": ["@erbium/stepper", "@erbium/styles"],
+  "files": [
+    {
+      "content": "import {\n  Stepper,\n  StepperActions,\n  StepperIndicator,\n  StepperItem,\n  StepperList,\n  StepperNext,\n  StepperPanel,\n  StepperPrevious,\n  StepperSeparator,\n  StepperText,\n  StepperTitle,\n  StepperTrigger,\n} from \"@/registry/erbium/ui/stepper\";\n\nconst steps = [\n  { id: \"plan\", title: \"Plan\", body: \"Pick the plan that fits your team.\" },\n  { id: \"workspace\", title: \"Workspace\", body: \"Name the workspace and choose its region.\" },\n  { id: \"invite\", title: \"Invite\", body: \"Invite the people you work with.\" },\n];\n\nexport default function StepperExample() {\n  return (\n    <Stepper steps={steps} className=\"max-w-lg\">\n      <StepperList aria-label=\"Setup\">\n        {steps.map((step) => (\n          <StepperItem key={step.id} value={step.id}>\n            <StepperTrigger>\n              <StepperIndicator />\n              <StepperText>\n                <StepperTitle>{step.title}</StepperTitle>\n              </StepperText>\n            </StepperTrigger>\n            <StepperSeparator />\n          </StepperItem>\n        ))}\n      </StepperList>\n      {steps.map((step) => (\n        <StepperPanel key={step.id} value={step.id} className=\"text-control text-muted-foreground\">\n          {step.body}\n        </StepperPanel>\n      ))}\n      <StepperActions>\n        <StepperPrevious />\n        <StepperNext />\n      </StepperActions>\n    </Stepper>\n  );\n}\n",
+      "path": "src/stepper/variants/overview.tsx",
+      "target": "@components/showcase/stepper/variants/overview.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

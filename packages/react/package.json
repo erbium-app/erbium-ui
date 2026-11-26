@@ -14,7 +14,9 @@
     "primitives",
     "react",
     "slider",
-    "unstyled"
+    "stepper",
+    "unstyled",
+    "wizard"
   ],
   "homepage": "https://ui.erbium.app/docs/react",
   "bugs": {
@@ -46,6 +48,8 @@
     "./segmented-control/core": "./src/segmented-control/core.ts",
     "./slider": "./src/slider/index.ts",
     "./slider/core": "./src/slider/core.ts",
+    "./stepper": "./src/stepper/index.ts",
+    "./stepper/core": "./src/stepper/core.ts",
     "./package.json": "./package.json"
   },
   "publishConfig": {
@@ -94,6 +98,14 @@
         "types": "./dist/slider/core.d.ts",
         "default": "./dist/slider/core.js"
       },
+      "./stepper": {
+        "types": "./dist/stepper/index.d.ts",
+        "default": "./dist/stepper/index.js"
+      },
+      "./stepper/core": {
+        "types": "./dist/stepper/core.d.ts",
+        "default": "./dist/stepper/core.js"
+      },
       "./package.json": "./package.json"
     },
     "access": "public"
@@ -107,6 +119,7 @@
   },
   "devDependencies": {
     "@base-ui/react": "^1.9.0",
+    "@tanstack/react-form": "1.33.5",
     "@tanstack/react-table": "catalog:",
     "@testing-library/dom": "10.4.2",
     "@testing-library/react": "16.3.3",

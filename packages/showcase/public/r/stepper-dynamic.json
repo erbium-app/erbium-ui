@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "stepper-dynamic",
+  "type": "registry:component",
+  "title": "Stepper: Dynamic",
+  "description": "Toggle a step's `disabled` from earlier answers. The last step here is a `review`, which opens only when every other step is done.",
+  "registryDependencies": ["@erbium/field", "@erbium/stepper", "@erbium/styles", "@erbium/switch"],
+  "files": [
+    {
+      "content": "import { useState } from \"react\";\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Switch } from \"@/registry/erbium/ui/switch\";\nimport {\n  Stepper,\n  StepperActions,\n  StepperIndicator,\n  StepperItem,\n  StepperList,\n  StepperNext,\n  StepperPanel,\n  StepperPrevious,\n  StepperSeparator,\n  StepperText,\n  StepperTitle,\n  StepperTrigger,\n} from \"@/registry/erbium/ui/stepper\";\n\nexport default function StepperDynamicExample() {\n  const [business, setBusiness] = useState(false);\n\n  // A step that only applies to some answers is disabled, not removed, so its status survives\n  // when it comes back. The last step reviews the others and opens only once they are done.\n  const steps = [\n    { id: \"account\", title: \"Account\" },\n    { disabled: !business, id: \"company\", title: \"Company\" },\n    { id: \"review\", review: true, title: \"Review\" },\n  ];\n\n  return (\n    <Stepper steps={steps} className=\"max-w-lg\">\n      <StepperList aria-label=\"Sign up\">\n        {steps.flatMap((step) =>\n          step.disabled === true\n            ? []\n            : [\n                <StepperItem key={step.id} value={step.id}>\n                  <StepperTrigger>\n                    <StepperIndicator />\n                    <StepperText>\n                      <StepperTitle>{step.title}</StepperTitle>\n                    </StepperText>\n                  </StepperTrigger>\n                  <StepperSeparator />\n                </StepperItem>,\n              ],\n        )}\n      </StepperList>\n      <StepperPanel value=\"account\">\n        <Field orientation=\"horizontal\">\n          <Switch checked={business} onCheckedChange={setBusiness} />\n          <FieldLabel>This is a business account</FieldLabel>\n        </Field>\n      </StepperPanel>\n      <StepperPanel value=\"company\" className=\"text-control text-muted-foreground\">\n        Company details go here.\n      </StepperPanel>\n      <StepperPanel value=\"review\" className=\"text-control text-muted-foreground\">\n        Everything looks good.\n      </StepperPanel>\n      <StepperActions>\n        <StepperPrevious />\n        <StepperNext finishLabel=\"Create account\" />\n      </StepperActions>\n    </Stepper>\n  );\n}\n",
+      "path": "src/stepper/variants/dynamic.tsx",
+      "target": "@components/showcase/stepper/variants/dynamic.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

@@ -1923,6 +1923,27 @@
       ]
     },
     {
+      "name": "stepper",
+      "type": "registry:ui",
+      "title": "Stepper",
+      "description": "Erbium stepper component.",
+      "dependencies": ["@erbium-ui/react@^0.1.0"],
+      "registryDependencies": [
+        "@erbium/button-variants",
+        "@erbium/form",
+        "@erbium/icon",
+        "@erbium/spinner",
+        "@erbium/utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/stepper.tsx",
+          "target": "@ui/stepper.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "dependencies": [
         "easing-gradients",
         "shadcn",

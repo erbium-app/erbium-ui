@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "stepper-headless",
+  "type": "registry:component",
+  "title": "Stepper: Headless",
+  "description": "The `@erbium-ui/react/stepper` parts render no styles. Their state is in `data-status`, `data-invalid`, `data-optional` and `aria-disabled`, so plain CSS styles them.",
+  "dependencies": ["@erbium-ui/react@workspace:*"],
+  "registryDependencies": ["@erbium/styles"],
+  "files": [
+    {
+      "content": "import { Stepper } from \"@erbium-ui/react/stepper\";\n\nconst steps = [\n  { id: \"one\", title: \"One\" },\n  { id: \"two\", title: \"Two\" },\n  { id: \"three\", title: \"Three\" },\n];\n\n// The primitive carries no styles. Its state is in `data-*` and ARIA attributes, so any classes\n// can style it; these use Tailwind's attribute variants.\nexport default function StepperHeadlessExample() {\n  return (\n    <Stepper.Root steps={steps} className=\"flex flex-col gap-4\">\n      <Stepper.List aria-label=\"Plain steps\" className=\"flex gap-2\">\n        {steps.map((step) => (\n          <Stepper.Item key={step.id} value={step.id}>\n            <Stepper.Trigger className=\"rounded-full border border-dashed px-3 py-1 aria-disabled:opacity-40 data-[status=complete]:border-solid data-[status=complete]:bg-foreground data-[status=complete]:text-background data-[status=current]:border-solid\">\n              <Stepper.Title>{step.title}</Stepper.Title>\n            </Stepper.Trigger>\n          </Stepper.Item>\n        ))}\n      </Stepper.List>\n      {steps.map((step) => (\n        <Stepper.Panel key={step.id} value={step.id}>\n          Panel {step.title}\n        </Stepper.Panel>\n      ))}\n      <div className=\"flex gap-2\">\n        <Stepper.Previous className=\"rounded-md border px-3 py-1 aria-disabled:opacity-40\">\n          Back\n        </Stepper.Previous>\n        <Stepper.Next className=\"rounded-md border px-3 py-1 aria-busy:cursor-progress aria-disabled:opacity-40\">\n          Next\n        </Stepper.Next>\n      </div>\n      <Stepper.Announcer />\n    </Stepper.Root>\n  );\n}\n",
+      "path": "src/stepper/variants/headless.tsx",
+      "target": "@components/showcase/stepper/variants/headless.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

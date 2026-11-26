@@ -73,6 +73,7 @@
       "spinner",
       "stateful-button",
       "stateful-icon",
+      "stepper",
       "switch",
       "table",
       "tabs",
@@ -145,6 +146,14 @@
     "title": "@erbium-ui/react",
     "slug": "react",
     "kind": "primitive",
-    "names": ["cascader", "filters", "editable", "pagination", "segmented-control", "slider"]
+    "names": [
+      "cascader",
+      "filters",
+      "editable",
+      "pagination",
+      "segmented-control",
+      "slider",
+      "stepper"
+    ]
   }
 ]

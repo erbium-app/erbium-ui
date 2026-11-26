@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "description": "All stepper examples.",
+  "name": "stepper-examples",
+  "registryDependencies": [
+    "@erbium-examples/stepper-overview",
+    "@erbium-examples/stepper-optional",
+    "@erbium-examples/stepper-free",
+    "@erbium-examples/stepper-async-guard",
+    "@erbium-examples/stepper-tanstack-form",
+    "@erbium-examples/stepper-controlled",
+    "@erbium-examples/stepper-dynamic",
+    "@erbium-examples/stepper-vertical",
+    "@erbium-examples/stepper-headless"
+  ],
+  "title": "Stepper examples",
+  "type": "registry:item"
+}

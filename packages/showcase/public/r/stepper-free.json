@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "stepper-free",
+  "type": "registry:component",
+  "title": "Stepper: Free",
+  "description": "`navigation=\"free\"` makes every enabled step reachable. Moving forward still runs the guard; with `leaveInvalid=\"allow\"` a step that fails it is marked and left behind, and finishing waits until every step passes.",
+  "registryDependencies": [
+    "@erbium/checkbox",
+    "@erbium/field",
+    "@erbium/stepper",
+    "@erbium/styles"
+  ],
+  "files": [
+    {
+      "content": "import { useState } from \"react\";\nimport { Checkbox } from \"@/registry/erbium/ui/checkbox\";\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport {\n  Stepper,\n  StepperActions,\n  StepperIndicator,\n  StepperItem,\n  StepperList,\n  StepperNext,\n  StepperPanel,\n  StepperPrevious,\n  StepperSeparator,\n  StepperText,\n  StepperTitle,\n  StepperTrigger,\n} from \"@/registry/erbium/ui/stepper\";\nimport type { StepperGuard } from \"@/registry/erbium/ui/stepper\";\n\nconst steps = [\n  { id: \"general\", title: \"General\" },\n  { id: \"privacy\", title: \"Privacy\" },\n  { id: \"billing\", title: \"Billing\" },\n];\n\n// Free navigation: any step can be opened. Leaving a step forward still checks it, and with\n// leaveInvalid=\"allow\" an unchecked step is marked but does not hold the user back. Finishing\n// still needs every step valid.\nexport default function StepperFreeExample() {\n  const [accepted, setAccepted] = useState<Record<string, boolean>>({});\n  const guard: StepperGuard = ({ step }) => accepted[step];\n\n  return (\n    <Stepper\n      steps={steps}\n      navigation=\"free\"\n      leaveInvalid=\"allow\"\n      guard={guard}\n      className=\"max-w-lg\"\n    >\n      <StepperList aria-label=\"Settings\">\n        {steps.map((step) => (\n          <StepperItem key={step.id} value={step.id}>\n            <StepperTrigger>\n              <StepperIndicator />\n              <StepperText>\n                <StepperTitle>{step.title}</StepperTitle>\n              </StepperText>\n            </StepperTrigger>\n            <StepperSeparator />\n          </StepperItem>\n        ))}\n      </StepperList>\n      {steps.map((step) => (\n        <StepperPanel key={step.id} value={step.id}>\n          <Field orientation=\"horizontal\">\n            <Checkbox\n              checked={accepted[step.id]}\n              onCheckedChange={(checked) => {\n                setAccepted((current) => ({ ...current, [step.id]: checked }));\n              }}\n            />\n            <FieldLabel>{step.title} settings reviewed</FieldLabel>\n          </Field>\n        </StepperPanel>\n      ))}\n      <StepperActions>\n        <StepperPrevious />\n        <StepperNext />\n      </StepperActions>\n    </Stepper>\n  );\n}\n",
+      "path": "src/stepper/variants/free.tsx",
+      "target": "@components/showcase/stepper/variants/free.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

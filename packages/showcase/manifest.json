@@ -5005,6 +5005,75 @@
     ]
   },
   {
+    "name": "stepper",
+    "title": "Components/Stepper",
+    "variants": [
+      {
+        "exportName": "Overview",
+        "slug": "overview",
+        "source": "src/stepper/variants/overview.tsx",
+        "usage": ["src/stepper/variants/overview.tsx"],
+        "title": "Overview"
+      },
+      {
+        "exportName": "Optional",
+        "slug": "optional",
+        "source": "src/stepper/variants/optional.tsx",
+        "usage": ["src/stepper/variants/optional.tsx"],
+        "title": "Optional"
+      },
+      {
+        "exportName": "Free",
+        "slug": "free",
+        "source": "src/stepper/variants/free.tsx",
+        "usage": ["src/stepper/variants/free.tsx"],
+        "title": "Free"
+      },
+      {
+        "exportName": "AsyncGuard",
+        "slug": "async-guard",
+        "source": "src/stepper/variants/async-guard.tsx",
+        "usage": ["src/stepper/variants/async-guard.tsx"],
+        "title": "Async Guard"
+      },
+      {
+        "exportName": "TanstackForm",
+        "slug": "tanstack-form",
+        "source": "src/stepper/variants/tanstack-form.tsx",
+        "usage": ["src/stepper/variants/tanstack-form.tsx"],
+        "title": "TanStack Form"
+      },
+      {
+        "exportName": "Controlled",
+        "slug": "controlled",
+        "source": "src/stepper/variants/controlled.tsx",
+        "usage": ["src/stepper/variants/controlled.tsx"],
+        "title": "Controlled"
+      },
+      {
+        "exportName": "Dynamic",
+        "slug": "dynamic",
+        "source": "src/stepper/variants/dynamic.tsx",
+        "usage": ["src/stepper/variants/dynamic.tsx"],
+        "title": "Dynamic"
+      },
+      {
+        "exportName": "Vertical",
+        "slug": "vertical",
+        "source": "src/stepper/variants/vertical.tsx",
+        "usage": ["src/stepper/variants/vertical.tsx"],
+        "title": "Vertical"
+      },
+      {
+        "exportName": "Headless",
+        "slug": "headless",
+        "source": "src/stepper/variants/headless.tsx",
+        "usage": ["src/stepper/variants/headless.tsx"],
+        "title": "Headless"
+      }
+    ]
+  },
+  {
     "name": "surfaces",
     "title": "Foundations/Surfaces",
     "variants": [

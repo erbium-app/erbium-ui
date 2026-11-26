@@ -129,14 +129,26 @@ const shakeTargets = (root: Element, shakeOn: FormFieldShake): Element[] => {
   return controls.length > 0 ? controls : [root];
 };
 
+/**
+ * The submissions of the `FormGroup` around a field, such as a stepper step. A group submits on
+ * its own, so its fields shake on its rejected submits as well as the form's.
+ */
+const FormGroupSubmitContext = React.createContext<{ attempts: number; submitting: boolean }>({
+  attempts: 0,
+  submitting: false,
+});
+
 /** Replays the error shake on the field after each submit that left it invalid. */
 const useShakeOnRejectedSubmit = (
   rootRef: React.RefObject<Element | null>,
   shakeOn: FormFieldShake,
 ) => {
   const field = useFieldContext<unknown>();
-  const attempts = useSelector(field.form.store, (state) => state.submissionAttempts);
-  const submitting = useSelector(field.form.store, (state) => state.isSubmitting);
+  const group = React.use(FormGroupSubmitContext);
+  const formAttempts = useSelector(field.form.store, (state) => state.submissionAttempts);
+  const formSubmitting = useSelector(field.form.store, (state) => state.isSubmitting);
+  const attempts = formAttempts + group.attempts;
+  const submitting = formSubmitting || group.submitting;
   const shaken = React.useRef(attempts);
 
   React.useEffect(() => {
@@ -629,6 +641,7 @@ export {
   Form,
   FormField,
   FormFieldError,
+  FormGroupSubmitContext,
   FormOTPField,
   PasswordField,
   SegmentedField,

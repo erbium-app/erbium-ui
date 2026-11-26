@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "stepper-vertical",
+  "type": "registry:component",
+  "title": "Stepper: Vertical",
+  "description": "Set `orientation=\"vertical\"` and put the panel in `StepperContent` under each trigger. The content's border carries the connector.",
+  "registryDependencies": ["@erbium/stepper", "@erbium/styles"],
+  "files": [
+    {
+      "content": "import {\n  Stepper,\n  StepperContent,\n  StepperDescription,\n  StepperIndicator,\n  StepperItem,\n  StepperList,\n  StepperNext,\n  StepperPanel,\n  StepperPrevious,\n  StepperText,\n  StepperTitle,\n  StepperTrigger,\n} from \"@/registry/erbium/ui/stepper\";\n\nconst steps = [\n  { description: \"Connect the repository\", id: \"source\", title: \"Source\" },\n  { description: \"Pick a build command\", id: \"build\", title: \"Build\" },\n  { description: \"Choose where it runs\", id: \"deploy\", title: \"Deploy\" },\n];\n\n// Each step's content sits under it. The content's start border is the connector.\nexport default function StepperVerticalExample() {\n  return (\n    <Stepper steps={steps} orientation=\"vertical\" className=\"max-w-sm\">\n      <StepperList aria-label=\"New project\">\n        {steps.map((step) => (\n          <StepperItem key={step.id} value={step.id}>\n            <StepperTrigger>\n              <StepperIndicator />\n              <StepperText>\n                <StepperTitle>{step.title}</StepperTitle>\n                <StepperDescription>{step.description}</StepperDescription>\n              </StepperText>\n            </StepperTrigger>\n            <StepperContent>\n              <StepperPanel value={step.id} className=\"flex flex-col gap-related pt-2\">\n                <p className=\"text-control-sm text-muted-foreground\">{step.title} settings.</p>\n                <div className=\"flex gap-related\">\n                  <StepperPrevious />\n                  <StepperNext finishLabel=\"Deploy\" />\n                </div>\n              </StepperPanel>\n            </StepperContent>\n          </StepperItem>\n        ))}\n      </StepperList>\n    </Stepper>\n  );\n}\n",
+      "path": "src/stepper/variants/vertical.tsx",
+      "target": "@components/showcase/stepper/variants/vertical.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

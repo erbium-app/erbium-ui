@@ -20,6 +20,7 @@
     "@base-ui/react": "^1.9.0",
     "@daypicker/persian": "^10.0.2",
     "@daypicker/react": "catalog:",
+    "@erbium-ui/react": "workspace:*",
     "@erbium/content": "workspace:*",
     "@erbium/ui": "workspace:*",
     "@hugeicons/core-free-icons": "catalog:",
