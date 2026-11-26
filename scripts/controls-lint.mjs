@@ -35,7 +35,86 @@ const useSlider = defineRule({
   },
 });
 
+const clipboardWriteMethods = new Set(["write", "writeText"]);
+
+/**
+ * Whether an `Icon` name can resolve to the copy icon, including through a
+ * ternary or a logical fallback.
+ * @param {import("vite-plus/lint/plugins").ESTree.Node | null | undefined} node - An attribute value.
+ * @returns {boolean} True when any branch is the literal "copy".
+ */
+const namesCopyIcon = (node) => {
+  if (node?.type === "JSXExpressionContainer") {
+    return namesCopyIcon(node.expression);
+  }
+
+  if (node?.type === "ConditionalExpression") {
+    return namesCopyIcon(node.consequent) || namesCopyIcon(node.alternate);
+  }
+
+  if (node?.type === "LogicalExpression") {
+    return namesCopyIcon(node.left) || namesCopyIcon(node.right);
+  }
+
+  return node?.type === "Literal" && node.value === "copy";
+};
+
+/**
+ * @param {import("vite-plus/lint/plugins").ESTree.Node} node - A member expression's object or property.
+ * @param {string} name - The expected name.
+ * @returns {boolean} True for `name` and for `anything.name`.
+ */
+const isNamed = (node, name) =>
+  (node.type === "Identifier" && node.name === name) ||
+  (node.type === "MemberExpression" && isNamed(node.property, name));
+
+const useCopyButton = defineRule({
+  create: (context) => ({
+    CallExpression(node) {
+      const { callee } = node;
+
+      if (
+        callee.type === "MemberExpression" &&
+        callee.property.type === "Identifier" &&
+        clipboardWriteMethods.has(callee.property.name) &&
+        isNamed(callee.object, "clipboard")
+      ) {
+        context.report({
+          node,
+          message:
+            'Use CopyButton from "@erbium/ui/blocks/copy-button", or useCopyToClipboard when there is no button. They handle pending, failure and announcements.',
+        });
+      }
+    },
+    JSXOpeningElement(node) {
+      if (node.name.type !== "JSXIdentifier" || node.name.name !== "Icon") {
+        return;
+      }
+
+      const copyIcon = node.attributes.some(
+        (attribute) =>
+          attribute.type === "JSXAttribute" &&
+          attribute.name.name === "name" &&
+          namesCopyIcon(attribute.value),
+      );
+
+      if (copyIcon) {
+        context.report({
+          node,
+          message:
+            'The copy icon belongs to CopyButton. Use CopyButton from "@erbium/ui/blocks/copy-button" (with CopyButtonIcon in labelled buttons and menu items), or pick another icon for a different action.',
+        });
+      }
+    },
+  }),
+  meta: {
+    docs: { description: "Route copy actions through the Erbium CopyButton." },
+    schema: [],
+    type: "problem",
+  },
+});
+
 export default definePlugin({
   meta: { name: "erbium-controls" },
-  rules: { "use-slider": useSlider },
+  rules: { "use-copy-button": useCopyButton, "use-slider": useSlider },
 });

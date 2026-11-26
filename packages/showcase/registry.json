@@ -4224,8 +4224,8 @@
       "description": "`hotkey` registers a shortcut that clicks the button. Hold the shortcut's modifier to reveal it in a badge centred above each button, in left-to-right and right-to-left layouts alike. Publish labels its shortcut with `ButtonShortcut`, which reads the button's `hotkey`, so it shows no badge.",
       "registryDependencies": [
         "@erbium/button",
+        "@erbium/copy-button",
         "@erbium/direction",
-        "@erbium/icon",
         "@erbium/kbd",
         "@erbium/styles"
       ],
@@ -4478,6 +4478,7 @@
       "registryDependencies": [
         "@erbium/button",
         "@erbium/button-group",
+        "@erbium/copy-button",
         "@erbium/csp-provider",
         "@erbium/direction",
         "@erbium/dropdown-menu",
@@ -8072,7 +8073,7 @@
       "type": "registry:component",
       "title": "Context Menu: Searchable",
       "description": "Type to filter, use arrow keys to highlight an action, and press Enter to activate it. Escape closes the menu and returns focus to its trigger; opening again starts with an empty query. Clear search restores the full list. Empty groups disappear with their items. The flush search header stays above the scrolling list and uses the same typography, responsive height, and separator as Command.",
-      "registryDependencies": ["@erbium/context-menu", "@erbium/styles"],
+      "registryDependencies": ["@erbium/context-menu", "@erbium/copy-button", "@erbium/styles"],
       "files": [
         {
           "path": "src/context-menu/variants/searchable.tsx",
@@ -10783,7 +10784,12 @@
       "type": "registry:component",
       "title": "Dropdown Menu: Searchable",
       "description": "Type to filter, use arrow keys to highlight an action, and press Enter to activate it. Escape closes the menu and returns focus to its trigger; opening again starts with an empty query. Clear search restores the full list. On a phone, tapping clear leaves the on-screen keyboard as it was; only a tap on the field opens it. Empty groups disappear with their items. The flush search header stays above the scrolling list and uses the same typography, responsive height, and separator as Command.\n\nThe folder submenu has an independent query. Search for “Move”, open it, and filter folders without changing the parent search. Checkbox actions keep their usual selection behavior.",
-      "registryDependencies": ["@erbium/button", "@erbium/dropdown-menu", "@erbium/styles"],
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/copy-button",
+        "@erbium/dropdown-menu",
+        "@erbium/styles"
+      ],
       "files": [
         {
           "path": "src/dropdown-menu/variants/searchable.tsx",
@@ -10820,6 +10826,7 @@
       "registryDependencies": [
         "@erbium/avatar",
         "@erbium/button",
+        "@erbium/copy-button",
         "@erbium/csp-provider",
         "@erbium/dropdown-menu",
         "@erbium/icon",
@@ -14450,8 +14457,8 @@
       "description": "Pass `hotkey` to `Button` to register a shortcut that clicks it. While the user holds one of the shortcut's modifiers, `KbdHint` shows the shortcut in a `Badge` centred above the button, in both left-to-right and right-to-left layouts. A `ButtonShortcut` without its own `hotkey` labels the button's shortcut instead, and the badge stays hidden. The row keeps room above it for the badges.",
       "registryDependencies": [
         "@erbium/button",
+        "@erbium/copy-button",
         "@erbium/direction",
-        "@erbium/icon",
         "@erbium/kbd",
         "@erbium/styles"
       ],
@@ -14534,6 +14541,7 @@
       "registryDependencies": [
         "@erbium/button",
         "@erbium/button-group",
+        "@erbium/copy-button",
         "@erbium/csp-provider",
         "@erbium/direction",
         "@erbium/icon",
@@ -15431,7 +15439,7 @@
       "type": "registry:component",
       "title": "Menubar: Searchable",
       "description": "Type to filter, use arrow keys to highlight an action, and press Enter to activate it. Escape closes the menu and returns focus to its trigger; opening again starts with an empty query. Clear search restores the full list. Empty groups disappear with their items. The flush search header stays above the scrolling list and uses the same typography, responsive height, and separator as Command.",
-      "registryDependencies": ["@erbium/menubar", "@erbium/styles"],
+      "registryDependencies": ["@erbium/copy-button", "@erbium/menubar", "@erbium/styles"],
       "files": [
         {
           "path": "src/menubar/variants/searchable.tsx",
@@ -25753,13 +25761,7 @@
       "type": "registry:component",
       "title": "use copy to clipboard demo",
       "description": "Erbium use copy to clipboard demo example.",
-      "registryDependencies": [
-        "@erbium/icon",
-        "@erbium/input-group",
-        "@erbium/stateful-icon",
-        "@erbium/styles",
-        "@erbium/use-copy-to-clipboard"
-      ],
+      "registryDependencies": ["@erbium/input", "@erbium/styles", "@erbium/use-copy-to-clipboard"],
       "files": [
         {
           "path": "src/use-copy-to-clipboard/examples/use-copy-to-clipboard-demo.tsx",
@@ -25782,14 +25784,8 @@
       "name": "use-copy-to-clipboard-overview",
       "type": "registry:block",
       "title": "Use Copy To Clipboard: Overview",
-      "description": "Use the hook directly to copy the current input value with a flush action. A status region reports the result below the field.",
-      "registryDependencies": [
-        "@erbium/icon",
-        "@erbium/input-group",
-        "@erbium/stateful-icon",
-        "@erbium/styles",
-        "@erbium/use-copy-to-clipboard"
-      ],
+      "description": "Use the hook directly when copying has no button of its own. Press Enter in the field to copy its value. A status region reports the result below the field. For a copy button, use `CopyButton`.",
+      "registryDependencies": ["@erbium/input", "@erbium/styles", "@erbium/use-copy-to-clipboard"],
       "files": [
         {
           "path": "src/use-copy-to-clipboard/examples/use-copy-to-clipboard-demo.tsx",
@@ -25813,10 +25809,9 @@
         "@erbium/copy-button",
         "@erbium/copy-to-clipboard",
         "@erbium/csp-provider",
-        "@erbium/icon",
+        "@erbium/input",
         "@erbium/input-group",
         "@erbium/skeleton",
-        "@erbium/stateful-icon",
         "@erbium/styles",
         "@erbium/toast",
         "@erbium/use-copy-to-clipboard",

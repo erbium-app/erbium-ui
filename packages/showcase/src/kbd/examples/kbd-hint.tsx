@@ -1,7 +1,7 @@
 import * as React from "react";
+import { CopyButton } from "@erbium/ui/blocks/copy-button";
 import { Button, ButtonShortcut } from "@erbium/ui/components/button";
 import { DirectionProvider } from "@erbium/ui/components/direction";
-import { Icon } from "@erbium/ui/components/icon";
 import { Kbd } from "@erbium/ui/components/kbd";
 
 export default function KbdHintExample() {
@@ -21,17 +21,16 @@ export default function KbdHintExample() {
         >
           Save
         </Button>
-        <Button
+        <CopyButton
+          value="https://erbium.dev"
           variant="outline"
           size="icon-sm"
           hotkey="Mod+Shift+D"
-          aria-label="Duplicate"
+          aria-label="Copy link"
           onClick={() => {
-            setAction("Duplicate");
+            setAction("Copy link");
           }}
-        >
-          <Icon name="copy" />
-        </Button>
+        />
         <Button
           size="sm"
           hotkey="Mod+Enter"

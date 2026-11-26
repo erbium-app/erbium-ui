@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { CopyButton } from "@erbium/ui/blocks/copy-button";
 
 import {
   Menubar,
@@ -27,19 +28,26 @@ export default function SearchableExample() {
             <MenubarList>
               <MenubarGroup>
                 <MenubarLabel>Project</MenubarLabel>
-                {["Open project", "Rename project", "Duplicate project", "Copy project link"].map(
-                  (label) => (
-                    <MenubarItem
-                      key={label}
-                      label={label}
-                      onClick={() => {
-                        setAction(label);
-                      }}
-                    >
-                      {label}
-                    </MenubarItem>
-                  ),
-                )}
+                {["Open project", "Rename project", "Duplicate project"].map((label) => (
+                  <MenubarItem
+                    key={label}
+                    label={label}
+                    onClick={() => {
+                      setAction(label);
+                    }}
+                  >
+                    {label}
+                  </MenubarItem>
+                ))}
+                <CopyButton
+                  value="https://erbium.dev/projects/erbium"
+                  render={<MenubarItem label="Copy project link" />}
+                  onClick={() => {
+                    setAction("Copy project link");
+                  }}
+                >
+                  Copy project link
+                </CopyButton>
               </MenubarGroup>
 
               <MenubarGroup>

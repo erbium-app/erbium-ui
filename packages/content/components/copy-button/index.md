@@ -69,3 +69,11 @@ The shared controller synchronously blocks overlapping writes, including clicks 
 `data-copied`, `data-pending`, and `data-status` expose presentation state. A separate persistent status region announces successMessage and errorMessage, which can be translated. Provide a specific aria-label for icon-only buttons. Custom label text determines a labeled button's name unless overridden.
 
 Code blocks own their active source text and supply it through value. Tooltips remain normal Base UI composition; CopyButton does not force a popup open after every click.
+
+`hotkey` registers a shortcut that clicks the button, as it does on `Button`.
+
+```tsx
+<CopyButton value={url} hotkey="Mod+Shift+L" aria-label="Copy link" />
+```
+
+Inside this repository, the `erbium-controls/use-copy-button` lint rule rejects `<Icon name="copy" />` and direct clipboard writes, so every copy action goes through CopyButton or `useCopyToClipboard`.

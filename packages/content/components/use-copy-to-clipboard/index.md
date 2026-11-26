@@ -11,7 +11,7 @@ Use `CopyButton` from `@erbium/ui/blocks/copy-button` for a complete copy contro
 <CopyButton value={command} aria-label="Copy installation command" />
 ```
 
-For a flush action inside a field, follow the [Copy Button composition](/docs/copy-button) with an embedded InputGroupButton. The Overview example shows how to use the hook directly when you need custom feedback.
+For a flush action inside a field, follow the [Copy Button composition](/docs/copy-button) with an embedded InputGroupButton. The Overview example shows how to use the hook directly when copying has no button of its own.
 
 ## Hook API
 

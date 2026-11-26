@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { CopyButton } from "@erbium/ui/blocks/copy-button";
 import { Button } from "@erbium/ui/components/button";
 import {
   DropdownMenu,
@@ -31,19 +32,26 @@ export default function SearchableExample() {
           <DropdownMenuList>
             <DropdownMenuGroup>
               <DropdownMenuLabel>Project</DropdownMenuLabel>
-              {["Open project", "Rename project", "Duplicate project", "Copy project link"].map(
-                (label) => (
-                  <DropdownMenuItem
-                    key={label}
-                    label={label}
-                    onClick={() => {
-                      setAction(label);
-                    }}
-                  >
-                    {label}
-                  </DropdownMenuItem>
-                ),
-              )}
+              {["Open project", "Rename project", "Duplicate project"].map((label) => (
+                <DropdownMenuItem
+                  key={label}
+                  label={label}
+                  onClick={() => {
+                    setAction(label);
+                  }}
+                >
+                  {label}
+                </DropdownMenuItem>
+              ))}
+              <CopyButton
+                value="https://erbium.dev/projects/erbium"
+                render={<DropdownMenuItem label="Copy project link" />}
+                onClick={() => {
+                  setAction("Copy project link");
+                }}
+              >
+                Copy project link
+              </CopyButton>
             </DropdownMenuGroup>
             <DropdownMenuSub searchable>
               <DropdownMenuSubTrigger label="Move to folder">Move to folder</DropdownMenuSubTrigger>

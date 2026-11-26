@@ -4,16 +4,10 @@
   "type": "registry:component",
   "title": "use copy to clipboard demo",
   "description": "Erbium use copy to clipboard demo example.",
-  "registryDependencies": [
-    "@erbium/icon",
-    "@erbium/input-group",
-    "@erbium/stateful-icon",
-    "@erbium/styles",
-    "@erbium/use-copy-to-clipboard"
-  ],
+  "registryDependencies": ["@erbium/input", "@erbium/styles", "@erbium/use-copy-to-clipboard"],
   "files": [
     {
-      "content": "import { useState } from \"react\";\nimport {\n  InputGroup,\n  InputGroupAddon,\n  InputGroupButton,\n  InputGroupInput,\n} from \"@/registry/erbium/ui/input-group\";\nimport { StatefulIcon } from \"@/registry/erbium/ui/stateful-icon\";\nimport { Icon } from \"@/registry/erbium/ui/icon\";\nimport { useCopyToClipboard } from \"@/registry/erbium/hooks/use-copy-to-clipboard\";\n\nexport default function UseCopyToClipboardExample() {\n  const [value, setValue] = useState(\"https://erbium.dev\");\n  const { copyToClipboard, isPending, reset, revision, status } = useCopyToClipboard();\n  const feedback = { copied: \"URL copied.\", error: \"Could not copy the URL.\", idle: \"\" };\n\n  return (\n    <div className=\"grid w-80 max-w-full gap-related\">\n      <InputGroup>\n        <InputGroupInput\n          aria-label=\"URL\"\n          value={value}\n          onChange={(event) => {\n            setValue(event.target.value);\n            reset();\n          }}\n        />\n        <InputGroupAddon align=\"inline-end\">\n          <InputGroupButton\n            aria-label=\"Copy URL\"\n            focusableWhenDisabled\n            aria-busy={isPending}\n            disabled={isPending}\n            onClick={() => {\n              void copyToClipboard(value);\n            }}\n            size=\"icon-xs\"\n            variant=\"embedded\"\n          >\n            <StatefulIcon\n              state={status}\n              icons={{\n                copied: <Icon name=\"check\" />,\n                error: <Icon name=\"cancel-01\" />,\n                idle: <Icon name=\"copy\" />,\n              }}\n            />\n          </InputGroupButton>\n        </InputGroupAddon>\n      </InputGroup>\n      <output aria-atomic=\"true\" className=\"min-h-5 text-caption\">\n        <span key={revision}>{feedback[status]}</span>\n      </output>\n    </div>\n  );\n}\n",
+      "content": "import { useState } from \"react\";\nimport { Input } from \"@/registry/erbium/ui/input\";\nimport { useCopyToClipboard } from \"@/registry/erbium/hooks/use-copy-to-clipboard\";\n\nconst feedback = {\n  copied: \"URL copied.\",\n  error: \"Could not copy the URL.\",\n  idle: \"Press Enter to copy the URL.\",\n};\n\nexport default function UseCopyToClipboardExample() {\n  const [value, setValue] = useState(\"https://erbium.dev\");\n  const { copyToClipboard, reset, revision, status } = useCopyToClipboard();\n\n  return (\n    <form\n      className=\"grid w-80 max-w-full gap-related\"\n      onSubmit={(event) => {\n        event.preventDefault();\n        void copyToClipboard(value);\n      }}\n    >\n      <Input\n        aria-label=\"URL\"\n        enterKeyHint=\"go\"\n        value={value}\n        onChange={(event) => {\n          setValue(event.target.value);\n          reset();\n        }}\n      />\n      <output aria-atomic=\"true\" className=\"min-h-5 text-caption\">\n        <span key={revision}>{feedback[status]}</span>\n      </output>\n    </form>\n  );\n}\n",
       "path": "src/use-copy-to-clipboard/examples/use-copy-to-clipboard-demo.tsx",
       "target": "@components/showcase/use-copy-to-clipboard/examples/use-copy-to-clipboard-demo.tsx",
       "type": "registry:component"

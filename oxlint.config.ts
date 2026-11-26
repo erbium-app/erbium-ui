@@ -68,6 +68,11 @@ export default defineConfig({
       rules: { "erbium-controls/use-slider": "error" },
     },
     {
+      // The one home of the copy icon and of the clipboard write.
+      files: ["packages/ui/src/blocks/copy-button.tsx", "packages/ui/src/lib/copy-to-clipboard.ts"],
+      rules: { "erbium-controls/use-copy-button": "off" },
+    },
+    {
       // Showcase catalogs import each variant twice: once as the rendered
       // component and once as its source text via Vite's `?raw` suffix. Those
       // are distinct modules for the bundler, but oxlint's import/no-duplicates
@@ -136,6 +141,7 @@ export default defineConfig({
     },
   ],
   rules: {
+    "erbium-controls/use-copy-button": "error",
     // Core leaves no-console off; Erbium keeps the warning so stray logging
     // surfaces in review without failing the gate.
     "no-console": "warn",

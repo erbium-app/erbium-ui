@@ -29,7 +29,10 @@ const useCopyButtonState = () => {
 };
 
 type CopyButtonProps = Omit<ComponentProps<"button">, "onCopy" | "value"> &
-  Pick<ComponentProps<typeof Button>, "variant" | "size" | "loading" | "focusableWhenDisabled"> & {
+  Pick<
+    ComponentProps<typeof Button>,
+    "variant" | "size" | "loading" | "focusableWhenDisabled" | "hotkey"
+  > & {
     /** Fetch content on demand while using the same pending, success and error lifecycle. */
     value: CopyToClipboardValue;
     timeout?: number;
