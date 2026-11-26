@@ -14,6 +14,8 @@ import ControlledExample from "./variants/controlled";
 import ControlledSource from "./variants/controlled.tsx?raw";
 import DynamicExample from "./variants/dynamic";
 import DynamicSource from "./variants/dynamic.tsx?raw";
+import DotsExample from "./variants/dots";
+import DotsSource from "./variants/dots.tsx?raw";
 import VerticalExample from "./variants/vertical";
 import VerticalSource from "./variants/vertical.tsx?raw";
 import HeadlessExample from "./variants/headless";
@@ -98,6 +100,16 @@ export const Dynamic: Story = {
     },
   },
   render: DynamicExample,
+};
+
+export const Dots: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("stepper", "dots") },
+      source: { code: DotsSource },
+    },
+  },
+  render: DotsExample,
 };
 
 export const Vertical: Story = {

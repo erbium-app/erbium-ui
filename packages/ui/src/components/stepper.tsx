@@ -9,7 +9,9 @@ import type {
   StepperFormGroup,
   StepperFormGroupOptions,
   StepperNextState,
+  StepperStep,
 } from "@erbium-ui/react/stepper";
+import { StepIndicatorDot } from "../blocks/step-indicator";
 import { buttonVariants } from "../lib/button-variants";
 import { cn } from "../lib/utils";
 import { FormGroupSubmitContext } from "./form";
@@ -242,6 +244,60 @@ const StepperPanel = ({
   />
 );
 
+/** The step indicator's dot, drawn for the surrounding step. */
+const StepperDot = () => <StepIndicatorDot orientation={useStepperItem().orientation} />;
+
+const stepNumber = (_step: StepperStep, position: number) => `Step ${position}`;
+
+type StepperDotsProps = Omit<React.ComponentProps<typeof StepperPrimitive.List>, "children"> & {
+  /** Each step's accessible name, before its status. @default "Step 1", "Step 2", … */
+  label?: (step: StepperStep, position: number) => string;
+};
+
+/**
+ * The flow as the step indicator's dots, for a compact stepper such as a questionnaire's. Each
+ * enabled step is a dot: the current one stretches into a pill, done ones fill, and one the flow
+ * cannot reach yet is blocked. Give it an `aria-label` that names the sequence.
+ */
+const StepperDots = ({
+  className,
+  label = stepNumber,
+  "aria-label": ariaLabel = "Progress",
+  ...props
+}: StepperDotsProps) => {
+  const steps = useStepperSelector((view) => view.flow.enabled);
+
+  return (
+    <StepperPrimitive.List
+      data-slot="stepper-dots"
+      aria-label={ariaLabel}
+      className={cn(
+        "m-0 flex w-fit list-none items-center p-0 [--step-direction:1] [--step-progress:1] rtl:[--step-direction:-1]",
+        "data-[orientation=vertical]:flex-col",
+        className,
+      )}
+      {...props}
+    >
+      {steps.map((step, index) => (
+        <StepperPrimitive.Item key={step.id} value={step.id} className="flex">
+          <StepperPrimitive.Trigger
+            data-slot="stepper-dot"
+            className={cn(
+              "group/step relative flex items-center justify-center rounded-full p-1.5 outline-none",
+              "focus-visible:ring-2 focus-visible:ring-ring",
+              "not-aria-disabled:not-aria-[current=step]:cursor-pointer not-aria-disabled:not-aria-[current=step]:hover:bg-foreground/10",
+              "aria-disabled:cursor-not-allowed aria-[current=step]:cursor-default",
+            )}
+          >
+            <StepperDot />
+            <span className="sr-only">{label(step, index + 1)}</span>
+          </StepperPrimitive.Trigger>
+        </StepperPrimitive.Item>
+      ))}
+    </StepperPrimitive.List>
+  );
+};
+
 /** The row of Previous, Skip and Next. */
 const StepperActions = ({ className, ...props }: React.ComponentProps<"div">) => (
   <div
@@ -366,6 +422,7 @@ export {
   StepperActions,
   StepperContent,
   StepperDescription,
+  StepperDots,
   StepperForm,
   StepperIndicator,
   StepperItem,
@@ -383,6 +440,6 @@ export {
 
 export { createStepperFormFinish, useStepper, useStepperItem } from "@erbium-ui/react/stepper";
 
-export type { StepperFormProps, StepperNextProps };
+export type { StepperDotsProps, StepperFormProps, StepperNextProps };
 
 export type { StepperChangeDetails, StepperGuard, StepperStep } from "@erbium-ui/react/stepper";

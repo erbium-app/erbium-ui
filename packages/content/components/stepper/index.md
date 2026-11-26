@@ -61,8 +61,9 @@ Put each step's fields in a TanStack `form.FormGroup` named after the step, and 
 - `StepperList`, `StepperItem`, `StepperTrigger`: the steps as an ordered list of buttons. The current one has `aria-current="step"`, and a step the user cannot reach yet is `aria-disabled`.
 - `StepperIndicator`: a number, a check, a dash, an alert or a spinner, by status. Pass children for your own.
 - `StepperText`, `StepperTitle`, `StepperDescription`, `StepperOptional`: the text beside the mark. On narrow screens only the current step's text shows.
-- `StepperSeparator`: the connector, filled once its step is complete.
+- `StepperSeparator`: the connector, filled once its step is complete, and still filled when the user returns to it.
 - `StepperContent`: content under a step in a vertical stepper, whose border is the connector.
+- `StepperDots`: the steps as the [step indicator's](/docs/components/step-indicator) dots, in place of the list, for a compact flow such as a tour. Name each dot with `label`. The Questionnaire's step indicator is one.
 - `StepperPanel`: one step's content. Only the current one is mounted unless `keepMounted`.
 - `StepperActions`, `StepperPrevious`, `StepperSkip`, `StepperNext`: the controls. Next reads `finishLabel` on the last step.
 - `StepperForm`: a step's form, bound to its `FormGroup`.

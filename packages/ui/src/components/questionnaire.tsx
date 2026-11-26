@@ -1,6 +1,22 @@
 import * as React from "react";
 import { Questionnaire as QuestionnairePrimitive } from "@shadcn/react/questionnaire";
-import type { QuestionnaireItemDefinition } from "@shadcn/react/questionnaire";
+import type {
+  QuestionnaireItemDefinition,
+  QuestionnaireItemStatus,
+} from "@shadcn/react/questionnaire";
+import {
+  createStepperFormFinish,
+  Stepper as StepperPrimitive,
+  useStepper,
+  useStepperSelector,
+} from "@erbium-ui/react/stepper";
+import type {
+  StepperApi,
+  StepperFinish,
+  StepperGuard,
+  StepperSnapshot,
+  StepperStep,
+} from "@erbium-ui/react/stepper";
 import { revalidateLogic, useSelector } from "@tanstack/react-form";
 import type { AnyFormApi } from "@tanstack/react-form";
 import { extendForm, formContext, useFieldContext, visibleMessages } from "./form";
@@ -22,29 +38,44 @@ import { Kbd } from "./kbd";
 import { CheckboxStateIcon } from "./stateful-icon";
 import { StatefulButton } from "./stateful-button";
 import type { StatefulButtonProps } from "./stateful-button";
-import { StepIndicator } from "../blocks/step-indicator";
+import { StepperDots } from "./stepper";
+import type { StepperDotsProps } from "./stepper";
 
-const QuestionnaireItemsContext = React.createContext<
-  readonly QuestionnaireItemDefinition[] | undefined
->(undefined);
+/*
+ * The questionnaire is a stepper: `@erbium-ui/react/stepper` owns which question is shown, which
+ * ones can be reached, the marks of rejected ones and finishing. The shadcn primitive keeps the
+ * answers (choices, inputs, shortcuts and their status) and is always controlled by the flow.
+ */
 
-interface QuestionnaireNavigation {
-  /** Shows the enabled item at this zero-based position, as Next and Previous do. */
-  go: (index: number) => void;
-  /** Furthest position shown so far. */
-  reach: number;
-  visit: (index: number) => void;
+interface QuestionnaireFlow {
+  items: readonly QuestionnaireItemDefinition[];
+  /** Records an item's answer status, which the flow checks before leaving the item. */
+  report: (name: string, status: QuestionnaireItemStatus) => void;
+  /** Next, Enter and Submit: checks the item, then moves on, or finishes from the last one. */
+  advance: () => void;
+  /** Marks the move the primitive reports during this click as a skip. */
+  markSkip: () => void;
 }
 
-const QuestionnaireNavigationContext = React.createContext<QuestionnaireNavigation | null>(null);
+const QuestionnaireFlowContext = React.createContext<QuestionnaireFlow | null>(null);
 
-const ROOT = '[data-slot="questionnaire"]';
+const useQuestionnaireFlow = (part: string) => {
+  const flow = React.use(QuestionnaireFlowContext);
+
+  if (!flow) {
+    throw new Error(`${part} must be inside Questionnaire.`);
+  }
+
+  return flow;
+};
+
 const ITEM = '[data-slot="questionnaire-item"]';
 const ANSWERS = '[data-slot="questionnaire-choices"], [data-slot="questionnaire-input-wrapper"]';
+const ANSWER = '[data-slot="questionnaire-choice-input"], [data-slot="questionnaire-input"]';
 
 const activeItem = (root: Element) => root.querySelector(`${ITEM}:not([hidden])`);
 
-// One rejection can be reported twice (a click and its submit, or the questionnaire and the form).
+// One rejection can be reported twice (the flow's mark and a field's own errors).
 const lastShake = new WeakMap<Element, number>();
 
 /**
@@ -73,263 +104,436 @@ const shakeAnswers = (item: Element) => {
   }
 };
 
-/**
- * The questionnaire rejects Next, Enter and submit while the item is unanswered, without an event
- * of its own. Each attempt is checked once it has rendered: an item still shown and invalid, or the
- * invalid item a submit returned to, shakes, on every attempt like a rejected form submit.
- */
-const useShakeOnRejectedAnswer = (rootRef: React.RefObject<HTMLFormElement | null>) =>
-  React.useCallback(
-    (submit: boolean) => {
-      const root = rootRef.current;
+/** Each rejection marks the step with a new issues list, so a list shakes only once. */
+const shakenIssues = new WeakSet<object>();
 
-      if (!root) {
-        return;
+/**
+ * Shakes the shown item's answers whenever the flow rejects it: a refused Next, Enter, Submit or
+ * step dot, or a submit that failed and returned to it, on every attempt like a rejected submit.
+ */
+const useShakeOnRejection = (rootRef: React.RefObject<HTMLFormElement | null>) => {
+  const issues = useStepperSelector((view) => view.state.issues[view.state.current]);
+
+  React.useEffect(() => {
+    if (issues === undefined || shakenIssues.has(issues)) {
+      return;
+    }
+
+    shakenIssues.add(issues);
+
+    // Once the mark has rendered, so the item shows its error as it shakes.
+    requestAnimationFrame(() => {
+      const item = rootRef.current ? activeItem(rootRef.current) : null;
+
+      if (item) {
+        shakeAnswers(item);
       }
+    });
+  }, [issues, rootRef]);
+};
 
-      const before = activeItem(root);
+/** Next from the last item finishes. A sent questionnaire stays open, so answers can change. */
+const advanceFlow = async (stepper: StepperApi) => {
+  const result = await stepper.next();
 
-      requestAnimationFrame(() => {
-        const after = activeItem(root);
+  if (result.accepted && result.to === null) {
+    stepper.restore({ ...stepper.snapshot(), finished: false });
+  }
+};
 
-        if (
-          after instanceof HTMLElement &&
-          Object.hasOwn(after.dataset, "invalid") &&
-          (submit || after === before)
-        ) {
-          shakeAnswers(after);
-        }
-      });
-    },
-    [rootRef],
-  );
+const NON_TEXT_INPUTS = new Set(["button", "checkbox", "radio", "reset", "submit"]);
+
+const isTextInput = (target: HTMLElement) =>
+  target instanceof HTMLInputElement && !NON_TEXT_INPUTS.has(target.type);
+
+/** Where arrow keys move the caret, so they never change the question. */
+const isTextEntry = (target: HTMLElement) =>
+  target instanceof HTMLTextAreaElement ||
+  target instanceof HTMLSelectElement ||
+  target.isContentEditable ||
+  isTextInput(target);
+
+const isRadio = (target: HTMLElement) =>
+  target instanceof HTMLInputElement && target.type === "radio";
+
+/** A chosen answer: a checked choice, or an input holding text. */
+const isChosen = (input: HTMLInputElement) =>
+  input.type === "checkbox" || input.type === "radio" ? input.checked : input.value.trim() !== "";
+
+interface KeyMoves {
+  advance: () => void;
+  previous: () => void;
+  /** ArrowRight moves on only from an answered item that is not the last. */
+  canAdvance: () => boolean;
+}
+
+type KeyMove = (moves: KeyMoves) => void;
+
+const goNext: KeyMove = (moves) => {
+  moves.advance();
+};
+
+const goBack: KeyMove = (moves) => {
+  moves.previous();
+};
+
+const goForward: KeyMove = (moves) => {
+  if (moves.canAdvance()) {
+    moves.advance();
+  }
+};
+
+const stay: KeyMove = () => {
+  // Enter on an answer not chosen yet does nothing, as in the primitive.
+};
+
+/** What a key asks of the flow, or `null` to leave it to the primitive. */
+const keyMove = (event: React.KeyboardEvent<HTMLFormElement>): KeyMove | null => {
+  const { key, target } = event;
+  const modified = event.metaKey || event.ctrlKey;
+
+  if (key === "Enter" && modified) {
+    return event.altKey || event.shiftKey ? null : goNext;
+  }
+
+  if (modified || event.altKey || !(target instanceof HTMLElement)) {
+    return null;
+  }
+
+  if (key === "ArrowLeft" || key === "ArrowRight") {
+    if (isTextEntry(target) || isRadio(target)) {
+      return null;
+    }
+
+    return key === "ArrowLeft" ? goBack : goForward;
+  }
+
+  if (key === "Enter" && target instanceof HTMLInputElement && target.matches(ANSWER)) {
+    return isChosen(target) ? goNext : stay;
+  }
+
+  return null;
+};
 
 /**
- * Eases to the next question's height, so the actions below it do not jump between questions, and
- * shakes the answers of a question that cannot be left unanswered.
+ * The questionnaire's keys, sent to the flow before the primitive sees them: Mod+Enter and Enter
+ * on a chosen answer go next, ArrowLeft and ArrowRight move outside text entry. Answer focus and
+ * choice shortcuts stay with the primitive.
  */
-const Questionnaire = ({
+const moveWithKeys = (event: React.KeyboardEvent<HTMLFormElement>, moves: KeyMoves) => {
+  const move = event.defaultPrevented || event.nativeEvent.isComposing ? null : keyMove(event);
+
+  if (move === null) {
+    return;
+  }
+
+  event.preventDefault();
+
+  if (!event.repeat) {
+    move(moves);
+  }
+};
+
+type QuestionnaireRootProps = React.ComponentProps<typeof QuestionnairePrimitive.Root>;
+
+/** What the flow takes over from the primitive's root. */
+interface QuestionnaireFlowProps {
+  /**
+   * The questions, in order. The flow, the step dots and each item's `required` read it, and an
+   * item's `disabled` takes it out of the flow.
+   */
+  items: readonly QuestionnaireItemDefinition[];
+  /** The shown question. Controlled. A question the flow cannot reach is refused. */
+  item?: string;
+  /** Resumes at this question; the enabled ones before it count as answered. */
+  defaultItem?: string;
+  onItemChange?: (item: string) => void;
+  /** Checks an answered question before the questionnaire leaves it or submits from it. */
+  guard?: StepperGuard;
+  /**
+   * Runs once the last question passes, instead of the native submit. Report issues by item name
+   * to return to the first failing one.
+   */
+  onFinish?: StepperFinish;
+}
+
+type QuestionnaireFormAttributes = Omit<QuestionnaireRootProps, keyof QuestionnaireFlowProps>;
+
+interface QuestionnaireFormElementProps extends QuestionnaireFormAttributes {
+  items: readonly QuestionnaireItemDefinition[];
+  rootRef: React.RefObject<HTMLFormElement | null>;
+  statuses: React.RefObject<Map<string, QuestionnaireItemStatus>>;
+  /** The finish submits the form natively, so `onSubmit` gets the real event. */
+  submitting: React.RefObject<boolean>;
+  /** `onFinish` replaces the native submit. */
+  finishes: boolean;
+}
+
+/** The primitive's form, inside the flow and controlled by it. */
+const QuestionnaireFormElement = ({
   className,
-  item: itemProp,
+  finishes,
   items,
-  onClick,
-  onItemChange,
   onKeyDown,
   onReset,
-  onSubmitCapture,
-  ref,
+  onSubmit,
+  rootRef,
+  statuses,
+  submitting,
   ...props
-}: React.ComponentProps<typeof QuestionnairePrimitive.Root>) => {
-  const rootRef = React.useRef<HTMLFormElement | null>(null);
-  const checkAttempt = useShakeOnRejectedAnswer(rootRef);
-  // The primitive moves between items only through `item`, so an uncontrolled questionnaire
-  // holds it here once it changes, which lets the step indicator jump to any step.
-  const [shownItem, setShownItem] = React.useState<string>();
-  const [reach, setReach] = React.useState(0);
+}: QuestionnaireFormElementProps) => {
+  const stepper = useStepper();
+  const current = useStepperSelector((view) => view.state.current);
+  const skipping = React.useRef(false);
+  useShakeOnRejection(rootRef);
 
-  const changeItem = React.useCallback(
-    (next: string) => {
-      if (itemProp === undefined) {
-        setShownItem(next);
-      }
+  const flow = React.useMemo<QuestionnaireFlow>(
+    () => ({
+      advance: () => {
+        void advanceFlow(stepper);
+      },
+      markSkip: () => {
+        skipping.current = true;
 
-      onItemChange?.(next);
-    },
-    [itemProp, onItemChange],
+        // The primitive reports the skip within the click; a skip from the last item reports none.
+        queueMicrotask(() => {
+          skipping.current = false;
+        });
+      },
+      report: (name, status) => {
+        statuses.current.set(name, status);
+      },
+      items,
+    }),
+    [items, statuses, stepper],
   );
 
-  const visit = React.useCallback((index: number) => {
-    setReach((current) => Math.max(current, index));
-  }, []);
-
-  const navigation = React.useMemo<QuestionnaireNavigation>(() => {
-    // The primitive's order: enabled `items`, or the enabled rendered items without them.
-    const order = () => {
-      if (items) {
-        return items.flatMap((definition) =>
-          definition.disabled === true ? [] : [definition.name],
-        );
-      }
-
-      const root = rootRef.current;
-
-      return [...(root?.querySelectorAll<HTMLFieldSetElement>(ITEM) ?? [])].flatMap((element) =>
-        element.closest(ROOT) === root && !element.disabled ? [element.dataset.name ?? ""] : [],
-      );
-    };
-
-    return {
-      go: (index) => {
-        const name = order()[index];
-
-        if (name) {
-          changeItem(name);
-        }
-      },
-      reach,
-      visit,
-    };
-  }, [changeItem, items, reach, visit]);
-
   return (
-    // Items take `required` from their definition here, so it is declared once.
-    <QuestionnaireItemsContext.Provider value={items}>
-      <QuestionnaireNavigationContext.Provider value={navigation}>
-        <QuestionnairePrimitive.Root
-          ref={useMergedRefs(ref, rootRef, animateHeight)}
-          item={itemProp ?? shownItem}
-          items={items}
-          data-slot="questionnaire"
-          className={cn("flex w-full min-w-0 flex-col gap-group", className)}
-          onItemChange={changeItem}
-          onReset={(event) => {
-            onReset?.(event);
+    <QuestionnaireFlowContext value={flow}>
+      <QuestionnairePrimitive.Root
+        item={current}
+        items={items}
+        data-slot="questionnaire"
+        className={cn("flex w-full min-w-0 flex-col gap-group", className)}
+        // The primitive proposes a move only for Skip, Reset and a submit it refused; the flow
+        // decides each one.
+        onItemChange={(name) => {
+          if (skipping.current) {
+            skipping.current = false;
+            void stepper.skip();
+          } else {
+            void stepper.goTo(name);
+          }
+        }}
+        onKeyDown={(event) => {
+          onKeyDown?.(event);
 
-            if (!event.defaultPrevented) {
-              setReach(0);
-            }
-          }}
-          onClick={(event) => {
-            onClick?.(event);
+          moveWithKeys(event, {
+            advance: flow.advance,
+            canAdvance: () => {
+              const { flow: steps, state } = stepper.get();
 
-            // A jump forward that `QuestionnaireForm` rejects shakes as a rejected Next does.
-            if (
-              event.target instanceof Element &&
-              event.target.closest(
-                '[data-slot="questionnaire-next"], [data-slot="step-indicator-control"]',
-              )
-            ) {
-              checkAttempt(false);
-            }
-          }}
-          onKeyDown={(event) => {
-            onKeyDown?.(event);
+              return (
+                state.current !== steps.last &&
+                (statuses.current.get(state.current) ?? "unanswered") !== "unanswered"
+              );
+            },
+            previous: () => {
+              void stepper.previous();
+            },
+          });
+        }}
+        onReset={(event) => {
+          onReset?.(event);
 
-            if (event.key === "Enter" && !event.repeat) {
-              checkAttempt(false);
-            }
-          }}
-          onSubmitCapture={(event) => {
-            onSubmitCapture?.(event);
-            checkAttempt(true);
-          }}
-          {...props}
-        />
-      </QuestionnaireNavigationContext.Provider>
-    </QuestionnaireItemsContext.Provider>
+          if (!event.defaultPrevented) {
+            stepper.reset();
+          }
+        }}
+        onSubmit={(event) => {
+          if (submitting.current) {
+            onSubmit?.(event);
+
+            return;
+          }
+
+          // Any other submit, such as pressing Enter in a field, goes through the flow first.
+          event.preventDefault();
+
+          if (finishes) {
+            onSubmit?.(event);
+          }
+
+          flow.advance();
+        }}
+        {...props}
+      />
+    </QuestionnaireFlowContext>
   );
 };
 
-// The step indicator props the questionnaire passes through to its StepIndicator.
-type StepIndicatorPassthrough = "aria-label" | "onValueChange" | "orientation" | "reach";
+/** Submits `form` natively, flagged so its submit handler knows the flow already passed it. */
+const submitNow = (form: HTMLFormElement | null, submitting: React.RefObject<boolean>) => {
+  submitting.current = true;
 
-interface QuestionnaireStepsProps extends Pick<
-  React.ComponentProps<typeof StepIndicator>,
-  StepIndicatorPassthrough
-> {
-  current: number;
-  total: number;
-}
+  try {
+    form?.requestSubmit();
+  } finally {
+    submitting.current = false;
+  }
+};
 
-const QuestionnaireSteps = ({
-  current,
-  total,
-  onValueChange,
-  reach,
-  orientation,
-  "aria-label": ariaLabel,
-}: QuestionnaireStepsProps) => {
-  const navigation = React.use(QuestionnaireNavigationContext);
-  const index = current - 1;
-  const visited = navigation?.reach ?? index;
-  const visit = navigation?.visit;
+const toSteps = (items: readonly QuestionnaireItemDefinition[]) =>
+  items.map((definition): StepperStep => ({
+    disabled: definition.disabled === true,
+    id: definition.name,
+    optional: definition.required !== true,
+  }));
 
-  React.useLayoutEffect(() => {
-    if (index > visited) {
-      visit?.(index);
+/** Resuming at `defaultItem` counts the enabled items before it as answered. */
+const resumeAt = (
+  items: readonly QuestionnaireItemDefinition[],
+  name: string | undefined,
+): Partial<StepperSnapshot> | undefined => {
+  if (name === undefined) {
+    return undefined;
+  }
+
+  const enabled = items.filter((definition) => definition.disabled !== true);
+
+  const before = enabled.slice(
+    0,
+    Math.max(
+      enabled.findIndex((item) => item.name === name),
+      0,
+    ),
+  );
+
+  return {
+    current: name,
+    resolution: Object.fromEntries(before.map((item) => [item.name, "complete" as const])),
+  };
+};
+
+type QuestionnaireProps = QuestionnaireFormAttributes & QuestionnaireFlowProps;
+
+/**
+ * A questionnaire, run by the stepper: Next, Enter, Skip, the step dots and submit all move
+ * through one flow that checks the shown question first. It eases to the next question's height,
+ * so the actions below it do not jump, and shakes the answers of a question it rejects.
+ */
+const Questionnaire = ({
+  defaultItem,
+  guard,
+  item,
+  items,
+  onFinish,
+  onItemChange,
+  ref,
+  ...props
+}: QuestionnaireProps) => {
+  const steps = React.useMemo(() => toSteps(items), [items]);
+  const rootRef = React.useRef<HTMLFormElement | null>(null);
+  const formRef = useMergedRefs(ref, rootRef, animateHeight);
+  const statuses = React.useRef(new Map<string, QuestionnaireItemStatus>());
+  const submitting = React.useRef(false);
+
+  // An unanswered question is never left forward, whatever `guard` says.
+  const checkItem: StepperGuard = async (context) => {
+    if ((statuses.current.get(context.step) ?? "unanswered") === "unanswered") {
+      return false;
     }
-  }, [index, visit, visited]);
+
+    return guard === undefined ? true : await guard(context);
+  };
+
+  const submitNatively = () => {
+    submitNow(rootRef.current, submitting);
+  };
 
   return (
-    <StepIndicator
-      count={total}
-      value={index}
-      onValueChange={onValueChange ?? navigation?.go}
-      // Steps already shown stay free; later ones open as the questionnaire reaches them.
-      reach={reach ?? Math.max(visited, index)}
-      orientation={orientation}
-      aria-label={ariaLabel ?? `Question ${current} of ${total}`}
+    <StepperPrimitive.Root
+      steps={steps}
+      value={item}
+      defaultSnapshot={resumeAt(items, defaultItem)}
+      guard={checkItem}
+      onFinish={onFinish ?? submitNatively}
+      onValueChange={(value) => {
+        onItemChange?.(value);
+      }}
+      // The form is the flow's only element.
+      render={() => (
+        <QuestionnaireFormElement
+          ref={formRef}
+          finishes={onFinish !== undefined}
+          items={items}
+          rootRef={rootRef}
+          statuses={statuses}
+          submitting={submitting}
+          {...props}
+        />
+      )}
     />
   );
 };
 
+const questionNumber = (_step: StepperStep, position: number) => `Question ${position}`;
+
+type QuestionnaireStepIndicatorProps = Omit<StepperDotsProps, "label">;
+
 /**
- * The questionnaire's position as step dots. Each step already shown is a button that returns to
- * it; pass `onValueChange` and `reach` to decide navigation in the host instead.
+ * The questionnaire's position as step dots. Each question the flow can reach is a button that
+ * moves to it, checking the shown question first when it moves forward.
  */
 const QuestionnaireStepIndicator = ({
   className,
-  onValueChange,
-  reach,
-  orientation,
   "aria-label": ariaLabel,
   ...props
-}: Omit<React.ComponentProps<typeof QuestionnairePrimitive.Progress>, "render" | "children"> &
-  Pick<React.ComponentProps<typeof StepIndicator>, StepIndicatorPassthrough>) => {
-  const navigation = React.use(QuestionnaireNavigationContext);
-  const interactive = onValueChange !== undefined || navigation !== null;
+}: QuestionnaireStepIndicatorProps) => {
+  const position = useStepperSelector(
+    (view) => (view.flow.position.get(view.state.current) ?? 0) + 1,
+  );
+
+  const count = useStepperSelector((view) => view.flow.enabled.length);
 
   return (
-    <QuestionnairePrimitive.Progress
+    <StepperDots
       data-slot="questionnaire-step-indicator"
+      aria-label={ariaLabel ?? `Question ${position} of ${count}`}
+      label={questionNumber}
       className={cn("w-fit", className)}
-      render={(progressProps, state) => {
-        // A progressbar hides its descendants from assistive tech, which would
-        // hide the step buttons. Interactive indicators are a plain group, so
-        // they drop the progressbar's value attributes.
-        const {
-          "aria-valuemax": _valueMax,
-          "aria-valuemin": _valueMin,
-          "aria-valuenow": _valueNow,
-          "aria-valuetext": _valueText,
-          ...groupProps
-        } = progressProps;
-
-        return (
-          <div {...(interactive ? { ...groupProps, role: "group" } : progressProps)}>
-            <QuestionnaireSteps
-              current={state.current}
-              total={state.total}
-              onValueChange={onValueChange}
-              reach={reach}
-              orientation={orientation}
-              aria-label={ariaLabel}
-            />
-          </div>
-        );
-      }}
       {...props}
     />
   );
 };
 
 /**
- * One question. A question that cannot be skipped is `required`, taken from its definition in the
- * questionnaire's `items` (set `required` here only without `items`): its title shows the required
- * mark, as a required field's label does. It eases to make room for its error.
+ * One question. A question that cannot be skipped is `required` in the questionnaire's `items`:
+ * its title shows the required mark, as a required field's label does. It shows the flow's mark
+ * while rejected, until it is answered, and eases to make room for its error.
  */
 const QuestionnaireItem = ({
   className,
+  invalid = false,
   name,
+  onStatusChange,
   ref,
   required: requiredProp,
   ...props
 }: React.ComponentProps<typeof QuestionnairePrimitive.Item>) => {
-  const definition = React.useContext(QuestionnaireItemsContext)?.find(
-    (item) => item.name === name,
-  );
-
+  const flow = useQuestionnaireFlow("QuestionnaireItem");
+  const stepper = useStepper();
+  const definition = flow.items.find((item) => item.name === name);
   const required = requiredProp ?? definition?.required ?? false;
+  const rejected = useStepperSelector((view) => Object.hasOwn(view.state.issues, name));
+  const [status, setStatus] = React.useState<QuestionnaireItemStatus>("unanswered");
+
+  // An answer clears the flow's mark, once the item has no errors of its own.
+  React.useEffect(() => {
+    if (rejected && !invalid && status !== "unanswered") {
+      stepper.clearIssues(name);
+    }
+  }, [invalid, name, rejected, status, stepper]);
 
   return (
     <FieldRequiredContext.Provider value={required}>
@@ -339,6 +543,12 @@ const QuestionnaireItem = ({
         data-name={name}
         name={name}
         required={required}
+        invalid={invalid || rejected}
+        onStatusChange={(next) => {
+          flow.report(name, next);
+          setStatus(next);
+          onStatusChange?.(next);
+        }}
         className={cn("flex min-w-0 flex-col gap-group border-0 p-0 outline-none", className)}
         {...props}
       />
@@ -537,78 +747,122 @@ const QuestionnaireActions = ({ className, ...props }: React.ComponentProps<"div
   />
 );
 
+/** Previous goes back through the flow. */
 const QuestionnairePrevious = ({
   children,
   className,
+  onClick,
   size = "default",
   variant = "outline",
   ...props
 }: React.ComponentProps<typeof QuestionnairePrimitive.Previous> &
-  Pick<React.ComponentProps<typeof Button>, "size" | "variant">) => (
-  <QuestionnairePrimitive.Previous
-    data-slot="questionnaire-previous"
-    data-size={size}
-    data-variant={variant}
-    className={cn(
-      buttonVariants({ size, variant }),
-      "col-start-1 row-start-1 justify-self-start",
-      className,
-    )}
-    {...props}
-  >
-    {children ?? "Previous"}
-  </QuestionnairePrimitive.Previous>
-);
+  Pick<React.ComponentProps<typeof Button>, "size" | "variant">) => {
+  const stepper = useStepper();
 
+  return (
+    <QuestionnairePrimitive.Previous
+      data-slot="questionnaire-previous"
+      onClick={(event) => {
+        onClick?.(event);
+
+        // Prevented, so the primitive does not move on its own.
+        if (!event.defaultPrevented) {
+          event.preventDefault();
+          void stepper.previous();
+        }
+      }}
+      data-size={size}
+      data-variant={variant}
+      className={cn(
+        buttonVariants({ size, variant }),
+        "col-start-1 row-start-1 justify-self-start",
+        className,
+      )}
+      {...props}
+    >
+      {children ?? "Previous"}
+    </QuestionnairePrimitive.Previous>
+  );
+};
+
+/** Skip clears the question's answers in the primitive, and the flow records the skip. */
 const QuestionnaireSkip = ({
   children,
   className,
+  onClick,
   size = "default",
   variant = "outline",
   ...props
 }: React.ComponentProps<typeof QuestionnairePrimitive.Skip> &
-  Pick<React.ComponentProps<typeof Button>, "size" | "variant">) => (
-  <QuestionnairePrimitive.Skip
-    data-slot="questionnaire-skip"
-    data-size={size}
-    data-variant={variant}
-    className={cn(
-      buttonVariants({ size, variant }),
-      "col-start-2 row-start-1 justify-self-end",
-      className,
-    )}
-    {...props}
-  >
-    {children ?? "Skip"}
-  </QuestionnairePrimitive.Skip>
-);
+  Pick<React.ComponentProps<typeof Button>, "size" | "variant">) => {
+  const flow = useQuestionnaireFlow("QuestionnaireSkip");
 
+  return (
+    <QuestionnairePrimitive.Skip
+      data-slot="questionnaire-skip"
+      onClick={(event) => {
+        onClick?.(event);
+
+        if (!event.defaultPrevented) {
+          flow.markSkip();
+        }
+      }}
+      data-size={size}
+      data-variant={variant}
+      className={cn(
+        buttonVariants({ size, variant }),
+        "col-start-2 row-start-1 justify-self-end",
+        className,
+      )}
+      {...props}
+    >
+      {children ?? "Skip"}
+    </QuestionnairePrimitive.Skip>
+  );
+};
+
+/** Next checks the question through the flow, then moves on. */
 const QuestionnaireNext = ({
   children,
   className,
+  onClick,
   size = "default",
   variant = "default",
   ...props
 }: React.ComponentProps<typeof QuestionnairePrimitive.Next> &
-  Pick<React.ComponentProps<typeof Button>, "size" | "variant">) => (
-  <QuestionnairePrimitive.Next
-    data-slot="questionnaire-next"
-    data-size={size}
-    data-variant={variant}
-    className={cn(
-      buttonVariants({ size, variant }),
-      "col-start-3 row-start-1 justify-self-end",
-      className,
-    )}
-    {...props}
-  >
-    {children ?? "Next"}
-  </QuestionnairePrimitive.Next>
-);
+  Pick<React.ComponentProps<typeof Button>, "size" | "variant">) => {
+  const flow = useQuestionnaireFlow("QuestionnaireNext");
 
+  return (
+    <QuestionnairePrimitive.Next
+      data-slot="questionnaire-next"
+      onClick={(event) => {
+        onClick?.(event);
+
+        if (!event.defaultPrevented) {
+          event.preventDefault();
+          flow.advance();
+        }
+      }}
+      data-size={size}
+      data-variant={variant}
+      className={cn(
+        buttonVariants({ size, variant }),
+        "col-start-3 row-start-1 justify-self-end",
+        className,
+      )}
+      {...props}
+    >
+      {children ?? "Next"}
+    </QuestionnairePrimitive.Next>
+  );
+};
+
+/** Submit finishes through the flow, which checks the last question before the form submits. */
 const QuestionnaireSubmit = ({
   children,
   className,
+  onClick,
   size = "default",
   variant = "default",
   state,
@@ -618,27 +872,39 @@ const QuestionnaireSubmit = ({
   ...props
 }: Omit<React.ComponentProps<typeof QuestionnairePrimitive.Submit>, "render"> &
   Pick<React.ComponentProps<typeof Button>, "size" | "variant"> &
-  Pick<StatefulButtonProps, "state" | "successLabel" | "successDuration" | "onStateChange">) => (
-  <QuestionnairePrimitive.Submit
-    data-slot="questionnaire-submit"
-    className={cn("col-start-3 row-start-1 justify-self-end", className)}
-    render={
-      <StatefulButton
-        size={size}
-        variant={variant}
-        state={state}
-        successLabel={successLabel}
-        successDuration={successDuration}
-        onStateChange={onStateChange}
-      >
-        {children ?? "Submit"}
-      </StatefulButton>
-    }
-    {...props}
-  >
-    {children ?? "Submit"}
-  </QuestionnairePrimitive.Submit>
-);
+  Pick<StatefulButtonProps, "state" | "successLabel" | "successDuration" | "onStateChange">) => {
+  const flow = useQuestionnaireFlow("QuestionnaireSubmit");
+
+  return (
+    <QuestionnairePrimitive.Submit
+      data-slot="questionnaire-submit"
+      onClick={(event) => {
+        onClick?.(event);
+
+        if (!event.defaultPrevented) {
+          event.preventDefault();
+          flow.advance();
+        }
+      }}
+      className={cn("col-start-3 row-start-1 justify-self-end", className)}
+      render={
+        <StatefulButton
+          size={size}
+          variant={variant}
+          state={state}
+          successLabel={successLabel}
+          successDuration={successDuration}
+          onStateChange={onStateChange}
+        >
+          {children ?? "Submit"}
+        </StatefulButton>
+      }
+      {...props}
+    >
+      {children ?? "Submit"}
+    </QuestionnairePrimitive.Submit>
+  );
+};
 
 /*
  * Questionnaire answers owned by TanStack Form and validated with Effect
@@ -654,37 +920,6 @@ const useFieldMessages = () => {
   return React.useMemo(() => visibleMessages(meta), [meta]);
 };
 
-/**
- * Shakes the item's answers after each submit the form rejected because of this field, like
- * `FormField`. The questionnaire returns to the item first, so it shakes once it is shown.
- */
-const useShakeOnRejectedSubmit = (itemRef: React.RefObject<HTMLFieldSetElement | null>) => {
-  const field = useFieldContext<unknown>();
-  const attempts = useSelector(field.form.store, (state) => state.submissionAttempts);
-  const submitting = useSelector(field.form.store, (state) => state.isSubmitting);
-  const shaken = React.useRef(attempts);
-
-  React.useEffect(() => {
-    if (submitting || attempts === shaken.current) {
-      return;
-    }
-
-    shaken.current = attempts;
-
-    if (field.state.meta.errors.length === 0) {
-      return;
-    }
-
-    requestAnimationFrame(() => {
-      const item = itemRef.current;
-
-      if (item?.isConnected === true && item.hidden === false) {
-        shakeAnswers(item);
-      }
-    });
-  }, [attempts, field, itemRef, submitting]);
-};
-
 /** `QuestionnaireItem` named after the field and invalid while it shows errors. */
 const QuestionnaireFieldItem = ({
   ref,
@@ -692,17 +927,8 @@ const QuestionnaireFieldItem = ({
 }: Omit<React.ComponentProps<typeof QuestionnaireItem>, "invalid" | "name">) => {
   const field = useFieldContext<unknown>();
   const messages = useFieldMessages();
-  const itemRef = React.useRef<HTMLFieldSetElement | null>(null);
-  useShakeOnRejectedSubmit(itemRef);
 
-  return (
-    <QuestionnaireItem
-      ref={useMergedRefs(ref, itemRef)}
-      name={field.name}
-      invalid={messages.length > 0}
-      {...props}
-    />
-  );
+  return <QuestionnaireItem ref={ref} name={field.name} invalid={messages.length > 0} {...props} />;
 };
 
 /** A `multiple` item's field holds every chosen value. */
@@ -764,89 +990,33 @@ const QuestionnaireFieldError = (
   );
 };
 
-const firstEnabledItem = (items: readonly QuestionnaireItemDefinition[]) =>
-  items.find((item) => item.disabled !== true)?.name ?? "";
-
-type QuestionnaireFormProps = Omit<
-  React.ComponentProps<typeof Questionnaire>,
-  "item" | "items" | "noValidate"
-> & {
+type QuestionnaireFormProps = Omit<QuestionnaireProps, "guard" | "noValidate" | "onFinish"> & {
   form: AnyFormApi;
-  /** Item order decides which invalid item a rejected submit returns to. */
-  items: readonly QuestionnaireItemDefinition[];
-  /** The visible item. Uncontrolled when omitted. */
-  item?: string;
 };
 
 /**
- * `Questionnaire` that submits through TanStack Form. After a rejected submit
- * it shows the first item, in `items` order, whose field has an error.
+ * `Questionnaire` whose answers TanStack Form owns. The flow checks each answer with its field's
+ * validators before moving past it, and submitting runs the whole form: a rejected submit returns
+ * to the first item, in `items` order, whose field has an error.
  */
-const QuestionnaireForm = ({
-  defaultItem,
-  form,
-  item: itemProp,
-  items,
-  onItemChange,
-  onSubmit,
-  ...props
-}: QuestionnaireFormProps) => {
-  const [uncontrolledItem, setUncontrolledItem] = React.useState(
-    () => defaultItem ?? firstEnabledItem(items),
-  );
+const QuestionnaireForm = ({ form, onSubmit, ...props }: QuestionnaireFormProps) => {
+  const finish = React.useMemo(() => createStepperFormFinish(form), [form]);
 
-  const item = itemProp ?? uncontrolledItem;
+  const guard: StepperGuard = async ({ step }) => {
+    form.setFieldMeta(step, (meta) => ({ ...meta, isTouched: true }));
+    await form.validateField(step, "submit");
 
-  const showItem = (nextItem: string) => {
-    setUncontrolledItem(nextItem);
-    onItemChange?.(nextItem);
-  };
-
-  const errorsIn = (name: string) => form.getFieldMeta(name)?.errors.length ?? 0;
-
-  // The schema checks each answer before the questionnaire moves past it, not only on submit.
-  const advance = async (nextItem: string) => {
-    form.setFieldMeta(item, (meta) => ({ ...meta, isTouched: true }));
-    await form.validateField(item, "submit");
-
-    if (errorsIn(item) === 0) {
-      showItem(nextItem);
-    }
-  };
-
-  const order = (name: string) => items.findIndex((definition) => definition.name === name);
-
-  const changeItem = (nextItem: string) => {
-    if (order(nextItem) > order(item)) {
-      void advance(nextItem);
-
-      return;
-    }
-
-    showItem(nextItem);
-  };
-
-  const submit = async () => {
-    await form.handleSubmit();
-
-    const invalid = items.find((definition) => errorsIn(definition.name) > 0);
-
-    if (invalid) {
-      showItem(invalid.name);
-    }
+    return (form.getFieldMeta(step)?.errors.length ?? 0) === 0;
   };
 
   return (
     <formContext.Provider value={form}>
       <Questionnaire
-        item={item}
-        items={items}
-        onItemChange={changeItem}
+        guard={guard}
+        onFinish={finish}
         onSubmit={(event) => {
-          event.preventDefault();
           event.stopPropagation();
           onSubmit?.(event);
-          void submit();
         }}
         {...props}
       />

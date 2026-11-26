@@ -10,6 +10,7 @@
     "@erbium-examples/stepper-tanstack-form",
     "@erbium-examples/stepper-controlled",
     "@erbium-examples/stepper-dynamic",
+    "@erbium-examples/stepper-dots",
     "@erbium-examples/stepper-vertical",
     "@erbium-examples/stepper-headless"
   ],

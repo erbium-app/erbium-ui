@@ -63,9 +63,13 @@ export default function QuestionnaireDialogExample() {
           onSubmit={handleSubmit}
           className="min-h-0 flex-1 gap-0"
         >
+          {/* One indicator for every item, so the dots stay mounted between questions. */}
+          <div className="shrink-0 px-panel pt-4">
+            <QuestionnaireStepIndicator />
+          </div>
+
           <QuestionnaireItem name="scope" className="min-h-0 flex-1 gap-0">
-            <DialogHeader>
-              <QuestionnaireStepIndicator />
+            <DialogHeader className="pt-2">
               <QuestionnaireTitle>Which files are in scope?</QuestionnaireTitle>
               <QuestionnaireDescription>
                 Choose how broadly the agent can update the workspace.
@@ -86,8 +90,7 @@ export default function QuestionnaireDialogExample() {
           </QuestionnaireItem>
 
           <QuestionnaireItem name="tests" className="min-h-0 flex-1 gap-0">
-            <DialogHeader>
-              <QuestionnaireStepIndicator />
+            <DialogHeader className="pt-2">
               <QuestionnaireTitle>How much verification is needed?</QuestionnaireTitle>
               <QuestionnaireDescription>
                 Choose the checks the agent should run before handoff.

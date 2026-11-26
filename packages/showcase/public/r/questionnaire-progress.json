@@ -3,7 +3,7 @@
   "name": "questionnaire-progress",
   "type": "registry:block",
   "title": "Questionnaire: Step Indicator",
-  "description": "Use `QuestionnaireStepIndicator` to show position with dots driven by the questionnaire state. Each step already shown is a button that returns to it; later steps open as the questionnaire reaches them, so the dots never skip an unanswered question. Pass `onValueChange` and `reach` only when the host decides navigation itself. The Progress primitive remains available for fully custom indicators.",
+  "description": "Use `QuestionnaireStepIndicator` to show position with dots driven by the questionnaire's flow. It is the stepper's `StepperDots`: each question the flow can reach is a button that moves to it, a dot ahead checks the shown question first, and answered, skipped and rejected questions keep their marks. Render one, outside the items.",
   "registryDependencies": ["@erbium/questionnaire", "@erbium/styles", "@erbium/toast"],
   "files": [
     {

@@ -3,11 +3,11 @@
   "name": "step-indicator-overview",
   "type": "registry:component",
   "title": "Step Indicator: Overview",
-  "description": "Pass `count`, `value` and `onValueChange`. Earlier steps read as complete, the current step stretches into a pill.",
-  "registryDependencies": ["@erbium/button", "@erbium/step-indicator", "@erbium/styles"],
+  "description": "Pass `count`, `value` and `onValueChange`. Earlier positions read as complete and the current one stretches into a pill. The indicator only shows a position: for a flow that checks each step before moving on, use a [Stepper](/docs/components/stepper) with `StepperDots`.",
+  "registryDependencies": ["@erbium/step-indicator", "@erbium/styles"],
   "files": [
     {
-      "content": "import { useState } from \"react\";\nimport { StepIndicator } from \"@/registry/erbium/blocks/step-indicator\";\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nexport default function StepIndicatorExample() {\n  const [step, setStep] = useState(1);\n\n  return (\n    <div className=\"flex flex-col items-center gap-4\">\n      <StepIndicator count={4} value={step} onValueChange={setStep} aria-label=\"Setup progress\" />\n      <div className=\"flex gap-2\">\n        <Button\n          variant=\"outline\"\n          disabled={step === 0}\n          onClick={() => {\n            setStep(step - 1);\n          }}\n        >\n          Back\n        </Button>\n        <Button\n          disabled={step === 3}\n          onClick={() => {\n            setStep(step + 1);\n          }}\n        >\n          Next\n        </Button>\n      </div>\n    </div>\n  );\n}\n",
+      "content": "import { useState } from \"react\";\nimport { StepIndicator } from \"@/registry/erbium/blocks/step-indicator\";\n\nconst tips = [\n  \"Drag files onto any page to upload them.\",\n  \"Press Command K to search every project.\",\n  \"Pin a project to keep it at the top.\",\n  \"Share a link to invite anyone to a file.\",\n];\n\nexport default function StepIndicatorExample() {\n  const [tip, setTip] = useState(0);\n\n  return (\n    <div className=\"flex w-72 flex-col items-center gap-4\">\n      <p className=\"min-h-12 text-center text-control text-pretty\">{tips[tip]}</p>\n      <StepIndicator count={tips.length} value={tip} onValueChange={setTip} aria-label=\"Tips\" />\n    </div>\n  );\n}\n",
       "path": "src/step-indicator/variants/overview.tsx",
       "target": "@components/showcase/step-indicator/variants/overview.tsx",
       "type": "registry:component"

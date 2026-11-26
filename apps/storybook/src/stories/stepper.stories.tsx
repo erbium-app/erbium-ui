@@ -17,6 +17,8 @@ export const Controlled = { ...showcases.Controlled, name: "Controlled" };
 
 export const Dynamic = { ...showcases.Dynamic, name: "Dynamic" };
 
+export const Dots = { ...showcases.Dots, name: "Dots" };
+
 export const Vertical = { ...showcases.Vertical, name: "Vertical" };
 
 export const Headless = { ...showcases.Headless, name: "Headless" };

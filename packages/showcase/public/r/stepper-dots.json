@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "stepper-dots",
+  "type": "registry:component",
+  "title": "Stepper: Dots",
+  "description": "Render `StepperDots` instead of `StepperList` when step names would crowd the layout, as in a tour or a questionnaire. Each enabled step is a dot that follows the flow: the current one stretches into a pill, done steps fill, and a step the flow cannot reach yet is blocked. Name the steps with `label`; each name is followed by the step's status.",
+  "registryDependencies": ["@erbium/stepper", "@erbium/styles"],
+  "files": [
+    {
+      "content": "import {\n  Stepper,\n  StepperActions,\n  StepperDots,\n  StepperNext,\n  StepperPanel,\n  StepperPrevious,\n} from \"@/registry/erbium/ui/stepper\";\n\nconst steps = [\n  { id: \"welcome\", title: \"Welcome\", body: \"A short tour of your new workspace.\" },\n  { id: \"projects\", title: \"Projects\", body: \"Projects hold your files and the people on them.\" },\n  { id: \"search\", title: \"Search\", body: \"Search finds any file, comment or person.\" },\n  { id: \"sharing\", title: \"Sharing\", body: \"Share a link to bring anyone into a project.\" },\n  { id: \"done\", title: \"Done\", body: \"You are ready to start your first project.\" },\n];\n\nconst titles = new Map(steps.map((step) => [step.id, step.title]));\n\nexport default function StepperDotsExample() {\n  return (\n    <Stepper steps={steps} className=\"max-w-xs items-center\">\n      <StepperDots aria-label=\"Tour\" label={(step) => titles.get(step.id) ?? step.id} />\n      {steps.map((step) => (\n        <StepperPanel\n          key={step.id}\n          value={step.id}\n          className=\"min-h-12 text-center text-control text-pretty\"\n        >\n          {step.body}\n        </StepperPanel>\n      ))}\n      <StepperActions className=\"w-full\">\n        <StepperPrevious />\n        <StepperNext finishLabel=\"Start\" />\n      </StepperActions>\n    </Stepper>\n  );\n}\n",
+      "path": "src/stepper/variants/dots.tsx",
+      "target": "@components/showcase/stepper/variants/dots.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

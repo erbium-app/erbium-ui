@@ -4,8 +4,6 @@ import OverviewExample from "./variants/overview";
 import OverviewSource from "./variants/overview.tsx?raw";
 import ReadOnlyExample from "./variants/read-only";
 import ReadOnlySource from "./variants/read-only.tsx?raw";
-import BlockedExample from "./variants/blocked";
-import BlockedSource from "./variants/blocked.tsx?raw";
 import StatusExample from "./variants/status";
 import StatusSource from "./variants/status.tsx?raw";
 import ProgressExample from "./variants/progress";
@@ -16,12 +14,12 @@ import VerticalExample from "./variants/vertical";
 import VerticalSource from "./variants/vertical.tsx?raw";
 import TabsExample from "./variants/tabs";
 import TabsSource from "./variants/tabs.tsx?raw";
-import TanstackFormExample from "./variants/tanstack-form";
-import TanstackFormSource from "./variants/tanstack-form.tsx?raw";
+
+const COMPONENT = "step-indicator";
 
 const meta = {
   parameters: {
-    docs: { description: { component: componentDocumentation("step-indicator") } },
+    docs: { description: { component: componentDocumentation(COMPONENT) } },
     layout: "centered",
   },
 } satisfies Meta;
@@ -33,7 +31,7 @@ type Story = StoryObj<typeof meta>;
 export const Overview: Story = {
   parameters: {
     docs: {
-      description: { story: variantDocumentation("step-indicator", "overview") },
+      description: { story: variantDocumentation(COMPONENT, "overview") },
       source: { code: OverviewSource },
     },
   },
@@ -43,27 +41,17 @@ export const Overview: Story = {
 export const ReadOnly: Story = {
   parameters: {
     docs: {
-      description: { story: variantDocumentation("step-indicator", "read-only") },
+      description: { story: variantDocumentation(COMPONENT, "read-only") },
       source: { code: ReadOnlySource },
     },
   },
   render: ReadOnlyExample,
 };
 
-export const Blocked: Story = {
-  parameters: {
-    docs: {
-      description: { story: variantDocumentation("step-indicator", "blocked") },
-      source: { code: BlockedSource },
-    },
-  },
-  render: BlockedExample,
-};
-
 export const Status: Story = {
   parameters: {
     docs: {
-      description: { story: variantDocumentation("step-indicator", "status") },
+      description: { story: variantDocumentation(COMPONENT, "status") },
       source: { code: StatusSource },
     },
   },
@@ -73,7 +61,7 @@ export const Status: Story = {
 export const Progress: Story = {
   parameters: {
     docs: {
-      description: { story: variantDocumentation("step-indicator", "progress") },
+      description: { story: variantDocumentation(COMPONENT, "progress") },
       source: { code: ProgressSource },
     },
   },
@@ -83,7 +71,7 @@ export const Progress: Story = {
 export const Autoplay: Story = {
   parameters: {
     docs: {
-      description: { story: variantDocumentation("step-indicator", "autoplay") },
+      description: { story: variantDocumentation(COMPONENT, "autoplay") },
       source: { code: AutoplaySource },
     },
   },
@@ -93,7 +81,7 @@ export const Autoplay: Story = {
 export const Vertical: Story = {
   parameters: {
     docs: {
-      description: { story: variantDocumentation("step-indicator", "vertical") },
+      description: { story: variantDocumentation(COMPONENT, "vertical") },
       source: { code: VerticalSource },
     },
   },
@@ -103,19 +91,9 @@ export const Vertical: Story = {
 export const Tabs: Story = {
   parameters: {
     docs: {
-      description: { story: variantDocumentation("step-indicator", "tabs") },
+      description: { story: variantDocumentation(COMPONENT, "tabs") },
       source: { code: TabsSource },
     },
   },
   render: TabsExample,
-};
-
-export const TanstackForm: Story = {
-  parameters: {
-    docs: {
-      description: { story: variantDocumentation("step-indicator", "tanstack-form") },
-      source: { code: TanstackFormSource },
-    },
-  },
-  render: TanstackFormExample,
 };

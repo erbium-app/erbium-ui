@@ -115,11 +115,12 @@ function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
 
 ## Composition
 
-Questionnaire owns the ordered items, active item, answer state, validation,
+Questionnaire is a [Stepper](/docs/components/stepper): its flow owns the ordered items, the active item, which items can be reached, their marks and finishing, so Next, Enter, Skip, the step dots and submit all move through one place that checks the shown question first. The answers (choices, inputs and shortcuts) come from the headless primitive. The containing page, card, dialog, or drawer owns close and cancellation behavior, persistence, transport, and branching.
 
-progress, and navigation. The containing page, card, dialog, or drawer owns
-
-close and cancellation behavior, persistence, transport, and branching.
+- `items` is required: the questions in order, with `required` and `disabled`.
+- `item`, `defaultItem` and `onItemChange` control the shown question. `defaultItem` resumes there, counting the questions before it as answered.
+- `guard` checks an answered question before the questionnaire leaves it, as a stepper guard does.
+- `onFinish` replaces the native submit once the last question passes; `QuestionnaireForm` uses it to submit TanStack Form.
 
 ```text
 Questionnaire
@@ -140,7 +141,7 @@ Questionnaire
 
 ## Required Answers
 
-A question that cannot be skipped is `required` in the questionnaire's `items`, declared once: each `QuestionnaireItem` takes it from its definition (set `required` on the item only when you pass no `items`). Its title then ends with the same required mark as a required field's label, and `QuestionnaireSkip` hides for it. Next, Enter and submit are rejected while the active question is unanswered: the error eases in under the answers, and the answers shake on every rejected attempt, as a field's control does after a rejected form submit. Nothing needs wiring in the composition.
+A question that cannot be skipped is `required` in the questionnaire's `items`, declared once: each `QuestionnaireItem` takes it from its definition. Its title then ends with the same required mark as a required field's label, and `QuestionnaireSkip` hides for it. Next, Enter, a step dot ahead and submit are rejected while the active question is unanswered: the flow marks it, the error eases in under the answers, and the answers shake on every rejected attempt, as a field's control does after a rejected form submit. Answering clears the mark. Nothing needs wiring in the composition.
 
 ## Server Rendering
 
@@ -158,9 +159,9 @@ shortcuts. See the
 
 and invalid items and answer controls expose `aria-invalid`.
 
-Fixed choices preserve native radio and checkbox behavior. Progress is exposed
+Fixed choices preserve native radio and checkbox behavior. The step indicator is
 
-as a named progressbar, navigation uses real buttons, and inactive items and
+an ordered list of step buttons named "Question 1 of 3", navigation uses real buttons, and inactive items and
 
 actions are hidden and inert. Successful navigation focuses the newly active
 

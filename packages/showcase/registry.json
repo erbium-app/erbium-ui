@@ -18523,7 +18523,7 @@
       "name": "questionnaire-progress",
       "type": "registry:block",
       "title": "Questionnaire: Step Indicator",
-      "description": "Use `QuestionnaireStepIndicator` to show position with dots driven by the questionnaire state. Each step already shown is a button that returns to it; later steps open as the questionnaire reaches them, so the dots never skip an unanswered question. Pass `onValueChange` and `reach` only when the host decides navigation itself. The Progress primitive remains available for fully custom indicators.",
+      "description": "Use `QuestionnaireStepIndicator` to show position with dots driven by the questionnaire's flow. It is the stepper's `StepperDots`: each question the flow can reach is a button that moves to it, a dot ahead checks the shown question first, and answered, skipped and rejected questions keep their marks. Render one, outside the items.",
       "registryDependencies": ["@erbium/questionnaire", "@erbium/styles", "@erbium/toast"],
       "files": [
         {
@@ -22559,32 +22559,16 @@
       ]
     },
     {
-      "name": "step-indicator-blocked",
-      "type": "registry:component",
-      "title": "Step Indicator: Blocked",
-      "description": "Set `reach` to the furthest step the user has earned. Dots after it are blocked while earlier dots stay clickable. Use `disabled` on an item for rules that are not linear, or refuse the change inside `onValueChange` when blocking depends on validation.",
-      "registryDependencies": ["@erbium/button", "@erbium/step-indicator", "@erbium/styles"],
-      "files": [
-        {
-          "path": "src/step-indicator/variants/blocked.tsx",
-          "target": "@components/showcase/step-indicator/variants/blocked.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
       "description": "All step-indicator examples.",
       "name": "step-indicator-examples",
       "registryDependencies": [
         "@erbium-examples/step-indicator-overview",
         "@erbium-examples/step-indicator-read-only",
-        "@erbium-examples/step-indicator-blocked",
         "@erbium-examples/step-indicator-status",
         "@erbium-examples/step-indicator-progress",
         "@erbium-examples/step-indicator-autoplay",
         "@erbium-examples/step-indicator-vertical",
-        "@erbium-examples/step-indicator-tabs",
-        "@erbium-examples/step-indicator-tanstack-form"
+        "@erbium-examples/step-indicator-tabs"
       ],
       "title": "Step Indicator examples",
       "type": "registry:item"
@@ -22593,8 +22577,8 @@
       "name": "step-indicator-overview",
       "type": "registry:component",
       "title": "Step Indicator: Overview",
-      "description": "Pass `count`, `value` and `onValueChange`. Earlier steps read as complete, the current step stretches into a pill.",
-      "registryDependencies": ["@erbium/button", "@erbium/step-indicator", "@erbium/styles"],
+      "description": "Pass `count`, `value` and `onValueChange`. Earlier positions read as complete and the current one stretches into a pill. The indicator only shows a position: for a flow that checks each step before moving on, use a [Stepper](/docs/components/stepper) with `StepperDots`.",
+      "registryDependencies": ["@erbium/step-indicator", "@erbium/styles"],
       "files": [
         {
           "path": "src/step-indicator/variants/overview.tsx",
@@ -22650,13 +22634,11 @@
       "type": "registry:item",
       "title": "Step Indicator stories",
       "description": "All step-indicator variants as portable React CSF stories.",
-      "dependencies": ["effect@4.1.5"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/button",
         "@erbium/card",
         "@erbium/csp-provider",
-        "@erbium/form",
         "@erbium/icon",
         "@erbium/skeleton",
         "@erbium/slider",
@@ -22681,11 +22663,6 @@
         {
           "path": "src/step-indicator/variants/autoplay.tsx",
           "target": "@components/showcase/step-indicator/variants/autoplay.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/step-indicator/variants/blocked.tsx",
-          "target": "@components/showcase/step-indicator/variants/blocked.tsx",
           "type": "registry:component"
         },
         {
@@ -22714,11 +22691,6 @@
           "type": "registry:component"
         },
         {
-          "path": "src/step-indicator/variants/tanstack-form.tsx",
-          "target": "@components/showcase/step-indicator/variants/tanstack-form.tsx",
-          "type": "registry:component"
-        },
-        {
           "path": "src/step-indicator/variants/vertical.tsx",
           "target": "@components/showcase/step-indicator/variants/vertical.tsx",
           "type": "registry:component"
@@ -22735,26 +22707,6 @@
         {
           "path": "src/step-indicator/variants/tabs.tsx",
           "target": "@components/showcase/step-indicator/variants/tabs.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
-      "name": "step-indicator-tanstack-form",
-      "type": "registry:component",
-      "title": "Step Indicator: TanStack Form",
-      "description": "Keep the step in React state and the values in TanStack Form. One Effect Schema describes the whole form; each step validates its field with the matching `Schema.toStandardSchemaV1(Signup.fields.name)` validator.\n\n- **Mount every field.** `form.validateField` only finds validators on mounted fields, so an unmounted step would pass validation unchecked. Render all steps and hide the inactive ones with `field.TextField`'s `hidden`.\n- **Validate only what the user passes.** `goTo` validates each step on the way forward, which also marks it touched, and stops at the first invalid one. Steps ahead are never validated, so they never show an error before the user reaches them.\n- **Gate errors on `isTouched`.** The step's `invalid` uses `isTouched && !isValid`; the bound field shows its error under the same rule.\n- **Submit validates everything.** `onSubmitInvalid` sends the user to the first failing step.\n- Going back is always free.",
-      "dependencies": ["effect@4.1.5"],
-      "registryDependencies": [
-        "@erbium/button",
-        "@erbium/form",
-        "@erbium/step-indicator",
-        "@erbium/styles"
-      ],
-      "files": [
-        {
-          "path": "src/step-indicator/variants/tanstack-form.tsx",
-          "target": "@components/showcase/step-indicator/variants/tanstack-form.tsx",
           "type": "registry:component"
         }
       ]
@@ -22802,6 +22754,20 @@
       ]
     },
     {
+      "name": "stepper-dots",
+      "type": "registry:component",
+      "title": "Stepper: Dots",
+      "description": "Render `StepperDots` instead of `StepperList` when step names would crowd the layout, as in a tour or a questionnaire. Each enabled step is a dot that follows the flow: the current one stretches into a pill, done steps fill, and a step the flow cannot reach yet is blocked. Name the steps with `label`; each name is followed by the step's status.",
+      "registryDependencies": ["@erbium/stepper", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/stepper/variants/dots.tsx",
+          "target": "@components/showcase/stepper/variants/dots.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "stepper-dynamic",
       "type": "registry:component",
       "title": "Stepper: Dynamic",
@@ -22831,6 +22797,7 @@
         "@erbium-examples/stepper-tanstack-form",
         "@erbium-examples/stepper-controlled",
         "@erbium-examples/stepper-dynamic",
+        "@erbium-examples/stepper-dots",
         "@erbium-examples/stepper-vertical",
         "@erbium-examples/stepper-headless"
       ],
@@ -22939,6 +22906,11 @@
         {
           "path": "src/stepper/variants/controlled.tsx",
           "target": "@components/showcase/stepper/variants/controlled.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/stepper/variants/dots.tsx",
+          "target": "@components/showcase/stepper/variants/dots.tsx",
           "type": "registry:component"
         },
         {

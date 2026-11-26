@@ -1,19 +1,19 @@
 import { useState } from "react";
 import { StepIndicator, StepIndicatorItem } from "@erbium/ui/blocks/step-indicator";
 
-const steps = [
-  { disabled: false, invalid: false, label: "Account" },
-  { disabled: false, invalid: true, label: "Profile" },
-  { disabled: false, invalid: false, label: "Billing" },
-  { disabled: true, invalid: false, label: "Review" },
+const photos = [
+  { disabled: false, invalid: false, label: "Beach" },
+  { disabled: false, invalid: true, label: "Harbour, upload failed" },
+  { disabled: false, invalid: false, label: "Market" },
+  { disabled: true, invalid: false, label: "Sunset, still processing" },
 ];
 
 export default function StepIndicatorStatusExample() {
-  const [step, setStep] = useState(2);
+  const [photo, setPhoto] = useState(2);
 
   return (
-    <StepIndicator value={step} onValueChange={setStep}>
-      {steps.map((item, index) => (
+    <StepIndicator variant="dots" value={photo} onValueChange={setPhoto} aria-label="Photos">
+      {photos.map((item, index) => (
         <StepIndicatorItem
           key={item.label}
           index={index}

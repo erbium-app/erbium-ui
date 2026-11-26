@@ -1598,7 +1598,12 @@
       "type": "registry:ui",
       "title": "Questionnaire",
       "description": "Erbium questionnaire component.",
-      "dependencies": ["@base-ui/utils", "@shadcn/react", "@tanstack/react-form"],
+      "dependencies": [
+        "@base-ui/utils",
+        "@erbium-ui/react@^0.1.0",
+        "@shadcn/react",
+        "@tanstack/react-form"
+      ],
       "registryDependencies": [
         "@erbium/animate-height",
         "@erbium/button",
@@ -1610,7 +1615,7 @@
         "@erbium/shake",
         "@erbium/stateful-button",
         "@erbium/stateful-icon",
-        "@erbium/step-indicator",
+        "@erbium/stepper",
         "@erbium/utils"
       ],
       "files": [
@@ -1933,6 +1938,7 @@
         "@erbium/form",
         "@erbium/icon",
         "@erbium/spinner",
+        "@erbium/step-indicator",
         "@erbium/utils"
       ],
       "files": [

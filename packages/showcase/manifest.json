@@ -4954,13 +4954,6 @@
         "title": "Read Only"
       },
       {
-        "exportName": "Blocked",
-        "slug": "blocked",
-        "source": "src/step-indicator/variants/blocked.tsx",
-        "usage": ["src/step-indicator/variants/blocked.tsx"],
-        "title": "Blocked"
-      },
-      {
         "exportName": "Status",
         "slug": "status",
         "source": "src/step-indicator/variants/status.tsx",
@@ -4994,13 +4987,6 @@
         "source": "src/step-indicator/variants/tabs.tsx",
         "usage": ["src/step-indicator/variants/tabs.tsx"],
         "title": "Tabs"
-      },
-      {
-        "exportName": "TanstackForm",
-        "slug": "tanstack-form",
-        "source": "src/step-indicator/variants/tanstack-form.tsx",
-        "usage": ["src/step-indicator/variants/tanstack-form.tsx"],
-        "title": "TanStack Form"
       }
     ]
   },
@@ -5056,6 +5042,13 @@
         "source": "src/stepper/variants/dynamic.tsx",
         "usage": ["src/stepper/variants/dynamic.tsx"],
         "title": "Dynamic"
+      },
+      {
+        "exportName": "Dots",
+        "slug": "dots",
+        "source": "src/stepper/variants/dots.tsx",
+        "usage": ["src/stepper/variants/dots.tsx"],
+        "title": "Dots"
       },
       {
         "exportName": "Vertical",

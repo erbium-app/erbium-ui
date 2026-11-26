@@ -1,32 +1,20 @@
 import { useState } from "react";
 import { StepIndicator } from "@erbium/ui/blocks/step-indicator";
-import { Button } from "@erbium/ui/components/button";
+
+const tips = [
+  "Drag files onto any page to upload them.",
+  "Press Command K to search every project.",
+  "Pin a project to keep it at the top.",
+  "Share a link to invite anyone to a file.",
+];
 
 export default function StepIndicatorExample() {
-  const [step, setStep] = useState(1);
+  const [tip, setTip] = useState(0);
 
   return (
-    <div className="flex flex-col items-center gap-4">
-      <StepIndicator count={4} value={step} onValueChange={setStep} aria-label="Setup progress" />
-      <div className="flex gap-2">
-        <Button
-          variant="outline"
-          disabled={step === 0}
-          onClick={() => {
-            setStep(step - 1);
-          }}
-        >
-          Back
-        </Button>
-        <Button
-          disabled={step === 3}
-          onClick={() => {
-            setStep(step + 1);
-          }}
-        >
-          Next
-        </Button>
-      </div>
+    <div className="flex w-72 flex-col items-center gap-4">
+      <p className="min-h-12 text-center text-control text-pretty">{tips[tip]}</p>
+      <StepIndicator count={tips.length} value={tip} onValueChange={setTip} aria-label="Tips" />
     </div>
   );
 }

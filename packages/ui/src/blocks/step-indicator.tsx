@@ -26,7 +26,6 @@ type StepIndicatorState = {
 };
 
 type StepIndicatorContextValue = StepIndicatorState & {
-  reach: number;
   select: (index: number) => void;
 };
 
@@ -78,6 +77,11 @@ const derivedStatus = (
   return index === value ? "current" : "upcoming";
 };
 
+/**
+ * The dot a step draws, styled from the `group/step` control around it: `data-status`
+ * (`current` stretches into a pill, `complete` and `skipped` fill) and `data-invalid`. The
+ * stepper's dots draw the same mark.
+ */
 const StepIndicatorDot = ({ orientation }: { orientation: StepIndicatorOrientation }) => {
   const horizontal = orientation === "horizontal";
 
@@ -91,7 +95,7 @@ const StepIndicatorDot = ({ orientation }: { orientation: StepIndicatorOrientati
         horizontal
           ? "h-1.5 w-1.5 transition-all group-data-[status=current]/step:w-6"
           : "h-1.5 w-1.5 transition-all group-data-[status=current]/step:h-6",
-        "group-data-[status=complete]/step:bg-foreground/50",
+        "group-data-[status=complete]/step:bg-foreground/50 group-data-[status=skipped]/step:bg-foreground/30",
         "group-data-invalid/step:bg-error/30 group-data-invalid/step:group-data-[status=complete]/step:bg-error",
       )}
     >
@@ -119,16 +123,14 @@ const StepIndicatorItem = ({
   index,
   status: statusProp,
   invalid = false,
-  disabled: disabledProp = false,
+  disabled = false,
   label,
   render,
   className,
   onClick,
   ...props
 }: StepIndicatorItemProps) => {
-  const { value, variant, interactive, orientation, reach, select } = useStepIndicator();
-  // Blocked by `reach` or by the item's own `disabled`. The current step stays selectable.
-  const disabled = disabledProp || (index > reach && index !== value);
+  const { value, variant, interactive, orientation, select } = useStepIndicator();
   const status = statusProp ?? derivedStatus(index, value, variant);
   const state: StepIndicatorItemState = { disabled, index, invalid, status };
 
@@ -203,8 +205,6 @@ type StepIndicatorProps = Omit<ComponentProps<"ol">, "defaultValue"> & {
   onValueChange?: (index: number) => void;
   /** Shorthand for rendering `count` default items when there are no children. */
   count?: number;
-  /** Furthest step index that can be selected. Later steps are blocked. Defaults to no limit. */
-  reach?: number;
   /**
    * Fills the current step from 0 to 1. Defaults to 1 (solid). A motion value moves the fill
    * every frame without re-rendering, for when something else owns the clock.
@@ -218,8 +218,10 @@ type StepIndicatorProps = Omit<ComponentProps<"ol">, "defaultValue"> & {
   autoplay?: boolean | StepIndicatorAutoplay;
   orientation?: StepIndicatorOrientation;
   /**
-   * `steps` is a sequence: earlier steps read as complete. `dots` is a set of
-   * peers (carousel slides, tabs): only the current one is marked.
+   * `steps` shows a position in a sequence: earlier steps read as complete. `dots` is a set of
+   * peers (carousel slides, tabs): only the current one is marked. The indicator only shows a
+   * position; a flow the user moves through, with steps to check and complete, is a `Stepper`,
+   * drawn as dots by `StepperDots`.
    */
   variant?: StepIndicatorVariant;
   render?: useRender.RenderProp<StepIndicatorState>;
@@ -317,7 +319,6 @@ const StepIndicator = ({
   count,
   progress,
   autoplay,
-  reach = Number.POSITIVE_INFINITY,
   orientation = "horizontal",
   variant = "steps",
   render,
@@ -384,14 +385,14 @@ const StepIndicator = ({
   });
 
   const context = useMemo(
-    () => ({ count, interactive, orientation, reach, select, value, variant }),
-    [count, interactive, orientation, reach, select, value, variant],
+    () => ({ count, interactive, orientation, select, value, variant }),
+    [count, interactive, orientation, select, value, variant],
   );
 
   return <StepIndicatorContext value={context}>{element}</StepIndicatorContext>;
 };
 
-export { StepIndicator, StepIndicatorItem };
+export { StepIndicator, StepIndicatorDot, StepIndicatorItem };
 
 export type {
   StepIndicatorAutoplay,

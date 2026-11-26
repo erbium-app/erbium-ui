@@ -30,14 +30,14 @@ export default function QuestionnairePlaygroundExample(
   } = defaultProps,
 ) {
   return (
-    <Questionnaire className="w-80">
-      <QuestionnaireItem name="plan" required={args.required}>
+    <Questionnaire className="w-80" items={[{ name: "plan", required: args.required }]}>
+      <QuestionnaireItem name="plan">
         <QuestionnaireTitle>{args.prompt}</QuestionnaireTitle>
         <QuestionnaireDescription>{args.description}</QuestionnaireDescription>
         <QuestionnaireChoices>
-          {Array.from({ length: args.choices }, (_, index) => (
-            <QuestionnaireChoice key={index} value={`option-${index}`}>
-              Option {index + 1}
+          {Array.from({ length: args.choices }, (_, index) => index + 1).map((option) => (
+            <QuestionnaireChoice key={option} value={`option-${option}`}>
+              Option {option}
             </QuestionnaireChoice>
           ))}
         </QuestionnaireChoices>
