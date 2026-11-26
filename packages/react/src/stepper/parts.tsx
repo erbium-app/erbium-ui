@@ -9,6 +9,7 @@ import {
   getPreviousBlock,
   getSkipBlock,
   getStepResolution,
+  isStepReached,
   getStepStatus,
   isPending,
 } from "./core";
@@ -331,6 +332,8 @@ interface StepperItemState extends Record<string, unknown> {
   status: StepperStepStatus;
   /** What the user has done with the step, even while it is current. Connectors fill from it. */
   resolution: StepperResolution | "pending";
+  /** The user has got this far: the step is current or resolved, or the one before it is. */
+  reached: boolean;
   optional: boolean;
   disabled: boolean;
   invalid: boolean;
@@ -368,6 +371,7 @@ const itemStateOf = (
     pending: state.phase.type === "guarding" && state.phase.from === value,
     position: position === undefined ? 0 : position + 1,
     reachable: block === null || block === "same",
+    reached: isStepReached(flow, state, value),
     resolution: getStepResolution(state, value),
     review: flow.review === value,
     status: getStepStatus(state, value),
@@ -402,10 +406,11 @@ const StepperItem = ({ value, render, ...props }: StepperItemProps) => {
   return <StepperItemContext value={state}>{element}</StepperItemContext>;
 };
 
+/** What the trigger's name adds. A step the user returned to still says what was done with it. */
 const statusText = (item: StepperItemState, labels: StepperLabels) =>
   [
-    item.status === "complete" ? labels.complete : null,
-    item.status === "skipped" ? labels.skipped : null,
+    item.resolution === "complete" ? labels.complete : null,
+    item.resolution === "skipped" ? labels.skipped : null,
     item.invalid ? labels.invalid : null,
     item.optional ? labels.optional : null,
   ]

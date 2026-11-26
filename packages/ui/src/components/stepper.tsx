@@ -91,7 +91,10 @@ const StepperTrigger = ({
   />
 );
 
-/** The mark's default content: a check, a dash, an alert or the step's number. */
+/**
+ * The mark's default content: a check, a dash, an alert or the step's number. It follows what was
+ * done with the step, so a completed step the user returns to keeps its check.
+ */
 const IndicatorContent = () => {
   const item = useStepperItem();
 
@@ -103,11 +106,11 @@ const IndicatorContent = () => {
     return <Icon name="triangle-alert" className="size-3.5" />;
   }
 
-  if (item.status === "complete") {
+  if (item.resolution === "complete") {
     return <Icon name="check" className="size-3.5" />;
   }
 
-  if (item.status === "skipped") {
+  if (item.resolution === "skipped") {
     return <Icon name="minus" className="size-3.5" />;
   }
 
@@ -123,12 +126,15 @@ const StepperIndicator = ({
     data-slot="stepper-indicator"
     className={cn(
       "flex size-7 shrink-0 items-center justify-center rounded-full border text-control-sm tabular-nums",
-      "transition-colors duration-150 motion-reduce:transition-none",
+      "transition-[color,background-color,border-color,box-shadow] duration-150 motion-reduce:transition-none",
       "border-border text-muted-foreground",
-      "data-[status=current]:border-foreground data-[status=current]:text-foreground",
-      "data-[status=complete]:border-transparent data-[status=complete]:bg-primary data-[status=complete]:text-primary-foreground",
+      // Fill and mark come from the resolution, so going back keeps a done step done. A step the
+      // user got to but has not finished reads as available, and an offset ring marks where they are.
+      "data-reached:data-[resolution=pending]:border-foreground data-reached:data-[resolution=pending]:text-foreground",
+      "data-[status=current]:ring-2 data-[status=current]:ring-foreground data-[status=current]:ring-offset-2 data-[status=current]:ring-offset-background",
+      "data-[resolution=complete]:border-transparent data-[resolution=complete]:bg-primary data-[resolution=complete]:text-primary-foreground",
       // Skipped reads as a dashed ring with a dash, not only a colour.
-      "data-[status=skipped]:border-dashed",
+      "data-[resolution=skipped]:border-dashed",
       "data-invalid:border-error data-invalid:bg-transparent data-invalid:text-error",
       className,
     )}
@@ -151,7 +157,7 @@ const StepperTitle = ({
     data-slot="stepper-title"
     className={cn(
       "truncate text-control-sm text-muted-foreground",
-      "data-invalid:text-error data-[status=complete]:text-foreground data-[status=current]:text-foreground",
+      "data-invalid:text-error data-reached:text-foreground",
       className,
     )}
     {...props}

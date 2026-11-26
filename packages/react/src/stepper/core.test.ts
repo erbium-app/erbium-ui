@@ -8,6 +8,7 @@ import {
   getNextBlock,
   getSkipBlock,
   getStepStatus,
+  isStepReached,
   reduce,
 } from "./core";
 import type { StepperEvent, StepperFlow, StepperState, StepperStep } from "./core";
@@ -144,6 +145,22 @@ describe("stepper machine: behaviour", () => {
       extras: "skipped",
       required: "required",
     });
+  });
+
+  it("keeps the steps the user got to reached after going back to the first", () => {
+    const flow = createFlow(checkout);
+
+    const back = createInitialState(flow, {
+      current: "account",
+      resolution: { account: "complete", extras: "skipped" },
+    });
+
+    expect(checkout.map((step) => isStepReached(flow, back, step.id))).toStrictEqual([
+      true,
+      true,
+      true,
+      false,
+    ]);
   });
 
   it("blocks a linear jump over an unresolved required step, but not over an optional one", () => {

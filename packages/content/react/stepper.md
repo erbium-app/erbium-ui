@@ -54,7 +54,7 @@ Steps are identified by a stable `id`, never an index, so a step keeps its statu
 
 ### Status
 
-A step's status is derived, never stored: `current`, else `complete` or `skipped`, else `pending`. `resolution` is what the user has done with the step whatever its status, so a completed step the user returns to is `current` with resolution `complete`; fill connectors from `data-resolution`. Alongside it, a step can be `invalid` (its guard or the final submit reported issues), `optional`, `disabled`, `review` and `reachable`.
+A step's status is derived, never stored: `current`, else `complete` or `skipped`, else `pending`. `resolution` is what the user has done with the step whatever its status, so a completed step the user returns to is `current` with resolution `complete`; fill connectors and marks from `data-resolution`. A step is `reached` once the user has got to it: it is current or resolved, or the step before it is, so a step left by going back stays reached. Alongside these, a step can be `invalid` (its guard or the final submit reported issues), `optional`, `disabled`, `review` and `reachable`.
 
 ### Navigation
 
@@ -114,7 +114,7 @@ The adapter reads the form structurally, so `@erbium-ui/react` does not depend o
 
 WAI-ARIA has no stepper pattern. The steps are an ordered list of buttons, not tabs: tabs promise free arrow-key access and `aria-controls` relationships a linear flow does not keep.
 
-- The current step's trigger has `aria-current="step"`. Its accessible name ends with the status, such as ", completed, optional". Override the words with `labels`.
+- The current step's trigger has `aria-current="step"`. Its accessible name ends with what was done with the step, such as ", completed, optional", which a step the user returns to keeps. Override the words with `labels`.
 - A step that cannot be reached, and a control that cannot act, is `aria-disabled`, not `disabled`, so it keeps focus and its place in the reading order. A control is `aria-busy` while a guard runs.
 - After a move, the new panel takes focus when focus would otherwise be lost. `Stepper.Announcer` is a polite live region that names the new step, for when focus stays on the control.
 - `Title` and `Description` are `<span>`s, which are valid inside the trigger's button.

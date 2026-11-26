@@ -133,9 +133,10 @@ describe("Stepper parts", () => {
     const account = screen.getByRole("button", { name: /Account/u });
 
     expect({
+      name: account.textContent,
       resolution: account.dataset.resolution,
       status: account.dataset.status,
-    }).toStrictEqual({ resolution: "complete", status: "current" });
+    }).toStrictEqual({ name: "1Account, completed", resolution: "complete", status: "current" });
   });
 
   it("keeps a move pending while its guard runs and ignores a second click", async () => {

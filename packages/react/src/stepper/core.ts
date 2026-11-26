@@ -487,6 +487,28 @@ const getStepStatus = (state: StepperState, id: StepperStepId): StepperStepStatu
 const getStepResolution = (state: StepperState, id: StepperStepId): StepperResolution | "pending" =>
   state.resolution[id] ?? "pending";
 
+/**
+ * Whether the user has got as far as step `id`: it is current or resolved, or the enabled step
+ * before it is resolved. A step the user left by going back stays reached, so its connector and
+ * its mark agree.
+ */
+const isStepReached = (flow: StepperFlow, state: StepperState, id: StepperStepId): boolean => {
+  const at = positionOf(flow, id);
+
+  if (at < 0) {
+    return false;
+  }
+
+  const before = flow.enabled[at - 1];
+
+  return (
+    id === state.current ||
+    has(state.resolution, id) ||
+    before === undefined ||
+    has(state.resolution, before.id)
+  );
+};
+
 // Transitions
 
 const omit = <T>(record: Readonly<Record<string, T>>, key: string): Record<string, T> => {
@@ -1147,6 +1169,7 @@ export {
   getSnapshot,
   getStepResolution,
   getStepStatus,
+  isStepReached,
   isPending,
   isSameFlow,
   reduce,
