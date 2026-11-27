@@ -50,5 +50,5 @@ const TableCaption = ({ className, ...props }: React.ComponentProps<"caption">) 
 
 export { Table, TableHeader, TableBody, TableFooter, TableHead, TableRow, TableCell, TableCaption };
 
-/** TanStack Table's headless hook used with the shadcn Table primitives. */
+/** TanStack Table's headless hook used with the Erbium Table primitives. */
 export { useTable } from "@tanstack/react-table";

@@ -5,7 +5,7 @@ import type { FilterSearchColumn, FilterSearchFields, SearchParams } from "./fil
 /*
  * The URL form of a data table's query, so a sorted, filtered page of a table is a link:
  *
- *   ?q=acme&sort=issued.desc,customer&page=2&size=20&status=paid,overdue
+ *   ?q=erbium&sort=issued.desc,customer&page=2&size=20&status=paid,overdue
  *
  * `q` is the search, `sort` the sort order (`.desc` marks a descending column), `page` the
  * 1-based page, `size` the page size, and each filterable column keeps its rule under its id.
