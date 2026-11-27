@@ -4,6 +4,7 @@
     "editable/index",
     "image/index",
     "pagination/index",
+    "qr-code/index",
     "segmented-control/index",
     "slider/index",
     "stepper/index",
@@ -12,6 +13,7 @@
   "server": [
     "image/core",
     "pagination/core",
+    "qr-code/core",
     "segmented-control/core",
     "slider/core",
     "stepper/core",

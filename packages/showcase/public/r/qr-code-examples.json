@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "description": "All qr-code examples.",
+  "name": "qr-code-examples",
+  "registryDependencies": [
+    "@erbium-examples/qr-code-playground",
+    "@erbium-examples/qr-code-overview",
+    "@erbium-examples/qr-code-tones",
+    "@erbium-examples/qr-code-logo",
+    "@erbium-examples/qr-code-download",
+    "@erbium-examples/qr-code-loading",
+    "@erbium-examples/qr-code-share-link",
+    "@erbium-examples/qr-code-two-factor",
+    "@erbium-examples/qr-code-expiring",
+    "@erbium-examples/qr-code-dialog",
+    "@erbium-examples/qr-code-item"
+  ],
+  "title": "QR Code examples",
+  "type": "registry:item"
+}

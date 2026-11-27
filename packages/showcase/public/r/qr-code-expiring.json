@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "qr-code-expiring",
+  "type": "registry:block",
+  "title": "QR Code: Expiring code",
+  "description": "Put a `QRCodeOverlay` in a `QRCodeFrame` when the code should no longer be scanned. The code fades and blurs beneath it. The server still has to refuse an expired link.",
+  "registryDependencies": ["@erbium/button", "@erbium/qr-code", "@erbium/styles"],
+  "files": [
+    {
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  QRCode,\n  QRCodeCaption,\n  QRCodeFrame,\n  QRCodeImage,\n  QRCodeOverlay,\n} from \"@/registry/erbium/ui/qr-code\";\nimport { useEffect, useState } from \"react\";\n\n// Seconds. Short, so the example expires while you watch.\nconst lifetime = 15;\n\nexport default function QRCodeExpiringExample() {\n  // In an app the server issues each link and refuses an expired one.\n  const [issue, setIssue] = useState(1);\n  const [remaining, setRemaining] = useState(lifetime);\n  const expired = remaining === 0;\n\n  useEffect(() => {\n    // At zero this sets the same value, so the countdown stops there.\n    const timer = setTimeout(() => {\n      setRemaining(Math.max(0, remaining - 1));\n    }, 1000);\n\n    return () => {\n      clearTimeout(timer);\n    };\n  }, [remaining]);\n\n  return (\n    <QRCode value={`https://ui.erbium.app/pair#token=demo-${issue}`}>\n      <QRCodeFrame>\n        <QRCodeImage aria-label={expired ? \"Expired pairing code\" : \"Scan to pair this device\"} />\n        {expired ? (\n          <QRCodeOverlay>\n            <span>Code expired</span>\n            <Button\n              size=\"sm\"\n              onClick={() => {\n                setIssue((current) => current + 1);\n                setRemaining(lifetime);\n              }}\n            >\n              New code\n            </Button>\n          </QRCodeOverlay>\n        ) : null}\n      </QRCodeFrame>\n      <QRCodeCaption className=\"tabular-nums\">\n        {expired ? \"Get a new code to pair.\" : `Expires in ${remaining} seconds.`}\n      </QRCodeCaption>\n    </QRCode>\n  );\n}\n",
+      "path": "src/qr-code/examples/qr-code-expiring.tsx",
+      "target": "@components/showcase/qr-code/examples/qr-code-expiring.tsx",
+      "type": "registry:component"
+    },
+    {
+      "content": "import Example from \"../examples/qr-code-expiring\";\n\nconst Variant = () => <Example />;\n\nexport default Variant;\n",
+      "path": "src/qr-code/variants/expiring.tsx",
+      "target": "@components/showcase/qr-code/variants/expiring.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

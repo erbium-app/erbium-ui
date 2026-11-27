@@ -20140,6 +20140,412 @@
       ]
     },
     {
+      "name": "qr-code-demo",
+      "type": "registry:component",
+      "title": "qr code demo",
+      "description": "Erbium qr code demo example.",
+      "registryDependencies": ["@erbium/card", "@erbium/qr-code", "@erbium/styles"],
+      "files": [
+        {
+          "content": "import {\n  Card,\n  CardContent,\n  CardDescription,\n  CardHeader,\n  CardTitle,\n} from \"@/registry/erbium/ui/card\";\nimport { QRCode, QRCodeImage } from \"@/registry/erbium/ui/qr-code\";\n\nexport default function QRCodeExample() {\n  return (\n    <Card className=\"w-72\">\n      <CardHeader>\n        <CardTitle>Open on your phone</CardTitle>\n        <CardDescription>Scan the code with your camera.</CardDescription>\n      </CardHeader>\n      <CardContent className=\"flex justify-center\">\n        <QRCode value=\"https://ui.erbium.app\">\n          <QRCodeImage aria-label=\"Scan to open ui.erbium.app\" />\n        </QRCode>\n      </CardContent>\n    </Card>\n  );\n}\n",
+          "path": "src/qr-code/examples/qr-code-demo.tsx",
+          "target": "@components/showcase/qr-code/examples/qr-code-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "qr-code-dialog",
+      "type": "registry:block",
+      "title": "QR Code: In a dialog",
+      "description": "Keep the code out of the way until someone asks for it.",
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/dialog",
+        "@erbium/qr-code",
+        "@erbium/styles"
+      ],
+      "files": [
+        {
+          "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Dialog,\n  DialogContent,\n  DialogDescription,\n  DialogHeader,\n  DialogPanel,\n  DialogTitle,\n  DialogTrigger,\n} from \"@/registry/erbium/ui/dialog\";\nimport { QRCode, QRCodeDownload, QRCodeImage } from \"@/registry/erbium/ui/qr-code\";\n\nexport default function QRCodeDialogExample() {\n  return (\n    <Dialog>\n      <DialogTrigger render={<Button variant=\"outline\">Show QR code</Button>} />\n      <DialogPanel className=\"sm:max-w-xs\">\n        <DialogHeader>\n          <DialogTitle>Open on your phone</DialogTitle>\n          <DialogDescription>Scan the code with your camera.</DialogDescription>\n        </DialogHeader>\n        <DialogContent className=\"flex justify-center\">\n          <QRCode value=\"https://ui.erbium.app\">\n            <QRCodeImage aria-label=\"Scan to open ui.erbium.app\" size=\"lg\" />\n            <QRCodeDownload fileName=\"erbium\" buttonSize=\"sm\">\n              Download\n            </QRCodeDownload>\n          </QRCode>\n        </DialogContent>\n      </DialogPanel>\n    </Dialog>\n  );\n}\n",
+          "path": "src/qr-code/examples/qr-code-dialog.tsx",
+          "target": "@components/showcase/qr-code/examples/qr-code-dialog.tsx",
+          "type": "registry:component"
+        },
+        {
+          "content": "import Example from \"../examples/qr-code-dialog\";\n\nconst Variant = () => <Example />;\n\nexport default Variant;\n",
+          "path": "src/qr-code/variants/dialog.tsx",
+          "target": "@components/showcase/qr-code/variants/dialog.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "qr-code-download",
+      "type": "registry:component",
+      "title": "QR Code: Download",
+      "description": "`QRCodeDownload` saves the code in the theme’s colors, on a solid background. For your own controls, pass `actionsRef` and call `download()` or `toBlob()`. With a Content Security Policy, PNG export needs `blob:` in `img-src`.",
+      "registryDependencies": ["@erbium/qr-code", "@erbium/styles"],
+      "files": [
+        {
+          "content": "import { QRCode, QRCodeDownload, QRCodeImage } from \"@/registry/erbium/ui/qr-code\";\n\nexport default function QRCodeDownloadExample() {\n  return (\n    <QRCode value=\"https://ui.erbium.app\">\n      <QRCodeImage aria-label=\"Scan to open ui.erbium.app\" />\n      <div className=\"flex gap-related\">\n        <QRCodeDownload fileName=\"erbium\" buttonSize=\"sm\">\n          Download PNG\n        </QRCodeDownload>\n        <QRCodeDownload fileName=\"erbium\" format=\"svg\" buttonSize=\"sm\">\n          Download SVG\n        </QRCodeDownload>\n      </div>\n    </QRCode>\n  );\n}\n",
+          "path": "src/qr-code/variants/download.tsx",
+          "target": "@components/showcase/qr-code/variants/download.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "description": "All qr-code examples.",
+      "name": "qr-code-examples",
+      "registryDependencies": [
+        "@erbium-examples/qr-code-playground",
+        "@erbium-examples/qr-code-overview",
+        "@erbium-examples/qr-code-tones",
+        "@erbium-examples/qr-code-logo",
+        "@erbium-examples/qr-code-download",
+        "@erbium-examples/qr-code-loading",
+        "@erbium-examples/qr-code-share-link",
+        "@erbium-examples/qr-code-two-factor",
+        "@erbium-examples/qr-code-expiring",
+        "@erbium-examples/qr-code-dialog",
+        "@erbium-examples/qr-code-item"
+      ],
+      "title": "QR Code examples",
+      "type": "registry:item"
+    },
+    {
+      "name": "qr-code-expiring",
+      "type": "registry:block",
+      "title": "QR Code: Expiring code",
+      "description": "Put a `QRCodeOverlay` in a `QRCodeFrame` when the code should no longer be scanned. The code fades and blurs beneath it. The server still has to refuse an expired link.",
+      "registryDependencies": ["@erbium/button", "@erbium/qr-code", "@erbium/styles"],
+      "files": [
+        {
+          "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  QRCode,\n  QRCodeCaption,\n  QRCodeFrame,\n  QRCodeImage,\n  QRCodeOverlay,\n} from \"@/registry/erbium/ui/qr-code\";\nimport { useEffect, useState } from \"react\";\n\n// Seconds. Short, so the example expires while you watch.\nconst lifetime = 15;\n\nexport default function QRCodeExpiringExample() {\n  // In an app the server issues each link and refuses an expired one.\n  const [issue, setIssue] = useState(1);\n  const [remaining, setRemaining] = useState(lifetime);\n  const expired = remaining === 0;\n\n  useEffect(() => {\n    // At zero this sets the same value, so the countdown stops there.\n    const timer = setTimeout(() => {\n      setRemaining(Math.max(0, remaining - 1));\n    }, 1000);\n\n    return () => {\n      clearTimeout(timer);\n    };\n  }, [remaining]);\n\n  return (\n    <QRCode value={`https://ui.erbium.app/pair#token=demo-${issue}`}>\n      <QRCodeFrame>\n        <QRCodeImage aria-label={expired ? \"Expired pairing code\" : \"Scan to pair this device\"} />\n        {expired ? (\n          <QRCodeOverlay>\n            <span>Code expired</span>\n            <Button\n              size=\"sm\"\n              onClick={() => {\n                setIssue((current) => current + 1);\n                setRemaining(lifetime);\n              }}\n            >\n              New code\n            </Button>\n          </QRCodeOverlay>\n        ) : null}\n      </QRCodeFrame>\n      <QRCodeCaption className=\"tabular-nums\">\n        {expired ? \"Get a new code to pair.\" : `Expires in ${remaining} seconds.`}\n      </QRCodeCaption>\n    </QRCode>\n  );\n}\n",
+          "path": "src/qr-code/examples/qr-code-expiring.tsx",
+          "target": "@components/showcase/qr-code/examples/qr-code-expiring.tsx",
+          "type": "registry:component"
+        },
+        {
+          "content": "import Example from \"../examples/qr-code-expiring\";\n\nconst Variant = () => <Example />;\n\nexport default Variant;\n",
+          "path": "src/qr-code/variants/expiring.tsx",
+          "target": "@components/showcase/qr-code/variants/expiring.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "qr-code-item",
+      "type": "registry:block",
+      "title": "QR Code: In an item",
+      "description": "A small code beside its explanation. The item’s card is the surface.",
+      "registryDependencies": ["@erbium/item", "@erbium/qr-code", "@erbium/styles"],
+      "files": [
+        {
+          "content": "import {\n  Item,\n  ItemContent,\n  ItemDescription,\n  ItemMedia,\n  ItemTitle,\n} from \"@/registry/erbium/ui/item\";\nimport { QRCode, QRCodeImage } from \"@/registry/erbium/ui/qr-code\";\n\nexport default function QRCodeItemExample() {\n  return (\n    <Item variant=\"card\" className=\"w-96\">\n      <ItemMedia>\n        <QRCode value=\"https://ui.erbium.app\">\n          <QRCodeImage aria-label=\"Scan to get the mobile app\" size=\"sm\" />\n        </QRCode>\n      </ItemMedia>\n      <ItemContent>\n        <ItemTitle>Get the mobile app</ItemTitle>\n        <ItemDescription>Point your phone’s camera at the code to install it.</ItemDescription>\n      </ItemContent>\n    </Item>\n  );\n}\n",
+          "path": "src/qr-code/examples/qr-code-item.tsx",
+          "target": "@components/showcase/qr-code/examples/qr-code-item.tsx",
+          "type": "registry:component"
+        },
+        {
+          "content": "import Example from \"../examples/qr-code-item\";\n\nconst Variant = () => <Example />;\n\nexport default Variant;\n",
+          "path": "src/qr-code/variants/item.tsx",
+          "target": "@components/showcase/qr-code/variants/item.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "qr-code-loading",
+      "type": "registry:block",
+      "title": "QR Code: Loading",
+      "description": "A value you already have renders at once, including on the server. For a link that is still being fetched, wrap the code in a `Skeleton` with a sample of the same length.",
+      "registryDependencies": ["@erbium/qr-code", "@erbium/skeleton", "@erbium/styles"],
+      "files": [
+        {
+          "content": "import { useEffect, useState } from \"react\";\n\n/*\n * A stand-in for a data request, so loading examples show the skeleton and then the reveal. In an\n * app the data comes from a route loader, TanStack Query or `use(promise)`; the UI only needs the\n * value and whether a request is in flight.\n */\n\n/** How long the example \"server\" takes to answer, in milliseconds. */\nconst defaultLatency = 1600;\n\ninterface SimulatedFetchOptions {\n  latency?: number;\n  /** The request rejects instead of resolving. */\n  fail?: boolean;\n}\n\ninterface SimulatedFetch<T> {\n  /** The loaded value; `undefined` until the first response. */\n  data: T | undefined;\n  /** A request is in flight, the first one or a refetch. */\n  loading: boolean;\n  error: Error | undefined;\n  /** Drops the data and loads again, as on a first visit. */\n  reload: () => void;\n  /** Loads again while the current data stays on screen. */\n  refetch: () => void;\n}\n\nconst useSimulatedFetch = <T,>(\n  value: T,\n  { latency = defaultLatency, fail = false }: SimulatedFetchOptions = {},\n): SimulatedFetch<T> => {\n  const [request, setRequest] = useState({ id: 0 });\n\n  // What the last response answered: the request and the value it was for. A new value (say, a new\n  // page or sort order) is a new request, while the last response stays on screen.\n  const [settled, setSettled] = useState<{\n    id: number;\n    value: T;\n    data?: T;\n    error?: Error;\n  } | null>(null);\n\n  useEffect(() => {\n    const timer = setTimeout(() => {\n      setSettled(\n        fail\n          ? { error: new Error(\"The server did not respond. Try again.\"), id: request.id, value }\n          : { data: value, id: request.id, value },\n      );\n    }, latency);\n\n    return () => {\n      clearTimeout(timer);\n    };\n  }, [request, latency, fail, value]);\n\n  const current = settled?.id === request.id && settled.value === value ? settled : null;\n  // `reload` clears the last response, so only refetches keep data on screen.\n  const previous = settled?.data;\n\n  return {\n    data: current === null ? previous : current.data,\n    error: current?.error,\n    loading: current === null,\n    refetch: () => {\n      setRequest((last) => ({ id: last.id + 1 }));\n    },\n    reload: () => {\n      setSettled(null);\n      setRequest((last) => ({ id: last.id + 1 }));\n    },\n  };\n};\n\n/** Playground controls shared by loading examples. */\nconst latencyArgType = {\n  latency: { control: { max: 5000, min: 0, step: 100, type: \"number\" } },\n} as const;\n\nexport { defaultLatency, latencyArgType, useSimulatedFetch };\n\nexport type { SimulatedFetch, SimulatedFetchOptions };\n",
+          "path": "src/loading.tsx",
+          "target": "@components/showcase/loading.tsx",
+          "type": "registry:component"
+        },
+        {
+          "content": "import { QRCode, QRCodeImage } from \"@/registry/erbium/ui/qr-code\";\nimport { Skeleton } from \"@/registry/erbium/ui/skeleton\";\nimport { useSimulatedFetch } from \"../../loading\";\n\n// A pairing link of the real one's length, so the skeleton has the code's exact size.\nconst sampleLink = \"https://ui.erbium.app/pair#token=00000000000000000000\";\n\nexport const defaultProps = {} satisfies { latency?: number };\n\nexport default function QRCodeLoadingExample({ latency }: { latency?: number } = defaultProps) {\n  const { data, loading } = useSimulatedFetch(\n    \"https://ui.erbium.app/pair#token=9f8a7b6c5d4e3f2a1b0c\",\n    { latency },\n  );\n\n  return (\n    <Skeleton data={data} sample={sampleLink} loading={loading} label=\"Loading pairing code\">\n      {(link) => (\n        <QRCode value={link}>\n          <QRCodeImage aria-label=\"Scan to pair this device\" />\n        </QRCode>\n      )}\n    </Skeleton>\n  );\n}\n",
+          "path": "src/qr-code/variants/loading.tsx",
+          "target": "@components/showcase/qr-code/variants/loading.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "qr-code-logo",
+      "type": "registry:component",
+      "title": "QR Code: Logo",
+      "description": "`logoSize` clears the middle of the code, and error correction recovers what it covers. An `Icon` fills the space as it is. Give an `<image>` or your own `<svg>` `width=\"100%\"` and `height=\"100%\"`. Downloads include it. This one draws the Erbium mark by passing its `viewBox` and paths.",
+      "registryDependencies": ["@erbium/qr-code", "@erbium/styles"],
+      "files": [
+        {
+          "content": "import { QRCode, QRCodeImage, QRCodeLogo } from \"@/registry/erbium/ui/qr-code\";\n\nexport default function QRCodeLogoExample() {\n  return (\n    <QRCode value=\"https://ui.erbium.app\" logoSize={0.26}>\n      <QRCodeImage aria-label=\"Scan to open ui.erbium.app\">\n        {/* The Erbium mark, in its brand colors where the theme has them. */}\n        <QRCodeLogo viewBox=\"0 0 49 49\">\n          <path\n            className=\"fill-(--logo-body,var(--foreground))\"\n            d=\"M47.54 13.23L34.48 8.71L1.84 31.48L30.06 41.24L36.58 36.69L21.43 31.45V24.63L34.48 29.14L41.01 24.59L27.96 20.08V13.26L41.01 17.78L47.54 13.23Z\"\n          />\n          <path\n            className=\"fill-(--logo-shadow,var(--muted-foreground))\"\n            d=\"M13.91 23.11L21.34 31.55V24.73L27.87 20.18V13.37L13.91 23.11Z\"\n          />\n        </QRCodeLogo>\n      </QRCodeImage>\n    </QRCode>\n  );\n}\n",
+          "path": "src/qr-code/variants/logo.tsx",
+          "target": "@components/showcase/qr-code/variants/logo.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "qr-code-overview",
+      "type": "registry:block",
+      "title": "QR Code: Overview",
+      "description": "",
+      "registryDependencies": ["@erbium/card", "@erbium/qr-code", "@erbium/styles"],
+      "files": [
+        {
+          "content": "import {\n  Card,\n  CardContent,\n  CardDescription,\n  CardHeader,\n  CardTitle,\n} from \"@/registry/erbium/ui/card\";\nimport { QRCode, QRCodeImage } from \"@/registry/erbium/ui/qr-code\";\n\nexport default function QRCodeExample() {\n  return (\n    <Card className=\"w-72\">\n      <CardHeader>\n        <CardTitle>Open on your phone</CardTitle>\n        <CardDescription>Scan the code with your camera.</CardDescription>\n      </CardHeader>\n      <CardContent className=\"flex justify-center\">\n        <QRCode value=\"https://ui.erbium.app\">\n          <QRCodeImage aria-label=\"Scan to open ui.erbium.app\" />\n        </QRCode>\n      </CardContent>\n    </Card>\n  );\n}\n",
+          "path": "src/qr-code/examples/qr-code-demo.tsx",
+          "target": "@components/showcase/qr-code/examples/qr-code-demo.tsx",
+          "type": "registry:component"
+        },
+        {
+          "content": "import QRCodeExample from \"../examples/qr-code-demo\";\n\nconst Example = () => <QRCodeExample />;\n\nexport default Example;\n",
+          "path": "src/qr-code/variants/overview.tsx",
+          "target": "@components/showcase/qr-code/variants/overview.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "qr-code-playground",
+      "type": "registry:component",
+      "title": "QR Code: Playground",
+      "description": "",
+      "registryDependencies": ["@erbium/qr-code", "@erbium/styles"],
+      "files": [
+        {
+          "content": "import { QRCode, QRCodeImage } from \"@/registry/erbium/ui/qr-code\";\nimport type { QRCodeProps, QRCodeSvgProps } from \"@/registry/erbium/ui/qr-code\";\n\nexport const defaultProps = {\n  size: \"default\",\n  tone: \"default\",\n  value: \"https://ui.erbium.app\",\n} satisfies PlaygroundProps;\n\ntype PlaygroundProps = Pick<QRCodeSvgProps, \"size\"> & Pick<QRCodeProps, \"tone\" | \"value\">;\n\nexport default function QRCodePlaygroundExample({\n  size,\n  tone,\n  value,\n}: PlaygroundProps = defaultProps) {\n  return (\n    <QRCode value={value} tone={tone}>\n      <QRCodeImage aria-label=\"Scan to open the link\" size={size} />\n    </QRCode>\n  );\n}\n",
+          "path": "src/qr-code/variants/playground.tsx",
+          "target": "@components/showcase/qr-code/variants/playground.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "qr-code-share-link",
+      "type": "registry:block",
+      "title": "QR Code: Share link",
+      "description": "Give people who cannot scan a link to copy, and a file to print or send. Both sit at the end of the field: `render` turns `QRCodeDownload` into an `InputGroupButton`.",
+      "registryDependencies": [
+        "@erbium/card",
+        "@erbium/copy-button",
+        "@erbium/icon",
+        "@erbium/input-group",
+        "@erbium/qr-code",
+        "@erbium/styles"
+      ],
+      "files": [
+        {
+          "content": "import { CopyButton } from \"@/registry/erbium/blocks/copy-button\";\nimport {\n  Card,\n  CardContent,\n  CardDescription,\n  CardHeader,\n  CardTitle,\n} from \"@/registry/erbium/ui/card\";\nimport { Icon } from \"@/registry/erbium/ui/icon\";\nimport {\n  InputGroup,\n  InputGroupAddon,\n  InputGroupButton,\n  InputGroupInput,\n} from \"@/registry/erbium/ui/input-group\";\nimport { QRCode, QRCodeDownload, QRCodeImage } from \"@/registry/erbium/ui/qr-code\";\n\nconst link = \"https://ui.erbium.app/invite/9f8a7b6c\";\n\nexport default function QRCodeShareLinkExample() {\n  return (\n    <Card className=\"w-80\">\n      <CardHeader>\n        <CardTitle>Invite your team</CardTitle>\n        <CardDescription>Scan the code or send the link.</CardDescription>\n      </CardHeader>\n      <CardContent className=\"flex flex-col items-center gap-group\">\n        <QRCode value={link} className=\"w-full\">\n          <QRCodeImage aria-label=\"Scan to open the invite link\" />\n          <InputGroup>\n            <InputGroupInput aria-label=\"Invite link\" dir=\"ltr\" readOnly value={link} />\n            <InputGroupAddon align=\"inline-end\">\n              <CopyButton\n                value={link}\n                aria-label=\"Copy invite link\"\n                render={<InputGroupButton variant=\"embedded\" size=\"icon-xs\" />}\n              />\n              <QRCodeDownload\n                aria-label=\"Download QR code\"\n                fileName=\"invite\"\n                render={<InputGroupButton variant=\"embedded\" size=\"icon-xs\" />}\n              >\n                <Icon name=\"download-01\" />\n              </QRCodeDownload>\n            </InputGroupAddon>\n          </InputGroup>\n        </QRCode>\n      </CardContent>\n    </Card>\n  );\n}\n",
+          "path": "src/qr-code/examples/qr-code-share-link.tsx",
+          "target": "@components/showcase/qr-code/examples/qr-code-share-link.tsx",
+          "type": "registry:component"
+        },
+        {
+          "content": "import Example from \"../examples/qr-code-share-link\";\n\nconst Variant = () => <Example />;\n\nexport default Variant;\n",
+          "path": "src/qr-code/variants/share-link.tsx",
+          "target": "@components/showcase/qr-code/variants/share-link.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "qr-code-stories",
+      "type": "registry:item",
+      "title": "QR Code stories",
+      "description": "All qr-code variants as portable React CSF stories.",
+      "devDependencies": ["@storybook/react@^10.6.1"],
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/card",
+        "@erbium/copy-button",
+        "@erbium/csp-provider",
+        "@erbium/dialog",
+        "@erbium/field",
+        "@erbium/form",
+        "@erbium/icon",
+        "@erbium/input-group",
+        "@erbium/item",
+        "@erbium/qr-code",
+        "@erbium/skeleton",
+        "@erbium/styles",
+        "@erbium/toast",
+        "@erbium/utils"
+      ],
+      "files": [
+        {
+          "content": "import { useEffect, useState } from \"react\";\n\n/*\n * A stand-in for a data request, so loading examples show the skeleton and then the reveal. In an\n * app the data comes from a route loader, TanStack Query or `use(promise)`; the UI only needs the\n * value and whether a request is in flight.\n */\n\n/** How long the example \"server\" takes to answer, in milliseconds. */\nconst defaultLatency = 1600;\n\ninterface SimulatedFetchOptions {\n  latency?: number;\n  /** The request rejects instead of resolving. */\n  fail?: boolean;\n}\n\ninterface SimulatedFetch<T> {\n  /** The loaded value; `undefined` until the first response. */\n  data: T | undefined;\n  /** A request is in flight, the first one or a refetch. */\n  loading: boolean;\n  error: Error | undefined;\n  /** Drops the data and loads again, as on a first visit. */\n  reload: () => void;\n  /** Loads again while the current data stays on screen. */\n  refetch: () => void;\n}\n\nconst useSimulatedFetch = <T,>(\n  value: T,\n  { latency = defaultLatency, fail = false }: SimulatedFetchOptions = {},\n): SimulatedFetch<T> => {\n  const [request, setRequest] = useState({ id: 0 });\n\n  // What the last response answered: the request and the value it was for. A new value (say, a new\n  // page or sort order) is a new request, while the last response stays on screen.\n  const [settled, setSettled] = useState<{\n    id: number;\n    value: T;\n    data?: T;\n    error?: Error;\n  } | null>(null);\n\n  useEffect(() => {\n    const timer = setTimeout(() => {\n      setSettled(\n        fail\n          ? { error: new Error(\"The server did not respond. Try again.\"), id: request.id, value }\n          : { data: value, id: request.id, value },\n      );\n    }, latency);\n\n    return () => {\n      clearTimeout(timer);\n    };\n  }, [request, latency, fail, value]);\n\n  const current = settled?.id === request.id && settled.value === value ? settled : null;\n  // `reload` clears the last response, so only refetches keep data on screen.\n  const previous = settled?.data;\n\n  return {\n    data: current === null ? previous : current.data,\n    error: current?.error,\n    loading: current === null,\n    refetch: () => {\n      setRequest((last) => ({ id: last.id + 1 }));\n    },\n    reload: () => {\n      setSettled(null);\n      setRequest((last) => ({ id: last.id + 1 }));\n    },\n  };\n};\n\n/** Playground controls shared by loading examples. */\nconst latencyArgType = {\n  latency: { control: { max: 5000, min: 0, step: 100, type: \"number\" } },\n} as const;\n\nexport { defaultLatency, latencyArgType, useSimulatedFetch };\n\nexport type { SimulatedFetch, SimulatedFetchOptions };\n",
+          "path": "src/loading.tsx",
+          "target": "@components/showcase/loading.tsx",
+          "type": "registry:component"
+        },
+        {
+          "content": "import { CSPProvider } from \"@/registry/erbium/ui/csp-provider\";\nimport { SkeletonProvider } from \"@/registry/erbium/ui/skeleton\";\nimport { Toaster } from \"@/registry/erbium/ui/toast\";\nimport { cn } from \"@/registry/erbium/lib/erbium-utils\";\nimport type { ReactNode } from \"react\";\n\nexport const ShowcaseProviders = ({\n  children,\n  toast = false,\n}: {\n  children?: ReactNode;\n  toast?: boolean;\n}) => (\n  <CSPProvider disableStyleElements>\n    <SkeletonProvider>\n      {children}\n      {toast && <Toaster />}\n    </SkeletonProvider>\n  </CSPProvider>\n);\n\n/**\n * The box an example renders in. Inline it is capped to the reading width; with `fill` (a\n * full-screen slide) it takes the whole panel, so an example sized from its container (`w-full`,\n * `h-full` with a minimum) grows with it, while one with a natural size stays centred.\n */\nexport const ShowcaseSurface = ({\n  children,\n  fill = false,\n}: {\n  children?: ReactNode;\n  fill?: boolean;\n}) => (\n  <div\n    data-slot=\"component-preview\"\n    className={cn(\n      \"relative isolate mx-auto flex w-full min-w-0 items-center justify-center gap-section p-5 font-sans text-foreground contain-layout sm:p-8 [&>.min-w-72.max-w-2xl]:flex [&>.min-w-72.max-w-2xl]:flex-col [&>.min-w-72.max-w-2xl]:items-center [&>.min-w-72.max-w-2xl]:justify-center\",\n      fill ? \"flex-1\" : \"min-h-64 max-w-3xl\",\n    )}\n  >\n    {children}\n  </div>\n);\n",
+          "path": "src/preview.tsx",
+          "target": "@components/showcase/preview.tsx",
+          "type": "registry:component"
+        },
+        {
+          "content": "import {\n  Card,\n  CardContent,\n  CardDescription,\n  CardHeader,\n  CardTitle,\n} from \"@/registry/erbium/ui/card\";\nimport { QRCode, QRCodeImage } from \"@/registry/erbium/ui/qr-code\";\n\nexport default function QRCodeExample() {\n  return (\n    <Card className=\"w-72\">\n      <CardHeader>\n        <CardTitle>Open on your phone</CardTitle>\n        <CardDescription>Scan the code with your camera.</CardDescription>\n      </CardHeader>\n      <CardContent className=\"flex justify-center\">\n        <QRCode value=\"https://ui.erbium.app\">\n          <QRCodeImage aria-label=\"Scan to open ui.erbium.app\" />\n        </QRCode>\n      </CardContent>\n    </Card>\n  );\n}\n",
+          "path": "src/qr-code/examples/qr-code-demo.tsx",
+          "target": "@components/showcase/qr-code/examples/qr-code-demo.tsx",
+          "type": "registry:component"
+        },
+        {
+          "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Dialog,\n  DialogContent,\n  DialogDescription,\n  DialogHeader,\n  DialogPanel,\n  DialogTitle,\n  DialogTrigger,\n} from \"@/registry/erbium/ui/dialog\";\nimport { QRCode, QRCodeDownload, QRCodeImage } from \"@/registry/erbium/ui/qr-code\";\n\nexport default function QRCodeDialogExample() {\n  return (\n    <Dialog>\n      <DialogTrigger render={<Button variant=\"outline\">Show QR code</Button>} />\n      <DialogPanel className=\"sm:max-w-xs\">\n        <DialogHeader>\n          <DialogTitle>Open on your phone</DialogTitle>\n          <DialogDescription>Scan the code with your camera.</DialogDescription>\n        </DialogHeader>\n        <DialogContent className=\"flex justify-center\">\n          <QRCode value=\"https://ui.erbium.app\">\n            <QRCodeImage aria-label=\"Scan to open ui.erbium.app\" size=\"lg\" />\n            <QRCodeDownload fileName=\"erbium\" buttonSize=\"sm\">\n              Download\n            </QRCodeDownload>\n          </QRCode>\n        </DialogContent>\n      </DialogPanel>\n    </Dialog>\n  );\n}\n",
+          "path": "src/qr-code/examples/qr-code-dialog.tsx",
+          "target": "@components/showcase/qr-code/examples/qr-code-dialog.tsx",
+          "type": "registry:component"
+        },
+        {
+          "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  QRCode,\n  QRCodeCaption,\n  QRCodeFrame,\n  QRCodeImage,\n  QRCodeOverlay,\n} from \"@/registry/erbium/ui/qr-code\";\nimport { useEffect, useState } from \"react\";\n\n// Seconds. Short, so the example expires while you watch.\nconst lifetime = 15;\n\nexport default function QRCodeExpiringExample() {\n  // In an app the server issues each link and refuses an expired one.\n  const [issue, setIssue] = useState(1);\n  const [remaining, setRemaining] = useState(lifetime);\n  const expired = remaining === 0;\n\n  useEffect(() => {\n    // At zero this sets the same value, so the countdown stops there.\n    const timer = setTimeout(() => {\n      setRemaining(Math.max(0, remaining - 1));\n    }, 1000);\n\n    return () => {\n      clearTimeout(timer);\n    };\n  }, [remaining]);\n\n  return (\n    <QRCode value={`https://ui.erbium.app/pair#token=demo-${issue}`}>\n      <QRCodeFrame>\n        <QRCodeImage aria-label={expired ? \"Expired pairing code\" : \"Scan to pair this device\"} />\n        {expired ? (\n          <QRCodeOverlay>\n            <span>Code expired</span>\n            <Button\n              size=\"sm\"\n              onClick={() => {\n                setIssue((current) => current + 1);\n                setRemaining(lifetime);\n              }}\n            >\n              New code\n            </Button>\n          </QRCodeOverlay>\n        ) : null}\n      </QRCodeFrame>\n      <QRCodeCaption className=\"tabular-nums\">\n        {expired ? \"Get a new code to pair.\" : `Expires in ${remaining} seconds.`}\n      </QRCodeCaption>\n    </QRCode>\n  );\n}\n",
+          "path": "src/qr-code/examples/qr-code-expiring.tsx",
+          "target": "@components/showcase/qr-code/examples/qr-code-expiring.tsx",
+          "type": "registry:component"
+        },
+        {
+          "content": "import {\n  Item,\n  ItemContent,\n  ItemDescription,\n  ItemMedia,\n  ItemTitle,\n} from \"@/registry/erbium/ui/item\";\nimport { QRCode, QRCodeImage } from \"@/registry/erbium/ui/qr-code\";\n\nexport default function QRCodeItemExample() {\n  return (\n    <Item variant=\"card\" className=\"w-96\">\n      <ItemMedia>\n        <QRCode value=\"https://ui.erbium.app\">\n          <QRCodeImage aria-label=\"Scan to get the mobile app\" size=\"sm\" />\n        </QRCode>\n      </ItemMedia>\n      <ItemContent>\n        <ItemTitle>Get the mobile app</ItemTitle>\n        <ItemDescription>Point your phone’s camera at the code to install it.</ItemDescription>\n      </ItemContent>\n    </Item>\n  );\n}\n",
+          "path": "src/qr-code/examples/qr-code-item.tsx",
+          "target": "@components/showcase/qr-code/examples/qr-code-item.tsx",
+          "type": "registry:component"
+        },
+        {
+          "content": "import { CopyButton } from \"@/registry/erbium/blocks/copy-button\";\nimport {\n  Card,\n  CardContent,\n  CardDescription,\n  CardHeader,\n  CardTitle,\n} from \"@/registry/erbium/ui/card\";\nimport { Icon } from \"@/registry/erbium/ui/icon\";\nimport {\n  InputGroup,\n  InputGroupAddon,\n  InputGroupButton,\n  InputGroupInput,\n} from \"@/registry/erbium/ui/input-group\";\nimport { QRCode, QRCodeDownload, QRCodeImage } from \"@/registry/erbium/ui/qr-code\";\n\nconst link = \"https://ui.erbium.app/invite/9f8a7b6c\";\n\nexport default function QRCodeShareLinkExample() {\n  return (\n    <Card className=\"w-80\">\n      <CardHeader>\n        <CardTitle>Invite your team</CardTitle>\n        <CardDescription>Scan the code or send the link.</CardDescription>\n      </CardHeader>\n      <CardContent className=\"flex flex-col items-center gap-group\">\n        <QRCode value={link} className=\"w-full\">\n          <QRCodeImage aria-label=\"Scan to open the invite link\" />\n          <InputGroup>\n            <InputGroupInput aria-label=\"Invite link\" dir=\"ltr\" readOnly value={link} />\n            <InputGroupAddon align=\"inline-end\">\n              <CopyButton\n                value={link}\n                aria-label=\"Copy invite link\"\n                render={<InputGroupButton variant=\"embedded\" size=\"icon-xs\" />}\n              />\n              <QRCodeDownload\n                aria-label=\"Download QR code\"\n                fileName=\"invite\"\n                render={<InputGroupButton variant=\"embedded\" size=\"icon-xs\" />}\n              >\n                <Icon name=\"download-01\" />\n              </QRCodeDownload>\n            </InputGroupAddon>\n          </InputGroup>\n        </QRCode>\n      </CardContent>\n    </Card>\n  );\n}\n",
+          "path": "src/qr-code/examples/qr-code-share-link.tsx",
+          "target": "@components/showcase/qr-code/examples/qr-code-share-link.tsx",
+          "type": "registry:component"
+        },
+        {
+          "content": "import { CopyButton } from \"@/registry/erbium/blocks/copy-button\";\nimport { Card, CardContent, CardHeader, CardTitle } from \"@/registry/erbium/ui/card\";\nimport { FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Form, useAppForm } from \"@/registry/erbium/ui/form\";\nimport { QRCode, QRCodeImage } from \"@/registry/erbium/ui/qr-code\";\n\nconst secret = \"JBSWY3DPEHPK3PXP\";\n\nconst link = `otpauth://totp/Erbium:demo?secret=${secret}&issuer=Erbium`;\n\n// Grouped in fours, which is easier to type into an authenticator by hand.\nconst groupedSecret = secret.match(/.{4}/gu)?.join(\" \") ?? secret;\n\nexport default function QRCodeTwoFactorExample() {\n  const form = useAppForm({ defaultValues: { code: \"\" } });\n\n  return (\n    <Card className=\"w-80\">\n      <CardHeader className=\"text-center\">\n        <CardTitle>Set up two-factor</CardTitle>\n      </CardHeader>\n      <CardContent className=\"flex flex-col items-center gap-group\">\n        <QRCode value={link}>\n          <QRCodeImage aria-label=\"Scan to add Erbium to your authenticator app\" />\n        </QRCode>\n        <div className=\"flex items-center gap-1\">\n          <code dir=\"ltr\" className=\"font-mono text-caption text-muted-foreground\">\n            {groupedSecret}\n          </code>\n          <CopyButton value={secret} aria-label=\"Copy setup key\" size=\"icon-xs\" />\n        </div>\n        <Form form={form} className=\"flex w-full flex-col gap-group\">\n          <form.AppField\n            name=\"code\"\n            validators={{\n              onSubmit: ({ value }) => (value.length === 6 ? undefined : \"Enter all 6 digits.\"),\n            }}\n          >\n            {(field) => (\n              <field.Field required>\n                <FieldLabel>Enter the code</FieldLabel>\n                <field.OTPField length={6} groups={[3, 3]} />\n                <field.FieldError />\n              </field.Field>\n            )}\n          </form.AppField>\n          <form.SubmitButton successLabel=\"Turned on\">Turn on</form.SubmitButton>\n        </Form>\n      </CardContent>\n    </Card>\n  );\n}\n",
+          "path": "src/qr-code/examples/qr-code-two-factor.tsx",
+          "target": "@components/showcase/qr-code/examples/qr-code-two-factor.tsx",
+          "type": "registry:component"
+        },
+        {
+          "content": "// Generated from the Erbium showcase catalog and shared Markdown.\nimport { ShowcaseProviders, ShowcaseSurface } from \"../preview\";\nimport type { Meta, StoryObj } from \"@storybook/react\";\n\nimport { QRCodeImage } from \"@/registry/erbium/ui/qr-code\";\nimport { latencyArgType } from \"../loading\";\n\nimport PlaygroundExample, { defaultProps as PlaygroundDefaults } from \"./variants/playground\";\n\n\n\nimport OverviewExample from \"./variants/overview\";\n\n\n\nimport TonesExample from \"./variants/tones\";\n\n\n\nimport LogoExample from \"./variants/logo\";\n\n\n\nimport DownloadExample from \"./variants/download\";\n\n\n\nimport LoadingExample from \"./variants/loading\";\n\n\n\nimport ShareLinkExample from \"./variants/share-link\";\n\n\n\nimport TwoFactorExample from \"./variants/two-factor\";\n\n\n\nimport ExpiringExample from \"./variants/expiring\";\n\n\n\nimport InDialogExample from \"./variants/dialog\";\n\n\n\nimport InItemExample from \"./variants/item\";\n\n\n\nconst meta = {\n  component: QRCodeImage,\n  parameters: {\n    docs: {\n      description: {\n        component: \"## Usage\\n\\nTurns a link or a short text into a code that a phone camera reads. It draws rounded modules and eyes in the theme's colors, renders on the server, and saves as a PNG or SVG.\\n\\n**Import:** `@/registry/erbium/ui/qr-code`\\n\\n```tsx\\nimport { QRCode, QRCodeImage } from \\\"@/registry/erbium/ui/qr-code\\\";\\n\\n<QRCode value=\\\"https://ui.erbium.app\\\">\\n  <QRCodeImage aria-label=\\\"Scan to open ui.erbium.app\\\" />\\n</QRCode>;\\n```\\n\\n`<QRCode value=\\\"…\\\" />` on its own draws the same image, named \\\"QR code\\\". Say what scanning does in `aria-label`, and keep a link or the text next to the code for people who cannot scan it.\\n\\n## Anatomy\\n\\n```tsx\\n<QRCode value={url} logoSize={0.25}>\\n  <QRCodeImage aria-label=\\\"Scan to pair this device\\\">\\n    <QRCodeLogo>\\n      <image href=\\\"/logo.svg\\\" width=\\\"100%\\\" height=\\\"100%\\\" />\\n    </QRCodeLogo>\\n  </QRCodeImage>\\n  <QRCodeDownload>Download</QRCodeDownload>\\n</QRCode>\\n```\\n\\n`QRCodeImage` draws the modules and eyes. To change a single layer, compose `QRCodeSvg` with `QRCodeBackground`, `QRCodeModules`, `QRCodeEyeFrames` and `QRCodeEyeCenters` yourself.\\n\\n## Compositions\\n\\n| Part            | Use                                                                   |\\n| --------------- | --------------------------------------------------------------------- |\\n| `QRCodeCaption` | A line under the code: what it opens, or how long it lasts.           |\\n| `QRCodeFrame`   | Holds the image and an overlay.                                       |\\n| `QRCodeOverlay` | Lies over a faded code that should not be scanned, with the way back. |\\n\\n```tsx\\n<QRCode value={url}>\\n  <QRCodeFrame>\\n    <QRCodeImage aria-label=\\\"Expired pairing code\\\" />\\n    <QRCodeOverlay>\\n      <Button size=\\\"sm\\\" onClick={renew}>\\n        New code\\n      </Button>\\n    </QRCodeOverlay>\\n  </QRCodeFrame>\\n  <QRCodeCaption>Get a new code to pair.</QRCodeCaption>\\n</QRCode>\\n```\\n\\n## Surface\\n\\nThe code paints no surface of its own. It sits on whatever holds it: a card, a dialog, an item or the page. Where it needs a panel, such as over an image, give a wrapper one:\\n\\n```tsx\\n<div className=\\\"rounded-xl surface-panel\\\">\\n  <QRCode value={url} />\\n</div>\\n```\\n\\n## Colors\\n\\nThe ink contrasts with the theme: dark on light surfaces, and light on dark ones. It uses the theme's tokens, so it follows your theme:\\n\\n| Layer            | Token                                        |\\n| ---------------- | -------------------------------------------- |\\n| Modules and logo | `foreground`                                 |\\n| Eyes             | `foreground`, or `link` with `tone=\\\"accent\\\"` |\\n| Background       | none on screen, `card` in downloads          |\\n\\nA download has nothing behind it, so it is painted on `card` and keeps the theme's colors. A code saved in dark mode is light on dark. Phone cameras commonly read that, but some scanner apps and libraries only read dark on light. Where it matters, compose the layers and swap the two colors in dark mode:\\n\\n```tsx\\n<QRCodeSvg aria-label=\\\"Scan to open ui.erbium.app\\\">\\n  <QRCodeBackground className=\\\"dark:fill-foreground\\\" />\\n  <QRCodeModules className=\\\"dark:fill-card\\\" />\\n  <QRCodeEyeFrames className=\\\"dark:fill-card\\\" />\\n  <QRCodeEyeCenters className=\\\"dark:fill-card\\\" />\\n</QRCodeSvg>\\n```\\n\\n## Scanning\\n\\n- `margin` keeps four empty modules around the code, which scanners expect. Keep what lies behind the code plain and in contrast with its ink.\\n- A longer value needs more, smaller modules. Use `size=\\\"lg\\\"` for long links.\\n- `logoSize` raises the error correction level to `H` and accepts up to `0.3` of the code's width.\\n\\n## API\\n\\n| Part             | Props                                                                                               |\\n| ---------------- | --------------------------------------------------------------------------------------------------- |\\n| `QRCode`         | `value`, `level`, `logoSize`, `margin`, `minVersion`, `tone`, `actionsRef`                          |\\n| `QRCodeImage`    | `size` (`sm`, `default`, `lg`)                                                                      |\\n| `QRCodeLogo`     | An `Icon` fills the space `logoSize` clears. Size other content `100%`.                             |\\n| `QRCodeDownload` | `format` (`png`, `svg`), `fileName`, `fileSize`, `variant`, `buttonSize`, `render`, `onExportError` |\\n\\nThe state, encoding and export come from the [unstyled QR Code](/docs/react/qr-code).\",\n      },\n    },\n    layout: \"centered\",\n  },\n  tags: [\"autodocs\"],\n} satisfies Meta<typeof QRCodeImage>;\n\nexport default { ...meta, title: \"Components/QR Code\",  decorators: [(Story, context) => <ShowcaseProviders toast={false && context.viewMode !== \"docs\"}><ShowcaseSurface><Story /></ShowcaseSurface></ShowcaseProviders>] } satisfies Meta;\n\ntype Story = StoryObj;\n\nconst choice = (options: readonly string[]) => ({ control: \"inline-radio\" as const, options });\n\nexport const Playground: StoryObj<typeof PlaygroundExample> = {\n  argTypes: {\n    size: choice([\"sm\", \"default\", \"lg\"]),\n    tone: choice([\"default\", \"accent\"]),\n    value: { control: \"text\" },\n  },\n  args: PlaygroundDefaults,\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: \"import { QRCode, QRCodeImage } from \\\"@/registry/erbium/ui/qr-code\\\";\\nimport type { QRCodeProps, QRCodeSvgProps } from \\\"@/registry/erbium/ui/qr-code\\\";\\n\\nexport const defaultProps = {\\n  size: \\\"default\\\",\\n  tone: \\\"default\\\",\\n  value: \\\"https://ui.erbium.app\\\",\\n} satisfies PlaygroundProps;\\n\\ntype PlaygroundProps = Pick<QRCodeSvgProps, \\\"size\\\"> & Pick<QRCodeProps, \\\"tone\\\" | \\\"value\\\">;\\n\\nexport default function QRCodePlaygroundExample({\\n  size,\\n  tone,\\n  value,\\n}: PlaygroundProps = defaultProps) {\\n  return (\\n    <QRCode value={value} tone={tone}>\\n      <QRCodeImage aria-label=\\\"Scan to open the link\\\" size={size} />\\n    </QRCode>\\n  );\\n}\\n\" },\n    },\n  },\n  render: PlaygroundExample,\n};\n\nexport const Overview: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: \"import {\\n  Card,\\n  CardContent,\\n  CardDescription,\\n  CardHeader,\\n  CardTitle,\\n} from \\\"@/registry/erbium/ui/card\\\";\\nimport { QRCode, QRCodeImage } from \\\"@/registry/erbium/ui/qr-code\\\";\\n\\nexport default function QRCodeExample() {\\n  return (\\n    <Card className=\\\"w-72\\\">\\n      <CardHeader>\\n        <CardTitle>Open on your phone</CardTitle>\\n        <CardDescription>Scan the code with your camera.</CardDescription>\\n      </CardHeader>\\n      <CardContent className=\\\"flex justify-center\\\">\\n        <QRCode value=\\\"https://ui.erbium.app\\\">\\n          <QRCodeImage aria-label=\\\"Scan to open ui.erbium.app\\\" />\\n        </QRCode>\\n      </CardContent>\\n    </Card>\\n  );\\n}\\n\" },\n    },\n  },\n  render: OverviewExample,\n};\n\nexport const Tones: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"The code is `foreground` on `card`. `tone=\\\"accent\\\"` colors the eyes with the link color.\" },\n      source: { code: \"import { QRCode, QRCodeImage } from \\\"@/registry/erbium/ui/qr-code\\\";\\n\\nexport default function QRCodeTonesExample() {\\n  return (\\n    <div className=\\\"flex flex-wrap justify-center gap-section\\\">\\n      <QRCode value=\\\"https://ui.erbium.app\\\">\\n        <QRCodeImage aria-label=\\\"Default QR code for ui.erbium.app\\\" size=\\\"sm\\\" />\\n      </QRCode>\\n      <QRCode value=\\\"https://ui.erbium.app\\\" tone=\\\"accent\\\">\\n        <QRCodeImage aria-label=\\\"Accent QR code for ui.erbium.app\\\" size=\\\"sm\\\" />\\n      </QRCode>\\n    </div>\\n  );\\n}\\n\" },\n    },\n  },\n  render: TonesExample,\n};\n\nexport const Logo: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"`logoSize` clears the middle of the code, and error correction recovers what it covers. An `Icon` fills the space as it is. Give an `<image>` or your own `<svg>` `width=\\\"100%\\\"` and `height=\\\"100%\\\"`. Downloads include it. This one draws the Erbium mark by passing its `viewBox` and paths.\" },\n      source: { code: \"import { QRCode, QRCodeImage, QRCodeLogo } from \\\"@/registry/erbium/ui/qr-code\\\";\\n\\nexport default function QRCodeLogoExample() {\\n  return (\\n    <QRCode value=\\\"https://ui.erbium.app\\\" logoSize={0.26}>\\n      <QRCodeImage aria-label=\\\"Scan to open ui.erbium.app\\\">\\n        {/* The Erbium mark, in its brand colors where the theme has them. */}\\n        <QRCodeLogo viewBox=\\\"0 0 49 49\\\">\\n          <path\\n            className=\\\"fill-(--logo-body,var(--foreground))\\\"\\n            d=\\\"M47.54 13.23L34.48 8.71L1.84 31.48L30.06 41.24L36.58 36.69L21.43 31.45V24.63L34.48 29.14L41.01 24.59L27.96 20.08V13.26L41.01 17.78L47.54 13.23Z\\\"\\n          />\\n          <path\\n            className=\\\"fill-(--logo-shadow,var(--muted-foreground))\\\"\\n            d=\\\"M13.91 23.11L21.34 31.55V24.73L27.87 20.18V13.37L13.91 23.11Z\\\"\\n          />\\n        </QRCodeLogo>\\n      </QRCodeImage>\\n    </QRCode>\\n  );\\n}\\n\" },\n    },\n  },\n  render: LogoExample,\n};\n\nexport const Download: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"`QRCodeDownload` saves the code in the theme’s colors, on a solid background. For your own controls, pass `actionsRef` and call `download()` or `toBlob()`. With a Content Security Policy, PNG export needs `blob:` in `img-src`.\" },\n      source: { code: \"import { QRCode, QRCodeDownload, QRCodeImage } from \\\"@/registry/erbium/ui/qr-code\\\";\\n\\nexport default function QRCodeDownloadExample() {\\n  return (\\n    <QRCode value=\\\"https://ui.erbium.app\\\">\\n      <QRCodeImage aria-label=\\\"Scan to open ui.erbium.app\\\" />\\n      <div className=\\\"flex gap-related\\\">\\n        <QRCodeDownload fileName=\\\"erbium\\\" buttonSize=\\\"sm\\\">\\n          Download PNG\\n        </QRCodeDownload>\\n        <QRCodeDownload fileName=\\\"erbium\\\" format=\\\"svg\\\" buttonSize=\\\"sm\\\">\\n          Download SVG\\n        </QRCodeDownload>\\n      </div>\\n    </QRCode>\\n  );\\n}\\n\" },\n    },\n  },\n  render: DownloadExample,\n};\n\nexport const Loading: Story = {\n  argTypes: latencyArgType,\n  parameters: {\n    docs: {\n      description: { story: \"A value you already have renders at once, including on the server. For a link that is still being fetched, wrap the code in a `Skeleton` with a sample of the same length.\" },\n      source: { code: \"import { QRCode, QRCodeImage } from \\\"@/registry/erbium/ui/qr-code\\\";\\nimport { Skeleton } from \\\"@/registry/erbium/ui/skeleton\\\";\\nimport { useSimulatedFetch } from \\\"../../loading\\\";\\n\\n// A pairing link of the real one's length, so the skeleton has the code's exact size.\\nconst sampleLink = \\\"https://ui.erbium.app/pair#token=00000000000000000000\\\";\\n\\nexport const defaultProps = {} satisfies { latency?: number };\\n\\nexport default function QRCodeLoadingExample({ latency }: { latency?: number } = defaultProps) {\\n  const { data, loading } = useSimulatedFetch(\\n    \\\"https://ui.erbium.app/pair#token=9f8a7b6c5d4e3f2a1b0c\\\",\\n    { latency },\\n  );\\n\\n  return (\\n    <Skeleton data={data} sample={sampleLink} loading={loading} label=\\\"Loading pairing code\\\">\\n      {(link) => (\\n        <QRCode value={link}>\\n          <QRCodeImage aria-label=\\\"Scan to pair this device\\\" />\\n        </QRCode>\\n      )}\\n    </Skeleton>\\n  );\\n}\\n\" },\n    },\n  },\n  render: LoadingExample,\n};\n\nexport const ShareLink: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Give people who cannot scan a link to copy, and a file to print or send. Both sit at the end of the field: `render` turns `QRCodeDownload` into an `InputGroupButton`.\" },\n      source: { code: \"import { CopyButton } from \\\"@/registry/erbium/blocks/copy-button\\\";\\nimport {\\n  Card,\\n  CardContent,\\n  CardDescription,\\n  CardHeader,\\n  CardTitle,\\n} from \\\"@/registry/erbium/ui/card\\\";\\nimport { Icon } from \\\"@/registry/erbium/ui/icon\\\";\\nimport {\\n  InputGroup,\\n  InputGroupAddon,\\n  InputGroupButton,\\n  InputGroupInput,\\n} from \\\"@/registry/erbium/ui/input-group\\\";\\nimport { QRCode, QRCodeDownload, QRCodeImage } from \\\"@/registry/erbium/ui/qr-code\\\";\\n\\nconst link = \\\"https://ui.erbium.app/invite/9f8a7b6c\\\";\\n\\nexport default function QRCodeShareLinkExample() {\\n  return (\\n    <Card className=\\\"w-80\\\">\\n      <CardHeader>\\n        <CardTitle>Invite your team</CardTitle>\\n        <CardDescription>Scan the code or send the link.</CardDescription>\\n      </CardHeader>\\n      <CardContent className=\\\"flex flex-col items-center gap-group\\\">\\n        <QRCode value={link} className=\\\"w-full\\\">\\n          <QRCodeImage aria-label=\\\"Scan to open the invite link\\\" />\\n          <InputGroup>\\n            <InputGroupInput aria-label=\\\"Invite link\\\" dir=\\\"ltr\\\" readOnly value={link} />\\n            <InputGroupAddon align=\\\"inline-end\\\">\\n              <CopyButton\\n                value={link}\\n                aria-label=\\\"Copy invite link\\\"\\n                render={<InputGroupButton variant=\\\"embedded\\\" size=\\\"icon-xs\\\" />}\\n              />\\n              <QRCodeDownload\\n                aria-label=\\\"Download QR code\\\"\\n                fileName=\\\"invite\\\"\\n                render={<InputGroupButton variant=\\\"embedded\\\" size=\\\"icon-xs\\\" />}\\n              >\\n                <Icon name=\\\"download-01\\\" />\\n              </QRCodeDownload>\\n            </InputGroupAddon>\\n          </InputGroup>\\n        </QRCode>\\n      </CardContent>\\n    </Card>\\n  );\\n}\\n\" },\n    },\n  },\n  render: ShareLinkExample,\n};\n\nexport const TwoFactor: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"An authenticator app reads an `otpauth://` link. Show the key too, for typing it by hand, and confirm the setup with a code from the app.\" },\n      source: { code: \"import { CopyButton } from \\\"@/registry/erbium/blocks/copy-button\\\";\\nimport { Card, CardContent, CardHeader, CardTitle } from \\\"@/registry/erbium/ui/card\\\";\\nimport { FieldLabel } from \\\"@/registry/erbium/ui/field\\\";\\nimport { Form, useAppForm } from \\\"@/registry/erbium/ui/form\\\";\\nimport { QRCode, QRCodeImage } from \\\"@/registry/erbium/ui/qr-code\\\";\\n\\nconst secret = \\\"JBSWY3DPEHPK3PXP\\\";\\n\\nconst link = `otpauth://totp/Erbium:demo?secret=${secret}&issuer=Erbium`;\\n\\n// Grouped in fours, which is easier to type into an authenticator by hand.\\nconst groupedSecret = secret.match(/.{4}/gu)?.join(\\\" \\\") ?? secret;\\n\\nexport default function QRCodeTwoFactorExample() {\\n  const form = useAppForm({ defaultValues: { code: \\\"\\\" } });\\n\\n  return (\\n    <Card className=\\\"w-80\\\">\\n      <CardHeader className=\\\"text-center\\\">\\n        <CardTitle>Set up two-factor</CardTitle>\\n      </CardHeader>\\n      <CardContent className=\\\"flex flex-col items-center gap-group\\\">\\n        <QRCode value={link}>\\n          <QRCodeImage aria-label=\\\"Scan to add Erbium to your authenticator app\\\" />\\n        </QRCode>\\n        <div className=\\\"flex items-center gap-1\\\">\\n          <code dir=\\\"ltr\\\" className=\\\"font-mono text-caption text-muted-foreground\\\">\\n            {groupedSecret}\\n          </code>\\n          <CopyButton value={secret} aria-label=\\\"Copy setup key\\\" size=\\\"icon-xs\\\" />\\n        </div>\\n        <Form form={form} className=\\\"flex w-full flex-col gap-group\\\">\\n          <form.AppField\\n            name=\\\"code\\\"\\n            validators={{\\n              onSubmit: ({ value }) => (value.length === 6 ? undefined : \\\"Enter all 6 digits.\\\"),\\n            }}\\n          >\\n            {(field) => (\\n              <field.Field required>\\n                <FieldLabel>Enter the code</FieldLabel>\\n                <field.OTPField length={6} groups={[3, 3]} />\\n                <field.FieldError />\\n              </field.Field>\\n            )}\\n          </form.AppField>\\n          <form.SubmitButton successLabel=\\\"Turned on\\\">Turn on</form.SubmitButton>\\n        </Form>\\n      </CardContent>\\n    </Card>\\n  );\\n}\\n\" },\n    },\n  },\n  render: TwoFactorExample,\n};\n\nexport const Expiring: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Put a `QRCodeOverlay` in a `QRCodeFrame` when the code should no longer be scanned. The code fades and blurs beneath it. The server still has to refuse an expired link.\" },\n      source: { code: \"import { Button } from \\\"@/registry/erbium/ui/button\\\";\\nimport {\\n  QRCode,\\n  QRCodeCaption,\\n  QRCodeFrame,\\n  QRCodeImage,\\n  QRCodeOverlay,\\n} from \\\"@/registry/erbium/ui/qr-code\\\";\\nimport { useEffect, useState } from \\\"react\\\";\\n\\n// Seconds. Short, so the example expires while you watch.\\nconst lifetime = 15;\\n\\nexport default function QRCodeExpiringExample() {\\n  // In an app the server issues each link and refuses an expired one.\\n  const [issue, setIssue] = useState(1);\\n  const [remaining, setRemaining] = useState(lifetime);\\n  const expired = remaining === 0;\\n\\n  useEffect(() => {\\n    // At zero this sets the same value, so the countdown stops there.\\n    const timer = setTimeout(() => {\\n      setRemaining(Math.max(0, remaining - 1));\\n    }, 1000);\\n\\n    return () => {\\n      clearTimeout(timer);\\n    };\\n  }, [remaining]);\\n\\n  return (\\n    <QRCode value={`https://ui.erbium.app/pair#token=demo-${issue}`}>\\n      <QRCodeFrame>\\n        <QRCodeImage aria-label={expired ? \\\"Expired pairing code\\\" : \\\"Scan to pair this device\\\"} />\\n        {expired ? (\\n          <QRCodeOverlay>\\n            <span>Code expired</span>\\n            <Button\\n              size=\\\"sm\\\"\\n              onClick={() => {\\n                setIssue((current) => current + 1);\\n                setRemaining(lifetime);\\n              }}\\n            >\\n              New code\\n            </Button>\\n          </QRCodeOverlay>\\n        ) : null}\\n      </QRCodeFrame>\\n      <QRCodeCaption className=\\\"tabular-nums\\\">\\n        {expired ? \\\"Get a new code to pair.\\\" : `Expires in ${remaining} seconds.`}\\n      </QRCodeCaption>\\n    </QRCode>\\n  );\\n}\\n\" },\n    },\n  },\n  render: ExpiringExample,\n};\n\nexport const InDialog: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Keep the code out of the way until someone asks for it.\" },\n      source: { code: \"import { Button } from \\\"@/registry/erbium/ui/button\\\";\\nimport {\\n  Dialog,\\n  DialogContent,\\n  DialogDescription,\\n  DialogHeader,\\n  DialogPanel,\\n  DialogTitle,\\n  DialogTrigger,\\n} from \\\"@/registry/erbium/ui/dialog\\\";\\nimport { QRCode, QRCodeDownload, QRCodeImage } from \\\"@/registry/erbium/ui/qr-code\\\";\\n\\nexport default function QRCodeDialogExample() {\\n  return (\\n    <Dialog>\\n      <DialogTrigger render={<Button variant=\\\"outline\\\">Show QR code</Button>} />\\n      <DialogPanel className=\\\"sm:max-w-xs\\\">\\n        <DialogHeader>\\n          <DialogTitle>Open on your phone</DialogTitle>\\n          <DialogDescription>Scan the code with your camera.</DialogDescription>\\n        </DialogHeader>\\n        <DialogContent className=\\\"flex justify-center\\\">\\n          <QRCode value=\\\"https://ui.erbium.app\\\">\\n            <QRCodeImage aria-label=\\\"Scan to open ui.erbium.app\\\" size=\\\"lg\\\" />\\n            <QRCodeDownload fileName=\\\"erbium\\\" buttonSize=\\\"sm\\\">\\n              Download\\n            </QRCodeDownload>\\n          </QRCode>\\n        </DialogContent>\\n      </DialogPanel>\\n    </Dialog>\\n  );\\n}\\n\" },\n    },\n  },\n  render: InDialogExample,\n};\n\nexport const InItem: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"A small code beside its explanation. The item’s card is the surface.\" },\n      source: { code: \"import {\\n  Item,\\n  ItemContent,\\n  ItemDescription,\\n  ItemMedia,\\n  ItemTitle,\\n} from \\\"@/registry/erbium/ui/item\\\";\\nimport { QRCode, QRCodeImage } from \\\"@/registry/erbium/ui/qr-code\\\";\\n\\nexport default function QRCodeItemExample() {\\n  return (\\n    <Item variant=\\\"card\\\" className=\\\"w-96\\\">\\n      <ItemMedia>\\n        <QRCode value=\\\"https://ui.erbium.app\\\">\\n          <QRCodeImage aria-label=\\\"Scan to get the mobile app\\\" size=\\\"sm\\\" />\\n        </QRCode>\\n      </ItemMedia>\\n      <ItemContent>\\n        <ItemTitle>Get the mobile app</ItemTitle>\\n        <ItemDescription>Point your phone’s camera at the code to install it.</ItemDescription>\\n      </ItemContent>\\n    </Item>\\n  );\\n}\\n\" },\n    },\n  },\n  render: InItemExample,\n};\n",
+          "path": "src/qr-code/qr-code.stories.tsx",
+          "target": "@components/showcase/qr-code/qr-code.stories.tsx",
+          "type": "registry:file"
+        },
+        {
+          "content": "import Example from \"../examples/qr-code-dialog\";\n\nconst Variant = () => <Example />;\n\nexport default Variant;\n",
+          "path": "src/qr-code/variants/dialog.tsx",
+          "target": "@components/showcase/qr-code/variants/dialog.tsx",
+          "type": "registry:component"
+        },
+        {
+          "content": "import { QRCode, QRCodeDownload, QRCodeImage } from \"@/registry/erbium/ui/qr-code\";\n\nexport default function QRCodeDownloadExample() {\n  return (\n    <QRCode value=\"https://ui.erbium.app\">\n      <QRCodeImage aria-label=\"Scan to open ui.erbium.app\" />\n      <div className=\"flex gap-related\">\n        <QRCodeDownload fileName=\"erbium\" buttonSize=\"sm\">\n          Download PNG\n        </QRCodeDownload>\n        <QRCodeDownload fileName=\"erbium\" format=\"svg\" buttonSize=\"sm\">\n          Download SVG\n        </QRCodeDownload>\n      </div>\n    </QRCode>\n  );\n}\n",
+          "path": "src/qr-code/variants/download.tsx",
+          "target": "@components/showcase/qr-code/variants/download.tsx",
+          "type": "registry:component"
+        },
+        {
+          "content": "import Example from \"../examples/qr-code-expiring\";\n\nconst Variant = () => <Example />;\n\nexport default Variant;\n",
+          "path": "src/qr-code/variants/expiring.tsx",
+          "target": "@components/showcase/qr-code/variants/expiring.tsx",
+          "type": "registry:component"
+        },
+        {
+          "content": "import Example from \"../examples/qr-code-item\";\n\nconst Variant = () => <Example />;\n\nexport default Variant;\n",
+          "path": "src/qr-code/variants/item.tsx",
+          "target": "@components/showcase/qr-code/variants/item.tsx",
+          "type": "registry:component"
+        },
+        {
+          "content": "import { QRCode, QRCodeImage } from \"@/registry/erbium/ui/qr-code\";\nimport { Skeleton } from \"@/registry/erbium/ui/skeleton\";\nimport { useSimulatedFetch } from \"../../loading\";\n\n// A pairing link of the real one's length, so the skeleton has the code's exact size.\nconst sampleLink = \"https://ui.erbium.app/pair#token=00000000000000000000\";\n\nexport const defaultProps = {} satisfies { latency?: number };\n\nexport default function QRCodeLoadingExample({ latency }: { latency?: number } = defaultProps) {\n  const { data, loading } = useSimulatedFetch(\n    \"https://ui.erbium.app/pair#token=9f8a7b6c5d4e3f2a1b0c\",\n    { latency },\n  );\n\n  return (\n    <Skeleton data={data} sample={sampleLink} loading={loading} label=\"Loading pairing code\">\n      {(link) => (\n        <QRCode value={link}>\n          <QRCodeImage aria-label=\"Scan to pair this device\" />\n        </QRCode>\n      )}\n    </Skeleton>\n  );\n}\n",
+          "path": "src/qr-code/variants/loading.tsx",
+          "target": "@components/showcase/qr-code/variants/loading.tsx",
+          "type": "registry:component"
+        },
+        {
+          "content": "import { QRCode, QRCodeImage, QRCodeLogo } from \"@/registry/erbium/ui/qr-code\";\n\nexport default function QRCodeLogoExample() {\n  return (\n    <QRCode value=\"https://ui.erbium.app\" logoSize={0.26}>\n      <QRCodeImage aria-label=\"Scan to open ui.erbium.app\">\n        {/* The Erbium mark, in its brand colors where the theme has them. */}\n        <QRCodeLogo viewBox=\"0 0 49 49\">\n          <path\n            className=\"fill-(--logo-body,var(--foreground))\"\n            d=\"M47.54 13.23L34.48 8.71L1.84 31.48L30.06 41.24L36.58 36.69L21.43 31.45V24.63L34.48 29.14L41.01 24.59L27.96 20.08V13.26L41.01 17.78L47.54 13.23Z\"\n          />\n          <path\n            className=\"fill-(--logo-shadow,var(--muted-foreground))\"\n            d=\"M13.91 23.11L21.34 31.55V24.73L27.87 20.18V13.37L13.91 23.11Z\"\n          />\n        </QRCodeLogo>\n      </QRCodeImage>\n    </QRCode>\n  );\n}\n",
+          "path": "src/qr-code/variants/logo.tsx",
+          "target": "@components/showcase/qr-code/variants/logo.tsx",
+          "type": "registry:component"
+        },
+        {
+          "content": "import QRCodeExample from \"../examples/qr-code-demo\";\n\nconst Example = () => <QRCodeExample />;\n\nexport default Example;\n",
+          "path": "src/qr-code/variants/overview.tsx",
+          "target": "@components/showcase/qr-code/variants/overview.tsx",
+          "type": "registry:component"
+        },
+        {
+          "content": "import { QRCode, QRCodeImage } from \"@/registry/erbium/ui/qr-code\";\nimport type { QRCodeProps, QRCodeSvgProps } from \"@/registry/erbium/ui/qr-code\";\n\nexport const defaultProps = {\n  size: \"default\",\n  tone: \"default\",\n  value: \"https://ui.erbium.app\",\n} satisfies PlaygroundProps;\n\ntype PlaygroundProps = Pick<QRCodeSvgProps, \"size\"> & Pick<QRCodeProps, \"tone\" | \"value\">;\n\nexport default function QRCodePlaygroundExample({\n  size,\n  tone,\n  value,\n}: PlaygroundProps = defaultProps) {\n  return (\n    <QRCode value={value} tone={tone}>\n      <QRCodeImage aria-label=\"Scan to open the link\" size={size} />\n    </QRCode>\n  );\n}\n",
+          "path": "src/qr-code/variants/playground.tsx",
+          "target": "@components/showcase/qr-code/variants/playground.tsx",
+          "type": "registry:component"
+        },
+        {
+          "content": "import Example from \"../examples/qr-code-share-link\";\n\nconst Variant = () => <Example />;\n\nexport default Variant;\n",
+          "path": "src/qr-code/variants/share-link.tsx",
+          "target": "@components/showcase/qr-code/variants/share-link.tsx",
+          "type": "registry:component"
+        },
+        {
+          "content": "import { QRCode, QRCodeImage } from \"@/registry/erbium/ui/qr-code\";\n\nexport default function QRCodeTonesExample() {\n  return (\n    <div className=\"flex flex-wrap justify-center gap-section\">\n      <QRCode value=\"https://ui.erbium.app\">\n        <QRCodeImage aria-label=\"Default QR code for ui.erbium.app\" size=\"sm\" />\n      </QRCode>\n      <QRCode value=\"https://ui.erbium.app\" tone=\"accent\">\n        <QRCodeImage aria-label=\"Accent QR code for ui.erbium.app\" size=\"sm\" />\n      </QRCode>\n    </div>\n  );\n}\n",
+          "path": "src/qr-code/variants/tones.tsx",
+          "target": "@components/showcase/qr-code/variants/tones.tsx",
+          "type": "registry:component"
+        },
+        {
+          "content": "import Example from \"../examples/qr-code-two-factor\";\n\nconst Variant = () => <Example />;\n\nexport default Variant;\n",
+          "path": "src/qr-code/variants/two-factor.tsx",
+          "target": "@components/showcase/qr-code/variants/two-factor.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "qr-code-tones",
+      "type": "registry:component",
+      "title": "QR Code: Tones",
+      "description": "The code is `foreground` on `card`. `tone=\"accent\"` colors the eyes with the link color.",
+      "registryDependencies": ["@erbium/qr-code", "@erbium/styles"],
+      "files": [
+        {
+          "content": "import { QRCode, QRCodeImage } from \"@/registry/erbium/ui/qr-code\";\n\nexport default function QRCodeTonesExample() {\n  return (\n    <div className=\"flex flex-wrap justify-center gap-section\">\n      <QRCode value=\"https://ui.erbium.app\">\n        <QRCodeImage aria-label=\"Default QR code for ui.erbium.app\" size=\"sm\" />\n      </QRCode>\n      <QRCode value=\"https://ui.erbium.app\" tone=\"accent\">\n        <QRCodeImage aria-label=\"Accent QR code for ui.erbium.app\" size=\"sm\" />\n      </QRCode>\n    </div>\n  );\n}\n",
+          "path": "src/qr-code/variants/tones.tsx",
+          "target": "@components/showcase/qr-code/variants/tones.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "qr-code-two-factor",
+      "type": "registry:block",
+      "title": "QR Code: Two-factor setup",
+      "description": "An authenticator app reads an `otpauth://` link. Show the key too, for typing it by hand, and confirm the setup with a code from the app.",
+      "registryDependencies": [
+        "@erbium/card",
+        "@erbium/copy-button",
+        "@erbium/field",
+        "@erbium/form",
+        "@erbium/qr-code",
+        "@erbium/styles"
+      ],
+      "files": [
+        {
+          "content": "import { CopyButton } from \"@/registry/erbium/blocks/copy-button\";\nimport { Card, CardContent, CardHeader, CardTitle } from \"@/registry/erbium/ui/card\";\nimport { FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Form, useAppForm } from \"@/registry/erbium/ui/form\";\nimport { QRCode, QRCodeImage } from \"@/registry/erbium/ui/qr-code\";\n\nconst secret = \"JBSWY3DPEHPK3PXP\";\n\nconst link = `otpauth://totp/Erbium:demo?secret=${secret}&issuer=Erbium`;\n\n// Grouped in fours, which is easier to type into an authenticator by hand.\nconst groupedSecret = secret.match(/.{4}/gu)?.join(\" \") ?? secret;\n\nexport default function QRCodeTwoFactorExample() {\n  const form = useAppForm({ defaultValues: { code: \"\" } });\n\n  return (\n    <Card className=\"w-80\">\n      <CardHeader className=\"text-center\">\n        <CardTitle>Set up two-factor</CardTitle>\n      </CardHeader>\n      <CardContent className=\"flex flex-col items-center gap-group\">\n        <QRCode value={link}>\n          <QRCodeImage aria-label=\"Scan to add Erbium to your authenticator app\" />\n        </QRCode>\n        <div className=\"flex items-center gap-1\">\n          <code dir=\"ltr\" className=\"font-mono text-caption text-muted-foreground\">\n            {groupedSecret}\n          </code>\n          <CopyButton value={secret} aria-label=\"Copy setup key\" size=\"icon-xs\" />\n        </div>\n        <Form form={form} className=\"flex w-full flex-col gap-group\">\n          <form.AppField\n            name=\"code\"\n            validators={{\n              onSubmit: ({ value }) => (value.length === 6 ? undefined : \"Enter all 6 digits.\"),\n            }}\n          >\n            {(field) => (\n              <field.Field required>\n                <FieldLabel>Enter the code</FieldLabel>\n                <field.OTPField length={6} groups={[3, 3]} />\n                <field.FieldError />\n              </field.Field>\n            )}\n          </form.AppField>\n          <form.SubmitButton successLabel=\"Turned on\">Turn on</form.SubmitButton>\n        </Form>\n      </CardContent>\n    </Card>\n  );\n}\n",
+          "path": "src/qr-code/examples/qr-code-two-factor.tsx",
+          "target": "@components/showcase/qr-code/examples/qr-code-two-factor.tsx",
+          "type": "registry:component"
+        },
+        {
+          "content": "import Example from \"../examples/qr-code-two-factor\";\n\nconst Variant = () => <Example />;\n\nexport default Variant;\n",
+          "path": "src/qr-code/variants/two-factor.tsx",
+          "target": "@components/showcase/qr-code/variants/two-factor.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "questionnaire-animated",
       "type": "registry:block",
       "title": "Questionnaire: Animated Items",

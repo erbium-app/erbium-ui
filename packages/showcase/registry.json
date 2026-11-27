@@ -18238,6 +18238,373 @@
       ]
     },
     {
+      "name": "qr-code-demo",
+      "type": "registry:component",
+      "title": "qr code demo",
+      "description": "Erbium qr code demo example.",
+      "registryDependencies": ["@erbium/card", "@erbium/qr-code", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/qr-code/examples/qr-code-demo.tsx",
+          "target": "@components/showcase/qr-code/examples/qr-code-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "qr-code-dialog",
+      "type": "registry:block",
+      "title": "QR Code: In a dialog",
+      "description": "Keep the code out of the way until someone asks for it.",
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/dialog",
+        "@erbium/qr-code",
+        "@erbium/styles"
+      ],
+      "files": [
+        {
+          "path": "src/qr-code/examples/qr-code-dialog.tsx",
+          "target": "@components/showcase/qr-code/examples/qr-code-dialog.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/qr-code/variants/dialog.tsx",
+          "target": "@components/showcase/qr-code/variants/dialog.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "qr-code-download",
+      "type": "registry:component",
+      "title": "QR Code: Download",
+      "description": "`QRCodeDownload` saves the code in the theme’s colors, on a solid background. For your own controls, pass `actionsRef` and call `download()` or `toBlob()`. With a Content Security Policy, PNG export needs `blob:` in `img-src`.",
+      "registryDependencies": ["@erbium/qr-code", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/qr-code/variants/download.tsx",
+          "target": "@components/showcase/qr-code/variants/download.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "description": "All qr-code examples.",
+      "name": "qr-code-examples",
+      "registryDependencies": [
+        "@erbium-examples/qr-code-playground",
+        "@erbium-examples/qr-code-overview",
+        "@erbium-examples/qr-code-tones",
+        "@erbium-examples/qr-code-logo",
+        "@erbium-examples/qr-code-download",
+        "@erbium-examples/qr-code-loading",
+        "@erbium-examples/qr-code-share-link",
+        "@erbium-examples/qr-code-two-factor",
+        "@erbium-examples/qr-code-expiring",
+        "@erbium-examples/qr-code-dialog",
+        "@erbium-examples/qr-code-item"
+      ],
+      "title": "QR Code examples",
+      "type": "registry:item"
+    },
+    {
+      "name": "qr-code-expiring",
+      "type": "registry:block",
+      "title": "QR Code: Expiring code",
+      "description": "Put a `QRCodeOverlay` in a `QRCodeFrame` when the code should no longer be scanned. The code fades and blurs beneath it. The server still has to refuse an expired link.",
+      "registryDependencies": ["@erbium/button", "@erbium/qr-code", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/qr-code/examples/qr-code-expiring.tsx",
+          "target": "@components/showcase/qr-code/examples/qr-code-expiring.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/qr-code/variants/expiring.tsx",
+          "target": "@components/showcase/qr-code/variants/expiring.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "qr-code-item",
+      "type": "registry:block",
+      "title": "QR Code: In an item",
+      "description": "A small code beside its explanation. The item’s card is the surface.",
+      "registryDependencies": ["@erbium/item", "@erbium/qr-code", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/qr-code/examples/qr-code-item.tsx",
+          "target": "@components/showcase/qr-code/examples/qr-code-item.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/qr-code/variants/item.tsx",
+          "target": "@components/showcase/qr-code/variants/item.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "qr-code-loading",
+      "type": "registry:block",
+      "title": "QR Code: Loading",
+      "description": "A value you already have renders at once, including on the server. For a link that is still being fetched, wrap the code in a `Skeleton` with a sample of the same length.",
+      "registryDependencies": ["@erbium/qr-code", "@erbium/skeleton", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/loading.tsx",
+          "target": "@components/showcase/loading.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/qr-code/variants/loading.tsx",
+          "target": "@components/showcase/qr-code/variants/loading.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "qr-code-logo",
+      "type": "registry:component",
+      "title": "QR Code: Logo",
+      "description": "`logoSize` clears the middle of the code, and error correction recovers what it covers. An `Icon` fills the space as it is. Give an `<image>` or your own `<svg>` `width=\"100%\"` and `height=\"100%\"`. Downloads include it. This one draws the Erbium mark by passing its `viewBox` and paths.",
+      "registryDependencies": ["@erbium/qr-code", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/qr-code/variants/logo.tsx",
+          "target": "@components/showcase/qr-code/variants/logo.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "qr-code-overview",
+      "type": "registry:block",
+      "title": "QR Code: Overview",
+      "description": "",
+      "registryDependencies": ["@erbium/card", "@erbium/qr-code", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/qr-code/examples/qr-code-demo.tsx",
+          "target": "@components/showcase/qr-code/examples/qr-code-demo.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/qr-code/variants/overview.tsx",
+          "target": "@components/showcase/qr-code/variants/overview.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "qr-code-playground",
+      "type": "registry:component",
+      "title": "QR Code: Playground",
+      "description": "",
+      "registryDependencies": ["@erbium/qr-code", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/qr-code/variants/playground.tsx",
+          "target": "@components/showcase/qr-code/variants/playground.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "qr-code-share-link",
+      "type": "registry:block",
+      "title": "QR Code: Share link",
+      "description": "Give people who cannot scan a link to copy, and a file to print or send. Both sit at the end of the field: `render` turns `QRCodeDownload` into an `InputGroupButton`.",
+      "registryDependencies": [
+        "@erbium/card",
+        "@erbium/copy-button",
+        "@erbium/icon",
+        "@erbium/input-group",
+        "@erbium/qr-code",
+        "@erbium/styles"
+      ],
+      "files": [
+        {
+          "path": "src/qr-code/examples/qr-code-share-link.tsx",
+          "target": "@components/showcase/qr-code/examples/qr-code-share-link.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/qr-code/variants/share-link.tsx",
+          "target": "@components/showcase/qr-code/variants/share-link.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "qr-code-stories",
+      "type": "registry:item",
+      "title": "QR Code stories",
+      "description": "All qr-code variants as portable React CSF stories.",
+      "devDependencies": ["@storybook/react@^10.6.1"],
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/card",
+        "@erbium/copy-button",
+        "@erbium/csp-provider",
+        "@erbium/dialog",
+        "@erbium/field",
+        "@erbium/form",
+        "@erbium/icon",
+        "@erbium/input-group",
+        "@erbium/item",
+        "@erbium/qr-code",
+        "@erbium/skeleton",
+        "@erbium/styles",
+        "@erbium/toast",
+        "@erbium/utils"
+      ],
+      "files": [
+        {
+          "path": "src/loading.tsx",
+          "target": "@components/showcase/loading.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/preview.tsx",
+          "target": "@components/showcase/preview.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/qr-code/examples/qr-code-demo.tsx",
+          "target": "@components/showcase/qr-code/examples/qr-code-demo.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/qr-code/examples/qr-code-dialog.tsx",
+          "target": "@components/showcase/qr-code/examples/qr-code-dialog.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/qr-code/examples/qr-code-expiring.tsx",
+          "target": "@components/showcase/qr-code/examples/qr-code-expiring.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/qr-code/examples/qr-code-item.tsx",
+          "target": "@components/showcase/qr-code/examples/qr-code-item.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/qr-code/examples/qr-code-share-link.tsx",
+          "target": "@components/showcase/qr-code/examples/qr-code-share-link.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/qr-code/examples/qr-code-two-factor.tsx",
+          "target": "@components/showcase/qr-code/examples/qr-code-two-factor.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/qr-code/qr-code.stories.tsx",
+          "target": "@components/showcase/qr-code/qr-code.stories.tsx",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/qr-code/variants/dialog.tsx",
+          "target": "@components/showcase/qr-code/variants/dialog.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/qr-code/variants/download.tsx",
+          "target": "@components/showcase/qr-code/variants/download.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/qr-code/variants/expiring.tsx",
+          "target": "@components/showcase/qr-code/variants/expiring.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/qr-code/variants/item.tsx",
+          "target": "@components/showcase/qr-code/variants/item.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/qr-code/variants/loading.tsx",
+          "target": "@components/showcase/qr-code/variants/loading.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/qr-code/variants/logo.tsx",
+          "target": "@components/showcase/qr-code/variants/logo.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/qr-code/variants/overview.tsx",
+          "target": "@components/showcase/qr-code/variants/overview.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/qr-code/variants/playground.tsx",
+          "target": "@components/showcase/qr-code/variants/playground.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/qr-code/variants/share-link.tsx",
+          "target": "@components/showcase/qr-code/variants/share-link.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/qr-code/variants/tones.tsx",
+          "target": "@components/showcase/qr-code/variants/tones.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/qr-code/variants/two-factor.tsx",
+          "target": "@components/showcase/qr-code/variants/two-factor.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "qr-code-tones",
+      "type": "registry:component",
+      "title": "QR Code: Tones",
+      "description": "The code is `foreground` on `card`. `tone=\"accent\"` colors the eyes with the link color.",
+      "registryDependencies": ["@erbium/qr-code", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/qr-code/variants/tones.tsx",
+          "target": "@components/showcase/qr-code/variants/tones.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "qr-code-two-factor",
+      "type": "registry:block",
+      "title": "QR Code: Two-factor setup",
+      "description": "An authenticator app reads an `otpauth://` link. Show the key too, for typing it by hand, and confirm the setup with a code from the app.",
+      "registryDependencies": [
+        "@erbium/card",
+        "@erbium/copy-button",
+        "@erbium/field",
+        "@erbium/form",
+        "@erbium/qr-code",
+        "@erbium/styles"
+      ],
+      "files": [
+        {
+          "path": "src/qr-code/examples/qr-code-two-factor.tsx",
+          "target": "@components/showcase/qr-code/examples/qr-code-two-factor.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/qr-code/variants/two-factor.tsx",
+          "target": "@components/showcase/qr-code/variants/two-factor.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "questionnaire-animated",
       "type": "registry:block",
       "title": "Questionnaire: Animated Items",

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "qr-code-tones",
+  "type": "registry:component",
+  "title": "QR Code: Tones",
+  "description": "The code is `foreground` on `card`. `tone=\"accent\"` colors the eyes with the link color.",
+  "registryDependencies": ["@erbium/qr-code", "@erbium/styles"],
+  "files": [
+    {
+      "content": "import { QRCode, QRCodeImage } from \"@/registry/erbium/ui/qr-code\";\n\nexport default function QRCodeTonesExample() {\n  return (\n    <div className=\"flex flex-wrap justify-center gap-section\">\n      <QRCode value=\"https://ui.erbium.app\">\n        <QRCodeImage aria-label=\"Default QR code for ui.erbium.app\" size=\"sm\" />\n      </QRCode>\n      <QRCode value=\"https://ui.erbium.app\" tone=\"accent\">\n        <QRCodeImage aria-label=\"Accent QR code for ui.erbium.app\" size=\"sm\" />\n      </QRCode>\n    </div>\n  );\n}\n",
+      "path": "src/qr-code/variants/tones.tsx",
+      "target": "@components/showcase/qr-code/variants/tones.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "qr-code-item",
+  "type": "registry:block",
+  "title": "QR Code: In an item",
+  "description": "A small code beside its explanation. The item’s card is the surface.",
+  "registryDependencies": ["@erbium/item", "@erbium/qr-code", "@erbium/styles"],
+  "files": [
+    {
+      "content": "import {\n  Item,\n  ItemContent,\n  ItemDescription,\n  ItemMedia,\n  ItemTitle,\n} from \"@/registry/erbium/ui/item\";\nimport { QRCode, QRCodeImage } from \"@/registry/erbium/ui/qr-code\";\n\nexport default function QRCodeItemExample() {\n  return (\n    <Item variant=\"card\" className=\"w-96\">\n      <ItemMedia>\n        <QRCode value=\"https://ui.erbium.app\">\n          <QRCodeImage aria-label=\"Scan to get the mobile app\" size=\"sm\" />\n        </QRCode>\n      </ItemMedia>\n      <ItemContent>\n        <ItemTitle>Get the mobile app</ItemTitle>\n        <ItemDescription>Point your phone’s camera at the code to install it.</ItemDescription>\n      </ItemContent>\n    </Item>\n  );\n}\n",
+      "path": "src/qr-code/examples/qr-code-item.tsx",
+      "target": "@components/showcase/qr-code/examples/qr-code-item.tsx",
+      "type": "registry:component"
+    },
+    {
+      "content": "import Example from \"../examples/qr-code-item\";\n\nconst Variant = () => <Example />;\n\nexport default Variant;\n",
+      "path": "src/qr-code/variants/item.tsx",
+      "target": "@components/showcase/qr-code/variants/item.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

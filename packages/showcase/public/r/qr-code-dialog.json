@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "qr-code-dialog",
+  "type": "registry:block",
+  "title": "QR Code: In a dialog",
+  "description": "Keep the code out of the way until someone asks for it.",
+  "registryDependencies": ["@erbium/button", "@erbium/dialog", "@erbium/qr-code", "@erbium/styles"],
+  "files": [
+    {
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Dialog,\n  DialogContent,\n  DialogDescription,\n  DialogHeader,\n  DialogPanel,\n  DialogTitle,\n  DialogTrigger,\n} from \"@/registry/erbium/ui/dialog\";\nimport { QRCode, QRCodeDownload, QRCodeImage } from \"@/registry/erbium/ui/qr-code\";\n\nexport default function QRCodeDialogExample() {\n  return (\n    <Dialog>\n      <DialogTrigger render={<Button variant=\"outline\">Show QR code</Button>} />\n      <DialogPanel className=\"sm:max-w-xs\">\n        <DialogHeader>\n          <DialogTitle>Open on your phone</DialogTitle>\n          <DialogDescription>Scan the code with your camera.</DialogDescription>\n        </DialogHeader>\n        <DialogContent className=\"flex justify-center\">\n          <QRCode value=\"https://ui.erbium.app\">\n            <QRCodeImage aria-label=\"Scan to open ui.erbium.app\" size=\"lg\" />\n            <QRCodeDownload fileName=\"erbium\" buttonSize=\"sm\">\n              Download\n            </QRCodeDownload>\n          </QRCode>\n        </DialogContent>\n      </DialogPanel>\n    </Dialog>\n  );\n}\n",
+      "path": "src/qr-code/examples/qr-code-dialog.tsx",
+      "target": "@components/showcase/qr-code/examples/qr-code-dialog.tsx",
+      "type": "registry:component"
+    },
+    {
+      "content": "import Example from \"../examples/qr-code-dialog\";\n\nconst Variant = () => <Example />;\n\nexport default Variant;\n",
+      "path": "src/qr-code/variants/dialog.tsx",
+      "target": "@components/showcase/qr-code/variants/dialog.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

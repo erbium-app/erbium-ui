@@ -1,6 +1,6 @@
 # @erbium-ui/react
 
-Unstyled, accessible React primitives for components that hold real behavior: cascading selects, filter builders, inline editing, pagination, segmented controls, sliders, multi-step flows and streamed replies. Each primitive is a set of parts in the style of [Base UI](https://base-ui.com): you render the parts, style them with `className`, and read their state from `data-*` attributes.
+Unstyled, accessible React primitives for components that hold real behavior: cascading selects, filter builders, inline editing, pagination, QR codes, segmented controls, sliders, multi-step flows and streamed replies. Each primitive is a set of parts in the style of [Base UI](https://base-ui.com): you render the parts, style them with `className`, and read their state from `data-*` attributes.
 
 Erbium UI's styled components are built on these primitives. Use this package directly when you want the behavior with your own design.
 
@@ -21,6 +21,8 @@ React 19 and `@base-ui/react` 1.9 or later are peer dependencies.
 | `@erbium-ui/react/editable`                | `Editable` parts                                  | Client                                                    |
 | `@erbium-ui/react/pagination`              | `Pagination` parts, `usePagination`, and the core | Client                                                    |
 | `@erbium-ui/react/pagination/core`         | `getPagination` page layout                       | Server or client                                          |
+| `@erbium-ui/react/qr-code`                 | `QRCode` parts, `useQRCode`, and the core         | Client                                                    |
+| `@erbium-ui/react/qr-code/core`            | QR encoding and SVG paths                         | Server or client                                          |
 | `@erbium-ui/react/segmented-control`       | `SegmentedControl.Indicator` and the core         | Client                                                    |
 | `@erbium-ui/react/segmented-control/core`  | Measuring math for the indicator                  | Server or client                                          |
 | `@erbium-ui/react/slider`                  | `Slider` parts, `useSlider`, and the core         | Client                                                    |
@@ -155,6 +157,24 @@ import { Pagination } from "@erbium-ui/react/pagination";
     </Pagination.List>
   </Pagination.Root>
 </nav>;
+```
+
+## QR Code
+
+A QR code drawn from SVG parts, with a clear area for a logo and export to PNG or SVG in the colors CSS gives it. It renders on the server.
+
+```tsx
+import { QRCode } from "@erbium-ui/react/qr-code";
+
+<QRCode.Root value="https://example.com">
+  <QRCode.Svg aria-label="Scan to open example.com">
+    <QRCode.Background />
+    <QRCode.Modules />
+    <QRCode.EyeFrames />
+    <QRCode.EyeCenters />
+  </QRCode.Svg>
+  <QRCode.Download>Download</QRCode.Download>
+</QRCode.Root>;
 ```
 
 ## Segmented Control

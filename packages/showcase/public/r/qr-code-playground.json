@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "qr-code-playground",
+  "type": "registry:component",
+  "title": "QR Code: Playground",
+  "description": "",
+  "registryDependencies": ["@erbium/qr-code", "@erbium/styles"],
+  "files": [
+    {
+      "content": "import { QRCode, QRCodeImage } from \"@/registry/erbium/ui/qr-code\";\nimport type { QRCodeProps, QRCodeSvgProps } from \"@/registry/erbium/ui/qr-code\";\n\nexport const defaultProps = {\n  size: \"default\",\n  tone: \"default\",\n  value: \"https://ui.erbium.app\",\n} satisfies PlaygroundProps;\n\ntype PlaygroundProps = Pick<QRCodeSvgProps, \"size\"> & Pick<QRCodeProps, \"tone\" | \"value\">;\n\nexport default function QRCodePlaygroundExample({\n  size,\n  tone,\n  value,\n}: PlaygroundProps = defaultProps) {\n  return (\n    <QRCode value={value} tone={tone}>\n      <QRCodeImage aria-label=\"Scan to open the link\" size={size} />\n    </QRCode>\n  );\n}\n",
+      "path": "src/qr-code/variants/playground.tsx",
+      "target": "@components/showcase/qr-code/variants/playground.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

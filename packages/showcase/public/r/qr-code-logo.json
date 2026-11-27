@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "qr-code-logo",
+  "type": "registry:component",
+  "title": "QR Code: Logo",
+  "description": "`logoSize` clears the middle of the code, and error correction recovers what it covers. An `Icon` fills the space as it is. Give an `<image>` or your own `<svg>` `width=\"100%\"` and `height=\"100%\"`. Downloads include it. This one draws the Erbium mark by passing its `viewBox` and paths.",
+  "registryDependencies": ["@erbium/qr-code", "@erbium/styles"],
+  "files": [
+    {
+      "content": "import { QRCode, QRCodeImage, QRCodeLogo } from \"@/registry/erbium/ui/qr-code\";\n\nexport default function QRCodeLogoExample() {\n  return (\n    <QRCode value=\"https://ui.erbium.app\" logoSize={0.26}>\n      <QRCodeImage aria-label=\"Scan to open ui.erbium.app\">\n        {/* The Erbium mark, in its brand colors where the theme has them. */}\n        <QRCodeLogo viewBox=\"0 0 49 49\">\n          <path\n            className=\"fill-(--logo-body,var(--foreground))\"\n            d=\"M47.54 13.23L34.48 8.71L1.84 31.48L30.06 41.24L36.58 36.69L21.43 31.45V24.63L34.48 29.14L41.01 24.59L27.96 20.08V13.26L41.01 17.78L47.54 13.23Z\"\n          />\n          <path\n            className=\"fill-(--logo-shadow,var(--muted-foreground))\"\n            d=\"M13.91 23.11L21.34 31.55V24.73L27.87 20.18V13.37L13.91 23.11Z\"\n          />\n        </QRCodeLogo>\n      </QRCodeImage>\n    </QRCode>\n  );\n}\n",
+      "path": "src/qr-code/variants/logo.tsx",
+      "target": "@components/showcase/qr-code/variants/logo.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

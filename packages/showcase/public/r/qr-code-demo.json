@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "qr-code-demo",
+  "type": "registry:component",
+  "title": "qr code demo",
+  "description": "Erbium qr code demo example.",
+  "registryDependencies": ["@erbium/card", "@erbium/qr-code", "@erbium/styles"],
+  "files": [
+    {
+      "content": "import {\n  Card,\n  CardContent,\n  CardDescription,\n  CardHeader,\n  CardTitle,\n} from \"@/registry/erbium/ui/card\";\nimport { QRCode, QRCodeImage } from \"@/registry/erbium/ui/qr-code\";\n\nexport default function QRCodeExample() {\n  return (\n    <Card className=\"w-72\">\n      <CardHeader>\n        <CardTitle>Open on your phone</CardTitle>\n        <CardDescription>Scan the code with your camera.</CardDescription>\n      </CardHeader>\n      <CardContent className=\"flex justify-center\">\n        <QRCode value=\"https://ui.erbium.app\">\n          <QRCodeImage aria-label=\"Scan to open ui.erbium.app\" />\n        </QRCode>\n      </CardContent>\n    </Card>\n  );\n}\n",
+      "path": "src/qr-code/examples/qr-code-demo.tsx",
+      "target": "@components/showcase/qr-code/examples/qr-code-demo.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

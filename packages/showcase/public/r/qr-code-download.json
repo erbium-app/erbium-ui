@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "qr-code-download",
+  "type": "registry:component",
+  "title": "QR Code: Download",
+  "description": "`QRCodeDownload` saves the code in the theme’s colors, on a solid background. For your own controls, pass `actionsRef` and call `download()` or `toBlob()`. With a Content Security Policy, PNG export needs `blob:` in `img-src`.",
+  "registryDependencies": ["@erbium/qr-code", "@erbium/styles"],
+  "files": [
+    {
+      "content": "import { QRCode, QRCodeDownload, QRCodeImage } from \"@/registry/erbium/ui/qr-code\";\n\nexport default function QRCodeDownloadExample() {\n  return (\n    <QRCode value=\"https://ui.erbium.app\">\n      <QRCodeImage aria-label=\"Scan to open ui.erbium.app\" />\n      <div className=\"flex gap-related\">\n        <QRCodeDownload fileName=\"erbium\" buttonSize=\"sm\">\n          Download PNG\n        </QRCodeDownload>\n        <QRCodeDownload fileName=\"erbium\" format=\"svg\" buttonSize=\"sm\">\n          Download SVG\n        </QRCodeDownload>\n      </div>\n    </QRCode>\n  );\n}\n",
+      "path": "src/qr-code/variants/download.tsx",
+      "target": "@components/showcase/qr-code/variants/download.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

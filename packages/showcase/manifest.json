@@ -3964,6 +3964,89 @@
     ]
   },
   {
+    "name": "qr-code",
+    "title": "Components/QR Code",
+    "variants": [
+      {
+        "exportName": "Playground",
+        "slug": "playground",
+        "source": "src/qr-code/variants/playground.tsx",
+        "usage": ["src/qr-code/variants/playground.tsx"],
+        "title": "Playground"
+      },
+      {
+        "exportName": "Overview",
+        "slug": "overview",
+        "source": "src/qr-code/variants/overview.tsx",
+        "usage": ["src/qr-code/examples/qr-code-demo.tsx"],
+        "title": "Overview"
+      },
+      {
+        "exportName": "Tones",
+        "slug": "tones",
+        "source": "src/qr-code/variants/tones.tsx",
+        "usage": ["src/qr-code/variants/tones.tsx"],
+        "title": "Tones"
+      },
+      {
+        "exportName": "Logo",
+        "slug": "logo",
+        "source": "src/qr-code/variants/logo.tsx",
+        "usage": ["src/qr-code/variants/logo.tsx"],
+        "title": "Logo"
+      },
+      {
+        "exportName": "Download",
+        "slug": "download",
+        "source": "src/qr-code/variants/download.tsx",
+        "usage": ["src/qr-code/variants/download.tsx"],
+        "title": "Download"
+      },
+      {
+        "exportName": "Loading",
+        "slug": "loading",
+        "source": "src/qr-code/variants/loading.tsx",
+        "usage": ["src/qr-code/variants/loading.tsx", "src/loading.tsx"],
+        "title": "Loading"
+      },
+      {
+        "exportName": "ShareLink",
+        "slug": "share-link",
+        "source": "src/qr-code/variants/share-link.tsx",
+        "usage": ["src/qr-code/examples/qr-code-share-link.tsx"],
+        "title": "Share link"
+      },
+      {
+        "exportName": "TwoFactor",
+        "slug": "two-factor",
+        "source": "src/qr-code/variants/two-factor.tsx",
+        "usage": ["src/qr-code/examples/qr-code-two-factor.tsx"],
+        "title": "Two-factor setup"
+      },
+      {
+        "exportName": "Expiring",
+        "slug": "expiring",
+        "source": "src/qr-code/variants/expiring.tsx",
+        "usage": ["src/qr-code/examples/qr-code-expiring.tsx"],
+        "title": "Expiring code"
+      },
+      {
+        "exportName": "InDialog",
+        "slug": "dialog",
+        "source": "src/qr-code/variants/dialog.tsx",
+        "usage": ["src/qr-code/examples/qr-code-dialog.tsx"],
+        "title": "In a dialog"
+      },
+      {
+        "exportName": "InItem",
+        "slug": "item",
+        "source": "src/qr-code/variants/item.tsx",
+        "usage": ["src/qr-code/examples/qr-code-item.tsx"],
+        "title": "In an item"
+      }
+    ]
+  },
+  {
     "name": "questionnaire",
     "title": "Components/Questionnaire",
     "variants": [

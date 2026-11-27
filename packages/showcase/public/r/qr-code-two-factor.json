@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "qr-code-two-factor",
+  "type": "registry:block",
+  "title": "QR Code: Two-factor setup",
+  "description": "An authenticator app reads an `otpauth://` link. Show the key too, for typing it by hand, and confirm the setup with a code from the app.",
+  "registryDependencies": [
+    "@erbium/card",
+    "@erbium/copy-button",
+    "@erbium/field",
+    "@erbium/form",
+    "@erbium/qr-code",
+    "@erbium/styles"
+  ],
+  "files": [
+    {
+      "content": "import { CopyButton } from \"@/registry/erbium/blocks/copy-button\";\nimport { Card, CardContent, CardHeader, CardTitle } from \"@/registry/erbium/ui/card\";\nimport { FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Form, useAppForm } from \"@/registry/erbium/ui/form\";\nimport { QRCode, QRCodeImage } from \"@/registry/erbium/ui/qr-code\";\n\nconst secret = \"JBSWY3DPEHPK3PXP\";\n\nconst link = `otpauth://totp/Erbium:demo?secret=${secret}&issuer=Erbium`;\n\n// Grouped in fours, which is easier to type into an authenticator by hand.\nconst groupedSecret = secret.match(/.{4}/gu)?.join(\" \") ?? secret;\n\nexport default function QRCodeTwoFactorExample() {\n  const form = useAppForm({ defaultValues: { code: \"\" } });\n\n  return (\n    <Card className=\"w-80\">\n      <CardHeader className=\"text-center\">\n        <CardTitle>Set up two-factor</CardTitle>\n      </CardHeader>\n      <CardContent className=\"flex flex-col items-center gap-group\">\n        <QRCode value={link}>\n          <QRCodeImage aria-label=\"Scan to add Erbium to your authenticator app\" />\n        </QRCode>\n        <div className=\"flex items-center gap-1\">\n          <code dir=\"ltr\" className=\"font-mono text-caption text-muted-foreground\">\n            {groupedSecret}\n          </code>\n          <CopyButton value={secret} aria-label=\"Copy setup key\" size=\"icon-xs\" />\n        </div>\n        <Form form={form} className=\"flex w-full flex-col gap-group\">\n          <form.AppField\n            name=\"code\"\n            validators={{\n              onSubmit: ({ value }) => (value.length === 6 ? undefined : \"Enter all 6 digits.\"),\n            }}\n          >\n            {(field) => (\n              <field.Field required>\n                <FieldLabel>Enter the code</FieldLabel>\n                <field.OTPField length={6} groups={[3, 3]} />\n                <field.FieldError />\n              </field.Field>\n            )}\n          </form.AppField>\n          <form.SubmitButton successLabel=\"Turned on\">Turn on</form.SubmitButton>\n        </Form>\n      </CardContent>\n    </Card>\n  );\n}\n",
+      "path": "src/qr-code/examples/qr-code-two-factor.tsx",
+      "target": "@components/showcase/qr-code/examples/qr-code-two-factor.tsx",
+      "type": "registry:component"
+    },
+    {
+      "content": "import Example from \"../examples/qr-code-two-factor\";\n\nconst Variant = () => <Example />;\n\nexport default Variant;\n",
+      "path": "src/qr-code/variants/two-factor.tsx",
+      "target": "@components/showcase/qr-code/variants/two-factor.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

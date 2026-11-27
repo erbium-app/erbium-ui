@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "qr-code-share-link",
+  "type": "registry:block",
+  "title": "QR Code: Share link",
+  "description": "Give people who cannot scan a link to copy, and a file to print or send. Both sit at the end of the field: `render` turns `QRCodeDownload` into an `InputGroupButton`.",
+  "registryDependencies": [
+    "@erbium/card",
+    "@erbium/copy-button",
+    "@erbium/icon",
+    "@erbium/input-group",
+    "@erbium/qr-code",
+    "@erbium/styles"
+  ],
+  "files": [
+    {
+      "content": "import { CopyButton } from \"@/registry/erbium/blocks/copy-button\";\nimport {\n  Card,\n  CardContent,\n  CardDescription,\n  CardHeader,\n  CardTitle,\n} from \"@/registry/erbium/ui/card\";\nimport { Icon } from \"@/registry/erbium/ui/icon\";\nimport {\n  InputGroup,\n  InputGroupAddon,\n  InputGroupButton,\n  InputGroupInput,\n} from \"@/registry/erbium/ui/input-group\";\nimport { QRCode, QRCodeDownload, QRCodeImage } from \"@/registry/erbium/ui/qr-code\";\n\nconst link = \"https://ui.erbium.app/invite/9f8a7b6c\";\n\nexport default function QRCodeShareLinkExample() {\n  return (\n    <Card className=\"w-80\">\n      <CardHeader>\n        <CardTitle>Invite your team</CardTitle>\n        <CardDescription>Scan the code or send the link.</CardDescription>\n      </CardHeader>\n      <CardContent className=\"flex flex-col items-center gap-group\">\n        <QRCode value={link} className=\"w-full\">\n          <QRCodeImage aria-label=\"Scan to open the invite link\" />\n          <InputGroup>\n            <InputGroupInput aria-label=\"Invite link\" dir=\"ltr\" readOnly value={link} />\n            <InputGroupAddon align=\"inline-end\">\n              <CopyButton\n                value={link}\n                aria-label=\"Copy invite link\"\n                render={<InputGroupButton variant=\"embedded\" size=\"icon-xs\" />}\n              />\n              <QRCodeDownload\n                aria-label=\"Download QR code\"\n                fileName=\"invite\"\n                render={<InputGroupButton variant=\"embedded\" size=\"icon-xs\" />}\n              >\n                <Icon name=\"download-01\" />\n              </QRCodeDownload>\n            </InputGroupAddon>\n          </InputGroup>\n        </QRCode>\n      </CardContent>\n    </Card>\n  );\n}\n",
+      "path": "src/qr-code/examples/qr-code-share-link.tsx",
+      "target": "@components/showcase/qr-code/examples/qr-code-share-link.tsx",
+      "type": "registry:component"
+    },
+    {
+      "content": "import Example from \"../examples/qr-code-share-link\";\n\nconst Variant = () => <Example />;\n\nexport default Variant;\n",
+      "path": "src/qr-code/variants/share-link.tsx",
+      "target": "@components/showcase/qr-code/variants/share-link.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

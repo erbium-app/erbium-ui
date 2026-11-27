@@ -1595,6 +1595,21 @@
       ]
     },
     {
+      "name": "qr-code",
+      "type": "registry:ui",
+      "title": "Qr Code",
+      "description": "Erbium qr code component.",
+      "dependencies": ["@erbium-ui/react@^0.1.0", "class-variance-authority"],
+      "registryDependencies": ["@erbium/button", "@erbium/skeleton-hints", "@erbium/utils"],
+      "files": [
+        {
+          "path": "src/components/qr-code.tsx",
+          "target": "@ui/qr-code.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "questionnaire",
       "type": "registry:ui",
       "title": "Questionnaire",

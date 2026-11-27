@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "qr-code-loading",
+  "type": "registry:block",
+  "title": "QR Code: Loading",
+  "description": "A value you already have renders at once, including on the server. For a link that is still being fetched, wrap the code in a `Skeleton` with a sample of the same length.",
+  "registryDependencies": ["@erbium/qr-code", "@erbium/skeleton", "@erbium/styles"],
+  "files": [
+    {
+      "content": "import { useEffect, useState } from \"react\";\n\n/*\n * A stand-in for a data request, so loading examples show the skeleton and then the reveal. In an\n * app the data comes from a route loader, TanStack Query or `use(promise)`; the UI only needs the\n * value and whether a request is in flight.\n */\n\n/** How long the example \"server\" takes to answer, in milliseconds. */\nconst defaultLatency = 1600;\n\ninterface SimulatedFetchOptions {\n  latency?: number;\n  /** The request rejects instead of resolving. */\n  fail?: boolean;\n}\n\ninterface SimulatedFetch<T> {\n  /** The loaded value; `undefined` until the first response. */\n  data: T | undefined;\n  /** A request is in flight, the first one or a refetch. */\n  loading: boolean;\n  error: Error | undefined;\n  /** Drops the data and loads again, as on a first visit. */\n  reload: () => void;\n  /** Loads again while the current data stays on screen. */\n  refetch: () => void;\n}\n\nconst useSimulatedFetch = <T,>(\n  value: T,\n  { latency = defaultLatency, fail = false }: SimulatedFetchOptions = {},\n): SimulatedFetch<T> => {\n  const [request, setRequest] = useState({ id: 0 });\n\n  // What the last response answered: the request and the value it was for. A new value (say, a new\n  // page or sort order) is a new request, while the last response stays on screen.\n  const [settled, setSettled] = useState<{\n    id: number;\n    value: T;\n    data?: T;\n    error?: Error;\n  } | null>(null);\n\n  useEffect(() => {\n    const timer = setTimeout(() => {\n      setSettled(\n        fail\n          ? { error: new Error(\"The server did not respond. Try again.\"), id: request.id, value }\n          : { data: value, id: request.id, value },\n      );\n    }, latency);\n\n    return () => {\n      clearTimeout(timer);\n    };\n  }, [request, latency, fail, value]);\n\n  const current = settled?.id === request.id && settled.value === value ? settled : null;\n  // `reload` clears the last response, so only refetches keep data on screen.\n  const previous = settled?.data;\n\n  return {\n    data: current === null ? previous : current.data,\n    error: current?.error,\n    loading: current === null,\n    refetch: () => {\n      setRequest((last) => ({ id: last.id + 1 }));\n    },\n    reload: () => {\n      setSettled(null);\n      setRequest((last) => ({ id: last.id + 1 }));\n    },\n  };\n};\n\n/** Playground controls shared by loading examples. */\nconst latencyArgType = {\n  latency: { control: { max: 5000, min: 0, step: 100, type: \"number\" } },\n} as const;\n\nexport { defaultLatency, latencyArgType, useSimulatedFetch };\n\nexport type { SimulatedFetch, SimulatedFetchOptions };\n",
+      "path": "src/loading.tsx",
+      "target": "@components/showcase/loading.tsx",
+      "type": "registry:component"
+    },
+    {
+      "content": "import { QRCode, QRCodeImage } from \"@/registry/erbium/ui/qr-code\";\nimport { Skeleton } from \"@/registry/erbium/ui/skeleton\";\nimport { useSimulatedFetch } from \"../../loading\";\n\n// A pairing link of the real one's length, so the skeleton has the code's exact size.\nconst sampleLink = \"https://ui.erbium.app/pair#token=00000000000000000000\";\n\nexport const defaultProps = {} satisfies { latency?: number };\n\nexport default function QRCodeLoadingExample({ latency }: { latency?: number } = defaultProps) {\n  const { data, loading } = useSimulatedFetch(\n    \"https://ui.erbium.app/pair#token=9f8a7b6c5d4e3f2a1b0c\",\n    { latency },\n  );\n\n  return (\n    <Skeleton data={data} sample={sampleLink} loading={loading} label=\"Loading pairing code\">\n      {(link) => (\n        <QRCode value={link}>\n          <QRCodeImage aria-label=\"Scan to pair this device\" />\n        </QRCode>\n      )}\n    </Skeleton>\n  );\n}\n",
+      "path": "src/qr-code/variants/loading.tsx",
+      "target": "@components/showcase/qr-code/variants/loading.tsx",
+      "type": "registry:component"
+    }
+  ]
+}
