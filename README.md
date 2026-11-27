@@ -21,7 +21,7 @@ Erbium UI is the open-source component library and design system behind [Erbium]
 - **Built on Base UI**, with shadcn/ui registry conventions. Accessible, RTL-ready, and reduced-motion aware.
 - **Own the source.** Install with shadcn or the Erbium CLI, then track and merge upstream changes with `erbium status`, `diff`, and `update`.
 - **Opinionated defaults.** Loading, error, and empty states, motion, and depth tokens are designed in, not left to each screen.
-- **Ready for agents.** Every docs page has a Markdown version, plus `llms.txt` and a JSON API. Includes building blocks for agentic interfaces: code blocks, diffs, file trees, steppers, and matrix loaders.
+- **Ready for agents.** Every docs page has a Markdown version, plus `llms.txt` and a JSON API. Includes building blocks for agentic interfaces: streaming Markdown responses, messages, questionnaires, code blocks, diffs, file trees, steppers, and matrix loaders.
 
 ## Development
 

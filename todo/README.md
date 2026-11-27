@@ -23,5 +23,6 @@ Track remaining work here. Remove completed tasks; source and documentation reco
 17. [Data table and data grid](./17-data-table.md)
 18. [Closed APIs](./18-closed-apis.md)
 19. [`@erbium-ui/react` headless package](./19-erbium-ui-react.md)
+20. [Chat experience: scrolling and rendering](./20-chat-experience.md)
 
 Keep these notes aligned with the public roadmap when scope changes. Add components and stories for recurring needs, not inventory parity.

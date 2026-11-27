@@ -21,17 +21,9 @@ Use OpenCode's session UI and Pierre's rendering capabilities as references. Pre
 - [ ] Verify large reviews, wrapping, context expansion, and stable selection/comment anchors.
 - [ ] Evaluate conflict rendering when a consumer needs it.
 
-## 4. Tool output
+## 4. Chat session
 
-- [ ] Compose expandable tool entries with pending/running/completed/failed states, summaries, duration, and actions.
-- [ ] Reuse code, file, and diff blocks for output; cover streaming, cancellation, errors, and grouped calls.
-- [ ] Defer heavy output until opened where useful.
-
-## 5. Messages and composer
-
-- [ ] Add Markdown, tool groups, and streaming states to the existing Message compositions.
-- [ ] Define controlled composer text, attachments, submit, pending, and cancel behavior.
-- [ ] Build a full session showcase before deciding whether a dedicated session package is needed.
+Scrolling, tool output, message parts, the composer, docks, and the session showcase are tracked in [20](./20-chat-experience.md).
 
 ## Design and validation
 

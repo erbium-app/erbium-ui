@@ -4,7 +4,7 @@ Reviewed 2026-11-17.
 
 ## Planned additions
 
-Changed-file review, review comments, tool output, and agent session compositions are tracked in [11](./11-files-and-session-ui.md). Platform libraries and agent integrations are tracked in [09](./09-agent-tooling-and-platforms.md).
+Changed-file review and review comments are tracked in [11](./11-files-and-session-ui.md). Tool output and agent session compositions are tracked in [20](./20-chat-experience.md). Platform libraries and agent integrations are tracked in [09](./09-agent-tooling-and-platforms.md).
 
 ## Candidates, not commitments
 
