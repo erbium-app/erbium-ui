@@ -17,7 +17,7 @@ The docs site renders compiled Markdown with its normal renderer. Storybook rece
 
 Variant frontmatter uses `title: "Display title"` and `story: ExportName`. Component frontmatter supplies `title` and `description`. The showcase generator reads variant titles from Markdown; preserve export names to keep Storybook IDs stable.
 
-Edit copy here, then run `bun run showcase:generate`, `bun run showcase:registry`, and `bun run showcase:check` from the workspace root. Portable registry stories embed the generated Markdown bodies so consumers do not need this package.
+Edit copy here, then run `bun run registry` and `bun run showcase:check` from the workspace root. Portable registry stories embed the generated Markdown bodies so consumers do not need this package.
 
 Component footer links live in `references/<component>.md` and appear at the end of the docs page, Storybook description, and portable registry copy. Credit the external libraries used by the component and its examples, distinguish example integrations from underlying primitives, and link to official documentation or the upstream README. Use version-specific documentation when the latest API differs from the installed package. Keep Base UI-only sections titled `Base UI documentation`; use `External documentation` when referencing other libraries.
 

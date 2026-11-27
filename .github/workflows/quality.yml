@@ -43,6 +43,8 @@ jobs:
         run: vp install --frozen-lockfile
       - name: Verify managed CLI installs and updates
         run: vp run --filter ./packages/cli --fail-if-no-match test
+      - name: Verify the committed registry is current
+        run: vp run registry:check
       - name: Validate and build applications
         run: vp run ready
       - name: Typecheck infrastructure

@@ -4,11 +4,11 @@
   "type": "module",
   "scripts": {
     "profile": "alchemy profile edit --profile default",
-    "plan": "alchemy plan --stage prod --profile default",
-    "deploy": "alchemy deploy --stage prod --profile default",
-    "deploy:ci": "sh scripts/prepare-history.sh && alchemy deploy --stage prod --profile default --yes --no-input",
-    "plan:preview": "alchemy plan --stage preview --profile default",
-    "deploy:preview": "sh scripts/prepare-history.sh && alchemy deploy --stage preview --profile default --yes --no-input",
+    "plan": "node ../../scripts/registry.mjs && alchemy plan --stage prod --profile default",
+    "deploy": "node ../../scripts/registry.mjs && alchemy deploy --stage prod --profile default",
+    "deploy:ci": "sh scripts/prepare-history.sh && node ../../scripts/registry.mjs && alchemy deploy --stage prod --profile default --yes --no-input",
+    "plan:preview": "node ../../scripts/registry.mjs && alchemy plan --stage preview --profile default",
+    "deploy:preview": "sh scripts/prepare-history.sh && node ../../scripts/registry.mjs && alchemy deploy --stage preview --profile default --yes --no-input",
     "destroy": "alchemy destroy --stage prod --profile default",
     "typecheck": "vp check --no-fmt --no-lint"
   },

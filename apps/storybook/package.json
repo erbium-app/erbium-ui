@@ -3,7 +3,9 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "predev": "node ../../scripts/registry.mjs",
     "dev": "storybook dev -p 6006",
+    "prebuild": "node ../../scripts/registry.mjs",
     "build": "storybook build",
     "preview": "vp preview --outDir storybook-static --port 6006",
     "typecheck": "vp check --no-fmt --no-lint",

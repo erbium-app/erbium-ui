@@ -93,7 +93,7 @@ const dependencyVersion = (name) => {
 };
 
 /**
- * Writes a JSON file, or in check mode verifies that it already holds the value.
+ * Writes a JSON file unless it already holds the value, or in check mode fails when it doesn't.
  * @param {string} file - The destination path.
  * @param {unknown} value - The JSON value.
  * @returns {Promise<void>} Settles once written or verified.
@@ -101,19 +101,21 @@ const dependencyVersion = (name) => {
 const output = async (file, value) => {
   const content = `${JSON.stringify(value, null, 2)}\n`;
 
-  if (check) {
-    const actual = await readFile(file, "utf-8").catch(() => "null");
+  const actual = await readFile(file, "utf-8").catch(() => "null");
 
-    /** @type {unknown} */
-    const parsed = JSON.parse(actual);
+  /** @type {unknown} */
+  const parsed = JSON.parse(actual);
 
-    if (JSON.stringify(parsed) !== JSON.stringify(value)) {
-      throw new Error(`Registry is stale: ${file}`);
-    }
-  } else {
-    await mkdir(path.dirname(file), { recursive: true });
-    await writeFile(file, content);
+  if (JSON.stringify(parsed) === JSON.stringify(value)) {
+    return;
   }
+
+  if (check) {
+    throw new Error(`Registry is stale: ${file}`);
+  }
+
+  await mkdir(path.dirname(file), { recursive: true });
+  await writeFile(file, content);
 };
 
 /**
@@ -242,8 +244,10 @@ const itemFor = async (name, entry, title, description, story = false) => {
 
   await collect(entry);
 
+  const type = itemType(story, files.size);
+
   /** @type {Omit<RegistryItem, "registryDependencies" | "files">} */
-  const head = { name, type: itemType(story, files.size), title, description };
+  const head = { name, type, title, description };
 
   if (dependencies.size > 0) {
     head.dependencies = [...dependencies].toSorted(compareLocale);
@@ -510,7 +514,7 @@ process.stdout.write(
 
 if (!check) {
   execFileSync(
-    "vp",
+    path.join(root, "../../node_modules/.bin/vp"),
     ["fmt", "packages/showcase/registry.json", "packages/showcase/public/r", "--write"],
     { cwd: path.join(root, "../.."), stdio: "pipe" },
   );

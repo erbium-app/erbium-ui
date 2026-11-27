@@ -73,10 +73,11 @@ Put behavior (state, keys, value math) in `packages/react`. The `packages/ui` co
 
 # Registry
 
-- Rebuild the registry before committing and commit the output with the change. Never hand-edit generated files.
-  - After changes in `packages/ui/src`, run `vp run ui:registry`.
-  - After changes in `packages/showcase/src` or `packages/content`, run `vp run showcase:generate && vp run showcase:registry`. `vp run showcase:check` verifies them.
-- Commit unrelated regenerated items separately.
+- `vp run registry` rebuilds all generated files. Never hand-edit them.
+  - It runs by itself before the docs and Storybook dev servers and builds, before deploys, after `vp run update` and in the pre-commit hook, which stages the output.
+  - The hook skips the rebuild when registry sources have unstaged changes. Then run it yourself and commit the output with the change.
+  - CI fails on stale output through `vp run registry:check`.
+- If a rebuild changes items your change doesn't touch, commit those files first, on their own.
 
 <!-- Source: .ruler/ui-conventions.md -->
 

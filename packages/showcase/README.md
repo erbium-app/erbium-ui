@@ -29,7 +29,7 @@ Catalogs preserve stable story export names. Storybook namespaces are generated 
 3. For playgrounds, export `defaultProps` from the usage file and import those defaults into the catalog’s `args`. Pass them as the function’s parameter default. This keeps standalone usage and playground controls synchronized.
 4. Add its named export to `catalog.tsx`, with any default `args`, `argTypes`, layout parameters. Use the matching `variantDocumentation` and `?raw` source imports. Classify the component once in `packages/content/src/sections.json`; do not add a title to the catalog.
 5. Add the matching Markdown file under `packages/content/components/<component>/`, with a JSON-quoted `title` and the stable `story` export name in frontmatter. An empty body is valid when the example has no additional explanation.
-6. Run `vp run showcase:generate`, then `vp run showcase:registry` from the workspace root.
+6. Run `vp run registry` from the workspace root. Dev servers, builds and commits also run it.
 7. Run `vp run showcase:check` and review both applications with `vp run showcase`.
 
 Generation creates static Storybook adapters; edit the shared catalog instead of those adapters. The website creates one React island per variant, hydrates visible previews, and exposes the catalog's playground controls. Both applications use the same theme and providers. Toast documentation mounts one toaster for the page.

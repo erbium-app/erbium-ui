@@ -19,6 +19,24 @@ const packageRoot = path.dirname(import.meta.dirname);
 const sourceRoot = path.join(packageRoot, "src");
 
 /**
+ * Writes a JSON file unless it already holds the value, so a rebuild of a current registry
+ * touches nothing that a parallel build or dev server is reading.
+ * @param {string} file - The destination path.
+ * @param {unknown} value - The JSON value.
+ * @returns {Promise<void>} Settles once the file holds the value.
+ */
+const writeJson = async (file, value) => {
+  const actual = await readFile(file, "utf-8").catch(() => "null");
+
+  /** @type {unknown} */
+  const parsed = JSON.parse(actual);
+
+  if (JSON.stringify(parsed) !== JSON.stringify(value)) {
+    await writeFile(file, `${JSON.stringify(value, null, 2)}\n`);
+  }
+};
+
+/**
  * @param {unknown} value - A parsed JSON value.
  * @param {string} key - A property name.
  * @returns {string[]} The keys of the object at that property, or none.
@@ -380,19 +398,12 @@ const stylesItem = {
 
 const items = [...sourceItems, stylesItem].toSorted((a, b) => compareLocale(a.name, b.name));
 
-await writeFile(
-  path.join(packageRoot, "registry.json"),
-  `${JSON.stringify(
-    {
-      items,
-      $schema: "https://ui.shadcn.com/schema/registry.json",
-      homepage: "https://github.com/erbium-app/erbium-ui",
-      name: "erbium",
-    },
-    null,
-    2,
-  )}\n`,
-);
+await writeJson(path.join(packageRoot, "registry.json"), {
+  items,
+  $schema: "https://ui.shadcn.com/schema/registry.json",
+  homepage: "https://github.com/erbium-app/erbium-ui",
+  name: "erbium",
+});
 
 /**
  * Rewrites one registry file for the public registry: font URLs point at the
@@ -451,19 +462,21 @@ const publicItems = await Promise.all(
     const files = await Promise.all(item.files.map(async (file) => await publicFile(file)));
     const entry = { ...item, files };
 
-    await writeFile(
-      path.join(packageRoot, "public/r", `${item.name}.json`),
-      `${JSON.stringify({ $schema: "https://ui.shadcn.com/schema/registry-item.json", ...entry }, null, 2)}\n`,
-    );
+    await writeJson(path.join(packageRoot, "public/r", `${item.name}.json`), {
+      $schema: "https://ui.shadcn.com/schema/registry-item.json",
+      ...entry,
+    });
 
     return entry;
   }),
 );
 
-await writeFile(
-  path.join(packageRoot, "public/r/registry.json"),
-  `${JSON.stringify({ $schema: "https://ui.shadcn.com/schema/registry.json", homepage: "https://github.com/erbium-app/erbium-ui", items: publicItems, name: "erbium" }, null, 2)}\n`,
-);
+await writeJson(path.join(packageRoot, "public/r/registry.json"), {
+  $schema: "https://ui.shadcn.com/schema/registry.json",
+  homepage: "https://github.com/erbium-app/erbium-ui",
+  items: publicItems,
+  name: "erbium",
+});
 
 // A deleted source leaves its public file behind, which the registry would keep serving. Remove
 // every file that no current item writes, as the showcase registry does.

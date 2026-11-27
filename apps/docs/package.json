@@ -3,7 +3,9 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "predev": "node ../../scripts/registry.mjs",
     "dev": "vp dev",
+    "prebuild": "node ../../scripts/registry.mjs",
     "build": "vp build && vpx ./verify-build.ts",
     "preview": "vp preview",
     "typecheck": "vp check --no-fmt --no-lint"
