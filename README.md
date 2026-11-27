@@ -25,12 +25,12 @@ Erbium UI is the open-source component library and design system behind [Erbium]
 
 ## Development
 
-Requires Bun and Node.js 22.18+.
+Requires [Vite+](https://viteplus.dev). With its managed environment on (`vp env on`), `vp` uses the Node.js and Bun versions this repository pins.
 
 ```bash
-bun install
-bun run dev    # website, Storybook, and docs
-bun run ready  # check and build
+vp install
+vp run dev    # website, Storybook, and docs
+vp run ready  # check and build
 ```
 
 | Path               | Purpose                                     |

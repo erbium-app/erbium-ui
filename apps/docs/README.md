@@ -5,7 +5,7 @@ The TanStack Start documentation site. It reads the shared Markdown, UI tokens, 
 From the workspace root:
 
 ```sh
-bun run docs -- --host 127.0.0.1
+vp run docs --host 127.0.0.1
 ```
 
 Development runs at http://127.0.0.1:3001. Vite+ provides development, production builds, previews, and repository checks. TanStack Start and the React plugin follow the [official Vite setup](https://tanstack.com/start/latest/docs/framework/react/build-from-scratch).
@@ -13,8 +13,8 @@ Development runs at http://127.0.0.1:3001. Vite+ provides development, productio
 ## Validate production builds
 
 ```sh
-bun run docs:build
-bun run docs:preview -- --host 127.0.0.1
+vp run docs:build
+vp run docs:preview --host 127.0.0.1
 ```
 
 `vite.config.ts` includes Alchemy's Cloudflare Vite plugin, so development, builds, and previews all run the Worker in workerd. The preview serves the built Worker and assets at http://127.0.0.1:3002 with the production asset settings.
@@ -40,8 +40,8 @@ Vite+'s Bun workspace can resolve multiple instances of its Vite runtime through
 Alchemy owns deployment (`packages/infra/alchemy.run.ts`). The separate preview stage uses the `default` profile:
 
 ```sh
-bun run deploy:preview:plan
-bun run deploy:preview
+vp run deploy:preview:plan
+vp run deploy:preview
 ```
 
 Deployment prints the workers.dev URL alongside the production origin. Preview pages retain production canonical URLs and disable indexing. Alchemy supplies the public Web Analytics token; Worker invocation logs and traces capture requests that fall through static asset serving. Production (`ui.erbium.app`) deploys from the `prod` stage. See [infrastructure setup](../../packages/infra/README.md).
@@ -52,4 +52,4 @@ Alchemy injects its own Cloudflare plugin into deploy builds and sets `ALCHEMY_C
 
 `static-content-plugin.ts` owns Node-only compilation and artifact generation. Markdown is parsed into TanStack Markdown trees with stable heading IDs. Browser page modules contain trees, headings, and showcase metadata; raw Markdown and example source remain separate downloadable artifacts. The React renderer maps Markdown elements to shared UI components without reparsing the source.
 
-Run `bun apps/docs/verify-build.ts` from the workspace root to check an existing build. This check catches stale prerender output referencing assets from a different build.
+Run `vpx ./apps/docs/verify-build.ts` from the workspace root to check an existing build. This check catches stale prerender output referencing assets from a different build.

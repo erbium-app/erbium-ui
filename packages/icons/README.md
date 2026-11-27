@@ -44,9 +44,9 @@ unique, including across groups. Each source needs a valid `viewBox`.
 From the workspace root:
 
 ```sh
-bun run icons:generate
-bun run icons:check
-bun run icons:dev
+vp run icons:generate
+vp run icons:check
+vp run icons:dev
 ```
 
 Generation preserves the source artwork, fills, strokes, classes, and opacity.

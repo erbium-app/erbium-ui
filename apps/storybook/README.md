@@ -4,4 +4,4 @@ Storybook is an adapter for the shared Erbium showcase. `src/stories` is generat
 
 Author React compositions in `packages/showcase/src/<component>/variants` and scenario examples in that component's `examples` directory. The docs and Storybook consume these same compositions.
 
-Run `bun run showcase:generate` and `bun run showcase:registry` after changes, then `bun run showcase:check` from the workspace root. See [shared showcase authoring](../../packages/showcase/README.md).
+Run `vp run showcase:generate` and `vp run showcase:registry` after changes, then `vp run showcase:check` from the workspace root. See [shared showcase authoring](../../packages/showcase/README.md).

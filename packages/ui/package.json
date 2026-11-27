@@ -37,7 +37,7 @@
   },
   "scripts": {
     "registry:build": "node scripts/build-registry.mjs && vp fmt registry.json public/r --write",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "vp check --no-fmt --no-lint"
   },
   "dependencies": {
     "@base-ui/react": "^1.9.0",

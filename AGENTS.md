@@ -13,13 +13,24 @@
 - Follow shadcn patterns and keep RTL working. App-only composition goes in `apps/`, and never copy primitives into apps.
 - No `"use client"` anywhere, including bundler banners. The only place it appears is `packages/react`'s build output, which adds it to the built client entries (see primitives).
 
+# Tooling
+
+Go through Vite+ (`vp`) for everything it covers. Its docs are in `node_modules/vite-plus/docs`.
+
+- Dependencies: `vp install`, `vp add`, `vp remove`. Bun stays the package manager underneath.
+- Scripts and workspace tasks: `vp run <script>`. Local binaries: `vp exec`. One-off packages: `vp dlx`. TypeScript files: `vpx <file>`.
+- Static checks and types: `vp check`. Types only: `vp check --no-fmt --no-lint`. Don't add `tsc` scripts.
+- Tests: `vp test`, importing from `vite-plus/test`. Libraries and the CLI build with `vp pack`.
+- Don't add direct `oxlint`, `oxfmt`, `vitest` or `tsdown` dependencies. Vite+ bundles them.
+- Vite+ has no equivalent for Storybook, Stylelint, Knip, Taze or Alchemy, so run those as they are.
+
 # Checks
 
-- Check only the files you edit with `bunx vp check <files>`, or `--fix` for mechanical fixes. Use `bunx stylelint <files>` for CSS. For files that are only md, json or yaml, use `bunx vp fmt --check <files>`.
-- `bun run check` fails on existing errors (257 as of 2026-11-17). Don't fix unrelated files, and don't raise that count.
+- Check only the files you edit with `vp check <files>`, or `--fix` for mechanical fixes. Use `vp exec stylelint <files>` for CSS. For files that are only md, json or yaml, use `vp fmt --check <files>`.
+- `vp run check` fails on existing errors (257 as of 2026-11-17). Don't fix unrelated files, and don't raise that count.
 - When you change an exported API, check the files that import it too.
-- Run `bun run ready` for a check plus build, and `bun run knip` only when unused code is in scope.
-- Tests exist only in `packages/react` (`bun run react:test`). Verify UI by hand in Storybook or the docs.
+- Run `vp run ready` for a check plus build, and `vp run knip` only when unused code is in scope.
+- Tests exist in `packages/react` (`vp run react:test`) and `packages/cli`. Verify UI by hand in Storybook or the docs.
 - Lint comes from Ultracite (`oxlint.config.ts`, `oxfmt.config.ts`, `stylelint.config.mjs`).
   - Presets: core, react, tanstack, vitest, js-plugins (github, sonarjs, react-doctor), tanstack/js-plugins, anti-slop and shadcn.
   - Tailwind classes are sorted against `packages/ui/src/styles/globals.css`.
@@ -35,7 +46,7 @@
 
 # Skills
 
-Before a substantial task, run `bunx --no-install --package @tanstack/intent intent list` from the root. Load the most specific match with `intent load <package>#<skill>`. If Intent is missing, report it rather than downloading it.
+Before a substantial task, run `vp exec intent list` from the root. Load the most specific match with `vp exec intent load <package>#<skill>`. If Intent is missing, report it rather than downloading it.
 
 <!-- Source: .ruler/react-primitives.md -->
 
@@ -65,8 +76,8 @@ Put behavior (state, keys, value math) in `packages/react`. The `packages/ui` co
 # Registry
 
 - Rebuild the registry before committing and commit the output with the change. Never hand-edit generated files.
-  - After changes in `packages/ui/src`, run `bun run ui:registry`.
-  - After changes in `packages/showcase/src` or `packages/content`, run `bun run showcase:generate && bun run showcase:registry`. `bun run showcase:check` verifies them.
+  - After changes in `packages/ui/src`, run `vp run ui:registry`.
+  - After changes in `packages/showcase/src` or `packages/content`, run `vp run showcase:generate && vp run showcase:registry`. `vp run showcase:check` verifies them.
 - Commit unrelated regenerated items separately.
 
 <!-- Source: .ruler/ui-conventions.md -->

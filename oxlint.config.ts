@@ -1,4 +1,4 @@
-import { defineConfig } from "oxlint";
+import type { OxlintConfig } from "vite-plus/lint";
 import antiSlop from "ultracite/oxlint/anti-slop";
 import core from "ultracite/oxlint/core";
 import jsPlugins, { jsPluginSettings } from "ultracite/oxlint/js-plugins";
@@ -30,7 +30,7 @@ const sonarTestRelatedFiles = [
 // - tanstack/js-plugins: React Doctor's TanStack Router/Start/Query rules.
 // - anti-slop and shadcn last: later presets win conflicts, and anti-slop
 //   turns off the core rules whose autofixes loop against its own.
-export default defineConfig({
+export default {
   env: core.env,
   extends: [core, react, tanstack, vitest, jsPlugins, tanstackJsPlugins, antiSlop, shadcn],
   // Core's canonical ignore list already covers node_modules, dist,
@@ -180,4 +180,4 @@ export default defineConfig({
       variantFunctions: ["buttonVariants"],
     },
   },
-});
+} satisfies OxlintConfig;

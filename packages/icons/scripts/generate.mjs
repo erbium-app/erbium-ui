@@ -2,7 +2,7 @@ import { watch } from "node:fs";
 import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { format } from "oxfmt";
+import { format } from "vite-plus/fmt";
 import { optimize } from "svgo";
 
 /** @typedef {{ id: string, viewBox: string }} IconDefinition */
@@ -224,6 +224,16 @@ const generate = async () => {
     groupNames.map((group) => [group, sheet(groups[group]?.symbols ?? [])]),
   );
 
+  const iconGroupTypes = groupNames
+    .map(
+      (group) => `readonly ${JSON.stringify(group)}: readonly ${JSON.stringify(iconGroups[group])}`,
+    )
+    .join("; ");
+
+  const spriteSheetTypes = groupNames
+    .map((group) => `readonly ${JSON.stringify(group)}: string`)
+    .join("; ");
+
   const outputs = new Map([
     [
       "index.js",
@@ -236,7 +246,7 @@ const generate = async () => {
       "index.d.ts",
       await formatSource(
         "index.d.ts",
-        `export declare const iconNames: readonly ${JSON.stringify(names)};\nexport declare const iconGroups: { ${groupNames.map((group) => `readonly ${JSON.stringify(group)}: readonly ${JSON.stringify(iconGroups[group])}`).join("; ")} };\nexport type IconGroup = keyof typeof iconGroups;\nexport type IconName = (typeof iconNames)[number];\nexport type IconSymbolId = \`erbium-icon-\${IconName}\`;\nexport declare const iconDefinitions: { readonly [Name in IconName]: { readonly id: \`erbium-icon-\${Name}\`; readonly viewBox: string } };\n`,
+        `export declare const iconNames: readonly ${JSON.stringify(names)};\nexport declare const iconGroups: { ${iconGroupTypes} };\nexport type IconGroup = keyof typeof iconGroups;\nexport type IconName = (typeof iconNames)[number];\nexport type IconSymbolId = \`erbium-icon-\${IconName}\`;\nexport declare const iconDefinitions: { readonly [Name in IconName]: { readonly id: \`erbium-icon-\${Name}\`; readonly viewBox: string } };\n`,
       ),
     ],
     ["sprite.svg", spriteSheet],
@@ -251,7 +261,7 @@ const generate = async () => {
       "sprite.d.ts",
       await formatSource(
         "sprite.d.ts",
-        `export declare const spriteSheet: string;\nexport declare const spriteSheets: { ${groupNames.map((group) => `readonly ${JSON.stringify(group)}: string`).join("; ")} };\n`,
+        `export declare const spriteSheet: string;\nexport declare const spriteSheets: { ${spriteSheetTypes} };\n`,
       ),
     ],
   ]);
@@ -281,7 +291,7 @@ const generate = async () => {
   const stale = changed.flat();
 
   if (check && stale.length > 0) {
-    throw new Error(`Stale icon outputs: ${stale.join(", ")}. Run bun run icons:generate.`);
+    throw new Error(`Stale icon outputs: ${stale.join(", ")}. Run vp run icons:generate.`);
   }
 
   process.stdout.write(`${check ? "Checked" : "Generated"} ${names.length} icons.\n`);

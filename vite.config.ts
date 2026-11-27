@@ -10,7 +10,7 @@ export default defineConfig({
   },
   run: {
     // Checks, generators, dev servers, and infrastructure commands must execute.
-    // Opt into build caching with bun run build:cached.
+    // Opt into build caching with vp run build:cached.
     cache: { scripts: false, tasks: true },
   },
   staged: {

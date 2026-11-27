@@ -1,7 +1,7 @@
-import { defineConfig } from "oxfmt";
 import ultracite from "ultracite/oxfmt";
+import type { OxfmtConfig } from "vite-plus/fmt";
 
-export default defineConfig({
+export default {
   extends: [ultracite],
   // Vendored skill content is third-party; reformatting it breaks skill update hashes.
   ignorePatterns: [
@@ -19,4 +19,4 @@ export default defineConfig({
     ...ultracite.sortTailwindcss,
     stylesheet: "./packages/ui/src/styles/globals.css",
   },
-});
+} satisfies OxfmtConfig;

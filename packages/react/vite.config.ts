@@ -11,17 +11,19 @@ import entries from "./entries.json" with { type: "json" };
 
 const source = (entry: string) => `src/${entry}.ts`;
 
-// The repository uses a TypeScript 7 development build, which tsdown does not detect as
-// TypeScript Go, so its compiler is passed explicitly for declaration files.
-const tsc = path.join(
-  path.dirname(createRequire(import.meta.url).resolve("typescript/package.json")),
-  "bin/tsc",
+// Declaration files come from tsrs, the compiler Vite+ type checks with. tsdown cannot find it
+// by itself, so its path is passed explicitly.
+const vitePlus = createRequire(import.meta.url).resolve("vite-plus/package.json");
+
+const tsrs = path.join(
+  path.dirname(createRequire(vitePlus).resolve("tsrs/package.json")),
+  "bin/tsrs",
 );
 
 export default defineConfig({
   pack: {
     clean: true,
-    dts: { generator: "tsgo", tsgo: { path: tsc } },
+    dts: { generator: "tsgo", tsgo: { path: tsrs } },
     entry: Object.fromEntries(
       [
         ...entries.client,

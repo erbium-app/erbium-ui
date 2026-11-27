@@ -4,9 +4,9 @@
   "type": "module",
   "scripts": {
     "dev": "vp dev",
-    "build": "vp build && bun verify-build.ts",
+    "build": "vp build && vpx ./verify-build.ts",
     "preview": "vp preview",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "vp check --no-fmt --no-lint"
   },
   "dependencies": {
     "@erbium/content": "workspace:*",

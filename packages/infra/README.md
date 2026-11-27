@@ -21,10 +21,10 @@ import `Cloudflare` from `@alchemy.run/cloudflare` and the stack runtime from
 Run commands from the repository root:
 
 ```sh
-bun install
-bun run infra profile --add Cloudflare
-bun run infra plan
-bun run deploy
+vp install
+vp run infra profile --add Cloudflare
+vp run infra plan
+vp run deploy
 ```
 
 The production deployment is `prod` at `ui.erbium.app`. The root commands
@@ -44,7 +44,7 @@ DNS Edit). See [Cloudflare setup](https://alchemy.run/cloudflare/setup/) and
 
 The stack's `secrets` option lists where `Config` values come from:
 `packages/infra/.env` (git-ignored, optional), then the process environment,
-which wins. CI runners and one-off `KEY=value bun run deploy` calls need no
+which wins. CI runners and one-off `KEY=value vp run deploy` calls need no
 extra setup. Because `secrets` is declared, Alchemy refuses `--env-file`; add a
 path to `Secrets.DotEnv({ path })` instead. Run with `--log-level debug` to see
 which keys each source loaded.
@@ -66,7 +66,7 @@ Their types live in `apps/docs/src/vite-env.d.ts`; update both together.
 
 State is stored in Cloudflare through `Cloudflare.state()` so local and CI runs
 share the same production stack state. To remove the production deployment and
-its managed resources explicitly, run `bun run infra destroy`.
+its managed resources explicitly, run `vp run infra destroy`.
 
 ## Start site
 
@@ -84,7 +84,7 @@ root lockfile, so shared component/content changes invalidate deployment builds.
 The explicit workspace list includes filesystem inputs from the docs content and
 registry plugins, which module-graph auto-detection alone cannot cover.
 
-Validate with `bun run check`, `bun run infra:typecheck` and `bun run docs:build`.
+Validate with `vp run check`, `vp run infra:typecheck` and `vp run docs:build`.
 Planning and deploying additionally require Cloudflare credentials.
 
 Reference: [Alchemy Vite resource](https://alchemy.run/cloudflare/frontend/vite/).
@@ -107,7 +107,7 @@ Alchemy's adoption plan before taking ownership of that existing resource.
 Worker logs, invocation logs and traces are explicitly enabled for the
 server-rendered Start site. Build errors appear in build output.
 
-`.github/workflows/quality.yml` runs `bun run ready` and infrastructure typechecks
+`.github/workflows/quality.yml` runs `vp run ready` and infrastructure typechecks
 on pull requests and pushes to `main`. The oxlint anti-slop rules come vendored
 inside Ultracite (`ultracite/oxlint/anti-slop`), so remote installations need no
 separate plugin checkout or pinned commit.
@@ -124,7 +124,8 @@ and [RUM beacon](https://developers.cloudflare.com/speed/observatory/rum-beacon/
 Cloudflare Workers Builds runs installation and deployment remotely for
 pushes to `main`. Connect `erbium-app/erbium-ui` to the existing docs Worker in
 **Settings > Builds** and authorize the Cloudflare GitHub App for that repository.
-Use root directory `/` and these commands:
+Use root directory `/` and these commands. The runner has no global `vp`, so they
+start with Bun:
 
 ```sh
 # Build command
@@ -154,22 +155,22 @@ state through `alchemy.run.ts`. Updating this repository does not change dashboa
 build settings. No custom Workers Builds providers or token-admin credential are
 needed for this pipeline.
 
-Use `bun run infra <command>` for infrastructure operations: `profile`, `plan`,
+Use `vp run infra <command>` for infrastructure operations: `profile`, `plan`,
 `deploy`, `deploy:ci`, `typecheck` or `destroy`. The root `deploy` and `deploy:ci`
-shortcuts remain available. `bun run infra destroy` removes the production docs
+shortcuts remain available. `vp run infra destroy` removes the production docs
 resources; manage the Git connection separately in Cloudflare.
 
 ## TanStack Start preview
 
-`bun run deploy:preview:plan` and `bun run deploy:preview` select the separate `preview` stage and `default` profile. Refresh credentials before deployment:
+`vp run deploy:preview:plan` and `vp run deploy:preview` select the separate `preview` stage and `default` profile. Refresh credentials before deployment:
 
 ```sh
 cd packages/infra
-bunx --no-install alchemy profile refresh --profile default --provider Cloudflare
+vp exec alchemy profile refresh --profile default --provider Cloudflare
 ```
 
 Grant Workers Scripts write and Account Settings write for the Worker and Web Analytics site, together with the state backend permissions described above.
 
 The preview uses `Cloudflare.Website.Vite` for `apps/docs`, the existing account workers.dev subdomain, and a separate analytics site. Deployment returns both origins for comparison. Markdown, example sources and social images compile in Node before deployment; documentation HTML renders in the Worker. Invocation logs and traces are enabled for the preview. Browser Web Analytics measures visits and Core Web Vitals; it does not report JavaScript exceptions.
 
-Preview robots and metadata disable indexing while canonical URLs retain the production origin. Local Worker validation uses `bun run docs:build` followed by `bun run docs:preview`.
+Preview robots and metadata disable indexing while canonical URLs retain the production origin. Local Worker validation uses `vp run docs:build` followed by `vp run docs:preview`.

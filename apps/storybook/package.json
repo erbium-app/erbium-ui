@@ -6,8 +6,8 @@
     "dev": "storybook dev -p 6006",
     "build": "storybook build",
     "preview": "vp preview --outDir storybook-static --port 6006",
-    "typecheck": "tsc --noEmit",
-    "registry:build": "bun run --cwd ../../packages/showcase registry:build"
+    "typecheck": "vp check --no-fmt --no-lint",
+    "registry:build": "vp run @erbium/showcase#registry:build"
   },
   "dependencies": {
     "@erbium/showcase": "workspace:*",

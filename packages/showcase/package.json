@@ -12,9 +12,9 @@
     "./registry": "./registry.json"
   },
   "scripts": {
-    "generate": "node scripts/generate.ts",
+    "generate": "vpx ./scripts/generate.ts",
     "registry:build": "node scripts/build-registry.mjs",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "vp check --no-fmt --no-lint"
   },
   "dependencies": {
     "@base-ui/react": "^1.9.0",

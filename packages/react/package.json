@@ -112,10 +112,10 @@
   },
   "scripts": {
     "build": "vp pack && node scripts/finalize-dist.mjs",
-    "prepack": "bun run build && node scripts/manifest.mjs publish",
+    "prepack": "vp run build && node scripts/manifest.mjs publish",
     "postpack": "node scripts/manifest.mjs restore",
     "test": "vp test",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "vp check --no-fmt --no-lint"
   },
   "devDependencies": {
     "@base-ui/react": "^1.9.0",
@@ -129,7 +129,8 @@
     "jsdom": "31.0.1",
     "react": "catalog:",
     "react-dom": "catalog:",
-    "typescript": "catalog:"
+    "typescript": "catalog:",
+    "vite-plus": "catalog:"
   },
   "peerDependencies": {
     "@base-ui/react": "^1.9.0",
