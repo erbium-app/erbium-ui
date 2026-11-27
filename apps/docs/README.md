@@ -39,7 +39,7 @@ Vite+'s Bun workspace can resolve multiple instances of its Vite runtime through
 
 `src/server.ts` is the Worker entry. It builds one Effect `HttpRouter` and turns it into a web handler, because `Cloudflare.Website.Vite` deploys a plain `fetch` Worker.
 
-- `src/http/api.ts` declares the generated endpoints (`robots.txt`, `sitemap-index.xml`) with `HttpApi`, and `src/http/site.ts` handles them.
+- `src/http/api.ts` declares the generated endpoints (`robots.txt`, `sitemap-index.xml` and the [RFC 9727](https://www.rfc-editor.org/rfc/rfc9727) catalog at `/.well-known/api-catalog`) with `HttpApi`, and `src/http/site.ts` handles them. The catalog links the documentation API to `openapi.json` and `llms.txt`.
 - `src/http/pages.ts` negotiates page requests. `Accept: text/markdown` gets the page's `.md` file with `Vary: Accept` and an estimated `x-markdown-tokens`; other requests get HTML.
 - Every other request falls through to TanStack Start.
 - `worker.config.ts` holds the asset routing and compatibility date for both local runs and deploys. Its `runWorkerFirst` rules send page requests to the Worker before static files.
