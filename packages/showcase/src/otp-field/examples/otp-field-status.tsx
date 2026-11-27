@@ -39,7 +39,7 @@ export default function OTPFieldStatusExample() {
       }}
     >
       {(field) => (
-        <field.Field className="w-fit">
+        <field.Field>
           <FieldLabel>Verification code</FieldLabel>
           <FieldDescription>Demo code: 123456</FieldDescription>
           <field.OTPField length={6} groups={[3, 3]} verifiedValue={verifiedValue} />

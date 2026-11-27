@@ -186,7 +186,7 @@ const OTPField = ({
 
           assignRef(ref, node);
         }}
-        className={cn("flex w-fit items-center gap-related", className)}
+        className={cn("mx-auto flex w-fit items-center justify-center gap-related", className)}
         {...props}
       >
         {children ?? <OTPFieldSlots groups={groups} length={length} />}

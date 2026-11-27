@@ -22,7 +22,7 @@ export default function OTPFieldInvalidExample() {
   return (
     <form.AppField name="code" validators={{ onChange: DemoCode, onSubmit: CompleteCode }}>
       {(field) => (
-        <field.Field className="w-fit" required>
+        <field.Field required>
           <FieldLabel>Verification code</FieldLabel>
           <FieldDescription>Demo code: 123456</FieldDescription>
           <field.OTPField

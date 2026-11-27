@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/field", "@erbium/otp-field", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { OTPField } from \"@/registry/erbium/ui/otp-field\";\n\nexport default function OTPFieldPatternExample() {\n  return (\n    <Field className=\"w-fit\">\n      <FieldLabel>Digits Only</FieldLabel>\n      <OTPField length={6} validationType=\"numeric\" />\n    </Field>\n  );\n}\n",
+      "content": "import { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { OTPField } from \"@/registry/erbium/ui/otp-field\";\n\nexport default function OTPFieldPatternExample() {\n  return (\n    <Field>\n      <FieldLabel>Digits Only</FieldLabel>\n      <OTPField length={6} validationType=\"numeric\" />\n    </Field>\n  );\n}\n",
       "path": "src/otp-field/examples/otp-field-pattern.tsx",
       "target": "@components/showcase/otp-field/examples/otp-field-pattern.tsx",
       "type": "registry:component"

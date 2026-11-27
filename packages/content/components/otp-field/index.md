@@ -29,6 +29,12 @@ OTPField
 
 Slots after the first need an `aria-label` such as `Character 2 of 6` when composed by hand.
 
+## Layout
+
+The field centres itself in the width available. A vertical `Field` or `field.Field`
+that holds one centres its label, description and error with it. To start-align a
+field on its own, pass `className="mx-0 justify-start"`.
+
 ## Validation with TanStack Form and Effect Schema
 
 Base UI's `validationType="numeric"` filters characters; it does not verify the code.

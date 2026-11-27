@@ -114,7 +114,9 @@ const fieldVariants = cva("group/field flex w-full gap-related data-invalid:text
       // Wide enough: the label in the first column, the control, description and error in the second.
       responsive:
         "flex-col *:w-full @md/field-group:grid @md/field-group:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] @md/field-group:*:col-start-2 @md/field-group:*:data-[slot=field-label]:col-start-1 @md/field-group:*:data-[slot=field-label]:row-start-1 [&>.sr-only]:w-auto",
-      vertical: "flex-col *:w-full [&>.sr-only]:w-auto",
+      // A one-time code sits centred, so the text around it centres with it.
+      vertical:
+        "flex-col *:w-full has-[>[data-slot=otp-field]]:items-center has-[>[data-slot=otp-field]]:text-center has-[>[data-slot=otp-field]]:*:data-[slot=field-description]:text-center has-[>[data-slot=otp-field]]:*:data-[slot=field-label]:w-fit [&>.sr-only]:w-auto",
     },
     variant: {
       card: choiceCardClassName,
