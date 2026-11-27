@@ -4,7 +4,7 @@
   "type": "registry:item",
   "title": "OTP Field stories",
   "description": "All otp-field variants as portable React CSF stories.",
-  "dependencies": ["effect@4.1.5"],
+  "dependencies": ["effect@4.1.6"],
   "devDependencies": ["@storybook/react@^10.6.1"],
   "registryDependencies": [
     "@erbium/button",
