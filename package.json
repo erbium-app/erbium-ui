@@ -126,8 +126,8 @@
     "oxlint-plugin-react-doctor": "^0.9.23",
     "skills": "^1.9.0",
     "stylelint": "^18.1.0",
-    "stylelint-config-idiomatic-order": "^10.0.0",
     "stylelint-config-standard": "^41.1.0",
+    "stylelint-order": "^8.1.3",
     "taze": "^21.3.0",
     "typescript": "catalog:",
     "ultracite": "^8.3.1",
@@ -135,6 +135,7 @@
     "vite-plus": "catalog:"
   },
   "overrides": {
+    "csstype": "3.2.3",
     "vite": "catalog:"
   },
   "devEngines": {
@@ -153,6 +154,6 @@
     ]
   },
   "patchedDependencies": {
-    "@tanstack/form-core@1.33.5": "patches/@tanstack%2Fform-core@1.33.5.patch"
+    "@tanstack/form-core@1.33.6": "patches/@tanstack%2Fform-core@1.33.6.patch"
   }
 }

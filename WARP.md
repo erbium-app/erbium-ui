@@ -25,7 +25,7 @@ Go through Vite+ (`vp`) for everything it covers. Its docs are in `node_modules/
 # Checks
 
 - Check only the files you edit with `vp check <files>`, or `--fix` for mechanical fixes. Use `vp exec stylelint <files>` for CSS. For files that are only md, json or yaml, use `vp fmt --check <files>`.
-- `vp run check` fails on existing errors (257 as of 2026-11-17). Don't fix unrelated files, and don't raise that count.
+- `vp run check` fails on existing errors (380 from `vp check` and 366 from Stylelint as of 2026-11-27). Don't fix unrelated files, and don't raise either count.
 - When you change an exported API, check the files that import it too.
 - Run `vp run ready` for a check plus build, and `vp run knip` only when unused code is in scope.
 - Tests exist in `packages/react` (`vp run react:test`) and `packages/cli`. Verify UI by hand in Storybook or the docs.
