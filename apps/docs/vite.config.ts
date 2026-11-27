@@ -1,3 +1,4 @@
+import { local as assetsBinding } from "@alchemy.run/cloudflare-runtime/core/bindings/assets/Assets";
 import cloudflare from "@alchemy.run/cloudflare-runtime/vite";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import react from "@vitejs/plugin-react";
@@ -8,9 +9,9 @@ import { cp } from "node:fs/promises";
 import { registryPlugin } from "./registry-plugin.mjs";
 import { contentPlugin, docsCatalog } from "./content-plugin";
 import { staticContentPlugin } from "./static-content-plugin";
+import { assets, compatibility } from "./worker.config";
 
 const root = new URL("./", import.meta.url).pathname;
-const compatibilityDate = "2026-08-31";
 
 const { components, guides } = docsCatalog();
 const pagePaths = [...guides, ...components].map((page) => page.href);
@@ -29,10 +30,9 @@ export default defineConfig(({ isPreview }) => ({
       ? undefined
       : cloudflare({
           // An explicit date enables Node.js compatibility, a default since 2026-08-04.
-          // Keep it equal to the date in packages/infra/alchemy.run.ts.
-          compatibilityDate,
-          // Match the deployed asset routing in local dev and preview.
-          worker: { assets: { htmlHandling: "drop-trailing-slash" }, bindings: [], name: "docs" },
+          compatibilityDate: compatibility.date,
+          // Deploys add the `ASSETS` binding themselves.
+          worker: { assets, bindings: [assetsBinding("ASSETS")], name: "docs" },
         }),
     contentPlugin(),
     staticContentPlugin({ pagePaths, root, toolingPlugins: () => [contentPlugin()] }),

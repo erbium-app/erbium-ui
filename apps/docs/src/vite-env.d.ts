@@ -10,3 +10,8 @@ interface ImportMetaEnv {
 interface ImportMeta {
   readonly env: ImportMetaEnv;
 }
+
+// The one Worker binding the docs use: Alchemy adds it on deploy, vite.config.ts locally.
+declare module "cloudflare:workers" {
+  export const env: { ASSETS: { fetch: (request: Request) => Promise<Response> } };
+}

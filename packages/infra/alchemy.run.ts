@@ -3,6 +3,7 @@ import * as Alchemy from "alchemy";
 import * as Effect from "effect/Effect";
 import { Path } from "effect/Path";
 import { getSubdomain } from "@distilled.cloud/cloudflare/workers";
+import { assets, compatibility } from "../../apps/docs/worker.config.ts";
 
 export default Alchemy.Stack(
   "ErbiumUI",
@@ -25,8 +26,9 @@ export default Alchemy.Stack(
       const analytics = yield* Cloudflare.Rum.Site("StartAnalytics", { autoInstall: false, host });
 
       const start = yield* Cloudflare.Website.Vite("DocsStart", {
-        assets: { htmlHandling: "drop-trailing-slash", notFoundHandling: "none" },
-        compatibility: { date: "2026-08-31" },
+        assets,
+        compatibility,
+        name,
         env: {
           VITE_CLOUDFLARE_ANALYTICS_TOKEN: analytics.siteToken,
           VITE_DOCS_PREVIEW: "true",
@@ -39,7 +41,6 @@ export default Alchemy.Stack(
             { cwd: "../../packages/cli" },
           ],
         },
-        name,
         observability: {
           enabled: true,
           logs: { enabled: true, headSamplingRate: 1, invocationLogs: true, persist: true },
@@ -67,8 +68,8 @@ export default Alchemy.Stack(
     });
 
     const docs = yield* Cloudflare.Website.Vite("Docs", {
-      assets: { htmlHandling: "drop-trailing-slash", notFoundHandling: "none" },
-      compatibility: { date: "2026-08-31" },
+      assets,
+      compatibility,
       domain: "ui.erbium.app",
       env: { VITE_CLOUDFLARE_ANALYTICS_TOKEN: analytics.siteToken },
       // Docs also reads content and registry sources from disk, outside the module graph.
