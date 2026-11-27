@@ -74,6 +74,7 @@
     "intellectronica",
     "llms",
     "navigations",
+    "noninteractive",
     "oklch",
     "pathspecs",
     "Postconditions",
@@ -88,6 +89,8 @@
     "trackpad",
     "ultracite",
     "Vazirmatn",
+    "vitesse",
+    "voidzero",
     "wordmark"
   ],
   "oxc.disableNestedConfig": true,
