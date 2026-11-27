@@ -23,15 +23,15 @@ import StatesExample from "./variants/states";
 import StatesSource from "./variants/states.tsx?raw";
 import ChangingSourceExample from "./variants/changing-source";
 import ChangingSourceSource from "./variants/changing-source.tsx?raw";
-import StreamingExample from "./variants/streaming";
-import StreamingSource from "./variants/streaming.tsx?raw";
 import LanguagesExample from "./variants/languages";
 import LanguagesSource from "./variants/languages.tsx?raw";
+
+const name = "code-block";
 
 const meta = {
   component: CodeBlock,
   parameters: {
-    docs: { description: { component: componentDocumentation("code-block") } },
+    docs: { description: { component: componentDocumentation(name) } },
     layout: "centered",
   },
   tags: ["autodocs"],
@@ -44,7 +44,7 @@ type Story = StoryObj;
 export const Languages: Story = {
   parameters: {
     docs: {
-      description: { story: variantDocumentation("code-block", "languages") },
+      description: { story: variantDocumentation(name, "languages") },
       source: { code: LanguagesSource },
     },
   },
@@ -54,7 +54,7 @@ export const Languages: Story = {
 export const Overview: Story = {
   parameters: {
     docs: {
-      description: { story: variantDocumentation("code-block", "overview") },
+      description: { story: variantDocumentation(name, "overview") },
       source: { code: OverviewSource },
     },
   },
@@ -64,7 +64,7 @@ export const Overview: Story = {
 export const Commands: Story = {
   parameters: {
     docs: {
-      description: { story: variantDocumentation("code-block", "commands") },
+      description: { story: variantDocumentation(name, "commands") },
       source: { code: CommandsSource },
     },
   },
@@ -74,7 +74,7 @@ export const Commands: Story = {
 export const Prompt: Story = {
   parameters: {
     docs: {
-      description: { story: variantDocumentation("code-block", "prompt") },
+      description: { story: variantDocumentation(name, "prompt") },
       source: { code: PromptSource },
     },
   },
@@ -84,7 +84,7 @@ export const Prompt: Story = {
 export const Files: Story = {
   parameters: {
     docs: {
-      description: { story: variantDocumentation("code-block", "files") },
+      description: { story: variantDocumentation(name, "files") },
       source: { code: FilesSource },
     },
   },
@@ -94,7 +94,7 @@ export const Files: Story = {
 export const Controlled: Story = {
   parameters: {
     docs: {
-      description: { story: variantDocumentation("code-block", "controlled") },
+      description: { story: variantDocumentation(name, "controlled") },
       source: { code: ControlledSource },
     },
   },
@@ -104,7 +104,7 @@ export const Controlled: Story = {
 export const Composition: Story = {
   parameters: {
     docs: {
-      description: { story: variantDocumentation("code-block", "composition") },
+      description: { story: variantDocumentation(name, "composition") },
       source: { code: CompositionSource },
     },
   },
@@ -114,7 +114,7 @@ export const Composition: Story = {
 export const Overflow: Story = {
   parameters: {
     docs: {
-      description: { story: variantDocumentation("code-block", "overflow") },
+      description: { story: variantDocumentation(name, "overflow") },
       source: { code: OverflowSource },
     },
   },
@@ -124,7 +124,7 @@ export const Overflow: Story = {
 export const LineNumbers: Story = {
   parameters: {
     docs: {
-      description: { story: variantDocumentation("code-block", "line-numbers") },
+      description: { story: variantDocumentation(name, "line-numbers") },
       source: { code: LineNumbersSource },
     },
   },
@@ -134,7 +134,7 @@ export const LineNumbers: Story = {
 export const HighlightedLines: Story = {
   parameters: {
     docs: {
-      description: { story: variantDocumentation("code-block", "highlighted-lines") },
+      description: { story: variantDocumentation(name, "highlighted-lines") },
       source: { code: HighlightedLinesSource },
     },
   },
@@ -144,7 +144,7 @@ export const HighlightedLines: Story = {
 export const States: Story = {
   parameters: {
     docs: {
-      description: { story: variantDocumentation("code-block", "states") },
+      description: { story: variantDocumentation(name, "states") },
       source: { code: StatesSource },
     },
   },
@@ -154,19 +154,9 @@ export const States: Story = {
 export const ChangingSource: Story = {
   parameters: {
     docs: {
-      description: { story: variantDocumentation("code-block", "changing-source") },
+      description: { story: variantDocumentation(name, "changing-source") },
       source: { code: ChangingSourceSource },
     },
   },
   render: ChangingSourceExample,
-};
-
-export const Streaming: Story = {
-  parameters: {
-    docs: {
-      description: { story: variantDocumentation("code-block", "streaming") },
-      source: { code: StreamingSource },
-    },
-  },
-  render: StreamingExample,
 };

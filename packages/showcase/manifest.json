@@ -1475,13 +1475,6 @@
         "source": "src/code-block/variants/changing-source.tsx",
         "usage": ["src/code-block/variants/changing-source.tsx"],
         "title": "Changing Source"
-      },
-      {
-        "exportName": "Streaming",
-        "slug": "streaming",
-        "source": "src/code-block/variants/streaming.tsx",
-        "usage": ["src/code-block/variants/streaming.tsx"],
-        "title": "Streaming"
       }
     ]
   },
@@ -3497,10 +3490,7 @@
         "exportName": "StreamingReply",
         "slug": "streaming-reply",
         "source": "src/message-scroller/variants/streaming-reply.tsx",
-        "usage": [
-          "src/message-scroller/variants/streaming-reply.tsx",
-          "src/message-scroller/examples/message-scroller-variants.tsx"
-        ],
+        "usage": ["src/message-scroller/variants/streaming-reply.tsx", "src/streaming.ts"],
         "title": "Streaming Reply"
       },
       {
@@ -5063,6 +5053,47 @@
         "source": "src/stepper/variants/headless.tsx",
         "usage": ["src/stepper/variants/headless.tsx"],
         "title": "Headless"
+      }
+    ]
+  },
+  {
+    "name": "streaming-response",
+    "title": "Blocks/Streaming Response",
+    "variants": [
+      {
+        "exportName": "Overview",
+        "slug": "overview",
+        "source": "src/streaming-response/variants/overview.tsx",
+        "usage": ["src/streaming-response/variants/overview.tsx", "src/streaming.ts"],
+        "title": "Overview"
+      },
+      {
+        "exportName": "Markdown",
+        "slug": "markdown",
+        "source": "src/streaming-response/variants/markdown.tsx",
+        "usage": ["src/streaming-response/variants/markdown.tsx"],
+        "title": "Markdown"
+      },
+      {
+        "exportName": "Actions",
+        "slug": "actions",
+        "source": "src/streaming-response/variants/actions.tsx",
+        "usage": ["src/streaming-response/variants/actions.tsx", "src/streaming.ts"],
+        "title": "Actions"
+      },
+      {
+        "exportName": "States",
+        "slug": "states",
+        "source": "src/streaming-response/variants/states.tsx",
+        "usage": ["src/streaming-response/variants/states.tsx"],
+        "title": "States"
+      },
+      {
+        "exportName": "CustomUi",
+        "slug": "custom-ui",
+        "source": "src/streaming-response/variants/custom-ui.tsx",
+        "usage": ["src/streaming-response/variants/custom-ui.tsx", "src/streaming.ts"],
+        "title": "Custom UI"
       }
     ]
   },

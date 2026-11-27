@@ -9,6 +9,22 @@ type StatefulIconProps<State extends string> = Omit<React.ComponentProps<"span">
   icons: Readonly<Record<State, ReactNode>>;
 };
 
+// The classes are shared with markup built outside React, such as a streaming response's.
+const statefulIconClassName = "inline-grid shrink-0 align-middle *:col-start-1 *:row-start-1";
+
+const statefulIconItemClassName =
+  "relative grid place-items-center transition-[scale,opacity] duration-ui ease-ui-out motion-reduce:transition-none";
+
+const statefulIconStateClassNames = {
+  active: "scale-100 opacity-100",
+  inactive: "scale-50 opacity-0",
+} as const;
+
+const checkboxStateIconClassName = "inline-grid size-3.5 shrink-0";
+
+const checkboxCheckClassName =
+  "col-start-1 row-start-1 size-full opacity-0 transition-[opacity,stroke-dashoffset] duration-ui-fast [stroke-dasharray:32] [stroke-dashoffset:32] group-data-checked/check-indicator:opacity-100 group-data-checked/check-indicator:delay-75 group-data-checked/check-indicator:[stroke-dashoffset:0] motion-reduce:transition-none";
+
 /**
  * Crossfades between caller-provided content when `state` changes. It is decorative, so name the
  * control around it.
@@ -21,7 +37,7 @@ const StatefulIcon = <State extends string>({
 }: StatefulIconProps<State>) => (
   <span
     aria-hidden="true"
-    className={cn("inline-grid shrink-0 align-middle *:col-start-1 *:row-start-1", className)}
+    className={cn(statefulIconClassName, className)}
     data-slot="stateful-icon"
     data-state={state}
     {...props}
@@ -32,8 +48,8 @@ const StatefulIcon = <State extends string>({
       return (
         <span
           className={cn(
-            "relative grid place-items-center transition-[scale,opacity] duration-ui ease-ui-out motion-reduce:transition-none",
-            active ? "scale-100 opacity-100" : "scale-50 opacity-0",
+            statefulIconItemClassName,
+            statefulIconStateClassNames[active ? "active" : "inactive"],
           )}
           data-active={active}
           data-state={key}
@@ -84,14 +100,10 @@ const CheckboxStateIcon = ({ className }: { className?: string }) => (
   <span
     aria-hidden="true"
     data-slot="checkbox-state-icon"
-    className={cn("inline-grid size-3.5 shrink-0", className)}
+    className={cn(checkboxStateIconClassName, className)}
   >
     {/* Dash properties inherit into the sprite, so the draw-on runs on the svg itself. */}
-    <Icon
-      name="check"
-      aria-hidden="true"
-      className="col-start-1 row-start-1 size-full opacity-0 transition-[opacity,stroke-dashoffset] duration-ui-fast [stroke-dasharray:32] [stroke-dashoffset:32] group-data-checked/check-indicator:opacity-100 group-data-checked/check-indicator:delay-75 group-data-checked/check-indicator:[stroke-dashoffset:0] motion-reduce:transition-none"
-    />
+    <Icon name="check" aria-hidden="true" className={checkboxCheckClassName} />
     <Icon
       name="minus"
       aria-hidden="true"
@@ -101,5 +113,13 @@ const CheckboxStateIcon = ({ className }: { className?: string }) => (
 );
 
 export { CheckboxStateIcon, RotatingChevron, StatefulIcon };
+
+export {
+  checkboxCheckClassName,
+  checkboxStateIconClassName,
+  statefulIconClassName,
+  statefulIconItemClassName,
+  statefulIconStateClassNames,
+};
 
 export type { RotatingChevronProps, StatefulIconProps };

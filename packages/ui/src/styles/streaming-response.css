@@ -1,0 +1,146 @@
+/*
+ * Markdown that Pierre renders inside `StreamingResponse`. `.typeset` styles the prose and the
+ * element hooks give blocks Erbium's component classes; these rules set a chat's scale and
+ * rhythm, color code, and style the caret and fade.
+ */
+
+@layer components {
+  /* A reply is not an article: headings stay near the body size and blocks sit closer. */
+  .typeset[data-slot="streaming-response-content"] {
+    --typeset-flow: 1em;
+
+    & :where([data-markdown="h1"], [data-markdown="h2"]) {
+      font-size: var(--text-subtitle);
+      line-height: var(--text-subtitle--line-height);
+      margin-block-start: calc(var(--typeset-flow) * 1.5);
+    }
+
+    & :where([data-markdown="h3"], [data-markdown="h4"]) {
+      font-size: var(--text-body);
+      line-height: var(--text-body--line-height);
+      margin-block-start: calc(var(--typeset-flow) * 1.25);
+    }
+
+    /* Blocks drawn as Erbium components keep the response's rhythm. */
+    &
+      :where(
+        [data-slot="code-block"],
+        [data-slot="table-container"],
+        [data-slot="alert"],
+        [data-slot="separator"][data-markdown="hr"]
+      ) {
+      margin-block-start: var(--typeset-flow);
+    }
+
+    & > :first-child {
+      margin-block-start: 0;
+    }
+
+    & [data-slot="alert-description"] > :first-child {
+      margin-block-start: 0;
+    }
+
+    /* Task lists: the checkbox takes the marker's place. */
+    & li:has(> [data-slot="checkbox"], > p > [data-slot="checkbox"]) {
+      list-style: none;
+
+      & [data-slot="checkbox"] {
+        margin-inline-start: -1.5em;
+      }
+    }
+
+    /* Inline code and links in table cells, which opt out of `.typeset`'s table styles. */
+    & [data-slot="table-container"] {
+      & code {
+        border-radius: var(--radius-sm);
+
+        @apply bg-muted px-1 text-inline-code;
+      }
+
+      & a {
+        @apply font-medium underline underline-offset-3;
+      }
+    }
+
+    /* Pierre's code markup inside the code block. */
+    & [data-markdown="code-block"] {
+      & pre {
+        display: flex;
+        gap: 2ch;
+      }
+
+      & pre code {
+        display: block;
+        flex-grow: 1;
+        white-space: pre;
+      }
+
+      /* Pierre lays out streamed code in groups of lines. */
+      & [data-markdown="code-lines"] {
+        display: block;
+      }
+
+      & [data-markdown="line-numbers"] {
+        text-align: end;
+        user-select: none;
+        white-space: pre;
+
+        @apply text-muted-foreground;
+      }
+
+      & pre code span[style] {
+        background-color: var(--hls-light-bg, transparent);
+        color: var(--hls-light);
+        font-style: var(--hls-light-font-style, inherit);
+        font-weight: var(--hls-light-font-weight, inherit);
+
+        @variant dark {
+          background-color: var(--hls-dark-bg, transparent);
+          color: var(--hls-dark);
+        }
+      }
+    }
+
+    /* Math, scaled up because STIX Two has a small x-height. */
+    & :where([data-markdown="math"], [data-markdown="math-display"]) {
+      font-size: 1.15em;
+    }
+
+    & [data-markdown="math-display"] {
+      max-width: 100%;
+      box-sizing: content-box;
+      padding-block: 0.5em;
+    }
+
+    /* Zero width, so a moving caret never changes line widths. */
+    & [data-markdown="caret"] {
+      display: inline-block;
+      width: 0;
+      user-select: none;
+
+      @apply animate-caret-blink motion-reduce:animate-none;
+
+      &::after {
+        content: "\258d";
+      }
+
+      &[data-shape="circle"]::after {
+        content: "\25cf";
+      }
+    }
+
+    & [data-animated="true"] {
+      animation: streaming-response-fade 180ms ease-out backwards;
+
+      @media (prefers-reduced-motion: reduce) {
+        animation: none;
+      }
+    }
+  }
+}
+
+@keyframes streaming-response-fade {
+  from {
+    opacity: 0;
+  }
+}

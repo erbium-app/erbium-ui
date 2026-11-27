@@ -20,6 +20,7 @@
       "type": "registry:ui",
       "title": "Alert",
       "description": "Erbium alert component.",
+      "dependencies": ["@erbium/icons"],
       "registryDependencies": ["@erbium/icon", "@erbium/utils"],
       "files": [
         {
@@ -1950,6 +1951,58 @@
       ]
     },
     {
+      "name": "streaming-response",
+      "type": "registry:block",
+      "title": "Streaming Response",
+      "description": "Erbium streaming response block.",
+      "dependencies": ["@erbium-ui/react@^0.1.0", "@pierre/highlights", "@pierre/words"],
+      "registryDependencies": [
+        "@erbium/alert",
+        "@erbium/icon",
+        "@erbium/marker",
+        "@erbium/spinner",
+        "@erbium/streaming-response-markup",
+        "@erbium/use-copy-to-clipboard",
+        "@erbium/utils"
+      ],
+      "files": [
+        {
+          "path": "src/blocks/streaming-response.tsx",
+          "target": "@components/blocks/streaming-response.tsx",
+          "type": "registry:block"
+        }
+      ]
+    },
+    {
+      "name": "streaming-response-markup",
+      "type": "registry:lib",
+      "title": "Streaming Response Markup",
+      "description": "Erbium streaming response markup lib.",
+      "dependencies": ["@erbium/icons", "@pierre/words"],
+      "registryDependencies": [
+        "@erbium/alert",
+        "@erbium/button-variants",
+        "@erbium/choice-styles",
+        "@erbium/code-block",
+        "@erbium/code-language-icon",
+        "@erbium/code-panel",
+        "@erbium/icon",
+        "@erbium/kbd-styles",
+        "@erbium/marker",
+        "@erbium/separator",
+        "@erbium/stateful-icon",
+        "@erbium/table-styles",
+        "@erbium/utils"
+      ],
+      "files": [
+        {
+          "path": "src/lib/streaming-response-markup.ts",
+          "target": "@lib/streaming-response-markup.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
       "dependencies": [
         "easing-gradients",
         "shadcn",
@@ -2002,6 +2055,11 @@
         {
           "path": "src/styles/sizing.css",
           "target": "~/src/styles/sizing.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/styles/streaming-response.css",
+          "target": "~/src/styles/streaming-response.css",
           "type": "registry:file"
         },
         {

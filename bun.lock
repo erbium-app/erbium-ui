@@ -219,6 +219,7 @@
         "@pierre/diffs": "1.7.2",
         "@pierre/highlights": "0.6.0",
         "@pierre/trees": "1.0.0",
+        "@pierre/words": "0.3.0",
         "@ramka/react": "^0.0.2",
         "@shadcn/react": "catalog:",
         "@tanstack/charts": "catalog:",
@@ -887,6 +888,8 @@
     "@pierre/theming": ["@pierre/theming@1.0.2", "", { "peerDependencies": { "@pierre/theme": "^1.1.0 || ^2.0.0", "@shikijs/themes": "^3.0.0 || ^4.0.0", "react": "^18.3.1 || ^19.0.0", "react-dom": "^18.3.1 || ^19.0.0", "shiki": "^3.0.0 || ^4.0.0" }, "optionalPeers": ["@pierre/theme", "@shikijs/themes", "react", "react-dom", "shiki"] }, "sha512-RmXLLqtx31UGcR8kZyO5hGAQ1EXz6loT1Cu0BFAGsbnBboIxp2BlomkLfWyvdT4WZXnBGyu25onL1gKpFQuSUw=="],
 
     "@pierre/trees": ["@pierre/trees@1.0.0", "", { "dependencies": { "@pierre/theming": "1.0.2", "preact": "11.0.0-beta.0", "preact-render-to-string": "6.6.5" }, "peerDependencies": { "react": "^18.3.1 || ^19.0.0", "react-dom": "^18.3.1 || ^19.0.0" }, "optionalPeers": ["react", "react-dom"] }, "sha512-skHNPs4LK1nScFrSvMwN4LnZyHfFf1M7I9ivWePecFqWSYYJYdgKUFCaxPBL0MPY/Z8c3q0yhl8bkkzdDfotug=="],
+
+    "@pierre/words": ["@pierre/words@0.3.0", "", { "peerDependencies": { "@pierre/highlights": ">=0.5.1", "react": "^18.3.1 || ^19.0.0", "react-dom": "^18.3.1 || ^19.0.0" }, "optionalPeers": ["@pierre/highlights", "react", "react-dom"] }, "sha512-k38qoYj0eUCr+vGQlXlSer78q5EeG7rSge9b2ADBFvLQ0L+OJH5zAdgdgm1jqkFq2Q6zXUuBkZWB5nQgPy2iUQ=="],
 
     "@pkgr/core": ["@pkgr/core@0.3.6", "", {}, "sha512-SEeaJLb3qBNF/OaXnaR1NmmBbFYk1zC0ZH/52fATcRPLFg/p791YrcyFFy44Bo9sLaGuSuLp5Q6axbb/O+v/RA=="],
 

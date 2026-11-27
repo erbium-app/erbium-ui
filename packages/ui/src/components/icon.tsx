@@ -20,12 +20,17 @@ const IconSpriteProvider = ({ children, href }: IconSpriteProviderProps) => (
   <IconSpriteContext.Provider value={href}>{children}</IconSpriteContext.Provider>
 );
 
+/** The sprite `<use>` points at: empty for the inline `IconSprite`. */
+const useIconSpriteHref = () => React.useContext(IconSpriteContext);
+
+const iconClassName = "shrink-0 overflow-visible rounded-full";
+
 type IconProps = Omit<React.ComponentProps<"svg">, "children" | "dangerouslySetInnerHTML"> & {
   name: IconName;
 };
 
 const Icon = ({ name, className, ...props }: IconProps) => {
-  const spriteHref = React.useContext(IconSpriteContext);
+  const spriteHref = useIconSpriteHref();
   const { id, viewBox } = iconDefinitions[name];
 
   // Size comes from width/height attributes so a parent's
@@ -41,13 +46,13 @@ const Icon = ({ name, className, ...props }: IconProps) => {
       data-slot="icon"
       {...props}
       viewBox={viewBox}
-      className={cn("shrink-0 overflow-visible rounded-full", className)}
+      className={cn(iconClassName, className)}
     >
       <use href={`${spriteHref}#${id}`} />
     </svg>
   );
 };
 
-export { Icon, IconSpriteProvider };
+export { Icon, iconClassName, IconSpriteProvider, useIconSpriteHref };
 
 export type { IconProps, IconSpriteProviderProps };

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "streaming-response-custom-ui",
+  "type": "registry:block",
+  "title": "Streaming Response: Custom UI",
+  "description": "An `island-deployment` fence mounts a card once the fence closes.",
+  "registryDependencies": [
+    "@erbium/button",
+    "@erbium/card",
+    "@erbium/streaming-response",
+    "@erbium/styles"
+  ],
+  "files": [
+    {
+      "content": "import { useCallback, useEffect } from \"react\";\nimport {\n  StreamingResponse,\n  StreamingResponseContent,\n  useTextStream,\n} from \"@/registry/erbium/blocks/streaming-response\";\nimport type { StreamingResponseIslands } from \"@/registry/erbium/blocks/streaming-response\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Card,\n  CardContent,\n  CardDescription,\n  CardHeader,\n  CardTitle,\n} from \"@/registry/erbium/ui/card\";\nimport { simulateStream } from \"../../streaming\";\n\n// Island data is model output, so each field is checked before it is shown.\nconst isText = (value: unknown): value is string =>\n  // oxlint-disable-next-line anti-slop/no-runtime-typeof -- this is where model output is parsed.\n  typeof value === \"string\";\n\n// Defined outside the component, so the response is not formatted again on each render.\nconst islands: StreamingResponseIslands = {\n  deployment: {\n    pending: \"Preparing the deployment…\",\n    // The data is model output: check it, and return null to show it as code instead.\n    render: ({ id, service, version }) =>\n      isText(service) && isText(version) ? (\n        <Card key={id} size=\"sm\" className=\"not-typeset my-4\">\n          <CardHeader>\n            <CardTitle>Deploy {service}</CardTitle>\n            <CardDescription>Version {version} is ready.</CardDescription>\n          </CardHeader>\n          <CardContent>\n            <Button size=\"sm\">Review changes</Button>\n          </CardContent>\n        </Card>\n      ) : null,\n  },\n};\n\nconst reply = `The build passed. Confirm the deployment below.\n\n\\`\\`\\`island-deployment\n{ \"id\": \"api-1.4.0\", \"service\": \"api\", \"version\": \"1.4.0\" }\n\\`\\`\\`\n\nNothing ships until you confirm it.\n`;\n\nexport default function StreamingResponseCustomUiExample() {\n  const { start, status, text } = useTextStream();\n\n  const ask = useCallback(() => {\n    void start((signal) => simulateStream(reply, { signal }));\n  }, [start]);\n\n  useEffect(() => {\n    ask();\n  }, [ask]);\n\n  return (\n    <div className=\"grid w-full max-w-md gap-group\">\n      <Button className=\"justify-self-start\" variant=\"outline\" size=\"sm\" onClick={ask}>\n        Replay\n      </Button>\n      <StreamingResponse text={text} status={status}>\n        <StreamingResponseContent islands={islands} />\n      </StreamingResponse>\n    </div>\n  );\n}\n",
+      "path": "src/streaming-response/variants/custom-ui.tsx",
+      "target": "@components/showcase/streaming-response/variants/custom-ui.tsx",
+      "type": "registry:component"
+    },
+    {
+      "content": "/*\n * A stand-in for a model's reply, so streaming examples run without a server. In an app, pass\n * `useTextStream` the response body or the text stream of your model SDK.\n */\n\ninterface SimulatedStreamOptions {\n  signal?: AbortSignal;\n  /** Characters per chunk. */\n  chunkSize?: number;\n  /** Milliseconds between chunks. */\n  interval?: number;\n  /** How long the \"model\" thinks before the first chunk. */\n  delay?: number;\n}\n\nconst wait = async (milliseconds: number) => {\n  // oxlint-disable-next-line promise/avoid-new -- a timer has no promise form in browsers.\n  await new Promise((resolve) => {\n    setTimeout(resolve, milliseconds);\n  });\n};\n\n/**\n * Streams `text` a few characters at a time until it ends or `signal` aborts.\n *\n * @yields {string} The next chunk of `text`.\n */\nconst simulateStream = async function* simulateStream(\n  text: string,\n  { signal, chunkSize = 6, interval = 24, delay = 600 }: SimulatedStreamOptions = {},\n) {\n  await wait(delay);\n\n  for (let start = 0; start < text.length; start += chunkSize) {\n    if (signal?.aborted === true) {\n      return;\n    }\n\n    yield text.slice(start, start + chunkSize);\n    // Chunks arrive in order, one after another.\n    // oxlint-disable-next-line no-await-in-loop\n    await wait(interval);\n  }\n};\n\nexport { simulateStream };\n",
+      "path": "src/streaming.ts",
+      "target": "@components/showcase/streaming.ts",
+      "type": "registry:component"
+    }
+  ]
+}

@@ -53,6 +53,6 @@ const Separator = ({
   );
 };
 
-export { Separator };
+export { Separator, separatorVariants };
 
 export type { SeparatorProps };

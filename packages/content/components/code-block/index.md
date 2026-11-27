@@ -117,7 +117,7 @@ Use `diff` for a patch shown as text, such as a fenced patch in documentation; i
 
 Use `ansi` for terminal output. It renders ANSI colors, backgrounds, bold, and italics instead of showing their escape codes as text, and a style carries to later lines until it is reset, as in a terminal. Copying keeps the provided string exactly, escape codes included; pass a `value` without them to `CodeBlockCopyButton` when readers should paste plain text.
 
-Once the highlighter has loaded, tokenizing is synchronous, so the block highlights its whole source on every render. Edited, replaced, and streamed source never shows stale colors or drops back to plaintext, and multi-line comments and strings stay correct as chunks arrive. Pass the text received so far as `code`.
+Once the highlighter has loaded, tokenizing is synchronous, so the block highlights its whole source on every render, and edited or replaced source never shows stale colors or drops back to plaintext. For a model's reply that streams in, code included, use [Streaming Response](/docs/blocks/streaming-response).
 
 This is a read-only presentation block. Editable document code blocks and future file/diff viewers keep their own rendering lifecycles.
 

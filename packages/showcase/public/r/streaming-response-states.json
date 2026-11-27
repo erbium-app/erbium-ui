@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "streaming-response-states",
+  "type": "registry:component",
+  "title": "Streaming Response: States",
+  "description": "A failed response keeps the text that arrived.",
+  "registryDependencies": ["@erbium/streaming-response", "@erbium/styles"],
+  "files": [
+    {
+      "content": "import { StreamingResponse } from \"@/registry/erbium/blocks/streaming-response\";\nimport type { ResponseStatus } from \"@/registry/erbium/blocks/streaming-response\";\n\nconst states: { status: ResponseStatus; text: string; error?: string }[] = [\n  { status: \"pending\", text: \"\" },\n  { status: \"streaming\", text: \"Reading the **configuration\" },\n  { status: \"complete\", text: \"The configuration is valid.\" },\n  {\n    error: \"The connection closed before the reply finished.\",\n    status: \"error\",\n    text: \"The first two files are valid, and\",\n  },\n];\n\nexport default function StreamingResponseStatesExample() {\n  return (\n    <dl className=\"grid w-full max-w-md gap-section\">\n      {states.map(({ error, status, text }) => (\n        <div key={status} className=\"grid gap-related\">\n          <dt className=\"font-mono text-metadata text-muted-foreground\">{status}</dt>\n          <dd>\n            <StreamingResponse status={status} text={text} error={error} />\n          </dd>\n        </div>\n      ))}\n    </dl>\n  );\n}\n",
+      "path": "src/streaming-response/variants/states.tsx",
+      "target": "@components/showcase/streaming-response/variants/states.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

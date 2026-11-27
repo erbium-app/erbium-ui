@@ -6655,8 +6655,7 @@
         "@erbium-examples/code-block-line-numbers",
         "@erbium-examples/code-block-highlighted-lines",
         "@erbium-examples/code-block-states",
-        "@erbium-examples/code-block-changing-source",
-        "@erbium-examples/code-block-streaming"
+        "@erbium-examples/code-block-changing-source"
       ],
       "title": "Code Block examples",
       "type": "registry:item"
@@ -6784,8 +6783,6 @@
         "@erbium/code-block",
         "@erbium/copy-button",
         "@erbium/csp-provider",
-        "@erbium/icon",
-        "@erbium/icon-sprite",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/textarea",
@@ -6859,27 +6856,8 @@
           "type": "registry:component"
         },
         {
-          "path": "src/code-block/variants/streaming.tsx",
-          "target": "@components/showcase/code-block/variants/streaming.tsx",
-          "type": "registry:component"
-        },
-        {
           "path": "src/preview.tsx",
           "target": "@components/showcase/preview.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
-      "name": "code-block-streaming",
-      "type": "registry:component",
-      "title": "Code Block: Streaming",
-      "description": "Pass the source received so far as `code`. When it grows, the block highlights only the new lines, continuing from the grammar state where the last complete line ended, and lines already shown keep their colors.",
-      "registryDependencies": ["@erbium/button", "@erbium/code-block", "@erbium/styles"],
-      "files": [
-        {
-          "path": "src/code-block/variants/streaming.tsx",
-          "target": "@components/showcase/code-block/variants/streaming.tsx",
           "type": "registry:component"
         }
       ]
@@ -16056,6 +16034,7 @@
         "@erbium/message-scroller",
         "@erbium/separator",
         "@erbium/skeleton",
+        "@erbium/streaming-response",
         "@erbium/styles",
         "@erbium/tabs",
         "@erbium/toast",
@@ -16152,6 +16131,11 @@
           "path": "src/preview.tsx",
           "target": "@components/showcase/preview.tsx",
           "type": "registry:component"
+        },
+        {
+          "path": "src/streaming.ts",
+          "target": "@components/showcase/streaming.ts",
+          "type": "registry:component"
         }
       ]
     },
@@ -16159,23 +16143,24 @@
       "name": "message-scroller-streaming-reply",
       "type": "registry:block",
       "title": "Message Scroller: Streaming Reply",
-      "description": "Follow a reply as new content streams in.",
+      "description": "Follow a reply as it streams in. Each reply is a [Streaming Response](/docs/blocks/streaming-response), and `useTextStream` reads it.",
       "registryDependencies": [
         "@erbium/bubble",
         "@erbium/button",
         "@erbium/message",
         "@erbium/message-scroller",
+        "@erbium/streaming-response",
         "@erbium/styles"
       ],
       "files": [
         {
-          "path": "src/message-scroller/examples/message-scroller-variants.tsx",
-          "target": "@components/showcase/message-scroller/examples/message-scroller-variants.tsx",
+          "path": "src/message-scroller/variants/streaming-reply.tsx",
+          "target": "@components/showcase/message-scroller/variants/streaming-reply.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/message-scroller/variants/streaming-reply.tsx",
-          "target": "@components/showcase/message-scroller/variants/streaming-reply.tsx",
+          "path": "src/streaming.ts",
+          "target": "@components/showcase/streaming.ts",
           "type": "registry:component"
         }
       ]
@@ -22983,6 +22968,176 @@
         {
           "path": "src/stepper/variants/vertical.tsx",
           "target": "@components/showcase/stepper/variants/vertical.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "streaming-response-actions",
+      "type": "registry:block",
+      "title": "Streaming Response: Actions",
+      "description": "`StreamingResponseActions` appears only once the response has finished.",
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/copy-button",
+        "@erbium/icon",
+        "@erbium/streaming-response",
+        "@erbium/styles"
+      ],
+      "files": [
+        {
+          "path": "src/streaming-response/variants/actions.tsx",
+          "target": "@components/showcase/streaming-response/variants/actions.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/streaming.ts",
+          "target": "@components/showcase/streaming.ts",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "streaming-response-custom-ui",
+      "type": "registry:block",
+      "title": "Streaming Response: Custom UI",
+      "description": "An `island-deployment` fence mounts a card once the fence closes.",
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/card",
+        "@erbium/streaming-response",
+        "@erbium/styles"
+      ],
+      "files": [
+        {
+          "path": "src/streaming-response/variants/custom-ui.tsx",
+          "target": "@components/showcase/streaming-response/variants/custom-ui.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/streaming.ts",
+          "target": "@components/showcase/streaming.ts",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "description": "All streaming-response examples.",
+      "name": "streaming-response-examples",
+      "registryDependencies": [
+        "@erbium-examples/streaming-response-overview",
+        "@erbium-examples/streaming-response-markdown",
+        "@erbium-examples/streaming-response-actions",
+        "@erbium-examples/streaming-response-states",
+        "@erbium-examples/streaming-response-custom-ui"
+      ],
+      "title": "Streaming Response examples",
+      "type": "registry:item"
+    },
+    {
+      "name": "streaming-response-markdown",
+      "type": "registry:component",
+      "title": "Streaming Response: Markdown",
+      "description": "Headings, lists, task lists, quotes, callouts, code, diffs, tables, footnotes and, with `math`, formulas.",
+      "registryDependencies": ["@erbium/streaming-response", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/streaming-response/variants/markdown.tsx",
+          "target": "@components/showcase/streaming-response/variants/markdown.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "streaming-response-overview",
+      "type": "registry:block",
+      "title": "Streaming Response: Overview",
+      "description": "Stop the reply at any point and the text that arrived stays.",
+      "registryDependencies": ["@erbium/button", "@erbium/streaming-response", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/streaming-response/variants/overview.tsx",
+          "target": "@components/showcase/streaming-response/variants/overview.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/streaming.ts",
+          "target": "@components/showcase/streaming.ts",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "streaming-response-states",
+      "type": "registry:component",
+      "title": "Streaming Response: States",
+      "description": "A failed response keeps the text that arrived.",
+      "registryDependencies": ["@erbium/streaming-response", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/streaming-response/variants/states.tsx",
+          "target": "@components/showcase/streaming-response/variants/states.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "streaming-response-stories",
+      "type": "registry:item",
+      "title": "Streaming Response stories",
+      "description": "All streaming-response variants as portable React CSF stories.",
+      "devDependencies": ["@storybook/react@^10.6.1"],
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/card",
+        "@erbium/copy-button",
+        "@erbium/csp-provider",
+        "@erbium/icon",
+        "@erbium/skeleton",
+        "@erbium/streaming-response",
+        "@erbium/styles",
+        "@erbium/toast",
+        "@erbium/utils"
+      ],
+      "files": [
+        {
+          "path": "src/preview.tsx",
+          "target": "@components/showcase/preview.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/streaming-response/streaming-response.stories.tsx",
+          "target": "@components/showcase/streaming-response/streaming-response.stories.tsx",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/streaming-response/variants/actions.tsx",
+          "target": "@components/showcase/streaming-response/variants/actions.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/streaming-response/variants/custom-ui.tsx",
+          "target": "@components/showcase/streaming-response/variants/custom-ui.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/streaming-response/variants/markdown.tsx",
+          "target": "@components/showcase/streaming-response/variants/markdown.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/streaming-response/variants/overview.tsx",
+          "target": "@components/showcase/streaming-response/variants/overview.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/streaming-response/variants/states.tsx",
+          "target": "@components/showcase/streaming-response/variants/states.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/streaming.ts",
+          "target": "@components/showcase/streaming.ts",
           "type": "registry:component"
         }
       ]

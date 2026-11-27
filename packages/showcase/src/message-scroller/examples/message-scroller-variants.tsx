@@ -133,45 +133,6 @@ export const PreviousContext = () => (
   </MessageScrollerProvider>
 );
 
-export const Streaming = () => {
-  const reply = "The reply grows while the reader can choose whether to follow the live edge.";
-  const [text, setText] = React.useState("");
-  React.useEffect(() => {
-    let timeout: number | undefined;
-
-    if (text.length > 0 && text.length < reply.length) {
-      timeout = window.setTimeout(() => {
-        setText(reply.slice(0, text.length + 2));
-      }, 80);
-    }
-
-    return () => {
-      window.clearTimeout(timeout);
-    };
-  }, [text, reply]);
-
-  const messages = [
-    ...initialMessages,
-    { id: "stream", fromUser: false, text: text || "Start a streaming reply" },
-  ];
-
-  return (
-    <MessageScrollerProvider autoScroll>
-      <div className="space-y-3">
-        <Button
-          size="sm"
-          onClick={() => {
-            setText("T");
-          }}
-        >
-          Start streaming
-        </Button>
-        <Transcript messages={messages} />
-      </div>
-    </MessageScrollerProvider>
-  );
-};
-
 export const LoadHistory = () => {
   const [messages, setMessages] = React.useState(initialMessages);
 

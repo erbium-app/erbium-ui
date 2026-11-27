@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "streaming-response-overview",
+  "type": "registry:block",
+  "title": "Streaming Response: Overview",
+  "description": "Stop the reply at any point and the text that arrived stays.",
+  "registryDependencies": ["@erbium/button", "@erbium/streaming-response", "@erbium/styles"],
+  "files": [
+    {
+      "content": "import { useCallback, useEffect } from \"react\";\nimport { StreamingResponse, useTextStream } from \"@/registry/erbium/blocks/streaming-response\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport { simulateStream } from \"../../streaming\";\n\nconst reply = `## Retry with backoff\n\nRetry only requests that are **safe to repeat**, and wait longer after each failure:\n\n\\`\\`\\`ts\nconst retry = async <T>(request: () => Promise<T>, attempts = 3): Promise<T> => {\n  try {\n    return await request();\n  } catch (error) {\n    if (attempts <= 1) throw error;\n    await new Promise((resolve) => setTimeout(resolve, 2 ** (4 - attempts) * 250));\n    return retry(request, attempts - 1);\n  }\n};\n\\`\\`\\`\n\n| Attempt | Wait before it |\n| ------: | -------------: |\n|       1 |           none |\n|       2 |         500 ms |\n|       3 |       1,000 ms |\n\nAdd random *jitter* when many clients can fail at once.\n`;\n\nexport default function StreamingResponseExample() {\n  const { error, start, status, stop, text } = useTextStream();\n  const busy = status === \"pending\" || status === \"streaming\";\n\n  const ask = useCallback(() => {\n    void start((signal) => simulateStream(reply, { signal }));\n  }, [start]);\n\n  useEffect(() => {\n    ask();\n  }, [ask]);\n\n  return (\n    <div className=\"grid w-full max-w-xl gap-group\">\n      <Button\n        className=\"justify-self-start\"\n        variant=\"outline\"\n        size=\"sm\"\n        onClick={busy ? stop : ask}\n      >\n        {busy ? \"Stop\" : \"Replay\"}\n      </Button>\n      <StreamingResponse text={text} status={status} error={error?.message} />\n    </div>\n  );\n}\n",
+      "path": "src/streaming-response/variants/overview.tsx",
+      "target": "@components/showcase/streaming-response/variants/overview.tsx",
+      "type": "registry:component"
+    },
+    {
+      "content": "/*\n * A stand-in for a model's reply, so streaming examples run without a server. In an app, pass\n * `useTextStream` the response body or the text stream of your model SDK.\n */\n\ninterface SimulatedStreamOptions {\n  signal?: AbortSignal;\n  /** Characters per chunk. */\n  chunkSize?: number;\n  /** Milliseconds between chunks. */\n  interval?: number;\n  /** How long the \"model\" thinks before the first chunk. */\n  delay?: number;\n}\n\nconst wait = async (milliseconds: number) => {\n  // oxlint-disable-next-line promise/avoid-new -- a timer has no promise form in browsers.\n  await new Promise((resolve) => {\n    setTimeout(resolve, milliseconds);\n  });\n};\n\n/**\n * Streams `text` a few characters at a time until it ends or `signal` aborts.\n *\n * @yields {string} The next chunk of `text`.\n */\nconst simulateStream = async function* simulateStream(\n  text: string,\n  { signal, chunkSize = 6, interval = 24, delay = 600 }: SimulatedStreamOptions = {},\n) {\n  await wait(delay);\n\n  for (let start = 0; start < text.length; start += chunkSize) {\n    if (signal?.aborted === true) {\n      return;\n    }\n\n    yield text.slice(start, start + chunkSize);\n    // Chunks arrive in order, one after another.\n    // oxlint-disable-next-line no-await-in-loop\n    await wait(interval);\n  }\n};\n\nexport { simulateStream };\n",
+      "path": "src/streaming.ts",
+      "target": "@components/showcase/streaming.ts",
+      "type": "registry:component"
+    }
+  ]
+}

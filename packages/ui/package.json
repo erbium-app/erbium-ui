@@ -51,6 +51,7 @@
     "@pierre/diffs": "1.7.2",
     "@pierre/highlights": "0.6.0",
     "@pierre/trees": "1.0.0",
+    "@pierre/words": "0.3.0",
     "@ramka/react": "^0.0.2",
     "@shadcn/react": "catalog:",
     "@tanstack/charts": "catalog:",

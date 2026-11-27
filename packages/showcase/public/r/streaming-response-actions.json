@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "streaming-response-actions",
+  "type": "registry:block",
+  "title": "Streaming Response: Actions",
+  "description": "`StreamingResponseActions` appears only once the response has finished.",
+  "registryDependencies": [
+    "@erbium/button",
+    "@erbium/copy-button",
+    "@erbium/icon",
+    "@erbium/streaming-response",
+    "@erbium/styles"
+  ],
+  "files": [
+    {
+      "content": "import { useCallback, useEffect } from \"react\";\nimport { CopyButton } from \"@/registry/erbium/blocks/copy-button\";\nimport {\n  StreamingResponse,\n  StreamingResponseActions,\n  StreamingResponseContent,\n  StreamingResponseError,\n  StreamingResponsePending,\n  useTextStream,\n} from \"@/registry/erbium/blocks/streaming-response\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport { Icon } from \"@/registry/erbium/ui/icon\";\nimport { simulateStream } from \"../../streaming\";\n\nconst reply = `A **stop** keeps the text that has arrived and finishes the response, so its\nactions appear. Retry reads a new stream from the start.`;\n\nexport default function StreamingResponseActionsExample() {\n  const { error, start, status, stop, text } = useTextStream();\n\n  const ask = useCallback(() => {\n    void start((signal) => simulateStream(reply, { interval: 80, signal }));\n  }, [start]);\n\n  useEffect(() => {\n    ask();\n  }, [ask]);\n\n  return (\n    <StreamingResponse className=\"max-w-md\" text={text} status={status} error={error?.message}>\n      <StreamingResponsePending>Reading the docs…</StreamingResponsePending>\n      <StreamingResponseContent />\n      <StreamingResponseError />\n      {status === \"pending\" || status === \"streaming\" ? (\n        <Button className=\"self-start\" variant=\"outline\" size=\"sm\" onClick={stop}>\n          Stop\n        </Button>\n      ) : null}\n      <StreamingResponseActions>\n        <CopyButton value={text} aria-label=\"Copy response\" />\n        <Button variant=\"ghost\" size=\"icon\" aria-label=\"Retry\" title=\"Retry\" onClick={ask}>\n          <Icon name=\"refresh-ccw\" />\n        </Button>\n      </StreamingResponseActions>\n    </StreamingResponse>\n  );\n}\n",
+      "path": "src/streaming-response/variants/actions.tsx",
+      "target": "@components/showcase/streaming-response/variants/actions.tsx",
+      "type": "registry:component"
+    },
+    {
+      "content": "/*\n * A stand-in for a model's reply, so streaming examples run without a server. In an app, pass\n * `useTextStream` the response body or the text stream of your model SDK.\n */\n\ninterface SimulatedStreamOptions {\n  signal?: AbortSignal;\n  /** Characters per chunk. */\n  chunkSize?: number;\n  /** Milliseconds between chunks. */\n  interval?: number;\n  /** How long the \"model\" thinks before the first chunk. */\n  delay?: number;\n}\n\nconst wait = async (milliseconds: number) => {\n  // oxlint-disable-next-line promise/avoid-new -- a timer has no promise form in browsers.\n  await new Promise((resolve) => {\n    setTimeout(resolve, milliseconds);\n  });\n};\n\n/**\n * Streams `text` a few characters at a time until it ends or `signal` aborts.\n *\n * @yields {string} The next chunk of `text`.\n */\nconst simulateStream = async function* simulateStream(\n  text: string,\n  { signal, chunkSize = 6, interval = 24, delay = 600 }: SimulatedStreamOptions = {},\n) {\n  await wait(delay);\n\n  for (let start = 0; start < text.length; start += chunkSize) {\n    if (signal?.aborted === true) {\n      return;\n    }\n\n    yield text.slice(start, start + chunkSize);\n    // Chunks arrive in order, one after another.\n    // oxlint-disable-next-line no-await-in-loop\n    await wait(interval);\n  }\n};\n\nexport { simulateStream };\n",
+      "path": "src/streaming.ts",
+      "target": "@components/showcase/streaming.ts",
+      "type": "registry:component"
+    }
+  ]
+}

@@ -2,6 +2,7 @@
 @import "shadcn/tailwind.css";
 @import "./avatar.css";
 @import "./attachment.css";
+@import "./streaming-response.css";
 
 @source "../";
 

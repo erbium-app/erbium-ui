@@ -1,6 +1,6 @@
 # @erbium-ui/react
 
-Unstyled, accessible React primitives for components that hold real behavior: cascading selects, filter builders, inline editing, pagination, segmented controls, sliders and multi-step flows. Each primitive is a set of parts in the style of [Base UI](https://base-ui.com): you render the parts, style them with `className`, and read their state from `data-*` attributes.
+Unstyled, accessible React primitives for components that hold real behavior: cascading selects, filter builders, inline editing, pagination, segmented controls, sliders, multi-step flows and streamed replies. Each primitive is a set of parts in the style of [Base UI](https://base-ui.com): you render the parts, style them with `className`, and read their state from `data-*` attributes.
 
 Erbium UI's styled components are built on these primitives. Use this package directly when you want the behavior with your own design.
 
@@ -14,19 +14,21 @@ React 19 and `@base-ui/react` 1.9 or later are peer dependencies.
 
 ## Entry points
 
-| Import                                    | Contents                                          | Runs on                                                   |
-| ----------------------------------------- | ------------------------------------------------- | --------------------------------------------------------- |
-| `@erbium-ui/react/cascader`               | `Cascader` parts                                  | Client                                                    |
-| `@erbium-ui/react/filters`                | Filters parts, adapters and utilities             | Utilities on server or client. Parts and hooks on client. |
-| `@erbium-ui/react/editable`               | `Editable` parts                                  | Client                                                    |
-| `@erbium-ui/react/pagination`             | `Pagination` parts, `usePagination`, and the core | Client                                                    |
-| `@erbium-ui/react/pagination/core`        | `getPagination` page layout                       | Server or client                                          |
-| `@erbium-ui/react/segmented-control`      | `SegmentedControl.Indicator` and the core         | Client                                                    |
-| `@erbium-ui/react/segmented-control/core` | Measuring math for the indicator                  | Server or client                                          |
-| `@erbium-ui/react/slider`                 | `Slider` parts, `useSlider`, and the core         | Client                                                    |
-| `@erbium-ui/react/slider/core`            | Scales, steps and marks                           | Server or client                                          |
-| `@erbium-ui/react/stepper`                | `Stepper` parts, hooks, TanStack Form adapter     | Client                                                    |
-| `@erbium-ui/react/stepper/core`           | The flow's pure state machine                     | Server or client                                          |
+| Import                                     | Contents                                          | Runs on                                                   |
+| ------------------------------------------ | ------------------------------------------------- | --------------------------------------------------------- |
+| `@erbium-ui/react/cascader`                | `Cascader` parts                                  | Client                                                    |
+| `@erbium-ui/react/filters`                 | Filters parts, adapters and utilities             | Utilities on server or client. Parts and hooks on client. |
+| `@erbium-ui/react/editable`                | `Editable` parts                                  | Client                                                    |
+| `@erbium-ui/react/pagination`              | `Pagination` parts, `usePagination`, and the core | Client                                                    |
+| `@erbium-ui/react/pagination/core`         | `getPagination` page layout                       | Server or client                                          |
+| `@erbium-ui/react/segmented-control`       | `SegmentedControl.Indicator` and the core         | Client                                                    |
+| `@erbium-ui/react/segmented-control/core`  | Measuring math for the indicator                  | Server or client                                          |
+| `@erbium-ui/react/slider`                  | `Slider` parts, `useSlider`, and the core         | Client                                                    |
+| `@erbium-ui/react/slider/core`             | Scales, steps and marks                           | Server or client                                          |
+| `@erbium-ui/react/stepper`                 | `Stepper` parts, hooks, TanStack Form adapter     | Client                                                    |
+| `@erbium-ui/react/stepper/core`            | The flow's pure state machine                     | Server or client                                          |
+| `@erbium-ui/react/streaming-response`      | `useTextStream` and the core                      | Client                                                    |
+| `@erbium-ui/react/streaming-response/core` | Statuses and stream reading                       | Server or client                                          |
 
 Client entries start with `"use client"`, so React Server Components frameworks such as the Next.js App Router can render their parts from a server component. Entries marked server or client are plain functions and import nothing from React.
 
@@ -218,6 +220,24 @@ import { Stepper } from "@erbium-ui/react/stepper";
 ```
 
 `useStepperFormGroup` binds a TanStack Form `FormGroup` named after its step, and `createStepperFormFinish` submits the whole form and returns to the first failing step. TanStack Form is read structurally, not depended on.
+
+## Streaming Response
+
+`useTextStream` collects a model's streamed reply into the `text` and `status` your view renders. `start` takes a `ReadableStream` or an async iterable of text or bytes, or a function that opens one with an abort signal. Rendering the Markdown is up to you.
+
+```tsx
+import { useTextStream } from "@erbium-ui/react/streaming-response";
+
+const { text, status, start, stop } = useTextStream();
+
+await start(async (signal) => {
+  const response = await fetch("/api/chat", { signal });
+
+  if (!response.ok || !response.body) throw new Error("The model did not respond.");
+
+  return response.body;
+});
+```
 
 ## License
 

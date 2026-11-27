@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "description": "All streaming-response examples.",
+  "name": "streaming-response-examples",
+  "registryDependencies": [
+    "@erbium-examples/streaming-response-overview",
+    "@erbium-examples/streaming-response-markdown",
+    "@erbium-examples/streaming-response-actions",
+    "@erbium-examples/streaming-response-states",
+    "@erbium-examples/streaming-response-custom-ui"
+  ],
+  "title": "Streaming Response examples",
+  "type": "registry:item"
+}

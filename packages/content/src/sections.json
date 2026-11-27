@@ -115,7 +115,8 @@
       "lightbox",
       "step-indicator",
       "data-table",
-      "filters"
+      "filters",
+      "streaming-response"
     ]
   },
   {
@@ -153,7 +154,8 @@
       "pagination",
       "segmented-control",
       "slider",
-      "stepper"
+      "stepper",
+      "streaming-response"
     ]
   }
 ]

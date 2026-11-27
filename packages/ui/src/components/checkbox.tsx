@@ -2,11 +2,12 @@ import { CheckboxStateIcon } from "./stateful-icon";
 import { Checkbox as CheckboxPrimitive } from "@base-ui/react/checkbox";
 import { CheckboxGroup as CheckboxGroupPrimitive } from "@base-ui/react/checkbox-group";
 import { mergeProps } from "@base-ui/react/merge-props";
+// oxlint-disable-next-line react-doctor/no-flush-sync -- drag select flushes each click, because a group with a parent checkbox computes the next value from the last render.
 import { flushSync } from "react-dom";
 
 import { useDragSelect } from "../hooks/use-drag-select";
 import { skeletonBlock } from "../lib/skeleton-hints";
-import { checkboxClassName } from "../lib/choice-styles";
+import { checkboxClassName, checkboxIndicatorClassName } from "../lib/choice-styles";
 import { cn } from "../lib/utils";
 
 const Checkbox = ({ className, ...props }: CheckboxPrimitive.Root.Props) => (
@@ -20,7 +21,7 @@ const Checkbox = ({ className, ...props }: CheckboxPrimitive.Root.Props) => (
     <CheckboxPrimitive.Indicator
       data-slot="checkbox-indicator"
       keepMounted
-      className="group/check-indicator grid place-content-center text-current"
+      className={checkboxIndicatorClassName}
     >
       <CheckboxStateIcon />
     </CheckboxPrimitive.Indicator>

@@ -6,14 +6,16 @@
     "pagination/index",
     "segmented-control/index",
     "slider/index",
-    "stepper/index"
+    "stepper/index",
+    "streaming-response/index"
   ],
   "server": [
     "image/core",
     "pagination/core",
     "segmented-control/core",
     "slider/core",
-    "stepper/core"
+    "stepper/core",
+    "streaming-response/core"
   ],
   "facades": {
     "filters/index": "filters/client"

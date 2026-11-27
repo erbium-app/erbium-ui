@@ -5,6 +5,7 @@
   "keywords": [
     "accessible",
     "cascader",
+    "chat",
     "editable",
     "erbium",
     "filters",
@@ -15,6 +16,7 @@
     "react",
     "slider",
     "stepper",
+    "streaming",
     "unstyled",
     "wizard"
   ],
@@ -50,6 +52,8 @@
     "./slider/core": "./src/slider/core.ts",
     "./stepper": "./src/stepper/index.ts",
     "./stepper/core": "./src/stepper/core.ts",
+    "./streaming-response": "./src/streaming-response/index.ts",
+    "./streaming-response/core": "./src/streaming-response/core.ts",
     "./package.json": "./package.json"
   },
   "publishConfig": {
@@ -105,6 +109,14 @@
       "./stepper/core": {
         "types": "./dist/stepper/core.d.ts",
         "default": "./dist/stepper/core.js"
+      },
+      "./streaming-response": {
+        "types": "./dist/streaming-response/index.d.ts",
+        "default": "./dist/streaming-response/index.js"
+      },
+      "./streaming-response/core": {
+        "types": "./dist/streaming-response/core.d.ts",
+        "default": "./dist/streaming-response/core.js"
       },
       "./package.json": "./package.json"
     },
