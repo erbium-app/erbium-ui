@@ -47,7 +47,7 @@ Do not put essential instructions in metadata. Color expresses importance separa
 
 Apply `typeset` to an article or Markdown container. It handles headings, paragraphs, lists, quotations, and tables, with 24px (1.5em of the container's body size) between reading blocks and no extra margin above the first block. Every block spaces from that one unit, whatever its own font size, so a code block or an h3 sits on the same rhythm as a paragraph. Keep prose around 65 characters per line; tables and code can use more width.
 
-Paragraphs use pretty wrapping to avoid one-word last lines. While a reply streams in, set `aria-busy="true"` on its container: text then wraps plainly, so lines already on screen do not move as words arrive. Remove the attribute when the content is complete. [Streaming Response](/docs/blocks/streaming-response) sets it on its content for you.
+Paragraphs use pretty wrapping to avoid one-word last lines. While a reply streams in, set `aria-busy="true"` on its container: text then wraps plainly, so lines already on screen do not move as words arrive. Remove the attribute when the content is complete; pretty wrapping then applies, which can move a line. [Streaming Response](/docs/blocks/streaming-response) wraps plainly in both states, so a finished reply stays put.
 
 Embedded controls can opt out with `not-typeset` or `data-not-typeset`. For a wide table, use a `typeset-scroll` wrapper with a descriptive accessible name and keyboard access, while preserving the table's native markup. The Reading example shows this composition in full.
 

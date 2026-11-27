@@ -43,6 +43,8 @@ Blocks in a response look and behave like Erbium's components, in the same theme
 
 Headings, lists, quotes, links and inline code follow [Typography](/docs/foundations/typography). Icons come from the same sprite as `Icon`, including one set with `IconSpriteProvider`. Images do not open in a lightbox.
 
+Text wraps plainly, both while a reply streams and after it ends, so no line moves when it finishes. Pretty or balanced wrapping would re-flow lines at that point.
+
 ## Reading a stream
 
 `useTextStream` comes from the [unstyled streaming response](/docs/react/streaming-response). `start` takes a `ReadableStream` or an async iterable of text or UTF-8 bytes, such as `response.body` or a model SDK's text stream, or a function that opens one. Pass the function's `signal` to the request, so `stop` cancels it too. Text updates at most once a frame, however fast it arrives.

@@ -40,6 +40,11 @@
       margin-block-start: 0;
     }
 
+    /* One wrapping mode while streaming and after, so no line moves when the reply ends. */
+    & :where(p, li, h1, h2, h3, h4, h5, h6) {
+      text-wrap: wrap;
+    }
+
     /* Task lists: the checkbox takes the marker's place. */
     & li:has(> [data-slot="checkbox"], > p > [data-slot="checkbox"]) {
       list-style: none;
