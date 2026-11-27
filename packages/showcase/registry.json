@@ -3160,7 +3160,7 @@
       "name": "bubble-collapsible",
       "type": "registry:block",
       "title": "Bubble: Show More / Collapsible",
-      "description": "Long bubble content can be composed with [`Collapsible`](https://ui.shadcn.com/docs/components/collapsible) to allow for a show more or show less interaction. Use the `CollapsibleTrigger` component to trigger the collapsible content.",
+      "description": "Long bubble content can be composed with [`Collapsible`](/docs/components/collapsible) to allow for a show more or show less interaction. Use the `CollapsibleTrigger` component to trigger the collapsible content.",
       "registryDependencies": [
         "@erbium/bubble",
         "@erbium/button",
@@ -3288,7 +3288,7 @@
       "name": "bubble-popover",
       "type": "registry:block",
       "title": "Bubble: Popover",
-      "description": "Pair a bubble with a [`Popover`](https://ui.shadcn.com/docs/components/popover) to surface more information on demand, such as the full error message for a failed action.",
+      "description": "Pair a bubble with a [`Popover`](/docs/components/popover) to surface more information on demand, such as the full error message for a failed action.",
       "registryDependencies": [
         "@erbium/bubble",
         "@erbium/button",
@@ -3465,7 +3465,7 @@
       "name": "bubble-tooltip",
       "type": "registry:block",
       "title": "Bubble: Tooltip",
-      "description": "Wrap a bubble in a [`Tooltip`](https://ui.shadcn.com/docs/components/tooltip) to reveal metadata on hover, such as when a message was read.",
+      "description": "Wrap a bubble in a [`Tooltip`](/docs/components/tooltip) to reveal metadata on hover, such as when a message was read.",
       "registryDependencies": [
         "@erbium/bubble",
         "@erbium/button",
@@ -3523,7 +3523,7 @@
       "name": "button-button-group",
       "type": "registry:block",
       "title": "Button: Button Group",
-      "description": "To create a button group, use the `ButtonGroup` component. See the [Button Group](https://ui.shadcn.com/docs/components/base/button-group) documentation for more details.",
+      "description": "To create a button group, use the `ButtonGroup` component. See the [Button Group](/docs/components/button-group) documentation for more details.",
       "registryDependencies": [
         "@erbium/button",
         "@erbium/button-group",
@@ -12871,7 +12871,7 @@
       "name": "input-button-group",
       "type": "registry:block",
       "title": "Input: Button Group",
-      "description": "To add buttons to an input, use the `ButtonGroup` component. See the [Button Group](https://ui.shadcn.com/docs/components/button-group) component for more examples.",
+      "description": "To add buttons to an input, use the `ButtonGroup` component. See the [Button Group](/docs/components/button-group) component for more examples.",
       "registryDependencies": [
         "@erbium/button",
         "@erbium/button-group",
@@ -13592,7 +13592,7 @@
       "name": "input-input-group",
       "type": "registry:block",
       "title": "Input: Input Group",
-      "description": "To add icons, text, or buttons inside an input, use the `InputGroup` component. See the [Input Group](https://ui.shadcn.com/docs/components/input-group) component for more examples.",
+      "description": "To add icons, text, or buttons inside an input, use the `InputGroup` component. See the [Input Group](/docs/components/input-group) component for more examples.",
       "registryDependencies": [
         "@erbium/field",
         "@erbium/icon",
@@ -15170,7 +15170,7 @@
       "name": "marker-status",
       "type": "registry:block",
       "title": "Marker: Status",
-      "description": "Set `role=\"status\"` and include a [`Spinner`](https://ui.shadcn.com/docs/components/spinner) for streaming or in-progress markers so updates are announced.",
+      "description": "Set `role=\"status\"` and include a [`Spinner`](/docs/components/spinner) for streaming or in-progress markers so updates are announced.",
       "registryDependencies": ["@erbium/marker", "@erbium/spinner", "@erbium/styles"],
       "files": [
         {

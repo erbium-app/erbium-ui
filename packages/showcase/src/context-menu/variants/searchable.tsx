@@ -40,7 +40,7 @@ export default function SearchableExample() {
                 </ContextMenuItem>
               ))}
               <CopyButton
-                value="https://erbium.dev/projects/erbium"
+                value="https://erbium.app/projects/erbium"
                 render={<ContextMenuItem label="Copy project link" />}
                 onClick={() => {
                   setAction("Copy project link");

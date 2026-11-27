@@ -6,7 +6,7 @@ import {
   InputGroupInput,
 } from "@erbium/ui/components/input-group";
 
-const url = "https://erbium.dev";
+const url = "https://ui.erbium.app";
 
 export default function UseCopyToClipboardCustomButtonExample() {
   return (

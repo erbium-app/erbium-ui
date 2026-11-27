@@ -3,7 +3,7 @@
   "name": "marker-status",
   "type": "registry:block",
   "title": "Marker: Status",
-  "description": "Set `role=\"status\"` and include a [`Spinner`](https://ui.shadcn.com/docs/components/spinner) for streaming or in-progress markers so updates are announced.",
+  "description": "Set `role=\"status\"` and include a [`Spinner`](/docs/components/spinner) for streaming or in-progress markers so updates are announced.",
   "registryDependencies": ["@erbium/marker", "@erbium/spinner", "@erbium/styles"],
   "files": [
     {

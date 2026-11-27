@@ -3,7 +3,7 @@
   "name": "bubble-tooltip",
   "type": "registry:block",
   "title": "Bubble: Tooltip",
-  "description": "Wrap a bubble in a [`Tooltip`](https://ui.shadcn.com/docs/components/tooltip) to reveal metadata on hover, such as when a message was read.",
+  "description": "Wrap a bubble in a [`Tooltip`](/docs/components/tooltip) to reveal metadata on hover, such as when a message was read.",
   "registryDependencies": [
     "@erbium/bubble",
     "@erbium/button",

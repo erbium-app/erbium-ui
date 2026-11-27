@@ -22,7 +22,7 @@ export default function KbdHintExample() {
           Save
         </Button>
         <CopyButton
-          value="https://erbium.dev"
+          value="https://ui.erbium.app"
           variant="outline"
           size="icon-sm"
           hotkey="Mod+Shift+D"

@@ -15,9 +15,9 @@ Add an optional avatar, header, footer, and alignment to a conversation message.
 
 Render the visible message surface inside it with
 
-[`Bubble`](https://ui.shadcn.com/docs/components/bubble). For the scroll container around a
+[`Bubble`](/docs/components/bubble). For the scroll container around a
 
-conversation, use [`MessageScroller`](https://ui.shadcn.com/docs/components/message-scroller).
+conversation, use [`MessageScroller`](/docs/components/message-scroller).
 
 ```tsx
 import { Avatar, AvatarFallback, AvatarImage } from "@erbium/ui/components/avatar";
@@ -85,7 +85,7 @@ MessageGroup
 
 Action buttons in `MessageFooter` are usually icon-only, so give each one an `aria-label`.
 
-For in-progress messages, use a [`Marker`](https://ui.shadcn.com/docs/components/marker) with `role="status"` so assistive tech announces the update as it appears.
+For in-progress messages, use a [`Marker`](/docs/components/marker) with `role="status"` so assistive tech announces the update as it appears.
 
 ```tsx
 <MessageFooter>

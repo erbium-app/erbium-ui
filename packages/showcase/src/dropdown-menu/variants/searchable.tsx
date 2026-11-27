@@ -44,7 +44,7 @@ export default function SearchableExample() {
                 </DropdownMenuItem>
               ))}
               <CopyButton
-                value="https://erbium.dev/projects/erbium"
+                value="https://erbium.app/projects/erbium"
                 render={<DropdownMenuItem label="Copy project link" />}
                 onClick={() => {
                   setAction("Copy project link");

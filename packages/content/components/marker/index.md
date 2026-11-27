@@ -42,7 +42,7 @@ Marker
 
 - Polymorphic root via `render` for link and button markers
 
-- Pairs with the [`shimmer`](https://ui.shadcn.com/docs/utils/shimmer) utility for streaming status text
+- Pairs with the [`shimmer`](#shimmer) utility for streaming status text
 
 - Customizable styling through the `className` prop on every part
 

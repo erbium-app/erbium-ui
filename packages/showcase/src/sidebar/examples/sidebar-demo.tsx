@@ -61,9 +61,18 @@ export default function SidebarExample({
         <SidebarHeader>
           <SidebarMenu>
             <SidebarMenuItem>
-              <SidebarMenuButton tooltip="Acme">
-                <Icon name="building-02" />
-                <span>Acme</span>
+              <SidebarMenuButton tooltip="Erbium">
+                <img
+                  alt=""
+                  src="https://ui.erbium.app/brand/erbium-logo-light.svg"
+                  className="size-4 dark:hidden"
+                />
+                <img
+                  alt=""
+                  src="https://ui.erbium.app/brand/erbium-logo-dark.svg"
+                  className="hidden size-4 dark:block"
+                />
+                <span>Erbium</span>
               </SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>
@@ -104,7 +113,9 @@ export default function SidebarExample({
           </SidebarGroup>
         </SidebarContent>
         <SidebarFooter>
-          <span className="truncate px-2 text-control-sm text-muted-foreground">ada@acme.dev</span>
+          <span className="truncate px-2 text-control-sm text-muted-foreground">
+            ada@erbium.app
+          </span>
         </SidebarFooter>
         {collapsible !== "none" && <SidebarRail />}
       </Sidebar>

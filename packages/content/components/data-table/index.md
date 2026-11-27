@@ -132,7 +132,7 @@ function Invoices() {
 }
 ```
 
-The URL reads `?q=acme&sort=issued.desc,customer&page=2&size=20&status=paid,overdue`. `q` is the search, `sort` the sort order, `page` and `size` the page, and each filterable column keeps its rule under its id, so do not name a column `q`, `sort`, `page` or `size`. A route with more than one table gives each config a `prefix`: `prefix: "users"` writes `?users.q=acme&users.page=2`, so the tables keep separate params. Defaults are left out of the URL, and every change replaces the history entry. `validateDataTableSearch` drops params that do not fit the columns and passes other params through.
+The URL reads `?q=erbium&sort=issued.desc,customer&page=2&size=20&status=paid,overdue`. `q` is the search, `sort` the sort order, `page` and `size` the page, and each filterable column keeps its rule under its id, so do not name a column `q`, `sort`, `page` or `size`. A route with more than one table gives each config a `prefix`: `prefix: "users"` writes `?users.q=acme&users.page=2`, so the tables keep separate params. Defaults are left out of the URL, and every change replaces the history entry. `validateDataTableSearch` drops params that do not fit the columns and passes other params through.
 
 ## Loading
 

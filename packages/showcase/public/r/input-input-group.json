@@ -3,7 +3,7 @@
   "name": "input-input-group",
   "type": "registry:block",
   "title": "Input: Input Group",
-  "description": "To add icons, text, or buttons inside an input, use the `InputGroup` component. See the [Input Group](https://ui.shadcn.com/docs/components/input-group) component for more examples.",
+  "description": "To add icons, text, or buttons inside an input, use the `InputGroup` component. See the [Input Group](/docs/components/input-group) component for more examples.",
   "registryDependencies": [
     "@erbium/field",
     "@erbium/icon",

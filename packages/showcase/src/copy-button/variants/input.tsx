@@ -8,7 +8,7 @@ import {
 } from "@erbium/ui/components/input-group";
 
 export default function CopyButtonInputExample() {
-  const [value, setValue] = useState("https://erbium.dev");
+  const [value, setValue] = useState("https://ui.erbium.app");
 
   return (
     <InputGroup className="w-80">

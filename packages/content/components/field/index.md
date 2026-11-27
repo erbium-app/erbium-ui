@@ -113,7 +113,7 @@ The `Field` family is designed for composing accessible forms. A typical field i
 
 ## Form
 
-See the [Form](https://ui.shadcn.com/docs/forms) documentation for building forms with the `Field` component and [React Hook Form](https://ui.shadcn.com/docs/forms/react-hook-form), [Tanstack Form](https://ui.shadcn.com/docs/forms/tanstack-form), or [Formisch](https://ui.shadcn.com/docs/forms/formisch).
+See [Form](/docs/components/form) for building forms with the `Field` component, [TanStack Form](https://tanstack.com/form/latest), and [Effect Schema](https://effect.website/docs/schema/introduction/).
 
 ## Accessibility
 

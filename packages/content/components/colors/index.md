@@ -11,7 +11,7 @@ OKLCH describes a color through **lightness**, **chroma**, and **hue**: `oklch(L
 
 Hex and RGB describe display channels; OKLCH gives us controls that are closer to how we design a palette. Converting the existing colors preserves their appearance and transparency, within numerical rounding. The notation alone does not improve contrast: foregrounds still need to be checked against the backgrounds they render on, including any transparency. This follows the role-based, measured approach in Jakub Krehel's [Better colors skill](https://skills.sh/jakubkrehel/skills/better-colors), also included in our [installation guide](/docs/installation#project-skills).
 
-Shadcn's current base themes already use OKLCH. Our difference is **the palette and its semantic roles**, rather than a different color notation. We retain Shadcn's CSS-variable approach and Tailwind mapping.
+What sets Erbium's colors apart is **the palette and its semantic roles**, rather than the color notation. They are CSS variables mapped into Tailwind, following the shadcn theming convention.
 
 ## Why this palette
 
@@ -23,7 +23,7 @@ Light and dark are designed separately. Dark surfaces become lighter as they ris
 
 The original Vitesse reference files retain their editor format. Erbium's theme expresses the adapted palette in OKLCH.
 
-## What extends Shadcn
+## What Erbium adds
 
 Erbium adds tokens for a few more interface roles:
 

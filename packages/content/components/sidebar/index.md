@@ -228,7 +228,7 @@ Use the `SidebarHeader` component to add a sticky header to the sidebar.
           <DropdownMenuContent>
             <DropdownMenuList>
               <DropdownMenuItem>
-                <span>Acme Inc</span>
+                <span>Erbium</span>
               </DropdownMenuItem>
             </DropdownMenuList>
           </DropdownMenuContent>

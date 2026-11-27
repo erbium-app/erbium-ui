@@ -3,7 +3,7 @@
   "name": "input-button-group",
   "type": "registry:block",
   "title": "Input: Button Group",
-  "description": "To add buttons to an input, use the `ButtonGroup` component. See the [Button Group](https://ui.shadcn.com/docs/components/button-group) component for more examples.",
+  "description": "To add buttons to an input, use the `ButtonGroup` component. See the [Button Group](/docs/components/button-group) component for more examples.",
   "registryDependencies": [
     "@erbium/button",
     "@erbium/button-group",

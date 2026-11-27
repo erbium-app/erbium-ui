@@ -3,7 +3,7 @@
   "name": "bubble-popover",
   "type": "registry:block",
   "title": "Bubble: Popover",
-  "description": "Pair a bubble with a [`Popover`](https://ui.shadcn.com/docs/components/popover) to surface more information on demand, such as the full error message for a failed action.",
+  "description": "Pair a bubble with a [`Popover`](/docs/components/popover) to surface more information on demand, such as the full error message for a failed action.",
   "registryDependencies": [
     "@erbium/bubble",
     "@erbium/button",

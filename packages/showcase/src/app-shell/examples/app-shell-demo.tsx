@@ -64,7 +64,19 @@ const Page = ({ children }: { children: React.ReactNode }) => (
 const Navigation = () => (
   <AppShellSidebar className="h-full">
     <AppShellSidebarHeader>
-      <span className="px-2 text-control">Acme</span>
+      <span className="flex items-center gap-related px-2 text-control">
+        <img
+          alt=""
+          src="https://ui.erbium.app/brand/erbium-logo-light.svg"
+          className="size-5 dark:hidden"
+        />
+        <img
+          alt=""
+          src="https://ui.erbium.app/brand/erbium-logo-dark.svg"
+          className="hidden size-5 dark:block"
+        />
+        Erbium
+      </span>
     </AppShellSidebarHeader>
     <AppShellNav label="Main">
       <AppShellNavSection>
@@ -83,7 +95,7 @@ const Navigation = () => (
       </AppShellNavSection>
     </AppShellNav>
     <AppShellSidebarFooter>
-      <span className="px-2 text-control-sm text-muted-foreground">ada@acme.dev</span>
+      <span className="px-2 text-control-sm text-muted-foreground">ada@erbium.app</span>
     </AppShellSidebarFooter>
   </AppShellSidebar>
 );

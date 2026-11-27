@@ -9,7 +9,7 @@ const feedback = {
 };
 
 export default function UseCopyToClipboardExample() {
-  const [value, setValue] = useState("https://erbium.dev");
+  const [value, setValue] = useState("https://ui.erbium.app");
   const { copyToClipboard, reset, revision, status } = useCopyToClipboard();
 
   return (
