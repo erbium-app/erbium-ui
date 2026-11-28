@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "relative-time-card-zones",
+  "type": "registry:block",
+  "title": "Relative Time: Card with zones",
+  "description": "Compose the trigger and the content: your own zones and names, and actions such as copying the timestamp.",
+  "registryDependencies": [
+    "@erbium/button",
+    "@erbium/copy-button",
+    "@erbium/relative-time",
+    "@erbium/styles"
+  ],
+  "files": [
+    {
+      "content": "import { useState, useSyncExternalStore } from \"react\";\n\n/*\n * Dates for these examples, measured from when they appear. In an app the dates come from your\n * data, and this is not needed.\n */\n\nconst MINUTE = 60_000;\nconst HOUR = 60 * MINUTE;\nconst DAY = 24 * HOUR;\n\n/** A fixed moment for server rendering, so the server and the browser write the same HTML. */\nconst reference = Date.UTC(2026, 0, 15, 12);\n\nconst subscribe = () => () => {\n  // Whether the page has hydrated never changes back.\n};\n\nconst useDemoClock = () => {\n  // oxlint-disable-next-line react/hook-use-state -- the time is read once, when the example appears, and never replaced.\n  const [appeared] = useState(() => Date.now());\n\n  return useSyncExternalStore(\n    subscribe,\n    () => appeared,\n    () => reference,\n  );\n};\n\nexport { DAY, HOUR, MINUTE, useDemoClock };\n",
+      "path": "src/relative-time/examples/use-demo-clock.ts",
+      "target": "@components/showcase/relative-time/examples/use-demo-clock.ts",
+      "type": "registry:component"
+    },
+    {
+      "content": "import { CopyButton, CopyButtonIcon, CopyButtonLabel } from \"@/registry/erbium/blocks/copy-button\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  RelativeTime,\n  RelativeTimeCard,\n  RelativeTimeCardContent,\n  RelativeTimeCardTitle,\n  RelativeTimeCardTrigger,\n  RelativeTimeZone,\n  RelativeTimeZoneList,\n} from \"@/registry/erbium/ui/relative-time\";\nimport { DAY, useDemoClock } from \"../examples/use-demo-clock\";\n\nexport default function RelativeTimeCardZonesExample() {\n  const date = new Date(useDemoClock() + 2 * DAY);\n\n  return (\n    <RelativeTimeCard date={date} locale=\"en\">\n      <RelativeTimeCardTrigger render={<Button variant=\"outline\" />}>\n        Launch <RelativeTime />\n      </RelativeTimeCardTrigger>\n      <RelativeTimeCardContent>\n        <RelativeTimeCardTitle />\n        <RelativeTimeZoneList>\n          <RelativeTimeZone hideIfSameAs={[\"Europe/London\", \"Asia/Tehran\", \"Asia/Tokyo\"]} />\n          <RelativeTimeZone timeZone=\"Europe/London\" label=\"London\" />\n          <RelativeTimeZone timeZone=\"Asia/Tehran\" label=\"Tehran\" />\n          <RelativeTimeZone timeZone=\"Asia/Tokyo\" label=\"Tokyo\" />\n        </RelativeTimeZoneList>\n        <CopyButton value={date.toISOString()} size=\"sm\" variant=\"outline\">\n          <CopyButtonIcon data-icon=\"inline-start\" />\n          <CopyButtonLabel>Copy ISO time</CopyButtonLabel>\n        </CopyButton>\n      </RelativeTimeCardContent>\n    </RelativeTimeCard>\n  );\n}\n",
+      "path": "src/relative-time/variants/card-zones.tsx",
+      "target": "@components/showcase/relative-time/variants/card-zones.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

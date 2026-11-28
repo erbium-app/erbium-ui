@@ -4290,6 +4290,122 @@
     ]
   },
   {
+    "name": "relative-time",
+    "title": "Components/Relative Time",
+    "variants": [
+      {
+        "exportName": "Playground",
+        "slug": "playground",
+        "source": "src/relative-time/variants/playground.tsx",
+        "usage": [
+          "src/relative-time/variants/playground.tsx",
+          "src/relative-time/examples/use-demo-clock.ts"
+        ],
+        "title": "Playground"
+      },
+      {
+        "exportName": "Overview",
+        "slug": "overview",
+        "source": "src/relative-time/variants/overview.tsx",
+        "usage": [
+          "src/relative-time/examples/relative-time-demo.tsx",
+          "src/relative-time/examples/use-demo-clock.ts"
+        ],
+        "title": "Overview"
+      },
+      {
+        "exportName": "Languages",
+        "slug": "languages",
+        "source": "src/relative-time/variants/languages.tsx",
+        "usage": [
+          "src/relative-time/variants/languages.tsx",
+          "src/relative-time/examples/use-demo-clock.ts"
+        ],
+        "title": "Languages"
+      },
+      {
+        "exportName": "RightToLeft",
+        "slug": "rtl",
+        "source": "src/relative-time/variants/rtl.tsx",
+        "usage": [
+          "src/relative-time/variants/rtl.tsx",
+          "src/relative-time/examples/use-demo-clock.ts"
+        ],
+        "title": "Right to left"
+      },
+      {
+        "exportName": "Formats",
+        "slug": "formats",
+        "source": "src/relative-time/variants/formats.tsx",
+        "usage": [
+          "src/relative-time/variants/formats.tsx",
+          "src/relative-time/examples/use-demo-clock.ts"
+        ],
+        "title": "Formats"
+      },
+      {
+        "exportName": "Wording",
+        "slug": "wording",
+        "source": "src/relative-time/variants/wording.tsx",
+        "usage": [
+          "src/relative-time/variants/wording.tsx",
+          "src/relative-time/examples/use-demo-clock.ts"
+        ],
+        "title": "Custom wording"
+      },
+      {
+        "exportName": "Duration",
+        "slug": "duration",
+        "source": "src/relative-time/variants/duration.tsx",
+        "usage": [
+          "src/relative-time/variants/duration.tsx",
+          "src/relative-time/examples/use-demo-clock.ts"
+        ],
+        "title": "Elapsed time and countdowns"
+      },
+      {
+        "exportName": "Threshold",
+        "slug": "threshold",
+        "source": "src/relative-time/variants/threshold.tsx",
+        "usage": [
+          "src/relative-time/variants/threshold.tsx",
+          "src/relative-time/examples/use-demo-clock.ts"
+        ],
+        "title": "Threshold"
+      },
+      {
+        "exportName": "State",
+        "slug": "state",
+        "source": "src/relative-time/variants/state.tsx",
+        "usage": [
+          "src/relative-time/variants/state.tsx",
+          "src/relative-time/examples/use-demo-clock.ts"
+        ],
+        "title": "Styled from state"
+      },
+      {
+        "exportName": "Card",
+        "slug": "card",
+        "source": "src/relative-time/variants/card.tsx",
+        "usage": [
+          "src/relative-time/variants/card.tsx",
+          "src/relative-time/examples/use-demo-clock.ts"
+        ],
+        "title": "Card"
+      },
+      {
+        "exportName": "CardZones",
+        "slug": "card-zones",
+        "source": "src/relative-time/variants/card-zones.tsx",
+        "usage": [
+          "src/relative-time/variants/card-zones.tsx",
+          "src/relative-time/examples/use-demo-clock.ts"
+        ],
+        "title": "Card with zones"
+      }
+    ]
+  },
+  {
     "name": "resizable",
     "title": "Components/Resizable",
     "variants": [

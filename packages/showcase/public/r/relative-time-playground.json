@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "relative-time-playground",
+  "type": "registry:block",
+  "title": "Relative Time: Playground",
+  "description": "",
+  "registryDependencies": ["@erbium/relative-time", "@erbium/styles"],
+  "files": [
+    {
+      "content": "import { useState, useSyncExternalStore } from \"react\";\n\n/*\n * Dates for these examples, measured from when they appear. In an app the dates come from your\n * data, and this is not needed.\n */\n\nconst MINUTE = 60_000;\nconst HOUR = 60 * MINUTE;\nconst DAY = 24 * HOUR;\n\n/** A fixed moment for server rendering, so the server and the browser write the same HTML. */\nconst reference = Date.UTC(2026, 0, 15, 12);\n\nconst subscribe = () => () => {\n  // Whether the page has hydrated never changes back.\n};\n\nconst useDemoClock = () => {\n  // oxlint-disable-next-line react/hook-use-state -- the time is read once, when the example appears, and never replaced.\n  const [appeared] = useState(() => Date.now());\n\n  return useSyncExternalStore(\n    subscribe,\n    () => appeared,\n    () => reference,\n  );\n};\n\nexport { DAY, HOUR, MINUTE, useDemoClock };\n",
+      "path": "src/relative-time/examples/use-demo-clock.ts",
+      "target": "@components/showcase/relative-time/examples/use-demo-clock.ts",
+      "type": "registry:component"
+    },
+    {
+      "content": "import { RelativeTime } from \"@/registry/erbium/ui/relative-time\";\nimport type { RelativeTimeProps } from \"@/registry/erbium/ui/relative-time\";\nimport { DAY, HOUR, MINUTE, useDemoClock } from \"../examples/use-demo-clock\";\n\n/** How far from now each choice is. */\nexport const distances = {\n  \"-2 years\": -740 * DAY,\n  \"-3 hours\": -3 * HOUR,\n  \"-26 hours\": -26 * HOUR,\n  now: 0,\n  \"+5 minutes\": 5 * MINUTE,\n  \"+4 days\": 4 * DAY,\n  \"+2 months\": 65 * DAY,\n};\n\ntype PlaygroundProps = Pick<\n  RelativeTimeProps,\n  \"format\" | \"formatStyle\" | \"locale\" | \"maxUnits\" | \"numeric\"\n> & { distance: keyof typeof distances };\n\nexport const defaultProps = {\n  distance: \"-3 hours\",\n  format: \"relative\",\n  formatStyle: \"long\",\n  locale: \"en\",\n  maxUnits: 1,\n  numeric: \"auto\",\n} satisfies PlaygroundProps;\n\nexport default function RelativeTimePlaygroundExample({\n  distance,\n  ...props\n}: PlaygroundProps = defaultProps) {\n  const now = useDemoClock();\n\n  return <RelativeTime date={now + distances[distance]} className=\"text-title\" {...props} />;\n}\n",
+      "path": "src/relative-time/variants/playground.tsx",
+      "target": "@components/showcase/relative-time/variants/playground.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

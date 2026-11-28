@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "description": "All relative-time examples.",
+  "name": "relative-time-examples",
+  "registryDependencies": [
+    "@erbium-examples/relative-time-playground",
+    "@erbium-examples/relative-time-overview",
+    "@erbium-examples/relative-time-languages",
+    "@erbium-examples/relative-time-rtl",
+    "@erbium-examples/relative-time-formats",
+    "@erbium-examples/relative-time-wording",
+    "@erbium-examples/relative-time-duration",
+    "@erbium-examples/relative-time-threshold",
+    "@erbium-examples/relative-time-state",
+    "@erbium-examples/relative-time-card",
+    "@erbium-examples/relative-time-card-zones"
+  ],
+  "title": "Relative Time examples",
+  "type": "registry:item"
+}

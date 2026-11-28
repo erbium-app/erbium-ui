@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "relative-time-duration",
+  "type": "registry:block",
+  "title": "Relative Time: Elapsed time and countdowns",
+  "description": "A duration that includes seconds updates every second.",
+  "registryDependencies": ["@erbium/button", "@erbium/relative-time", "@erbium/styles"],
+  "files": [
+    {
+      "content": "import { useState, useSyncExternalStore } from \"react\";\n\n/*\n * Dates for these examples, measured from when they appear. In an app the dates come from your\n * data, and this is not needed.\n */\n\nconst MINUTE = 60_000;\nconst HOUR = 60 * MINUTE;\nconst DAY = 24 * HOUR;\n\n/** A fixed moment for server rendering, so the server and the browser write the same HTML. */\nconst reference = Date.UTC(2026, 0, 15, 12);\n\nconst subscribe = () => () => {\n  // Whether the page has hydrated never changes back.\n};\n\nconst useDemoClock = () => {\n  // oxlint-disable-next-line react/hook-use-state -- the time is read once, when the example appears, and never replaced.\n  const [appeared] = useState(() => Date.now());\n\n  return useSyncExternalStore(\n    subscribe,\n    () => appeared,\n    () => reference,\n  );\n};\n\nexport { DAY, HOUR, MINUTE, useDemoClock };\n",
+      "path": "src/relative-time/examples/use-demo-clock.ts",
+      "target": "@components/showcase/relative-time/examples/use-demo-clock.ts",
+      "type": "registry:component"
+    },
+    {
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { RelativeTime } from \"@/registry/erbium/ui/relative-time\";\nimport { useState } from \"react\";\nimport { MINUTE, useDemoClock } from \"../examples/use-demo-clock\";\n\nexport default function RelativeTimeDurationExample() {\n  const now = useDemoClock();\n  const [restarted, setRestarted] = useState<number>();\n  const startedAt = restarted ?? now;\n\n  return (\n    <div className=\"flex flex-col items-center gap-group text-caption\">\n      <p>\n        Running for <RelativeTime date={startedAt} format=\"duration\" maxUnits={2} locale=\"en\" />\n      </p>\n      <p>\n        Session ends in{\" \"}\n        <RelativeTime date={startedAt + 5 * MINUTE} format=\"duration\" maxUnits={2} locale=\"en\" />\n      </p>\n      <Button\n        size=\"sm\"\n        variant=\"outline\"\n        onClick={() => {\n          setRestarted(Date.now());\n        }}\n      >\n        Restart\n      </Button>\n    </div>\n  );\n}\n",
+      "path": "src/relative-time/variants/duration.tsx",
+      "target": "@components/showcase/relative-time/variants/duration.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "relative-time-demo",
+  "type": "registry:block",
+  "title": "relative time demo",
+  "description": "Erbium relative time demo example.",
+  "registryDependencies": ["@erbium/item", "@erbium/relative-time", "@erbium/styles"],
+  "files": [
+    {
+      "content": "import { Item, ItemActions, ItemContent, ItemGroup, ItemTitle } from \"@/registry/erbium/ui/item\";\nimport { RelativeTime, RelativeTimeProvider } from \"@/registry/erbium/ui/relative-time\";\nimport { DAY, HOUR, useDemoClock } from \"./use-demo-clock\";\n\nexport default function RelativeTimeExample() {\n  const now = useDemoClock();\n\n  const events = [\n    { name: \"Comment added\", date: now },\n    { name: \"Build finished\", date: now - 3 * HOUR },\n    { name: \"Workspace created\", date: now - 740 * DAY },\n    { name: \"Review due\", date: now + 4 * DAY },\n    { name: \"Plan renews\", date: now + 65 * DAY },\n  ];\n\n  return (\n    <RelativeTimeProvider locale=\"en\">\n      <ItemGroup className=\"w-80\">\n        {events.map((event) => (\n          <Item key={event.name} size=\"sm\">\n            <ItemContent>\n              <ItemTitle>{event.name}</ItemTitle>\n            </ItemContent>\n            <ItemActions>\n              <RelativeTime date={event.date} className=\"text-muted-foreground\" />\n            </ItemActions>\n          </Item>\n        ))}\n      </ItemGroup>\n    </RelativeTimeProvider>\n  );\n}\n",
+      "path": "src/relative-time/examples/relative-time-demo.tsx",
+      "target": "@components/showcase/relative-time/examples/relative-time-demo.tsx",
+      "type": "registry:component"
+    },
+    {
+      "content": "import { useState, useSyncExternalStore } from \"react\";\n\n/*\n * Dates for these examples, measured from when they appear. In an app the dates come from your\n * data, and this is not needed.\n */\n\nconst MINUTE = 60_000;\nconst HOUR = 60 * MINUTE;\nconst DAY = 24 * HOUR;\n\n/** A fixed moment for server rendering, so the server and the browser write the same HTML. */\nconst reference = Date.UTC(2026, 0, 15, 12);\n\nconst subscribe = () => () => {\n  // Whether the page has hydrated never changes back.\n};\n\nconst useDemoClock = () => {\n  // oxlint-disable-next-line react/hook-use-state -- the time is read once, when the example appears, and never replaced.\n  const [appeared] = useState(() => Date.now());\n\n  return useSyncExternalStore(\n    subscribe,\n    () => appeared,\n    () => reference,\n  );\n};\n\nexport { DAY, HOUR, MINUTE, useDemoClock };\n",
+      "path": "src/relative-time/examples/use-demo-clock.ts",
+      "target": "@components/showcase/relative-time/examples/use-demo-clock.ts",
+      "type": "registry:component"
+    }
+  ]
+}

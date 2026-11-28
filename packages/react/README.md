@@ -1,6 +1,6 @@
 # @erbium-ui/react
 
-Unstyled, accessible React primitives for components that hold real behavior: cascading selects, filter builders, inline editing, pagination, QR codes, segmented controls, sliders, multi-step flows and streamed replies. Each primitive is a set of parts in the style of [Base UI](https://base-ui.com): you render the parts, style them with `className`, and read their state from `data-*` attributes.
+Unstyled, accessible React primitives for components that hold real behavior: cascading selects, filter builders, inline editing, pagination, QR codes, relative times, segmented controls, sliders, multi-step flows and streamed replies. Each primitive is a set of parts in the style of [Base UI](https://base-ui.com): you render the parts, style them with `className`, and read their state from `data-*` attributes.
 
 Erbium UI's styled components are built on these primitives. Use this package directly when you want the behavior with your own design.
 
@@ -23,6 +23,8 @@ React 19 and `@base-ui/react` 1.9 or later are peer dependencies.
 | `@erbium-ui/react/pagination/core`         | `getPagination` page layout                       | Server or client                                          |
 | `@erbium-ui/react/qr-code`                 | `QRCode` parts, `useQRCode`, and the core         | Client                                                    |
 | `@erbium-ui/react/qr-code/core`            | QR encoding and SVG paths                         | Server or client                                          |
+| `@erbium-ui/react/relative-time`           | `RelativeTime` parts, hooks, and the core         | Client                                                    |
+| `@erbium-ui/react/relative-time/core`      | Relative and exact time wording                   | Server or client                                          |
 | `@erbium-ui/react/segmented-control`       | `SegmentedControl.Indicator` and the core         | Client                                                    |
 | `@erbium-ui/react/segmented-control/core`  | Measuring math for the indicator                  | Server or client                                          |
 | `@erbium-ui/react/slider`                  | `Slider` parts, `useSlider`, and the core         | Client                                                    |
@@ -175,6 +177,19 @@ import { QRCode } from "@erbium-ui/react/qr-code";
   </QRCode.Svg>
   <QRCode.Download>Download</QRCode.Download>
 </QRCode.Root>;
+```
+
+## Relative Time
+
+A live `<time>` such as "3 hours ago", worded by `Intl` in any locale, with the matching `lang` and `dir`. Every time shares one timer, and the server's HTML hydrates cleanly.
+
+```tsx
+import { RelativeTime } from "@erbium-ui/react/relative-time";
+
+<RelativeTime.Provider date={comment.createdAt} locale="fa-IR">
+  <RelativeTime.Root />
+  <RelativeTime.Absolute />
+</RelativeTime.Provider>;
 ```
 
 ## Segmented Control

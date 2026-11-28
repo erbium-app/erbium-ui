@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "relative-time-wording",
+  "type": "registry:block",
+  "title": "Relative Time: Custom wording",
+  "description": "`labels` replace the words around a duration, for “2 months later” or a phrase of your own. `maxUnits` writes more than one unit.",
+  "registryDependencies": ["@erbium/relative-time", "@erbium/styles"],
+  "files": [
+    {
+      "content": "import { useState, useSyncExternalStore } from \"react\";\n\n/*\n * Dates for these examples, measured from when they appear. In an app the dates come from your\n * data, and this is not needed.\n */\n\nconst MINUTE = 60_000;\nconst HOUR = 60 * MINUTE;\nconst DAY = 24 * HOUR;\n\n/** A fixed moment for server rendering, so the server and the browser write the same HTML. */\nconst reference = Date.UTC(2026, 0, 15, 12);\n\nconst subscribe = () => () => {\n  // Whether the page has hydrated never changes back.\n};\n\nconst useDemoClock = () => {\n  // oxlint-disable-next-line react/hook-use-state -- the time is read once, when the example appears, and never replaced.\n  const [appeared] = useState(() => Date.now());\n\n  return useSyncExternalStore(\n    subscribe,\n    () => appeared,\n    () => reference,\n  );\n};\n\nexport { DAY, HOUR, MINUTE, useDemoClock };\n",
+      "path": "src/relative-time/examples/use-demo-clock.ts",
+      "target": "@components/showcase/relative-time/examples/use-demo-clock.ts",
+      "type": "registry:component"
+    },
+    {
+      "content": "import { RelativeTime } from \"@/registry/erbium/ui/relative-time\";\nimport type { RelativeTimeProps } from \"@/registry/erbium/ui/relative-time\";\nimport { DAY, HOUR, useDemoClock } from \"../examples/use-demo-clock\";\n\ntype Labels = NonNullable<RelativeTimeProps[\"labels\"]>;\n\n// Define labels once, outside render. Each function receives a duration in the same language.\nconst english: Labels = {\n  future: (duration) => `${duration} later`,\n  now: \"this moment\",\n  past: (duration) => `${duration} earlier`,\n};\n\nconst persian: Labels = {\n  future: (duration) => `${duration} دیگر`,\n  now: \"همین حالا\",\n  past: (duration) => `${duration} پیش`,\n};\n\nexport default function RelativeTimeWordingExample() {\n  const now = useDemoClock();\n  const dates = [now - 3 * DAY - 4 * HOUR, now, now + 65 * DAY];\n\n  return (\n    <div className=\"flex flex-wrap justify-center gap-12 text-caption\">\n      <div className=\"flex flex-col gap-1\">\n        {dates.map((date) => (\n          <RelativeTime key={date} date={date} locale=\"en\" labels={english} />\n        ))}\n      </div>\n      {/* Two units need labels outside English; without them the time uses one unit. */}\n      <div dir=\"rtl\" className=\"flex flex-col gap-1\">\n        {dates.map((date) => (\n          <RelativeTime key={date} date={date} locale=\"fa-IR\" labels={persian} maxUnits={2} />\n        ))}\n      </div>\n    </div>\n  );\n}\n",
+      "path": "src/relative-time/variants/wording.tsx",
+      "target": "@components/showcase/relative-time/variants/wording.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

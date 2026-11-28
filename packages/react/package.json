@@ -10,11 +10,14 @@
     "erbium",
     "filters",
     "headless",
+    "i18n",
     "image",
     "pagination",
     "primitives",
     "qr-code",
     "react",
+    "relative-time",
+    "rtl",
     "slider",
     "stepper",
     "streaming",
@@ -49,6 +52,8 @@
     "./pagination/core": "./src/pagination/core.ts",
     "./qr-code": "./src/qr-code/index.ts",
     "./qr-code/core": "./src/qr-code/core.ts",
+    "./relative-time": "./src/relative-time/index.ts",
+    "./relative-time/core": "./src/relative-time/core.ts",
     "./segmented-control": "./src/segmented-control/index.ts",
     "./segmented-control/core": "./src/segmented-control/core.ts",
     "./slider": "./src/slider/index.ts",
@@ -96,6 +101,14 @@
       "./qr-code/core": {
         "types": "./dist/qr-code/core.d.ts",
         "default": "./dist/qr-code/core.js"
+      },
+      "./relative-time": {
+        "types": "./dist/relative-time/index.d.ts",
+        "default": "./dist/relative-time/index.js"
+      },
+      "./relative-time/core": {
+        "types": "./dist/relative-time/core.d.ts",
+        "default": "./dist/relative-time/core.js"
       },
       "./segmented-control": {
         "types": "./dist/segmented-control/index.d.ts",

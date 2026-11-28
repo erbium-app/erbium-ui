@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "relative-time-rtl",
+  "type": "registry:block",
+  "title": "Relative Time: Right to left",
+  "description": "A Persian interface. The app sets the direction with `DirectionProvider` and `dir`, and one `RelativeTimeProvider` gives every time and card the same locale. Exact dates use the Persian calendar.",
+  "registryDependencies": [
+    "@erbium/direction",
+    "@erbium/item",
+    "@erbium/relative-time",
+    "@erbium/styles"
+  ],
+  "files": [
+    {
+      "content": "import { useState, useSyncExternalStore } from \"react\";\n\n/*\n * Dates for these examples, measured from when they appear. In an app the dates come from your\n * data, and this is not needed.\n */\n\nconst MINUTE = 60_000;\nconst HOUR = 60 * MINUTE;\nconst DAY = 24 * HOUR;\n\n/** A fixed moment for server rendering, so the server and the browser write the same HTML. */\nconst reference = Date.UTC(2026, 0, 15, 12);\n\nconst subscribe = () => () => {\n  // Whether the page has hydrated never changes back.\n};\n\nconst useDemoClock = () => {\n  // oxlint-disable-next-line react/hook-use-state -- the time is read once, when the example appears, and never replaced.\n  const [appeared] = useState(() => Date.now());\n\n  return useSyncExternalStore(\n    subscribe,\n    () => appeared,\n    () => reference,\n  );\n};\n\nexport { DAY, HOUR, MINUTE, useDemoClock };\n",
+      "path": "src/relative-time/examples/use-demo-clock.ts",
+      "target": "@components/showcase/relative-time/examples/use-demo-clock.ts",
+      "type": "registry:component"
+    },
+    {
+      "content": "import { DirectionProvider } from \"@/registry/erbium/ui/direction\";\nimport { Item, ItemActions, ItemContent, ItemGroup, ItemTitle } from \"@/registry/erbium/ui/item\";\nimport { RelativeTimeCard, RelativeTimeProvider } from \"@/registry/erbium/ui/relative-time\";\nimport { DAY, HOUR, MINUTE, useDemoClock } from \"../examples/use-demo-clock\";\n\nexport default function RelativeTimeRtlExample() {\n  const now = useDemoClock();\n\n  const events = [\n    { name: \"دیدگاه تازه\", date: now - 5 * MINUTE },\n    { name: \"ساخت پایان یافت\", date: now - 3 * HOUR },\n    { name: \"مهلت بازبینی\", date: now + 4 * DAY },\n  ];\n\n  return (\n    // The app's direction and language. Pass the same locale to the times.\n    <DirectionProvider direction=\"rtl\">\n      <RelativeTimeProvider locale=\"fa-IR\">\n        <div dir=\"rtl\" lang=\"fa\" className=\"w-80\">\n          <ItemGroup>\n            {events.map((event) => (\n              <Item key={event.name} size=\"sm\">\n                <ItemContent>\n                  <ItemTitle>{event.name}</ItemTitle>\n                </ItemContent>\n                <ItemActions>\n                  <RelativeTimeCard date={event.date} />\n                </ItemActions>\n              </Item>\n            ))}\n          </ItemGroup>\n        </div>\n      </RelativeTimeProvider>\n    </DirectionProvider>\n  );\n}\n",
+      "path": "src/relative-time/variants/rtl.tsx",
+      "target": "@components/showcase/relative-time/variants/rtl.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

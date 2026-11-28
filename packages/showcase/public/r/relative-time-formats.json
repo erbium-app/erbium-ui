@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "relative-time-formats",
+  "type": "registry:block",
+  "title": "Relative Time: Formats",
+  "description": "`formatStyle` shortens the text, `numeric=\"always\"` writes numbers instead of words such as “yesterday”, and `format=\"duration\"` drops “ago” and “in”.",
+  "registryDependencies": ["@erbium/relative-time", "@erbium/styles"],
+  "files": [
+    {
+      "content": "import { useState, useSyncExternalStore } from \"react\";\n\n/*\n * Dates for these examples, measured from when they appear. In an app the dates come from your\n * data, and this is not needed.\n */\n\nconst MINUTE = 60_000;\nconst HOUR = 60 * MINUTE;\nconst DAY = 24 * HOUR;\n\n/** A fixed moment for server rendering, so the server and the browser write the same HTML. */\nconst reference = Date.UTC(2026, 0, 15, 12);\n\nconst subscribe = () => () => {\n  // Whether the page has hydrated never changes back.\n};\n\nconst useDemoClock = () => {\n  // oxlint-disable-next-line react/hook-use-state -- the time is read once, when the example appears, and never replaced.\n  const [appeared] = useState(() => Date.now());\n\n  return useSyncExternalStore(\n    subscribe,\n    () => appeared,\n    () => reference,\n  );\n};\n\nexport { DAY, HOUR, MINUTE, useDemoClock };\n",
+      "path": "src/relative-time/examples/use-demo-clock.ts",
+      "target": "@components/showcase/relative-time/examples/use-demo-clock.ts",
+      "type": "registry:component"
+    },
+    {
+      "content": "import { RelativeTime, RelativeTimeProvider } from \"@/registry/erbium/ui/relative-time\";\nimport { DAY, MINUTE, useDemoClock } from \"../examples/use-demo-clock\";\n\nconst formats = [\n  { label: \"Long\", props: {} },\n  { label: \"Short\", props: { formatStyle: \"short\" } },\n  { label: \"Narrow\", props: { formatStyle: \"narrow\" } },\n  { label: \"Numbers only\", props: { numeric: \"always\" } },\n  { label: \"Duration\", props: { format: \"duration\" } },\n] as const;\n\nexport default function RelativeTimeFormatsExample() {\n  const now = useDemoClock();\n  const dates = [now - 5 * MINUTE, now - DAY];\n\n  return (\n    <RelativeTimeProvider locale=\"en\">\n      <dl className=\"grid grid-cols-[auto_auto_auto] gap-x-8 gap-y-2 text-caption\">\n        {formats.map(({ label, props }) => (\n          <div key={label} className=\"contents\">\n            <dt className=\"text-muted-foreground\">{label}</dt>\n            {dates.map((date) => (\n              <dd key={date}>\n                <RelativeTime date={date} {...props} />\n              </dd>\n            ))}\n          </div>\n        ))}\n      </dl>\n    </RelativeTimeProvider>\n  );\n}\n",
+      "path": "src/relative-time/variants/formats.tsx",
+      "target": "@components/showcase/relative-time/variants/formats.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

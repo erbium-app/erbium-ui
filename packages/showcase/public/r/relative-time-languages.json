@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "relative-time-languages",
+  "type": "registry:block",
+  "title": "Relative Time: Languages",
+  "description": "`locale` picks the words, digits, plural forms and direction. All of them come from `Intl`, so there are no translation files.",
+  "dependencies": ["@erbium-ui/react@workspace:*"],
+  "registryDependencies": ["@erbium/relative-time", "@erbium/styles"],
+  "files": [
+    {
+      "content": "import { useState, useSyncExternalStore } from \"react\";\n\n/*\n * Dates for these examples, measured from when they appear. In an app the dates come from your\n * data, and this is not needed.\n */\n\nconst MINUTE = 60_000;\nconst HOUR = 60 * MINUTE;\nconst DAY = 24 * HOUR;\n\n/** A fixed moment for server rendering, so the server and the browser write the same HTML. */\nconst reference = Date.UTC(2026, 0, 15, 12);\n\nconst subscribe = () => () => {\n  // Whether the page has hydrated never changes back.\n};\n\nconst useDemoClock = () => {\n  // oxlint-disable-next-line react/hook-use-state -- the time is read once, when the example appears, and never replaced.\n  const [appeared] = useState(() => Date.now());\n\n  return useSyncExternalStore(\n    subscribe,\n    () => appeared,\n    () => reference,\n  );\n};\n\nexport { DAY, HOUR, MINUTE, useDemoClock };\n",
+      "path": "src/relative-time/examples/use-demo-clock.ts",
+      "target": "@components/showcase/relative-time/examples/use-demo-clock.ts",
+      "type": "registry:component"
+    },
+    {
+      "content": "import { getTextDirection } from \"@erbium-ui/react/relative-time/core\";\nimport { RelativeTime, RelativeTimeProvider } from \"@/registry/erbium/ui/relative-time\";\nimport { DAY, HOUR, useDemoClock } from \"../examples/use-demo-clock\";\n\nconst languages = [\n  { locale: \"en\", name: \"English\" },\n  { locale: \"de\", name: \"Deutsch\" },\n  { locale: \"ja\", name: \"日本語\" },\n  { locale: \"fa-IR\", name: \"فارسی\" },\n  { locale: \"ar\", name: \"العربية\" },\n  { locale: \"he\", name: \"עברית\" },\n];\n\nexport default function RelativeTimeLanguagesExample() {\n  const now = useDemoClock();\n  const dates = [now - 740 * DAY, now - 3 * HOUR, now, now + 4 * DAY, now + 65 * DAY];\n\n  return (\n    <div className=\"grid w-full gap-section sm:grid-cols-2 lg:grid-cols-3\">\n      {languages.map(({ locale, name }) => (\n        // One provider writes every time inside it in its language and direction.\n        <RelativeTimeProvider key={locale} locale={locale}>\n          <section lang={locale} dir={getTextDirection(locale)} className=\"flex flex-col gap-1\">\n            <h3 className=\"text-control\">{name}</h3>\n            {dates.map((date) => (\n              <RelativeTime key={date} date={date} className=\"text-caption text-muted-foreground\" />\n            ))}\n          </section>\n        </RelativeTimeProvider>\n      ))}\n    </div>\n  );\n}\n",
+      "path": "src/relative-time/variants/languages.tsx",
+      "target": "@components/showcase/relative-time/variants/languages.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

@@ -19634,6 +19634,367 @@
       ]
     },
     {
+      "name": "relative-time-card",
+      "type": "registry:block",
+      "title": "Relative Time: Card",
+      "description": "The card shows the full date and the time in the viewer’s zone and UTC. It opens on hover, and with a tap or the keyboard.",
+      "registryDependencies": ["@erbium/relative-time", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/relative-time/examples/use-demo-clock.ts",
+          "target": "@components/showcase/relative-time/examples/use-demo-clock.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/relative-time/variants/card.tsx",
+          "target": "@components/showcase/relative-time/variants/card.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "relative-time-card-zones",
+      "type": "registry:block",
+      "title": "Relative Time: Card with zones",
+      "description": "Compose the trigger and the content: your own zones and names, and actions such as copying the timestamp.",
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/copy-button",
+        "@erbium/relative-time",
+        "@erbium/styles"
+      ],
+      "files": [
+        {
+          "path": "src/relative-time/examples/use-demo-clock.ts",
+          "target": "@components/showcase/relative-time/examples/use-demo-clock.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/relative-time/variants/card-zones.tsx",
+          "target": "@components/showcase/relative-time/variants/card-zones.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "relative-time-demo",
+      "type": "registry:block",
+      "title": "relative time demo",
+      "description": "Erbium relative time demo example.",
+      "registryDependencies": ["@erbium/item", "@erbium/relative-time", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/relative-time/examples/relative-time-demo.tsx",
+          "target": "@components/showcase/relative-time/examples/relative-time-demo.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/relative-time/examples/use-demo-clock.ts",
+          "target": "@components/showcase/relative-time/examples/use-demo-clock.ts",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "relative-time-duration",
+      "type": "registry:block",
+      "title": "Relative Time: Elapsed time and countdowns",
+      "description": "A duration that includes seconds updates every second.",
+      "registryDependencies": ["@erbium/button", "@erbium/relative-time", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/relative-time/examples/use-demo-clock.ts",
+          "target": "@components/showcase/relative-time/examples/use-demo-clock.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/relative-time/variants/duration.tsx",
+          "target": "@components/showcase/relative-time/variants/duration.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "description": "All relative-time examples.",
+      "name": "relative-time-examples",
+      "registryDependencies": [
+        "@erbium-examples/relative-time-playground",
+        "@erbium-examples/relative-time-overview",
+        "@erbium-examples/relative-time-languages",
+        "@erbium-examples/relative-time-rtl",
+        "@erbium-examples/relative-time-formats",
+        "@erbium-examples/relative-time-wording",
+        "@erbium-examples/relative-time-duration",
+        "@erbium-examples/relative-time-threshold",
+        "@erbium-examples/relative-time-state",
+        "@erbium-examples/relative-time-card",
+        "@erbium-examples/relative-time-card-zones"
+      ],
+      "title": "Relative Time examples",
+      "type": "registry:item"
+    },
+    {
+      "name": "relative-time-formats",
+      "type": "registry:block",
+      "title": "Relative Time: Formats",
+      "description": "`formatStyle` shortens the text, `numeric=\"always\"` writes numbers instead of words such as “yesterday”, and `format=\"duration\"` drops “ago” and “in”.",
+      "registryDependencies": ["@erbium/relative-time", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/relative-time/examples/use-demo-clock.ts",
+          "target": "@components/showcase/relative-time/examples/use-demo-clock.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/relative-time/variants/formats.tsx",
+          "target": "@components/showcase/relative-time/variants/formats.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "relative-time-languages",
+      "type": "registry:block",
+      "title": "Relative Time: Languages",
+      "description": "`locale` picks the words, digits, plural forms and direction. All of them come from `Intl`, so there are no translation files.",
+      "dependencies": ["@erbium-ui/react@workspace:*"],
+      "registryDependencies": ["@erbium/relative-time", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/relative-time/examples/use-demo-clock.ts",
+          "target": "@components/showcase/relative-time/examples/use-demo-clock.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/relative-time/variants/languages.tsx",
+          "target": "@components/showcase/relative-time/variants/languages.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "relative-time-overview",
+      "type": "registry:block",
+      "title": "Relative Time: Overview",
+      "description": "Past, present and future times in a list. Each one stays current on a shared clock.",
+      "registryDependencies": ["@erbium/item", "@erbium/relative-time", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/relative-time/examples/relative-time-demo.tsx",
+          "target": "@components/showcase/relative-time/examples/relative-time-demo.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/relative-time/examples/use-demo-clock.ts",
+          "target": "@components/showcase/relative-time/examples/use-demo-clock.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/relative-time/variants/overview.tsx",
+          "target": "@components/showcase/relative-time/variants/overview.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "relative-time-playground",
+      "type": "registry:block",
+      "title": "Relative Time: Playground",
+      "description": "",
+      "registryDependencies": ["@erbium/relative-time", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/relative-time/examples/use-demo-clock.ts",
+          "target": "@components/showcase/relative-time/examples/use-demo-clock.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/relative-time/variants/playground.tsx",
+          "target": "@components/showcase/relative-time/variants/playground.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "relative-time-rtl",
+      "type": "registry:block",
+      "title": "Relative Time: Right to left",
+      "description": "A Persian interface. The app sets the direction with `DirectionProvider` and `dir`, and one `RelativeTimeProvider` gives every time and card the same locale. Exact dates use the Persian calendar.",
+      "registryDependencies": [
+        "@erbium/direction",
+        "@erbium/item",
+        "@erbium/relative-time",
+        "@erbium/styles"
+      ],
+      "files": [
+        {
+          "path": "src/relative-time/examples/use-demo-clock.ts",
+          "target": "@components/showcase/relative-time/examples/use-demo-clock.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/relative-time/variants/rtl.tsx",
+          "target": "@components/showcase/relative-time/variants/rtl.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "relative-time-state",
+      "type": "registry:block",
+      "title": "Relative Time: Styled from state",
+      "description": "`render` and `children` receive the tense, unit and text. The element also carries `data-tense`, `data-unit` and `data-absolute`.",
+      "registryDependencies": ["@erbium/badge", "@erbium/relative-time", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/relative-time/examples/use-demo-clock.ts",
+          "target": "@components/showcase/relative-time/examples/use-demo-clock.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/relative-time/variants/state.tsx",
+          "target": "@components/showcase/relative-time/variants/state.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "relative-time-stories",
+      "type": "registry:item",
+      "title": "Relative Time stories",
+      "description": "All relative-time variants as portable React CSF stories.",
+      "dependencies": ["@erbium-ui/react@workspace:*"],
+      "devDependencies": ["@storybook/react@^10.6.1"],
+      "registryDependencies": [
+        "@erbium/badge",
+        "@erbium/button",
+        "@erbium/copy-button",
+        "@erbium/csp-provider",
+        "@erbium/direction",
+        "@erbium/item",
+        "@erbium/relative-time",
+        "@erbium/skeleton",
+        "@erbium/styles",
+        "@erbium/toast",
+        "@erbium/utils"
+      ],
+      "files": [
+        {
+          "path": "src/preview.tsx",
+          "target": "@components/showcase/preview.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/relative-time/examples/relative-time-demo.tsx",
+          "target": "@components/showcase/relative-time/examples/relative-time-demo.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/relative-time/examples/use-demo-clock.ts",
+          "target": "@components/showcase/relative-time/examples/use-demo-clock.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/relative-time/relative-time.stories.tsx",
+          "target": "@components/showcase/relative-time/relative-time.stories.tsx",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/relative-time/variants/card-zones.tsx",
+          "target": "@components/showcase/relative-time/variants/card-zones.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/relative-time/variants/card.tsx",
+          "target": "@components/showcase/relative-time/variants/card.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/relative-time/variants/duration.tsx",
+          "target": "@components/showcase/relative-time/variants/duration.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/relative-time/variants/formats.tsx",
+          "target": "@components/showcase/relative-time/variants/formats.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/relative-time/variants/languages.tsx",
+          "target": "@components/showcase/relative-time/variants/languages.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/relative-time/variants/overview.tsx",
+          "target": "@components/showcase/relative-time/variants/overview.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/relative-time/variants/playground.tsx",
+          "target": "@components/showcase/relative-time/variants/playground.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/relative-time/variants/rtl.tsx",
+          "target": "@components/showcase/relative-time/variants/rtl.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/relative-time/variants/state.tsx",
+          "target": "@components/showcase/relative-time/variants/state.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/relative-time/variants/threshold.tsx",
+          "target": "@components/showcase/relative-time/variants/threshold.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/relative-time/variants/wording.tsx",
+          "target": "@components/showcase/relative-time/variants/wording.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "relative-time-threshold",
+      "type": "registry:block",
+      "title": "Relative Time: Threshold",
+      "description": "Beyond `threshold` seconds from now, the date replaces the relative text.",
+      "registryDependencies": ["@erbium/relative-time", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/relative-time/examples/use-demo-clock.ts",
+          "target": "@components/showcase/relative-time/examples/use-demo-clock.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/relative-time/variants/threshold.tsx",
+          "target": "@components/showcase/relative-time/variants/threshold.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "relative-time-wording",
+      "type": "registry:block",
+      "title": "Relative Time: Custom wording",
+      "description": "`labels` replace the words around a duration, for “2 months later” or a phrase of your own. `maxUnits` writes more than one unit.",
+      "registryDependencies": ["@erbium/relative-time", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/relative-time/examples/use-demo-clock.ts",
+          "target": "@components/showcase/relative-time/examples/use-demo-clock.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/relative-time/variants/wording.tsx",
+          "target": "@components/showcase/relative-time/variants/wording.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "resizable-demo",
       "type": "registry:component",
       "title": "resizable demo",

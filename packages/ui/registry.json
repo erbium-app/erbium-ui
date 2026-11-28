@@ -1673,6 +1673,21 @@
       ]
     },
     {
+      "name": "relative-time",
+      "type": "registry:ui",
+      "title": "Relative Time",
+      "description": "Erbium relative time component.",
+      "dependencies": ["@erbium-ui/react@^0.1.0"],
+      "registryDependencies": ["@erbium/popover", "@erbium/utils"],
+      "files": [
+        {
+          "path": "src/components/relative-time.tsx",
+          "target": "@ui/relative-time.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "resizable",
       "type": "registry:ui",
       "title": "Resizable",
