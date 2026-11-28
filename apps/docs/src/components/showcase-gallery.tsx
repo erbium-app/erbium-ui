@@ -30,13 +30,13 @@ const ShowcaseGallery = ({
   children,
 }: {
   path: string;
-  /** The page's showcases in page order; a showcase's position is its trigger's `index`. */
+  /** The page's showcases in page order. A showcase's anchor is its `itemId`. */
   variants: Variant[];
   children?: ReactNode;
 }) => (
   <ShowcaseStoreProvider>
     <Lightbox
-      count={variants.length}
+      itemIds={variants.map((variant) => variant.anchor)}
       // The page sits behind the overlay, so keep the active showcase in view for the close
       // morph, and land there without a visible jump.
       scrollTriggerIntoView={[
@@ -63,6 +63,7 @@ const ShowcaseGallery = ({
                 aria-roledescription="slide"
                 caption={variant.title}
                 index={index}
+                itemId={variant.anchor}
                 className="size-full"
               >
                 {({ morphRef }) => (
@@ -119,9 +120,9 @@ const ShowcaseGallery = ({
  * element the open and close transitions morph from and to, so the panel grows into the slide and
  * shrinks back into the section instead of morphing from the button.
  */
-const ShowcaseFullScreenTrigger = ({ index }: { index: number }) => (
+const ShowcaseFullScreenTrigger = ({ itemId }: { itemId: string }) => (
   <LightboxTrigger
-    index={index}
+    itemId={itemId}
     crossfade="both"
     aria-label="Open this showcase full screen"
     render={<ToolbarButton size="icon-sm" />}

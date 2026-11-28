@@ -43,11 +43,11 @@ export default function GalleryExample() {
   return (
     <Lightbox>
       <div className="grid w-full max-w-md grid-cols-3 gap-3">
-        {photos.map((photo, index) => (
+        {photos.map((photo) => (
           <LightboxTrigger
             aria-label={`Open ${photo.caption}`}
             className="overflow-hidden rounded-lg"
-            index={index}
+            itemId={photo.src}
             key={photo.src}
           >
             {({ imageRef }) => (
@@ -73,6 +73,7 @@ export default function GalleryExample() {
                 aria-roledescription="slide"
                 caption={photo.caption}
                 index={index}
+                itemId={photo.src}
               >
                 <LightboxZoom>
                   <LightboxMedia height={1200} width={1800}>

@@ -13,7 +13,7 @@ With the default aliases, import the installed parts from `@/components/blocks/l
 
 ## Composition
 
-Use one `Lightbox` per gallery. Match each `LightboxTrigger` index to its `LightboxItem` index, starting at zero. Attach the trigger's `imageRef` to the thumbnail image for the open and close transitions. Give `LightboxMedia` the full image's dimensions so it can fit the image to the viewport before it loads.
+Wrap a gallery in `Lightbox`. Give each `LightboxItem` its position as `index`, starting at zero, and a unique string as `itemId`, such as the photo's id or URL. A `LightboxTrigger` opens the item with the same `itemId`. The root's `value` is the active `itemId`, and `onValueChange` also reports its `index`. Attach the trigger's `imageRef` to the thumbnail image for the open and close transitions. Give `LightboxMedia` the full image's dimensions so it can fit the image to the viewport before it loads.
 
 The gallery example shows one `LightboxThumbnail` per slide in the footer. Nest the thumbnails inside `LightboxThumbnailStripTrack` and `LightboxThumbnailStrip`, and give each an accessible label and the index of its slide. For a single image, use one trigger and slide and omit the navigation controls and thumbnail strip. Use `createLightboxHandle` with the root's `handle` prop to open a slide from code. To open from another control, render the trigger as that control with `render`; it keeps the control's styles and `data-slot`. [Attachment](/docs/components/attachment#viewing-in-a-lightbox) uses this for image attachments.
 

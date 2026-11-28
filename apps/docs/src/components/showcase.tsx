@@ -58,15 +58,12 @@ const SourceContent = ({
 
 export const Showcase = ({
   path,
-  index,
   variant,
   sources,
   separator = true,
 }: {
   /** The page path, which keys the page's examples. */
   path: string;
-  /** The showcase's position on the page, which is its slide in full screen. */
-  index: number;
   variant: Variant;
   sources: DocPage["exampleSources"];
   separator?: boolean;
@@ -102,7 +99,7 @@ export const Showcase = ({
           <ShowcaseFrame
             path={path}
             variant={variant}
-            actions={<ShowcaseFullScreenTrigger index={index} />}
+            actions={<ShowcaseFullScreenTrigger itemId={variant.anchor} />}
           />
         </TabsContent>
       </Tabs>

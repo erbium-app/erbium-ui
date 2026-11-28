@@ -94,7 +94,6 @@ export const DocPageView = ({ page }: { page: DocPage }) => {
                 <Fragment key={variant.anchor}>
                   <Showcase
                     path={page.path}
-                    index={order}
                     variant={variant}
                     sources={page.exampleSources}
                     separator={order > 0}

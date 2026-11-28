@@ -63,7 +63,7 @@ const items: (FileItem | ImageItem)[] = [
   { icon: "file-code", kind: "file", meta: "TSX · 12 KB", name: "renderer.tsx" },
 ];
 
-// The lightbox holds only the images, so each image's slide index counts images alone.
+// The lightbox holds only the images.
 const images = items.filter((item): item is ImageItem => item.kind === "image");
 
 export default function AttachmentGroupExample() {
@@ -81,7 +81,7 @@ export default function AttachmentGroupExample() {
                 <LightboxTrigger
                   aria-label={`Open ${item.name}`}
                   className="cursor-zoom-in"
-                  index={images.indexOf(item)}
+                  itemId={item.src}
                   render={<AttachmentTrigger />}
                 >
                   {({ imageRef }) => (
@@ -116,6 +116,7 @@ export default function AttachmentGroupExample() {
                 aria-roledescription="slide"
                 caption={image.name}
                 index={index}
+                itemId={image.src}
               >
                 <LightboxZoom>
                   <LightboxMedia height={1350} width={1800}>

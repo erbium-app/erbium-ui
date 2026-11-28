@@ -44,12 +44,17 @@ const photos = [
   },
 ];
 
-/** Carousel and lightbox share one index, so closing the viewer lands on the photo last shown. */
+/** Carousel and lightbox share one position, so closing the viewer lands on the photo last shown. */
 export default function CarouselLightboxExample() {
   const [value, setValue] = React.useState(0);
 
   return (
-    <Lightbox value={value} onValueChange={setValue}>
+    <Lightbox
+      value={photos[value]?.src}
+      onValueChange={(_, { index }) => {
+        setValue(index);
+      }}
+    >
       <Carousel
         aria-label="Workspace photos"
         className="w-full max-w-xs"
@@ -57,12 +62,12 @@ export default function CarouselLightboxExample() {
         onValueChange={setValue}
       >
         <CarouselSlides>
-          {photos.map((photo, index) => (
+          {photos.map((photo) => (
             <CarouselSlide key={photo.src}>
               <LightboxTrigger
                 aria-label={`Open ${photo.caption}`}
                 className="block overflow-hidden rounded-lg"
-                index={index}
+                itemId={photo.src}
               >
                 {({ imageRef }) => (
                   <img
@@ -92,6 +97,7 @@ export default function CarouselLightboxExample() {
                 aria-roledescription="slide"
                 caption={photo.caption}
                 index={index}
+                itemId={photo.src}
               >
                 <LightboxZoom>
                   <LightboxMedia height={1200} width={1800}>

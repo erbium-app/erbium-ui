@@ -54,12 +54,12 @@ export default function AttachmentImageExample() {
     <Lightbox>
       <div className="mx-auto w-full max-w-sm py-12">
         <AttachmentGroup className="w-full">
-          {images.map((image, index) => (
+          {images.map((image) => (
             <Attachment key={image.name} orientation="vertical">
               <LightboxTrigger
                 aria-label={`Open ${image.name}`}
                 className="cursor-zoom-in"
-                index={index}
+                itemId={image.src}
                 render={<AttachmentTrigger />}
               >
                 {({ imageRef }) => (
@@ -93,6 +93,7 @@ export default function AttachmentImageExample() {
                 aria-roledescription="slide"
                 caption={image.name}
                 index={index}
+                itemId={image.src}
               >
                 <LightboxZoom>
                   <LightboxMedia height={1350} width={1800}>
