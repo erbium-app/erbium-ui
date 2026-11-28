@@ -12,14 +12,6 @@ import type {
 import { cn } from "../lib/utils";
 import { Popover, PopoverContent, PopoverTitle, PopoverTrigger } from "./popover";
 
-/*
- * Erbium's relative time on the @erbium-ui/react relative-time primitive, which owns the wording,
- * the shared clock, server rendering, `lang` and `dir`. The card is a Popover that also opens on
- * hover, so a tap or a keyboard reaches the exact time too. Everything it writes comes from
- * `Intl`, so it needs no translations of its own.
- */
-
-/** A date with its time to the second, for comparing zones. */
 const zoneDateFormat: Intl.DateTimeFormatOptions = { dateStyle: "medium", timeStyle: "medium" };
 
 const titleDateFormat: Intl.DateTimeFormatOptions = { dateStyle: "full" };
@@ -35,7 +27,7 @@ const RelativeTimeProvider = RelativeTimePrimitive.Provider;
 
 type RelativeTimeProps = Omit<RelativeTimeRootProps, "className"> & { className?: string };
 
-/** A live "3 hours ago". It is not interactive, so it can sit inside a link, button or row. */
+/** A live "3 hours ago". Not interactive, so it can sit inside a link, button or row. */
 const RelativeTime = ({ className, ...props }: RelativeTimeProps) => (
   <RelativeTimePrimitive.Root
     data-slot="relative-time"
@@ -48,7 +40,6 @@ type RelativeTimeAbsoluteProps = Omit<RelativeTimeAbsolutePrimitiveProps, "class
   className?: string;
 };
 
-/** The exact moment, in the viewer's zone unless given another. */
 const RelativeTimeAbsolute = ({ className, ...props }: RelativeTimeAbsoluteProps) => (
   <RelativeTimePrimitive.Absolute
     data-slot="relative-time-absolute"
@@ -83,7 +74,7 @@ const RelativeTimeCard = ({
   </RelativeTimeProvider>
 );
 
-/** The relative time as a button that opens the card on hover, focus and press, or a tap. */
+/** The relative time as a button that opens the card on hover, press or a tap. */
 const RelativeTimeCardTrigger = ({
   children,
   className,
@@ -107,10 +98,6 @@ const RelativeTimeCardTrigger = ({
   </PopoverTrigger>
 );
 
-/**
- * The card's popup, written in the card's language and direction. Without children it holds the
- * date and a list of zones.
- */
 const RelativeTimeCardContent = ({
   children,
   className,
@@ -162,7 +149,6 @@ type RelativeTimeZoneProps = Omit<React.ComponentProps<"div">, "children"> & {
   hideIfSameAs?: readonly string[];
 };
 
-/** One zone's name and its time, as a row of a `RelativeTimeZoneList`. */
 const RelativeTimeZone = ({
   timeZone,
   label,
@@ -199,7 +185,6 @@ type RelativeTimeZoneListProps = React.ComponentProps<"dl"> & {
   timeZones?: readonly string[];
 };
 
-/** The moment in several zones, as a list of names and times. */
 const RelativeTimeZoneList = ({
   children,
   className,

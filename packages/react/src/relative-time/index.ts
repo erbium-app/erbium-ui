@@ -5,11 +5,7 @@ import {
   RelativeTimeZoneName,
 } from "./parts";
 
-/**
- * Times told by how far they are from now, in any language: `Root` is a live "3 hours ago",
- * `Absolute` the exact date, `TimeZoneName` the zone it is written in, and `Provider` shares a
- * date, language and zone between them.
- */
+/** `Root` is a live "3 hours ago" and `Absolute` the exact date. `Provider` shares their settings. */
 const RelativeTime = {
   Absolute: RelativeTimeAbsolute,
   Provider: RelativeTimeProvider,

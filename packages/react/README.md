@@ -181,7 +181,7 @@ import { QRCode } from "@erbium-ui/react/qr-code";
 
 ## Relative Time
 
-A live `<time>` such as "3 hours ago", worded by `Intl` in any locale, with the matching `lang` and `dir`. Every time shares one timer, and the server's HTML hydrates cleanly.
+A live `<time>` such as "3 hours ago" in any locale, with its `lang` and `dir`, a shared timer and clean hydration.
 
 ```tsx
 import { RelativeTime } from "@erbium-ui/react/relative-time";

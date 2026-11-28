@@ -1,9 +1,6 @@
 import { useState, useSyncExternalStore } from "react";
 
-/*
- * Dates for these examples, measured from when they appear. In an app the dates come from your
- * data, and this is not needed.
- */
+/* Example dates count from when they appear. An app takes its dates from its data. */
 
 const MINUTE = 60_000;
 const HOUR = 60 * MINUTE;

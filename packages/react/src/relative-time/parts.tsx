@@ -25,10 +25,7 @@ import type {
 /** What a `Provider` shares and every part and hook accepts. */
 interface RelativeTimeSettings extends Omit<RelativeTimeOptions, "now"> {
   date?: RelativeTimeInput | undefined;
-  /**
-   * The time the server rendered at. With it, the server's HTML already holds relative text;
-   * without it, the server writes the date and the text turns relative after hydration.
-   */
+  /** The time of the server render. With it, the server's HTML holds relative text, not the date. */
   serverNow?: RelativeTimeInput | undefined;
 }
 
@@ -39,10 +36,13 @@ interface RelativeTimeLocale {
   direction: TextDirection;
 }
 
-interface RelativeTimeState extends Record<string, unknown>, RelativeTimeLocale {
+interface RelativeTimeAbsoluteState extends Record<string, unknown>, RelativeTimeLocale {
   date: Date;
   text: string;
-  /** `text` is the date: beyond `threshold`, or rendered by a server without `serverNow`. */
+}
+
+interface RelativeTimeState extends RelativeTimeAbsoluteState {
+  /** `text` is the date: beyond `threshold`, or from a server without `serverNow`. */
   absolute: boolean;
   /** `null`, like `unit` and `value`, in server HTML rendered without `serverNow`. */
   tense: RelativeTimeTense | null;
@@ -50,70 +50,67 @@ interface RelativeTimeState extends Record<string, unknown>, RelativeTimeLocale 
   value: number | null;
 }
 
-// The server cannot know the viewer's language or zone, so it writes these unless told otherwise.
-// The client renders the same while hydrating.
+// A server cannot know the viewer's language or zone. The client renders these while hydrating.
 const SERVER_LOCALE = "en";
 const SERVER_TIME_ZONE = "UTC";
 
 const SettingsContext = React.createContext<RelativeTimeSettings>({});
 
-/** Settings over the provider's, ignoring the ones left `undefined`. */
+/** A part's own settings over the provider's, ignoring those left `undefined`. */
 const mergeSettings = (
   inherited: RelativeTimeSettings,
   own: RelativeTimeSettings,
 ): RelativeTimeSettings => ({
   ...inherited,
-  ...Object.fromEntries(Object.entries(own).filter(([, value]) => value !== undefined)),
-  labels: own.labels ? { ...inherited.labels, ...own.labels } : inherited.labels,
+  ...Object.fromEntries(
+    Object.entries(own)
+      .filter(([, value]) => value !== undefined)
+      // By its time, so a `new Date()` written inline changes nothing.
+      .map(([key, value]) => [key, value instanceof Date ? value.getTime() : value]),
+  ),
+  labels:
+    inherited.labels && own.labels
+      ? { ...inherited.labels, ...own.labels }
+      : (own.labels ?? inherited.labels),
 });
 
-const useSettings = (own: RelativeTimeSettings) => mergeSettings(React.use(SettingsContext), own);
+/** The merged settings, as the same object until one of them changes. */
+const useSettings = (own: RelativeTimeSettings): RelativeTimeSettings => {
+  const {
+    date,
+    dateFormat,
+    format,
+    formatStyle,
+    labels,
+    locale,
+    maxUnits,
+    nowThreshold,
+    numeric,
+    serverNow,
+    threshold,
+    timeZone,
+  } = mergeSettings(React.use(SettingsContext), own);
 
-type RelativeTimeProviderProps = RelativeTimeSettings & { children?: React.ReactNode };
-
-/**
- * Shares a date, language, zone or wording with the parts and hooks inside it. Nested providers
- * add to the ones around them. Renders no element.
- */
-const RelativeTimeProvider = ({
-  children,
-  date,
-  dateFormat,
-  format,
-  formatStyle,
-  labels,
-  locale,
-  maxUnits,
-  nowThreshold,
-  numeric,
-  serverNow,
-  threshold,
-  timeZone,
-}: RelativeTimeProviderProps) => {
-  const inherited = React.use(SettingsContext);
-
-  const settings = React.useMemo(
-    () =>
-      mergeSettings(inherited, {
-        date,
-        dateFormat,
-        format,
-        formatStyle,
-        labels,
-        locale,
-        maxUnits,
-        nowThreshold,
-        numeric,
-        serverNow,
-        threshold,
-        timeZone,
-      }),
+  return React.useMemo(
+    () => ({
+      date,
+      dateFormat,
+      format,
+      formatStyle,
+      labels,
+      locale,
+      maxUnits,
+      nowThreshold,
+      numeric,
+      serverNow,
+      threshold,
+      timeZone,
+    }),
     [
       date,
       dateFormat,
       format,
       formatStyle,
-      inherited,
       labels,
       locale,
       maxUnits,
@@ -124,6 +121,13 @@ const RelativeTimeProvider = ({
       timeZone,
     ],
   );
+};
+
+type RelativeTimeProviderProps = RelativeTimeSettings & { children?: React.ReactNode };
+
+/** Shares settings with the parts and hooks inside it. Nested providers add up. No element. */
+const RelativeTimeProvider = ({ children, ...own }: RelativeTimeProviderProps) => {
+  const settings = useSettings(own);
 
   return <SettingsContext value={settings}>{children}</SettingsContext>;
 };
@@ -139,187 +143,119 @@ const useHydrated = () =>
     () => false,
   );
 
-/** The locale and zone to write in now: fixed ones until hydrated, then the viewer's. */
-const useViewer = ({ locale, timeZone }: Pick<RelativeTimeSettings, "locale" | "timeZone">) => {
+/** The language and zone to write in: fixed ones until hydrated, then the viewer's. */
+const useViewer = ({ locale, timeZone }: RelativeTimeSettings) => {
   const hydrated = useHydrated();
+  const resolved = resolveLocale(locale ?? (hydrated ? undefined : SERVER_LOCALE));
 
   return {
-    locale: resolveLocale(locale ?? (hydrated ? undefined : SERVER_LOCALE)),
+    direction: getTextDirection(resolved),
+    locale: resolved,
     timeZone: timeZone ?? (hydrated ? undefined : SERVER_TIME_ZONE),
   };
 };
 
 /** The language and direction of the surrounding provider's text, for its container. */
 const useRelativeTimeLocale = (locale?: string): RelativeTimeLocale => {
-  const settings = useSettings({ locale });
-  const viewer = useViewer(settings);
+  const viewer = useViewer(useSettings({ locale }));
 
-  return { direction: getTextDirection(viewer.locale), locale: viewer.locale };
+  return { direction: viewer.direction, locale: viewer.locale };
 };
 
-const toTime = (input: RelativeTimeInput | undefined) =>
-  parseRelativeTimeDate(input)?.getTime() ?? Number.NaN;
+const toState = ({ nextChange: _nextChange, ...state }: RelativeTimeResult): RelativeTimeState =>
+  state;
 
-type StoreSettings = Omit<RelativeTimeSettings, "date" | "serverNow">;
+/** What a server renders: relative text if told its time, the date otherwise. */
+const readServer = ({
+  date = "",
+  serverNow,
+  ...options
+}: RelativeTimeSettings): RelativeTimeState | null => {
+  const now = parseRelativeTimeDate(serverNow);
 
-/** What of a state can be seen. The rest is fixed for as long as the settings are. */
-const visible = ["absolute", "tense", "text", "unit", "value"] as const;
+  const shared = {
+    ...options,
+    locale: options.locale ?? SERVER_LOCALE,
+    timeZone: options.timeZone ?? SERVER_TIME_ZONE,
+  };
 
-const withoutSchedule = (result: RelativeTimeResult | null): RelativeTimeState | null => {
+  const result = getRelativeTime(date, { ...shared, now: now ?? undefined });
+
   if (!result) {
     return null;
   }
 
-  const { nextChange: _nextChange, ...state } = result;
-
-  return state;
-};
-
-/** The server's state without its time: the date, in a language and zone both sides agree on. */
-const describeDate = (date: number, settings: StoreSettings): RelativeTimeState | null => {
-  const parsed = parseRelativeTimeDate(date);
-
-  if (!parsed) {
-    return null;
+  if (now) {
+    return toState(result);
   }
 
-  const locale = resolveLocale(settings.locale);
-  const { dateFormat = { dateStyle: "medium" }, timeZone } = settings;
+  const { dateFormat = { dateStyle: "medium" } } = shared;
 
   return {
-    locale,
+    ...toState(result),
     absolute: true,
-    date: parsed,
-    direction: getTextDirection(locale),
     tense: null,
-    text: formatDateTime(parsed, { dateFormat, locale, timeZone }),
+    text: formatDateTime(result.date, { ...shared, dateFormat }),
     unit: null,
     value: null,
   };
 };
 
-/** Snapshots for `useSyncExternalStore`: the same object for as long as nothing visible differs. */
-const createStore = (date: number, serverNow: number, settings: StoreSettings) => {
+/** The state a change of which re-renders. The rest is fixed by the settings. */
+const visible = ["absolute", "tense", "text", "unit", "value"] as const;
+
+/** The arguments of `useSyncExternalStore`, with the same snapshot while nothing visible differs. */
+const createStore = (settings: RelativeTimeSettings) => {
+  const { date = "", serverNow: _serverNow, ...options } = settings;
+  const read = () => getRelativeTime(date, options);
   let client: RelativeTimeState | null = null;
-  let server: { state: RelativeTimeState | null } | null = null;
-
-  const read = (now: number) => getRelativeTime(date, { ...settings, now });
-
-  const renderServer = () => {
-    const options = {
-      ...settings,
-      locale: settings.locale ?? SERVER_LOCALE,
-      timeZone: settings.timeZone ?? SERVER_TIME_ZONE,
-    };
-
-    return Number.isNaN(serverNow)
-      ? describeDate(date, options)
-      : withoutSchedule(getRelativeTime(date, { ...options, now: serverNow }));
-  };
+  let server: RelativeTimeState | null = null;
 
   return {
-    getServerSnapshot: () => {
-      server ??= { state: renderServer() };
-
-      return server.state;
-    },
+    getServerSnapshot: () => (server ??= readServer(settings)),
     getSnapshot: () => {
-      const next = withoutSchedule(read(Date.now()));
+      const result = read();
 
-      if (!next) {
+      if (!result) {
         return null;
       }
 
-      if (!client || visible.some((key) => client?.[key] !== next[key])) {
-        client = next;
+      if (!client || visible.some((key) => client?.[key] !== result[key])) {
+        client = toState(result);
       }
 
       return client;
     },
-    subscribe: (notify: () => void) =>
-      subscribeClock(() => read(Date.now())?.nextChange ?? null, notify),
+    subscribe: (notify: () => void) => subscribeClock(() => read()?.nextChange ?? null, notify),
   };
 };
 
 /**
- * The live description of how far a date is from now, in the settings of the surrounding
- * provider. Re-renders only when it reads differently. `null` without a valid date.
+ * The live description of how far a date is from now. Re-renders only when it reads differently.
+ * `null` without a valid date.
  */
 const useRelativeTime = (
   date?: RelativeTimeInput,
   options: Omit<RelativeTimeSettings, "date"> = {},
 ): RelativeTimeState | null => {
-  const {
-    date: dateInput,
-    serverNow: serverNowInput,
-    dateFormat,
-    format,
-    formatStyle,
-    labels,
-    locale,
-    maxUnits,
-    nowThreshold,
-    numeric,
-    threshold,
-    timeZone,
-  } = useSettings({ ...options, date });
-
-  // Times rather than objects, so a `new Date()` written inline does not restart anything.
-  const time = toTime(dateInput);
-  const serverTime = toTime(serverNowInput);
-
-  const store = React.useMemo(
-    () =>
-      createStore(time, serverTime, {
-        dateFormat,
-        format,
-        formatStyle,
-        labels,
-        locale,
-        maxUnits,
-        nowThreshold,
-        numeric,
-        threshold,
-        timeZone,
-      }),
-    [
-      dateFormat,
-      format,
-      formatStyle,
-      labels,
-      locale,
-      maxUnits,
-      nowThreshold,
-      numeric,
-      serverTime,
-      threshold,
-      time,
-      timeZone,
-    ],
-  );
+  const settings = useSettings({ ...options, date });
+  const store = React.useMemo(() => createStore(settings), [settings]);
 
   return React.useSyncExternalStore(store.subscribe, store.getSnapshot, store.getServerSnapshot);
 };
 
-/** `render`, plus `className` and `style` as values or functions of the part's state. */
-type PartProps<Tag extends React.ElementType, State> = Omit<
-  useRender.ComponentProps<Tag, State>,
-  "className" | "style" | "children"
+/** `render`, plus `className`, `style` and `children` as values or functions of the state. */
+type TimePartProps<State extends Record<string, unknown>> = Omit<
+  useRender.ComponentProps<"time", State>,
+  "children" | "className" | "dateTime" | "style"
 > & {
+  children?: StateProp<React.ReactNode, State>;
   className?: StateProp<string | undefined, State>;
   style?: StateProp<React.CSSProperties | undefined, State>;
 };
 
-// Root
-
-type RelativeTimeRootProps = Omit<PartProps<"time", RelativeTimeState>, "dateTime"> &
-  RelativeTimeSettings & {
-    /** Replaces the text: content, or a function of the state. */
-    children?: StateProp<React.ReactNode, RelativeTimeState>;
-  };
-
-/** State that styling reads. The rest would only put noise in the DOM. */
-const rootAttributes = {
+/** Keeps out of `data-*` what styling has no use for. */
+const hiddenState = {
   date: () => null,
   direction: () => null,
   locale: () => null,
@@ -327,46 +263,12 @@ const rootAttributes = {
   value: () => null,
 };
 
-/**
- * A live `<time>`, such as "3 hours ago". It sets `lang` and `dir` for the language it writes.
- * Renders nothing without a valid date.
- *
- * State: `data-tense`, `data-unit` and `data-absolute`.
- */
-const RelativeTimeRoot = ({
-  date,
-  serverNow,
-  dateFormat,
-  format,
-  formatStyle,
-  labels,
-  locale,
-  maxUnits,
-  nowThreshold,
-  numeric,
-  threshold,
-  timeZone,
-  render,
-  className,
-  style,
-  children,
-  ...props
-}: RelativeTimeRootProps) => {
-  const state = useRelativeTime(date, {
-    dateFormat,
-    format,
-    formatStyle,
-    labels,
-    locale,
-    maxUnits,
-    nowThreshold,
-    numeric,
-    serverNow,
-    threshold,
-    timeZone,
-  });
-
-  return useRender({
+/** The `<time>` of a state, in its language and direction. Nothing without a state. */
+const useTimeElement = <State extends RelativeTimeAbsoluteState>(
+  state: State | null,
+  { render, className, style, children, ...props }: TimePartProps<State>,
+) =>
+  useRender({
     render,
     defaultTagName: "time",
     enabled: state !== null,
@@ -389,80 +291,75 @@ const RelativeTimeRoot = ({
             },
           ),
     state: state ?? undefined,
-    stateAttributesMapping: rootAttributes,
+    stateAttributesMapping: hiddenState,
   });
+
+// Root
+
+type RelativeTimeRootProps = TimePartProps<RelativeTimeState> & RelativeTimeSettings;
+
+/**
+ * A live `<time>`, such as "3 hours ago". Renders nothing without a valid date.
+ *
+ * State: `data-tense`, `data-unit` and `data-absolute`.
+ */
+const RelativeTimeRoot = ({
+  date,
+  dateFormat,
+  format,
+  formatStyle,
+  labels,
+  locale,
+  maxUnits,
+  nowThreshold,
+  numeric,
+  serverNow,
+  threshold,
+  timeZone,
+  ...props
+}: RelativeTimeRootProps) => {
+  const state = useRelativeTime(date, {
+    dateFormat,
+    format,
+    formatStyle,
+    labels,
+    locale,
+    maxUnits,
+    nowThreshold,
+    numeric,
+    serverNow,
+    threshold,
+    timeZone,
+  });
+
+  return useTimeElement(state, props);
 };
 
 // Absolute
 
-interface RelativeTimeAbsoluteState extends Record<string, unknown>, RelativeTimeLocale {
-  date: Date;
-  text: string;
-}
+type RelativeTimeAbsoluteProps = TimePartProps<RelativeTimeAbsoluteState> &
+  Pick<RelativeTimeSettings, "date" | "dateFormat" | "locale" | "timeZone">;
 
-type RelativeTimeAbsoluteProps = Omit<PartProps<"time", RelativeTimeAbsoluteState>, "dateTime"> &
-  Pick<RelativeTimeSettings, "date" | "dateFormat" | "locale" | "timeZone"> & {
-    /** Replaces the text: content, or a function of the state. */
-    children?: StateProp<React.ReactNode, RelativeTimeAbsoluteState>;
-  };
-
-const textAttributes = {
-  date: () => null,
-  direction: () => null,
-  locale: () => null,
-  text: () => null,
-};
-
-/**
- * The exact moment as a `<time>`, with its date and time by default. Its `dateFormat` is its own:
- * the provider's only applies to `Root` beyond `threshold`.
- */
+/** The exact date and time as a `<time>`. The provider's `dateFormat` does not apply to it. */
 const RelativeTimeAbsolute = ({
-  date: dateProp,
+  date,
   dateFormat,
-  locale: localeProp,
-  timeZone: timeZoneProp,
-  render,
-  className,
-  style,
-  children,
+  locale,
+  timeZone,
   ...props
 }: RelativeTimeAbsoluteProps) => {
-  const settings = useSettings({ date: dateProp, locale: localeProp, timeZone: timeZoneProp });
+  const settings = useSettings({ date, locale, timeZone });
   const viewer = useViewer(settings);
-  const date = parseRelativeTimeDate(settings.date);
+  const parsed = parseRelativeTimeDate(settings.date);
 
-  const state: RelativeTimeAbsoluteState | null = date && {
-    date,
-    direction: getTextDirection(viewer.locale),
+  const state = parsed && {
+    date: parsed,
+    direction: viewer.direction,
     locale: viewer.locale,
-    text: formatDateTime(date, { ...viewer, dateFormat }),
+    text: formatDateTime(parsed, { ...viewer, dateFormat }),
   };
 
-  return useRender({
-    render,
-    defaultTagName: "time",
-    enabled: state !== null,
-    props:
-      state === null
-        ? undefined
-        : mergeProps<"time">(
-            {
-              dateTime: state.date.toISOString(),
-              dir: state.direction,
-              lang: state.locale,
-              suppressHydrationWarning: true,
-            },
-            props,
-            {
-              children: children === undefined ? state.text : resolveStateProp(children, state),
-              className: resolveStateProp(className, state),
-              style: resolveStateProp(style, state),
-            },
-          ),
-    state: state ?? undefined,
-    stateAttributesMapping: textAttributes,
-  });
+  return useTimeElement(state, props);
 };
 
 // Time zone name
@@ -471,10 +368,7 @@ type RelativeTimeZoneNameProps = useRender.ComponentProps<"bdi"> &
   Pick<RelativeTimeSettings, "date" | "locale" | "timeZone"> &
   Pick<Intl.DateTimeFormatOptions, "timeZoneName">;
 
-/**
- * The name of a zone at the date, such as "UTC" or "GMT+3:30", in a `<bdi>` so its signs and
- * digits keep their order in either direction. Renders nothing without a valid date.
- */
+/** A zone's name at the date, in a `<bdi>` so "GMT+3:30" keeps its order in either direction. */
 const RelativeTimeZoneName = ({
   date: dateProp,
   locale: localeProp,
@@ -503,8 +397,8 @@ const RelativeTimeZoneName = ({
 };
 
 /**
- * Whether a zone, by default the viewer's, is as far from UTC at the date as any of `others`, so
- * a list of zones can leave out a repeat. `false` until hydrated.
+ * Whether a zone, by default the viewer's, is as far from UTC at the date as one of `others`.
+ * `false` until hydrated.
  */
 const useTimeZoneMatch = (
   others: readonly string[],

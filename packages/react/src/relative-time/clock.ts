@@ -1,11 +1,8 @@
-/*
- * One timer for every relative time on the page. Each subscriber says when its text can next
- * change, and the timer sleeps until the earliest of those.
- */
+/* One timer for every relative time on the page, asleep until the earliest one is due. */
 
 interface Subscriber {
-  /** When to wake this subscriber, in milliseconds since the epoch, or `null` for never. */
-  due: number | null;
+  due: number;
+  /** When to wake next, in milliseconds since the epoch, or `null` for never. */
   getDue: () => number | null;
   notify: () => void;
 }
@@ -13,88 +10,64 @@ interface Subscriber {
 /** A timer that fires a little early must not spin. */
 const MIN_DELAY = 16;
 
-/** Waking at least this often recovers from a clock that was set back. */
-const MAX_DELAY = 15 * 60 * 1000;
-
 const subscribers = new Set<Subscriber>();
 
 let timer: ReturnType<typeof setTimeout> | undefined;
 let timerDue = Number.POSITIVE_INFINITY;
 
-const stop = () => {
+const sleep = () => {
   clearTimeout(timer);
   timerDue = Number.POSITIVE_INFINITY;
 };
 
-const update = (subscriber: Subscriber) => {
-  subscriber.notify();
-  subscriber.due = subscriber.getDue();
+/** Sets the timer for `due`, unless it already wakes sooner. */
+const wakeBy = (due: number) => {
+  if (due < timerDue) {
+    sleep();
+    timerDue = due;
+    // oxlint-disable-next-line no-use-before-define -- waking and scheduling call each other.
+    timer = setTimeout(wake, Math.max(due - Date.now(), MIN_DELAY));
+  }
 };
 
-const wakeAt = (due: number) => {
-  stop();
-  timerDue = due;
+/** Updates the subscribers that are due, or all of them, then schedules the next wake. */
+const wake = (all = false) => {
+  const now = Date.now();
+  sleep();
 
-  const delay = Math.min(Math.max(due - Date.now(), MIN_DELAY), MAX_DELAY);
-
-  timer = setTimeout(() => {
-    const now = Date.now();
-
-    for (const subscriber of subscribers) {
-      if (subscriber.due !== null && subscriber.due <= now) {
-        update(subscriber);
-      }
+  for (const subscriber of subscribers) {
+    if (all || subscriber.due <= now) {
+      subscriber.notify();
+      subscriber.due = subscriber.getDue() ?? Number.POSITIVE_INFINITY;
     }
 
-    // oxlint-disable-next-line no-use-before-define -- the timer and its scheduler call each other.
-    schedule();
-  }, delay);
-};
-
-const schedule = () => {
-  let next = Number.POSITIVE_INFINITY;
-
-  for (const { due } of subscribers) {
-    next = Math.min(next, due ?? next);
-  }
-
-  stop();
-
-  if (next !== Number.POSITIVE_INFINITY) {
-    wakeAt(next);
+    wakeBy(subscriber.due);
   }
 };
 
 // Timers are throttled in a hidden tab and pause while a device sleeps.
 const catchUp = () => {
   if (document.visibilityState === "visible") {
-    for (const subscriber of subscribers) {
-      update(subscriber);
-    }
-
-    schedule();
+    wake(true);
   }
 };
 
 /** Calls `notify` whenever the time `getDue` returns arrives. Returns the way to stop. */
 const subscribeClock = (getDue: () => number | null, notify: () => void) => {
-  const subscriber: Subscriber = { due: getDue(), getDue, notify };
+  const subscriber = { due: getDue() ?? Number.POSITIVE_INFINITY, getDue, notify };
 
   if (subscribers.size === 0) {
     document.addEventListener("visibilitychange", catchUp);
   }
 
   subscribers.add(subscriber);
-
-  if (subscriber.due !== null && subscriber.due < timerDue) {
-    wakeAt(subscriber.due);
-  }
+  wakeBy(subscriber.due);
 
   return () => {
     subscribers.delete(subscriber);
 
     if (subscribers.size === 0) {
-      stop();
+      sleep();
       document.removeEventListener("visibilitychange", catchUp);
     }
   };

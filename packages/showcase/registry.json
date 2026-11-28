@@ -19637,7 +19637,7 @@
       "name": "relative-time-card",
       "type": "registry:block",
       "title": "Relative Time: Card",
-      "description": "The card shows the full date and the time in the viewer’s zone and UTC. It opens on hover, and with a tap or the keyboard.",
+      "description": "The full date, and the time in the viewer’s zone and UTC.",
       "registryDependencies": ["@erbium/relative-time", "@erbium/styles"],
       "files": [
         {
@@ -19656,7 +19656,7 @@
       "name": "relative-time-card-zones",
       "type": "registry:block",
       "title": "Relative Time: Card with zones",
-      "description": "Compose the trigger and the content: your own zones and names, and actions such as copying the timestamp.",
+      "description": "Your own trigger, zones and actions.",
       "registryDependencies": [
         "@erbium/button",
         "@erbium/copy-button",
@@ -19756,7 +19756,7 @@
       "name": "relative-time-languages",
       "type": "registry:block",
       "title": "Relative Time: Languages",
-      "description": "`locale` picks the words, digits, plural forms and direction. All of them come from `Intl`, so there are no translation files.",
+      "description": "`locale` picks the words, digits, plurals and direction.",
       "dependencies": ["@erbium-ui/react@workspace:*"],
       "registryDependencies": ["@erbium/relative-time", "@erbium/styles"],
       "files": [
@@ -19776,7 +19776,7 @@
       "name": "relative-time-overview",
       "type": "registry:block",
       "title": "Relative Time: Overview",
-      "description": "Past, present and future times in a list. Each one stays current on a shared clock.",
+      "description": "Past and future times that stay current.",
       "registryDependencies": ["@erbium/item", "@erbium/relative-time", "@erbium/styles"],
       "files": [
         {
@@ -19819,7 +19819,7 @@
       "name": "relative-time-rtl",
       "type": "registry:block",
       "title": "Relative Time: Right to left",
-      "description": "A Persian interface. The app sets the direction with `DirectionProvider` and `dir`, and one `RelativeTimeProvider` gives every time and card the same locale. Exact dates use the Persian calendar.",
+      "description": "A Persian interface: the app sets the direction, and one provider gives every time and card the same locale.",
       "registryDependencies": [
         "@erbium/direction",
         "@erbium/item",
@@ -19843,7 +19843,7 @@
       "name": "relative-time-state",
       "type": "registry:block",
       "title": "Relative Time: Styled from state",
-      "description": "`render` and `children` receive the tense, unit and text. The element also carries `data-tense`, `data-unit` and `data-absolute`.",
+      "description": "`render` and `children` read the state, which the element also carries as `data-*` attributes.",
       "registryDependencies": ["@erbium/badge", "@erbium/relative-time", "@erbium/styles"],
       "files": [
         {
@@ -19979,7 +19979,7 @@
       "name": "relative-time-wording",
       "type": "registry:block",
       "title": "Relative Time: Custom wording",
-      "description": "`labels` replace the words around a duration, for “2 months later” or a phrase of your own. `maxUnits` writes more than one unit.",
+      "description": "`labels` replace the words around a duration, and `maxUnits` writes more units.",
       "registryDependencies": ["@erbium/relative-time", "@erbium/styles"],
       "files": [
         {

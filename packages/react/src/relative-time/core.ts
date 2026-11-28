@@ -1,7 +1,4 @@
-/*
- * Relative time without React: which unit a moment is away by, how that reads in a language, and
- * when the text will next change. All wording and ordering comes from `Intl`.
- */
+/* Relative time without React. `Intl` writes all the wording. */
 
 /** A `Date`, an ISO 8601 string, or milliseconds since the epoch. */
 type RelativeTimeInput = Date | number | string;
@@ -10,21 +7,15 @@ type RelativeTimeUnit = "second" | "minute" | "hour" | "day" | "week" | "month" 
 
 type RelativeTimeTense = "past" | "present" | "future";
 
-type RelativeTimeFormat = "relative" | "duration";
-
-type RelativeTimeStyle = "long" | "short" | "narrow";
-
-type RelativeTimeNumeric = "always" | "auto";
-
 type TextDirection = "ltr" | "rtl";
 
-/** Wording that replaces what `Intl` writes. Give every entry in the language of `locale`. */
+/** Wording in the language of `locale`, in place of what `Intl` writes. */
 interface RelativeTimeLabels {
-  /** The text within `nowThreshold`. English defaults to "just now", other languages to `Intl`. */
+  /** The text within `nowThreshold`. */
   now?: string | undefined;
-  /** Wraps an elapsed duration, such as ``(duration) => `${duration} earlier` ``. */
+  /** Wraps an elapsed duration, such as "2 months". */
   past?: ((duration: string) => string) | undefined;
-  /** Wraps a remaining duration, such as ``(duration) => `${duration} later` ``. */
+  /** Wraps a remaining duration. */
   future?: ((duration: string) => string) | undefined;
 }
 
@@ -33,28 +24,23 @@ interface DateTimeOptions {
   locale?: string | undefined;
   /** An IANA zone, such as `"Asia/Tehran"`. @default the runtime's zone */
   timeZone?: string | undefined;
-  /** @default `{ dateStyle: "medium", timeStyle: "short" }` */
   dateFormat?: Intl.DateTimeFormatOptions | undefined;
 }
 
 interface RelativeTimeOptions extends DateTimeOptions {
   /** The moment to measure from. @default the current time */
   now?: RelativeTimeInput | undefined;
-  /** `"duration"` writes the distance alone, without "ago" or "in". @default "relative" */
-  format?: RelativeTimeFormat | undefined;
+  /** `"duration"` leaves out "ago" and "in". @default "relative" */
+  format?: "relative" | "duration" | undefined;
   /** @default "long" */
-  formatStyle?: RelativeTimeStyle | undefined;
-  /** `"auto"` writes one day away as "yesterday" or "tomorrow". @default "auto" */
-  numeric?: RelativeTimeNumeric | undefined;
-  /**
-   * How many units to write, largest first. A relative text with more than one needs
-   * `labels.past` and `labels.future` outside English, and uses one unit without them.
-   * @default 1
-   */
+  formatStyle?: Intl.RelativeTimeFormatStyle | undefined;
+  /** `"auto"` writes words such as "yesterday". @default "auto" */
+  numeric?: Intl.RelativeTimeFormatNumeric | undefined;
+  /** Units to write, largest first. Outside English, relative text needs `labels` for more than one. @default 1 */
   maxUnits?: number | undefined;
   /** Seconds either side of now that read as "just now". @default 60 */
   nowThreshold?: number | undefined;
-  /** Seconds either side of now beyond which the date is written instead. @default never */
+  /** Seconds either side of now beyond which the date is written. */
   threshold?: number | undefined;
   labels?: RelativeTimeLabels | undefined;
 }
@@ -63,17 +49,17 @@ interface RelativeTimeResult {
   date: Date;
   text: string;
   tense: RelativeTimeTense;
-  /** The largest unit of the distance. */
+  /** The largest unit written. */
   unit: RelativeTimeUnit;
-  /** How many of `unit`, negative in the past and `0` in the present. */
+  /** How many of `unit`, negative in the past. */
   value: number;
   /** `text` is the date, because the distance passed `threshold`. */
   absolute: boolean;
-  /** The locale the text is written in, for `lang`. */
+  /** For `lang`. */
   locale: string;
-  /** The writing direction of `locale`, for `dir`. */
+  /** For `dir`. */
   direction: TextDirection;
-  /** When `text` can next change, in milliseconds since the epoch, or `null` if it will not. */
+  /** When to read the text again, in milliseconds since the epoch, or `null` if it is final. */
   nextChange: number | null;
 }
 
@@ -82,31 +68,13 @@ interface DurationPart {
   value: number;
 }
 
+/** Where a distance is counted: the zone its days turn over in, and the locale of its calendar. */
+type Place = Required<Pick<DateTimeOptions, "locale">> & Pick<DateTimeOptions, "timeZone">;
+
 const SECOND = 1000;
 const MINUTE = 60 * SECOND;
 const HOUR = 60 * MINUTE;
 const DAY = 24 * HOUR;
-
-/** Every time zone offset is a multiple of this, so calendar days only turn over on one. */
-const QUARTER_HOUR = 15 * MINUTE;
-
-/**
- * Months in a year, for the calendars whose own months are counted. Gregorian months are those of
- * the Buddhist, Japanese and Minguo calendars too. The Chinese, Dangi and Hebrew calendars add
- * leap months, and count as Gregorian.
- */
-const monthsPerYear = new Map([
-  ["coptic", 13],
-  ["ethioaa", 13],
-  ["ethiopic", 13],
-  ["indian", 12],
-  ["islamic", 12],
-  ["islamic-civil", 12],
-  ["islamic-rgsa", 12],
-  ["islamic-tbla", 12],
-  ["islamic-umalqura", 12],
-  ["persian", 12],
-]);
 
 /** Scripts written right to left. `Intl.Locale`'s text info is not in every browser. */
 const rtlScripts = new Set([
@@ -124,39 +92,30 @@ const rtlScripts = new Set([
 ]);
 
 /** One formatter per locale and options: building one costs far more than using it. */
-const memoizeFormatter = <Locale extends string | undefined, Options, Formatter>(
-  Constructor: new (locale: Locale, options: Options) => Formatter,
+const memoize = <Options, Formatter>(
+  Constructor: new (locale: string | undefined, options: Options) => Formatter,
 ) => {
-  const formatters = new Map<string, Formatter>();
+  const cache = new Map<string, Formatter>();
 
-  return (locale: Locale, options: Options): Formatter => {
+  return (locale: string | undefined, options: Options): Formatter => {
     const key = JSON.stringify([locale, options]);
-    const formatter = formatters.get(key) ?? new Constructor(locale, options);
-    formatters.set(key, formatter);
+    const formatter = cache.get(key) ?? new Constructor(locale, options);
+    cache.set(key, formatter);
 
     return formatter;
   };
 };
 
-const dateTimeFormatter = memoizeFormatter<
-  string | undefined,
-  Intl.DateTimeFormatOptions,
-  Intl.DateTimeFormat
->(Intl.DateTimeFormat);
-
-const listFormatter = memoizeFormatter<string, Intl.ListFormatOptions, Intl.ListFormat>(
-  Intl.ListFormat,
+const dateTimeFormatter = memoize<Intl.DateTimeFormatOptions, Intl.DateTimeFormat>(
+  Intl.DateTimeFormat,
 );
 
-const numberFormatter = memoizeFormatter<string, Intl.NumberFormatOptions, Intl.NumberFormat>(
-  Intl.NumberFormat,
-);
+const listFormatter = memoize<Intl.ListFormatOptions, Intl.ListFormat>(Intl.ListFormat);
+const numberFormatter = memoize<Intl.NumberFormatOptions, Intl.NumberFormat>(Intl.NumberFormat);
 
-const relativeFormatter = memoizeFormatter<
-  string,
-  Intl.RelativeTimeFormatOptions,
-  Intl.RelativeTimeFormat
->(Intl.RelativeTimeFormat);
+const relativeFormatter = memoize<Intl.RelativeTimeFormatOptions, Intl.RelativeTimeFormat>(
+  Intl.RelativeTimeFormat,
+);
 
 /**
  * The locale text is written in: `locale` when the runtime has data for it, and its own locale
@@ -175,10 +134,6 @@ const getTextDirection = (locale?: string): TextDirection => {
   return script !== undefined && rtlScripts.has(script) ? "rtl" : "ltr";
 };
 
-/** The calendar a locale writes its dates in, such as "persian" for `fa-IR`. */
-const getCalendar = (locale: string): string =>
-  dateTimeFormatter(locale, {}).resolvedOptions().calendar;
-
 /** The date an input names, or `null` when it names none. */
 const parseRelativeTimeDate = (input: RelativeTimeInput | null | undefined): Date | null => {
   if (input === null || input === undefined || input === "") {
@@ -190,154 +145,121 @@ const parseRelativeTimeDate = (input: RelativeTimeInput | null | undefined): Dat
   return Number.isNaN(date.getTime()) ? null : date;
 };
 
-const readPart = (parts: Intl.DateTimeFormatPart[], type: Intl.DateTimeFormatPartTypes) =>
-  Number(parts.find((part) => part.type === type)?.value);
-
-/** A zone's wall clock as a UTC timestamp, so calendar arithmetic can use the UTC methods. */
-const toWallClock = (date: Date, timeZone: string | undefined): number => {
-  if (timeZone === undefined) {
-    return date.getTime() - date.getTimezoneOffset() * MINUTE;
-  }
-
+/** Reads the numbers of a moment's date and time in a calendar and zone. */
+const readDate = (time: number | Date, options: Intl.DateTimeFormatOptions) => {
   const parts = dateTimeFormatter("en-US", {
-    timeZone,
-    calendar: "gregory",
     day: "numeric",
+    month: "numeric",
+    numberingSystem: "latn",
+    year: "numeric",
+    ...options,
+  }).formatToParts(time);
+
+  return (type: Intl.DateTimeFormatPartTypes) =>
+    Number(parts.find((part) => part.type === type)?.value);
+};
+
+/** A zone's wall clock as a UTC timestamp, so days can be counted by dividing. */
+const toWallClock = (date: Date, timeZone: string | undefined): number => {
+  const read = readDate(date, {
+    calendar: "gregory",
     hour: "numeric",
     hourCycle: "h23",
     minute: "numeric",
-    month: "numeric",
-    numberingSystem: "latn",
     second: "numeric",
-    year: "numeric",
-  }).formatToParts(date);
+    timeZone,
+  });
 
-  const read = (type: Intl.DateTimeFormatPartTypes) => readPart(parts, type);
-
-  const wall = new Date(0);
-  wall.setUTCFullYear(read("year"), read("month") - 1, read("day"));
-  wall.setUTCHours(read("hour"), read("minute"), read("second"), date.getUTCMilliseconds());
-
-  return wall.getTime();
+  return Date.UTC(
+    read("year"),
+    read("month") - 1,
+    read("day"),
+    read("hour"),
+    read("minute"),
+    read("second"),
+    date.getUTCMilliseconds(),
+  );
 };
 
-/** Adds Gregorian months, keeping to the last day of a shorter month. */
-const addMonths = (wall: number, count: number): number => {
-  const result = new Date(wall);
-  const day = result.getUTCDate();
+/** The calendar whose months a locale counts. Calendars with leap months count Gregorian ones. */
+const getMonthCalendar = (locale: string) => {
+  const { calendar } = dateTimeFormatter(locale, {}).resolvedOptions();
 
-  result.setUTCDate(1);
-  result.setUTCMonth(result.getUTCMonth() + count);
-
-  const end = new Date(result);
-  end.setUTCMonth(end.getUTCMonth() + 1, 0);
-  result.setUTCDate(Math.min(day, end.getUTCDate()));
-
-  return result.getTime();
-};
-
-/** Whole Gregorian months from one wall clock to a later one. */
-const countMonths = (from: number, to: number): number => {
-  const start = new Date(from);
-  const end = new Date(to);
-
-  const months =
-    (end.getUTCFullYear() - start.getUTCFullYear()) * 12 + end.getUTCMonth() - start.getUTCMonth();
-
-  return addMonths(from, months) > to ? months - 1 : months;
-};
-
-/** The year, month and day of a wall clock in a calendar. */
-const toCalendarDate = (wall: number, calendar: string) => {
-  const parts = dateTimeFormatter("en-US", {
-    calendar,
-    day: "numeric",
-    month: "numeric",
-    numberingSystem: "latn",
-    timeZone: "UTC",
-    year: "numeric",
-  }).formatToParts(wall);
+  if (/^(?:coptic|ethio)/u.test(calendar)) {
+    return { calendar, monthsPerYear: 13 };
+  }
 
   return {
-    day: readPart(parts, "day"),
-    month: readPart(parts, "month"),
-    year: readPart(parts, "year"),
+    calendar: /^(?:indian|islamic|persian)/u.test(calendar) ? calendar : "gregory",
+    monthsPerYear: 12,
   };
 };
 
 /**
- * Whole months of a calendar from one wall clock to a later one, and `anchor`, the wall clock that
- * many months after the first. As in `addMonths`, a shorter month ends on its last day.
+ * Whole months from one wall clock to a later one, and `anchor`, the wall clock the last of them
+ * ends on. A month too short for the starting day ends on its last day.
  */
-const measureMonths = (from: number, to: number, calendar: string) => {
-  const perYear = monthsPerYear.get(calendar);
-
-  if (perYear === undefined) {
-    const months = countMonths(from, to);
-
-    return { months, anchor: addMonths(from, months), perYear: 12 };
-  }
-
-  const start = toCalendarDate(from, calendar);
-  const end = toCalendarDate(to, calendar);
-  const endDay = Math.floor(to / DAY) * DAY;
+const countMonths = (from: number, to: number, locale: string) => {
+  const { calendar, monthsPerYear } = getMonthCalendar(locale);
+  const read = (wall: number) => readDate(wall, { calendar, timeZone: "UTC" });
+  const start = read(from);
+  const end = read(to);
+  const midnight = Math.floor(to / DAY) * DAY;
   const timeOfDay = from - Math.floor(from / DAY) * DAY;
-  const months = (end.year - start.year) * perYear + end.month - start.month;
-  const lastDay = toCalendarDate(endDay + DAY, calendar).day === 1;
-  const day = lastDay ? Math.min(start.day, end.day) : start.day;
-  const anchor = endDay + (day - end.day) * DAY + timeOfDay;
+  const endsMonth = read(midnight + DAY)("day") === 1;
+  const day = endsMonth ? Math.min(start("day"), end("day")) : start("day");
 
-  if (anchor <= to) {
-    return { anchor, months, perYear };
-  }
+  let months = (end("year") - start("year")) * monthsPerYear + end("month") - start("month");
+  let anchor = midnight + (day - end("day")) * DAY + timeOfDay;
 
   // This month's turn has not come, so the last whole month ended in the one before.
-  const previousEnd = endDay - end.day * DAY;
-  const { day: length } = toCalendarDate(previousEnd, calendar);
+  if (anchor > to) {
+    const previous = midnight - end("day") * DAY;
+    const length = read(previous)("day");
 
-  return {
-    anchor: previousEnd + (Math.min(start.day, length) - length) * DAY + timeOfDay,
-    months: months - 1,
-    perYear,
-  };
+    months -= 1;
+    anchor = previous + (Math.min(start("day"), length) - length) * DAY + timeOfDay;
+  }
+
+  return { anchor, months, monthsPerYear };
 };
 
-/** Where a distance is counted: the zone its days turn over in, and the calendar of its months. */
-interface Reckoning {
-  timeZone: string | undefined;
-  calendar: string;
-}
+/** Past time counts the whole seconds that have gone, time to come every started one. */
+const toWholeSeconds = (difference: number): number =>
+  // The absolute value keeps now itself from becoming `-0`.
+  (difference > 0 ? Math.ceil(difference / SECOND) : Math.floor(Math.abs(difference) / SECOND)) *
+  SECOND;
 
-const toDurationParts = (
-  from: Date,
-  to: Date,
-  elapsed: number,
-  { calendar, timeZone }: Reckoning,
+/** At most `maxUnits` neighbouring calendar units from the largest, without the zero ones. */
+const measureDuration = (
+  date: Date,
+  now: Date,
+  maxUnits: number,
+  { locale, timeZone }: Place,
 ): DurationPart[] => {
-  let rest = elapsed;
+  const span = toWholeSeconds(date.getTime() - now.getTime());
+  let rest = span;
   let years = 0;
   let months = 0;
 
   // From a day on, count on the calendar: months differ in length and some days are not 24 hours.
-  if (elapsed >= DAY) {
-    const [start = 0, end = 0] = [toWallClock(from, timeZone), toWallClock(to, timeZone)].toSorted(
+  if (span >= DAY) {
+    const [start = 0, end = 0] = [toWallClock(now, timeZone), toWallClock(date, timeZone)].toSorted(
       (a, b) => a - b,
     );
 
     // The calendar distance is the elapsed one plus whatever the clocks were moved in between.
-    const moved = end - start - Math.abs(to.getTime() - from.getTime());
-    const until = start + elapsed + moved;
+    const until = end + span - Math.abs(date.getTime() - now.getTime());
+    const whole = countMonths(start, until, locale);
 
-    const whole = measureMonths(start, until, calendar);
-
-    years = Math.floor(whole.months / whole.perYear);
-    months = whole.months % whole.perYear;
+    years = Math.floor(whole.months / whole.monthsPerYear);
+    months = whole.months % whole.monthsPerYear;
     rest = until - whole.anchor;
   }
 
   const days = Math.floor(rest / DAY);
 
-  return [
+  const units: DurationPart[] = [
     { unit: "year", value: years },
     { unit: "month", value: months },
     { unit: "week", value: Math.floor(days / 7) },
@@ -346,42 +268,64 @@ const toDurationParts = (
     { unit: "minute", value: Math.floor((rest % HOUR) / MINUTE) },
     { unit: "second", value: Math.floor((rest % MINUTE) / SECOND) },
   ];
+
+  return (
+    units
+      // With nothing above zero, the index is -1, which keeps the seconds.
+      .slice(units.findIndex((part) => part.value > 0))
+      .slice(0, Math.max(1, Math.floor(maxUnits)))
+      .filter((part, index) => index === 0 || part.value > 0)
+  );
 };
 
-/** Past time counts whole seconds that have gone; time still to come counts every started one. */
-const roundSpan = (difference: number): number =>
-  // The absolute value keeps now itself from becoming `-0`, which `Intl` writes as the future.
-  (difference > 0 ? Math.ceil(difference / SECOND) : Math.floor(Math.abs(difference) / SECOND)) *
-  SECOND;
-
-/** How often a duration is checked, by the smallest unit it has room for. Others: hourly. */
-const steps: Partial<Record<RelativeTimeUnit, number>> = { minute: MINUTE, second: SECOND };
-
-const measureDuration = (date: Date, now: Date, maxUnits: number, reckoning: Reckoning) => {
+/** The one unit relative text is written in, and how many of it. */
+const measureUnit = (date: Date, now: Date, { locale, timeZone }: Place): DurationPart => {
   const difference = date.getTime() - now.getTime();
-  const future = difference > 0;
-  const span = roundSpan(difference);
-  const all = toDurationParts(now, date, span, reckoning);
-  const first = all.findIndex((part) => part.value > 0);
-  const start = first === -1 ? all.length - 1 : first;
-  const slots = all.slice(start, start + Math.max(1, Math.floor(maxUnits)));
-  const parts = slots.filter((part, index) => index === 0 || part.value > 0);
+  const seconds = toWholeSeconds(difference) / SECOND;
 
-  // The text changes with the smallest unit it has room for. Days and longer are checked hourly.
-  const smallest = slots.at(-1)?.unit;
-  const step = (smallest && steps[smallest]) ?? HOUR;
+  if (seconds < 60) {
+    return { unit: "second", value: seconds };
+  }
 
-  const nextChange = future
-    ? date.getTime() - (Math.floor(span / step) * step - SECOND)
-    : date.getTime() + (Math.floor(-difference / step) + 1) * step;
+  if (seconds < 3600) {
+    return { unit: "minute", value: Math.floor(seconds / 60) };
+  }
 
-  return { future, nextChange, parts, span };
+  // From an hour, time to come counts every started minute, so "in 2 hours" holds for a minute.
+  const round = difference > 0 ? Math.ceil : Math.floor;
+  const hours = Math.floor(round(Math.abs(difference) / MINUTE) / 60);
+
+  if (hours < 24) {
+    return { unit: "hour", value: hours };
+  }
+
+  const [start = 0, end = 0] = [toWallClock(now, timeZone), toWallClock(date, timeZone)]
+    .map((wall) => Math.floor(wall / DAY) * DAY)
+    .toSorted((a, b) => a - b);
+
+  const days = (end - start) / DAY;
+
+  // A 25 hour day can hold 24 hours and no calendar day.
+  if (days === 0) {
+    return { unit: "hour", value: hours };
+  }
+
+  const { months, monthsPerYear } = countMonths(start, end, locale);
+
+  if (months >= monthsPerYear) {
+    return { unit: "year", value: Math.floor(months / monthsPerYear) };
+  }
+
+  if (months >= 1) {
+    return { unit: "month", value: months };
+  }
+
+  return days >= 7 ? { unit: "week", value: Math.floor(days / 7) } : { unit: "day", value: days };
 };
 
 /**
- * The distance between two moments as calendar units, largest first: at most `maxUnits`
- * neighbouring units, without the ones that are zero. Months and years are those of the calendar
- * of `locale`.
+ * The distance between two moments as calendar units, largest first. Months and years are those of
+ * the calendar of `locale`.
  */
 const getDurationParts = (
   from: RelativeTimeInput,
@@ -395,101 +339,12 @@ const getDurationParts = (
   const start = parseRelativeTimeDate(from);
   const end = parseRelativeTimeDate(to);
 
-  if (!start || !end) {
-    return [];
-  }
-
-  const calendar = getCalendar(resolveLocale(locale));
-
-  return measureDuration(end, start, maxUnits, { calendar, timeZone }).parts;
+  return start && end
+    ? measureDuration(end, start, maxUnits, { locale: resolveLocale(locale), timeZone })
+    : [];
 };
 
-const formatDuration = (parts: DurationPart[], locale: string, style: RelativeTimeStyle) =>
-  listFormatter(locale, { style, type: "unit" }).format(
-    parts.map(({ unit, value }) =>
-      numberFormatter(locale, { unit, style: "unit", unitDisplay: style }).format(Math.abs(value)),
-    ),
-  );
-
-const isEnglish = (locale: string) => new Intl.Locale(locale).language === "en";
-
-/** The single unit a distance is written in, and how many of it, without a sign. */
-const measureUnit = (date: Date, now: Date, { calendar, timeZone }: Reckoning) => {
-  const difference = date.getTime() - now.getTime();
-  const future = difference > 0;
-  const elapsed = Math.abs(difference);
-  const seconds = roundSpan(difference) / SECOND;
-  const at = date.getTime();
-
-  // Time to come drops to the next count once less than the step below it is left, so a deadline
-  // two hours out reads "in 2 hours" while one 61 minutes out reads "in 1 hour".
-  if (seconds < 60) {
-    return {
-      count: seconds,
-      nextChange: future ? at - (seconds - 1) * SECOND : at + (seconds + 1) * SECOND,
-      unit: "second" as const,
-    };
-  }
-
-  const minutes = Math.floor(seconds / 60);
-
-  if (minutes < 60) {
-    return {
-      count: minutes,
-      nextChange: future ? at - (minutes * 60 - 1) * SECOND : at + (minutes + 1) * MINUTE,
-      unit: "minute" as const,
-    };
-  }
-
-  const hours = Math.floor(
-    (future ? Math.ceil(elapsed / MINUTE) : Math.floor(elapsed / MINUTE)) / 60,
-  );
-
-  // One hour to come is reached from the minutes, which forgive only a second.
-  const hourly = {
-    count: hours,
-    nextChange: future
-      ? at - Math.max((hours * 60 - 1) * MINUTE, HOUR - SECOND)
-      : at + (hours + 1) * HOUR,
-    unit: "hour" as const,
-  };
-
-  if (hours < 24) {
-    return hourly;
-  }
-
-  const [start = 0, end = 0] = [toWallClock(now, timeZone), toWallClock(date, timeZone)]
-    .map((wall) => Math.floor(wall / DAY) * DAY)
-    .toSorted((a, b) => a - b);
-
-  const days = (end - start) / DAY;
-
-  // A 25 hour day can hold a whole 24 hours, which no calendar unit describes.
-  if (days === 0) {
-    return hourly;
-  }
-
-  const { months, perYear } = measureMonths(start, end, calendar);
-  const nextQuarter = (Math.floor(now.getTime() / QUARTER_HOUR) + 1) * QUARTER_HOUR;
-  const hoursAgain = at - (24 * 60 - 1) * MINUTE;
-
-  const nextChange =
-    future && hoursAgain > now.getTime() ? Math.min(nextQuarter, hoursAgain) : nextQuarter;
-
-  if (months >= perYear) {
-    return { nextChange, count: Math.floor(months / perYear), unit: "year" as const };
-  }
-
-  if (months >= 1) {
-    return { nextChange, count: months, unit: "month" as const };
-  }
-
-  return days >= 7
-    ? { nextChange, count: Math.floor(days / 7), unit: "week" as const }
-    : { nextChange, count: days, unit: "day" as const };
-};
-
-/** The date and time of a moment in a locale and zone, or `""` for an invalid date. */
+/** A moment's date and time, by default a medium date and a short time. `""` when invalid. */
 const formatDateTime = (
   input: RelativeTimeInput,
   { locale, timeZone, dateFormat }: DateTimeOptions = {},
@@ -537,174 +392,141 @@ const getTimeZoneOffset = (input: RelativeTimeInput, timeZone?: string): number 
   return date ? Math.round((toWallClock(date, timeZone) - date.getTime()) / MINUTE) : Number.NaN;
 };
 
-/** The options of one description, with their defaults, and what it is measured between. */
-interface Measurement {
+const isEnglish = (locale: string) => new Intl.Locale(locale).language === "en";
+
+const formatDuration = (
+  parts: DurationPart[],
+  locale: string,
+  style: Intl.RelativeTimeFormatStyle,
+) =>
+  listFormatter(locale, { style, type: "unit" }).format(
+    parts.map(({ unit, value }) =>
+      numberFormatter(locale, { unit, style: "unit", unitDisplay: style }).format(value),
+    ),
+  );
+
+/** One description to make, with the locale resolved. */
+interface Task {
   date: Date;
   now: Date;
   locale: string;
   options: RelativeTimeOptions;
-  tense: "past" | "future";
 }
 
-/** What a description says, apart from the date and language it says it in. */
-type Description = Pick<
-  RelativeTimeResult,
-  "absolute" | "nextChange" | "tense" | "text" | "unit" | "value"
->;
+const nothing: DurationPart = { unit: "second", value: 0 };
 
-const signed = (count: number, tense: "past" | "future") =>
+const getTense = ({ date, now }: Task) => (date > now ? "future" : "past");
+
+const toDescription = (
+  task: Task,
+  text: string,
+  { unit, value }: DurationPart,
+  tense: RelativeTimeTense = getTense(task),
+) => ({
+  text,
+  unit,
+  tense,
+  absolute: false,
   // `|| 0` turns `-0` into `0`.
-  (tense === "future" ? count : -count) || 0;
+  value: (getTense(task) === "future" ? value : -value) || 0,
+});
 
-const describeDuration = ({ date, now, locale, options, tense }: Measurement): Description => {
+const describeDuration = (task: Task) => {
+  const { date, now, locale, options } = task;
   const { formatStyle = "long", maxUnits = 1, timeZone } = options;
-  const reckoning = { calendar: getCalendar(locale), timeZone };
-  const { nextChange, parts, span } = measureDuration(date, now, maxUnits, reckoning);
-  const [first = { unit: "second" as const, value: 0 }] = parts;
+  const parts = measureDuration(date, now, maxUnits, { locale, timeZone });
+  const [first = nothing] = parts;
+  const text = formatDuration(parts, locale, formatStyle);
 
-  return {
-    nextChange,
-    absolute: false,
-    tense: span === 0 ? "present" : tense,
-    text: formatDuration(parts, locale, formatStyle),
-    unit: first.unit,
-    value: signed(first.value, tense),
-  };
+  return toDescription(task, text, first, first.value === 0 ? "present" : getTense(task));
 };
 
-const describeDate = (
-  { date, now, locale, options, tense }: Measurement,
-  limit: number,
-): Description => {
+const describeDate = (task: Task) => {
+  const { date, now, locale, options } = task;
   const { dateFormat = { dateStyle: "medium" }, timeZone } = options;
-  const { count, unit } = measureUnit(date, now, { calendar: getCalendar(locale), timeZone });
+  const text = formatDateTime(date, { dateFormat, locale, timeZone });
+  const unit = measureUnit(date, now, { locale, timeZone });
 
-  return {
-    tense,
-    unit,
-    absolute: true,
-    // A moment to come turns relative once it is near enough. A past one only moves further off.
-    nextChange: tense === "future" ? date.getTime() - limit : null,
-    text: formatDateTime(date, { dateFormat, locale, timeZone }),
-    value: signed(count, tense),
-  };
+  return { ...toDescription(task, text, unit), absolute: true };
 };
 
-const describePresent = ({ date, locale, options }: Measurement): Description => {
-  const { formatStyle = "long", labels, nowThreshold = 60, threshold } = options;
-  const leaves = date.getTime() + nowThreshold * SECOND;
+const describePresent = (task: Task) => {
+  const { locale, options } = task;
+  const { formatStyle = "long", labels } = options;
 
   const word = () =>
     isEnglish(locale)
       ? "just now"
       : relativeFormatter(locale, { numeric: "auto", style: formatStyle }).format(0, "second");
 
-  return {
-    absolute: false,
-    nextChange:
-      threshold === undefined ? leaves : Math.min(leaves, date.getTime() + threshold * SECOND + 1),
-    tense: "present",
-    text: labels?.now ?? word(),
-    unit: "second",
-    value: 0,
-  };
+  return toDescription(task, labels?.now ?? word(), nothing, "present");
 };
 
-/** The wrapping around a duration: the caller's, or English's own for several units. */
-const getTemplate = ({ locale, options, tense }: Measurement) => {
-  const own = options.labels?.[tense];
+const describeRelative = (task: Task) => {
+  const { date, now, locale, options } = task;
+  const { formatStyle = "long", labels, maxUnits = 1, numeric = "auto", timeZone } = options;
+  const place = { locale, timeZone };
+  const tense = getTense(task);
 
-  if (own || (options.maxUnits ?? 1) <= 1 || !isEnglish(locale)) {
-    return own;
-  }
+  const wrapEnglish = (duration: string) =>
+    tense === "future" ? `in ${duration}` : `${duration} ago`;
 
-  return (duration: string) => (tense === "future" ? `in ${duration}` : `${duration} ago`);
+  // `Intl` words one unit by itself. Several need wrapping, which only English has by default.
+  const wrap = labels?.[tense] ?? (maxUnits > 1 && isEnglish(locale) ? wrapEnglish : undefined);
+
+  const parts =
+    wrap && maxUnits > 1
+      ? measureDuration(date, now, maxUnits, place)
+      : [measureUnit(date, now, place)];
+
+  const [first = nothing] = parts;
+
+  const text = wrap
+    ? wrap(formatDuration(parts, locale, formatStyle))
+    : relativeFormatter(locale, {
+        // Only days are counted on the calendar, so only they may claim "yesterday".
+        numeric: first.unit === "day" ? numeric : "always",
+        style: formatStyle,
+      }).format(tense === "future" ? first.value : -first.value, first.unit);
+
+  return toDescription(task, text, first);
 };
 
-/** The count a relative text is written from, in one unit or several. */
-const measureText = (measurement: Measurement) => {
-  const { date, now, locale, options, tense } = measurement;
-  const { formatStyle = "long", maxUnits = 1, numeric = "auto", timeZone } = options;
-  const template = getTemplate(measurement);
-  const reckoning = { calendar: getCalendar(locale), timeZone };
-
-  if (template && maxUnits > 1) {
-    const { nextChange, parts } = measureDuration(date, now, maxUnits, reckoning);
-    const [first = { unit: "second" as const, value: 0 }] = parts;
-
-    return {
-      nextChange,
-      count: first.value,
-      text: template(formatDuration(parts, locale, formatStyle)),
-      unit: first.unit,
-    };
-  }
-
-  const { count, nextChange, unit } = measureUnit(date, now, reckoning);
-
-  const words = () =>
-    relativeFormatter(locale, {
-      // Only days are counted on the calendar, so only they may claim "yesterday". "Last year"
-      // for a distance of one year would often be wrong.
-      numeric: unit === "day" ? numeric : "always",
-      style: formatStyle,
-    }).format(tense === "future" ? count : -count, unit);
-
-  return {
-    count,
-    nextChange,
-    unit,
-    text: template
-      ? template(formatDuration([{ unit, value: count }], locale, formatStyle))
-      : words(),
-  };
-};
-
-const describeRelative = (measurement: Measurement): Description => {
-  const { date, now, options, tense } = measurement;
-  const { nowThreshold = 60, threshold } = options;
-  const { count, nextChange, text, unit } = measureText(measurement);
-  const boundaries = [nextChange];
-
-  // A moment to come turns into "just now" before it arrives; a past one crosses `threshold`.
-  if (tense === "future") {
-    boundaries.push(date.getTime() - nowThreshold * SECOND + 1);
-  } else if (threshold !== undefined) {
-    boundaries.push(date.getTime() + threshold * SECOND + 1);
-  }
-
-  return {
-    tense,
-    text,
-    unit,
-    absolute: false,
-    nextChange: Math.min(...boundaries.filter((time) => time > now.getTime())),
-    value: signed(count, tense),
-  };
-};
-
-const describe = (measurement: Measurement): Description => {
-  const { date, now, options } = measurement;
+const describe = (task: Task) => {
+  const { date, now, options } = task;
   const { format, nowThreshold = 60, threshold } = options;
-  const elapsed = Math.abs(date.getTime() - now.getTime());
+  const distance = Math.abs(date.getTime() - now.getTime());
 
   if (format === "duration") {
-    return describeDuration(measurement);
+    return describeDuration(task);
   }
 
-  if (threshold !== undefined && elapsed > threshold * SECOND) {
-    return describeDate(measurement, threshold * SECOND);
+  if (threshold !== undefined && distance > threshold * SECOND) {
+    return describeDate(task);
   }
 
-  return elapsed < nowThreshold * SECOND
-    ? describePresent(measurement)
-    : describeRelative(measurement);
+  return distance < nowThreshold * SECOND ? describePresent(task) : describeRelative(task);
 };
 
 /**
- * Describes how far a moment is from now, in the words of a locale. Returns `null` for an invalid
- * date.
+ * When to read the text again: each second for durations, several units and dates within an hour,
+ * and each minute otherwise. Counts change in step with the date, and days with the wall clock.
  */
+const getNextCheck = (difference: number, now: number, options: RelativeTimeOptions) => {
+  const { format, maxUnits = 1, nowThreshold = 60, threshold = Number.NaN } = options;
+
+  const everySecond =
+    format === "duration" || maxUnits > 1 || Math.abs(difference) <= HOUR + MINUTE;
+
+  const step = everySecond ? SECOND : MINUTE;
+  const steps = [difference, -now].map((offset) => ((offset % step) + step) % step || step);
+  // Just after a step: a moment to come turns "just now", and a past one crosses `threshold`.
+  const edges = [difference - nowThreshold * SECOND + 1, difference + threshold * SECOND + 1];
+
+  return now + Math.min(...steps, ...edges.filter((wait) => wait > 0));
+};
+
+/** How far a moment is from now, in the words of a locale. `null` for an invalid date. */
 const getRelativeTime = (
   input: RelativeTimeInput,
   options: RelativeTimeOptions = {},
@@ -717,13 +539,16 @@ const getRelativeTime = (
   }
 
   const locale = resolveLocale(options.locale);
-  const tense = date.getTime() > now.getTime() ? "future" : "past";
+  const description = describe({ date, locale, now, options });
+  // A past moment written as its date stays that way.
+  const final = description.absolute && date <= now;
 
   return {
-    ...describe({ date, locale, now, options, tense }),
+    ...description,
     date,
     direction: getTextDirection(locale),
     locale,
+    nextChange: final ? null : getNextCheck(date.getTime() - now.getTime(), now.getTime(), options),
   };
 };
 
@@ -746,13 +571,10 @@ export {
 export type {
   DateTimeOptions,
   DurationPart,
-  RelativeTimeFormat,
   RelativeTimeInput,
   RelativeTimeLabels,
-  RelativeTimeNumeric,
   RelativeTimeOptions,
   RelativeTimeResult,
-  RelativeTimeStyle,
   RelativeTimeTense,
   RelativeTimeUnit,
   TextDirection,

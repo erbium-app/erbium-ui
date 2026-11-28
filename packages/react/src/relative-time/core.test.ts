@@ -306,11 +306,22 @@ describe("threshold", () => {
   it("returns to relative text as a moment to come gets near", () => {
     const date = now + 8 * DAY;
 
-    expect(
-      getRelativeTime(date, { now, threshold: (7 * DAY) / SECOND, timeZone: "UTC" })?.nextChange,
-    ).toBe(date - 7 * DAY);
+    const read = (from: number) =>
+      getRelativeTime(date, { locale: "en", now: from, threshold: (7 * DAY) / SECOND });
+
+    expect([read(now)?.absolute, read(date - 7 * DAY)?.absolute]).toStrictEqual([true, false]);
+    // Not final: it is read again.
+    expect(read(now)?.nextChange).toBeGreaterThan(now);
   });
 });
+
+/** How long until the text of a moment `offset` from half past a second is read again. */
+const wait = (offset: number, options?: RelativeTimeOptions) => {
+  const from = now + SECOND / 2;
+  const settings = { locale: "en", now: from, timeZone: "UTC", ...options };
+
+  return (getRelativeTime(from + offset, settings)?.nextChange ?? 0) - from;
+};
 
 describe("next change", () => {
   const offsets = [
@@ -357,16 +368,20 @@ describe("next change", () => {
     expect(early).toStrictEqual([]);
   });
 
-  it("changes at the time it reports for counts below a day", () => {
-    for (const offset of [-30 * SECOND, -MINUTE, 90 * SECOND, 5 * MINUTE + 400, -HOUR]) {
-      const date = now + offset;
-      const settings = { locale: "en", nowThreshold: 0, timeZone: "UTC" };
-      const first = getRelativeTime(date, { ...settings, now });
+  it("is a second away near the date, and a minute away further off", () => {
+    expect([
+      wait(-5 * MINUTE) <= SECOND,
+      wait(-(3 * HOUR), { format: "duration" }) <= SECOND,
+      wait(-(3 * HOUR + 20 * SECOND)),
+    ]).toStrictEqual([true, true, 40 * SECOND]);
+  });
 
-      expect(formatRelativeTime(date, { ...settings, now: first?.nextChange ?? 0 })).not.toBe(
-        first?.text,
-      );
-    }
+  it("falls on midnight, where days turn over", () => {
+    const evening = Date.parse("2026-11-28T23:59:50Z");
+
+    expect(getRelativeTime(now - 3 * DAY + 45 * SECOND, { now: evening })?.nextChange).toBe(
+      Date.parse("2026-11-29T00:00:00Z"),
+    );
   });
 });
 

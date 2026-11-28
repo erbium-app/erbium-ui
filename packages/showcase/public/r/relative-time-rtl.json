@@ -3,7 +3,7 @@
   "name": "relative-time-rtl",
   "type": "registry:block",
   "title": "Relative Time: Right to left",
-  "description": "A Persian interface. The app sets the direction with `DirectionProvider` and `dir`, and one `RelativeTimeProvider` gives every time and card the same locale. Exact dates use the Persian calendar.",
+  "description": "A Persian interface: the app sets the direction, and one provider gives every time and card the same locale.",
   "registryDependencies": [
     "@erbium/direction",
     "@erbium/item",
@@ -12,7 +12,7 @@
   ],
   "files": [
     {
-      "content": "import { useState, useSyncExternalStore } from \"react\";\n\n/*\n * Dates for these examples, measured from when they appear. In an app the dates come from your\n * data, and this is not needed.\n */\n\nconst MINUTE = 60_000;\nconst HOUR = 60 * MINUTE;\nconst DAY = 24 * HOUR;\n\n/** A fixed moment for server rendering, so the server and the browser write the same HTML. */\nconst reference = Date.UTC(2026, 0, 15, 12);\n\nconst subscribe = () => () => {\n  // Whether the page has hydrated never changes back.\n};\n\nconst useDemoClock = () => {\n  // oxlint-disable-next-line react/hook-use-state -- the time is read once, when the example appears, and never replaced.\n  const [appeared] = useState(() => Date.now());\n\n  return useSyncExternalStore(\n    subscribe,\n    () => appeared,\n    () => reference,\n  );\n};\n\nexport { DAY, HOUR, MINUTE, useDemoClock };\n",
+      "content": "import { useState, useSyncExternalStore } from \"react\";\n\n/* Example dates count from when they appear. An app takes its dates from its data. */\n\nconst MINUTE = 60_000;\nconst HOUR = 60 * MINUTE;\nconst DAY = 24 * HOUR;\n\n/** A fixed moment for server rendering, so the server and the browser write the same HTML. */\nconst reference = Date.UTC(2026, 0, 15, 12);\n\nconst subscribe = () => () => {\n  // Whether the page has hydrated never changes back.\n};\n\nconst useDemoClock = () => {\n  // oxlint-disable-next-line react/hook-use-state -- the time is read once, when the example appears, and never replaced.\n  const [appeared] = useState(() => Date.now());\n\n  return useSyncExternalStore(\n    subscribe,\n    () => appeared,\n    () => reference,\n  );\n};\n\nexport { DAY, HOUR, MINUTE, useDemoClock };\n",
       "path": "src/relative-time/examples/use-demo-clock.ts",
       "target": "@components/showcase/relative-time/examples/use-demo-clock.ts",
       "type": "registry:component"
