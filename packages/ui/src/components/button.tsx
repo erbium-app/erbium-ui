@@ -1,11 +1,10 @@
 import * as React from "react";
 import { Button as ButtonPrimitive } from "@base-ui/react/button";
 import { useMergedRefs } from "@base-ui/utils/useMergedRefs";
-import { useHotkey } from "@tanstack/react-hotkeys";
+import { useFormatForAria, useHotkey } from "@tanstack/react-hotkeys";
 import type { RegisterableHotkey } from "@tanstack/react-hotkeys";
 import type { AnyRouter, RegisteredRouter } from "@tanstack/react-router";
 import type { VariantProps } from "class-variance-authority";
-import { toAriaKeyShortcuts, useHotkeyPlatform } from "../lib/hotkeys";
 import { skeletonBlock } from "../lib/skeleton-hints";
 import { cn } from "../lib/utils";
 import { buttonVariants } from "../lib/button-variants";
@@ -34,12 +33,13 @@ interface ButtonOwnProps extends VariantProps<typeof buttonVariants> {
   /**
    * A shortcut that clicks the button while it is mounted, enabled and not loading. While the
    * user holds one of its modifiers, a badge shows it above the button,
-   * unless a `ButtonShortcut` already labels it. Sets `aria-keyshortcuts` for chords.
+   * unless a `ButtonShortcut` already labels it. Sets `aria-keyshortcuts` while the
+   * shortcut can fire.
    */
   hotkey?: RegisterableHotkey;
 }
 
-type ButtonElementProps = ButtonPrimitive.Props &
+type ButtonProps = ButtonPrimitive.Props &
   NoTargetProps &
   ButtonOwnProps & {
     loading?: boolean;
@@ -57,6 +57,7 @@ const useButtonHotkey = (
   name: string | undefined,
 ) => {
   const ref = React.useRef<HTMLElement>(null);
+  const formatForAria = useFormatForAria();
 
   // Clicking the element runs the consumer's onClick, a form submit, or the link.
   useHotkey(
@@ -67,7 +68,8 @@ const useButtonHotkey = (
     { enabled, meta: name === undefined ? undefined : { name } },
   );
 
-  return ref;
+  // The formatter also announces keys that another control holds, so check this one is enabled.
+  return { ariaKeyShortcuts: enabled ? formatForAria(hotkey) : undefined, ref };
 };
 
 const hotkeyClassName =
@@ -82,37 +84,43 @@ const ButtonLink = ({
   hotkey,
   variant = "default",
   size = "default",
-  "aria-keyshortcuts": ariaKeyShortcuts,
   children,
-  ref,
   ...target
-}: ButtonLinkProps) => {
-  const platform = useHotkeyPlatform();
+}: ButtonLinkProps) => (
+  <TargetLink
+    data-slot="button"
+    data-size={size}
+    data-variant={variant}
+    className={cn(
+      buttonVariants({ size, variant }),
+      hotkey !== undefined && hotkeyClassName,
+      className,
+    )}
+    {...target}
+  >
+    {children}
+    {hotkey !== undefined && <KbdHint hotkey={hotkey} />}
+  </TargetLink>
+);
 
-  const hotkeyRef = useButtonHotkey(
-    hotkey,
-    !("disabled" in target && target.disabled === true),
-    target["aria-label"] ?? target.title,
+const HotkeyButtonLink = ({
+  "aria-keyshortcuts": ariaKeyShortcuts,
+  ref,
+  ...props
+}: ButtonLinkProps) => {
+  const binding = useButtonHotkey(
+    props.hotkey,
+    !("disabled" in props && props.disabled === true),
+    props["aria-label"] ?? props.title,
   );
 
   return (
-    <ButtonHotkeyContext.Provider value={hotkey}>
-      <TargetLink
-        data-slot="button"
-        data-size={size}
-        data-variant={variant}
-        aria-keyshortcuts={ariaKeyShortcuts ?? toAriaKeyShortcuts(hotkey, platform)}
-        className={cn(
-          buttonVariants({ size, variant }),
-          hotkey !== undefined && hotkeyClassName,
-          className,
-        )}
-        ref={useMergedRefs(ref, hotkeyRef)}
-        {...target}
-      >
-        {children}
-        {hotkey !== undefined && <KbdHint hotkey={hotkey} />}
-      </TargetLink>
+    <ButtonHotkeyContext.Provider value={props.hotkey}>
+      <ButtonLink
+        {...props}
+        aria-keyshortcuts={ariaKeyShortcuts ?? binding.ariaKeyShortcuts}
+        ref={useMergedRefs(ref, binding.ref)}
+      />
     </ButtonHotkeyContext.Provider>
   );
 };
@@ -127,53 +135,59 @@ const ButtonElement = ({
   variant = "default",
   size = "default",
   "aria-busy": ariaBusy,
-  "aria-keyshortcuts": ariaKeyShortcuts,
-  ref,
   ...props
-}: ButtonElementProps) => {
+}: ButtonProps) => {
   const iconOnly = size?.startsWith("icon") ?? false;
   const spinnerSize = size === null ? "default" : spinnerSizes[size];
-  const inactive = disabled === true || loading;
-  const platform = useHotkeyPlatform();
-  const buttonRef = useButtonHotkey(hotkey, !inactive, props["aria-label"] ?? props.title);
-  const mergedRef = useMergedRefs(ref, buttonRef);
 
   return (
-    <ButtonHotkeyContext.Provider value={hotkey}>
-      <ButtonPrimitive
-        data-slot="button"
-        {...skeletonBlock}
-        data-size={size}
-        data-variant={variant}
-        data-loading={loading ? "" : undefined}
-        aria-busy={loading || ariaBusy === true}
-        aria-keyshortcuts={ariaKeyShortcuts ?? toAriaKeyShortcuts(hotkey, platform)}
-        disabled={inactive}
-        focusableWhenDisabled={loading || focusableWhenDisabled === true}
-        className={cn(
-          buttonVariants({ size, variant }),
-          // KbdHint hides its badge when Base UI marks the anchor hidden.
-          hotkey !== undefined && hotkeyClassName,
-          className,
-        )}
-        ref={mergedRef}
-        {...props}
-      >
-        {loading && (
-          <Spinner
-            aria-hidden
-            data-icon={iconOnly ? undefined : "inline-start"}
-            size={spinnerSize}
-          />
-        )}
-        {loading && iconOnly ? null : children}
-        {hotkey !== undefined && <KbdHint hotkey={hotkey} />}
-      </ButtonPrimitive>
-    </ButtonHotkeyContext.Provider>
+    <ButtonPrimitive
+      data-slot="button"
+      {...skeletonBlock}
+      data-size={size}
+      data-variant={variant}
+      data-loading={loading ? "" : undefined}
+      aria-busy={loading || ariaBusy === true}
+      disabled={disabled === true || loading}
+      focusableWhenDisabled={loading || focusableWhenDisabled === true}
+      className={cn(
+        buttonVariants({ size, variant }),
+        // KbdHint hides its badge when Base UI marks the anchor hidden.
+        hotkey !== undefined && hotkeyClassName,
+        className,
+      )}
+      {...props}
+    >
+      {loading && (
+        <Spinner aria-hidden data-icon={iconOnly ? undefined : "inline-start"} size={spinnerSize} />
+      )}
+      {loading && iconOnly ? null : children}
+      {hotkey !== undefined && <KbdHint hotkey={hotkey} />}
+    </ButtonPrimitive>
   );
 };
 
-type ButtonProps = ButtonElementProps;
+const HotkeyButtonElement = ({
+  "aria-keyshortcuts": ariaKeyShortcuts,
+  ref,
+  ...props
+}: ButtonProps) => {
+  const binding = useButtonHotkey(
+    props.hotkey,
+    props.disabled !== true && props.loading !== true,
+    props["aria-label"] ?? props.title,
+  );
+
+  return (
+    <ButtonHotkeyContext.Provider value={props.hotkey}>
+      <ButtonElement
+        {...props}
+        aria-keyshortcuts={ariaKeyShortcuts ?? binding.ariaKeyShortcuts}
+        ref={useMergedRefs(ref, binding.ref)}
+      />
+    </ButtonHotkeyContext.Provider>
+  );
+};
 
 /**
  * A button. Given Router's link options it is a link that looks like a button: `to` names a
@@ -197,7 +211,15 @@ function Button<
 function Button(props: ButtonProps): React.ReactElement;
 
 function Button(props: ButtonProps | ButtonLinkProps) {
-  return hasLinkTarget(props) ? <ButtonLink {...props} /> : <ButtonElement {...props} />;
+  // Only a button given `hotkey` registers and follows shortcuts, so the others never re-render
+  // for them. Testing the prop's presence keeps the element mounted while its value comes and goes.
+  const bound = "hotkey" in props;
+
+  if (hasLinkTarget(props)) {
+    return bound ? <HotkeyButtonLink {...props} /> : <ButtonLink {...props} />;
+  }
+
+  return bound ? <HotkeyButtonElement {...props} /> : <ButtonElement {...props} />;
 }
 
 /** Labels a shortcut inside a button. Without `hotkey`, it labels the hotkey of its button. */

@@ -26,7 +26,31 @@ Displays a platform-aware shortcut. Pass the stored binding to `hotkey`; TanStac
 
 For any other action, register the behavior with `useHotkey` from `@tanstack/react-hotkeys` in the component that owns it, and display the same binding with `Kbd`. Components that ship shortcuts register them the same way: `SidebarProvider` toggles with `Mod+B`, and command palettes register `Mod+K` with `useHotkey`.
 
-A disabled button leaves its key to the browser, so a disabled `Mod+S` opens the browser's save dialog. Shortcuts without a modifier, such as `G` or `?`, need a user setting that turns them off ([WCAG 2.1.4](https://www.w3.org/WAI/WCAG22/Understanding/character-key-shortcuts.html)).
+A shortcut repeats while its keys are held. Pass `requireReset: true` for one that toggles something, as `SidebarProvider` does, so it runs once per press.
+
+A disabled button leaves its key to the browser, so a disabled `Mod+S` opens the browser's save dialog.
+
+## Announcing shortcuts
+
+`Button` and `SidebarTrigger` set `aria-keyshortcuts` themselves. On any other control that has a shortcut, set it with `useFormatForAria` from `@tanstack/react-hotkeys`. It resolves the platform and returns `undefined` while the shortcut cannot fire, so screen readers announce only working shortcuts.
+
+```tsx
+const formatForAria = useFormatForAria();
+
+<Toggle aria-label="Bold" aria-keyshortcuts={formatForAria("Mod+B")} />;
+```
+
+## Single-key shortcuts
+
+Shortcuts made of keys that type a character, alone or with `Shift`, such as `G`, `?`, or `["G", "H"]`, need a user setting that turns them off ([WCAG 2.1.4](https://www.w3.org/WAI/WCAG22/Understanding/character-key-shortcuts.html)). Bind the setting to `suspendCharacterKeys` on a provider at the root of the app:
+
+```tsx
+<HotkeysProvider suspendCharacterKeys={!settings.singleKeyShortcuts}>
+  <App />
+</HotkeysProvider>
+```
+
+While suspended, those shortcuts do not fire, their `KbdHint` stays hidden, and their buttons drop `aria-keyshortcuts`. Chords with `Control`, `Alt`, or `Meta`, keys such as `Escape`, and shortcuts targeted at one element keep working. A `Kbd` or `ButtonShortcut` label still shows, so hide it with the same setting.
 
 ## Shortcut hints
 

@@ -250,7 +250,6 @@
       ],
       "registryDependencies": [
         "@erbium/button-variants",
-        "@erbium/hotkeys",
         "@erbium/kbd",
         "@erbium/link",
         "@erbium/skeleton-hints",
@@ -335,6 +334,7 @@
       "description": "Erbium carousel component.",
       "dependencies": [
         "@base-ui/react",
+        "@tanstack/react-hotkeys",
         "class-variance-authority",
         "embla-carousel-react",
         "motion"
@@ -1122,20 +1122,6 @@
       ]
     },
     {
-      "name": "hotkeys",
-      "type": "registry:lib",
-      "title": "Hotkeys",
-      "description": "Erbium hotkeys lib.",
-      "dependencies": ["@tanstack/react-hotkeys"],
-      "files": [
-        {
-          "path": "src/lib/hotkeys.ts",
-          "target": "@lib/hotkeys.ts",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
       "name": "hover-card",
       "type": "registry:ui",
       "title": "Hover Card",
@@ -1238,7 +1224,6 @@
       "dependencies": ["@base-ui/react", "@tanstack/react-hotkeys"],
       "registryDependencies": [
         "@erbium/badge",
-        "@erbium/hotkeys",
         "@erbium/kbd-styles",
         "@erbium/skeleton-hints",
         "@erbium/utils"
@@ -1831,7 +1816,6 @@
       ],
       "registryDependencies": [
         "@erbium/button",
-        "@erbium/hotkeys",
         "@erbium/input",
         "@erbium/kbd",
         "@erbium/link",

@@ -21,7 +21,7 @@ import { Button } from "@erbium/ui/components/button";
 
 ## Keyboard shortcuts
 
-Pass `hotkey` to register a shortcut that clicks the button while it is mounted, enabled, and not loading. Clicking runs `onClick`, submits a form, or follows a rendered link, the same as a pointer press. The button sets `aria-keyshortcuts` for chords and shows the shortcut in a badge above itself while the user holds one of the shortcut's modifiers (see `KbdHint` for placement). Place a `ButtonShortcut` inside to label the shortcut permanently instead; it reads the button's `hotkey` when it has none of its own.
+Pass `hotkey` to register a shortcut that clicks the button while it is mounted, enabled, and not loading. Clicking runs `onClick`, submits a form, or follows a rendered link, the same as a pointer press. The button sets `aria-keyshortcuts` while the shortcut can fire, and shows the shortcut in a badge above itself while the user holds one of the shortcut's modifiers (see `KbdHint` for placement). Place a `ButtonShortcut` inside to label the shortcut permanently instead; it reads the button's `hotkey` when it has none of its own.
 
 ```tsx
 <Button hotkey="Mod+S" onClick={save}>
@@ -31,6 +31,8 @@ Pass `hotkey` to register a shortcut that clicks the button while it is mounted,
 ```
 
 The registration is named after `aria-label` or `title` for TanStack Hotkeys devtools and shortcut lists. While a modal dialog is open, shortcuts registered outside it pause, so a page button's shortcut cannot fire behind the dialog.
+
+A disabled or loading button, a paused or suspended shortcut, and a sequence such as `["G", "H"]` set no `aria-keyshortcuts`. The attribute appears once the shortcut registers in the browser, so server-rendered HTML does not carry it. To turn a shortcut on and off, keep the `hotkey` prop and pass `undefined`; adding or removing the prop itself remounts the button.
 
 ## Cursor
 

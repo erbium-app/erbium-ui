@@ -1,12 +1,11 @@
 import * as React from "react";
 import { mergeProps } from "@base-ui/react/merge-props";
 import { useRender } from "@base-ui/react/use-render";
-import { useHotkey } from "@tanstack/react-hotkeys";
+import { useFormatForAria, useHotkey } from "@tanstack/react-hotkeys";
 import type { AnyRouter, RegisteredRouter } from "@tanstack/react-router";
 import { cva } from "class-variance-authority";
 import type { VariantProps } from "class-variance-authority";
 import { useIsMobile } from "../hooks/use-is-mobile";
-import { toAriaKeyShortcuts, useHotkeyPlatform } from "../lib/hotkeys";
 import { cn } from "../lib/utils";
 import type { CSSVariableStyle } from "../lib/utils";
 import { Button } from "./button";
@@ -196,9 +195,11 @@ const SidebarProvider = ({
 
   // Toggle the sidebar with Mod+B (Cmd+B on macOS, Ctrl+B elsewhere).
   // `allow` keeps multiple providers from warning when several sidebars coexist.
+  // `requireReset` toggles once per press, so holding the keys does not flicker the sidebar.
   useHotkey(SIDEBAR_KEYBOARD_SHORTCUT, toggleSidebar, {
     conflictBehavior: "allow",
     meta: { name: "Toggle sidebar" },
+    requireReset: true,
   });
 
   // We add a state so that we can do data-state="expanded" or "collapsed".
@@ -259,7 +260,10 @@ const SidebarProvider = ({
 /* The mobile sheet suspends the provider's shortcut while it is open, so the sheet registers
    it again to close itself with the same keys. */
 const SidebarSheetHotkey = ({ onClose }: { onClose: () => void }) => {
-  useHotkey(SIDEBAR_KEYBOARD_SHORTCUT, onClose, { meta: { name: "Close sidebar" } });
+  useHotkey(SIDEBAR_KEYBOARD_SHORTCUT, onClose, {
+    meta: { name: "Close sidebar" },
+    requireReset: true,
+  });
 
   return null;
 };
@@ -384,13 +388,13 @@ const SidebarTrigger = ({
 }: React.ComponentProps<typeof Button> & { side?: "left" | "right" }) => {
   const { toggleSidebar, isMobile, open, openMobile } = useSidebar();
   const isOpen = isMobile ? openMobile : open;
-  const platform = useHotkeyPlatform();
+  const formatForAria = useFormatForAria();
 
   // The provider registers the shortcut, so the trigger only announces and reveals it.
   return (
     <Button
       aria-expanded={isOpen}
-      aria-keyshortcuts={toAriaKeyShortcuts(SIDEBAR_KEYBOARD_SHORTCUT, platform)}
+      aria-keyshortcuts={formatForAria(SIDEBAR_KEYBOARD_SHORTCUT)}
       data-slot="sidebar-trigger"
       variant="ghost"
       size="icon-sm"

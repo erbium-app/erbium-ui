@@ -28,7 +28,7 @@ const commandGroups = [
 // The open dialog suspends the page's hotkeys, so the toggle shortcut is registered
 // again inside it to close it.
 const ClosePaletteHotkey = ({ onClose }: { onClose: () => void }) => {
-  useHotkey("Mod+K", onClose);
+  useHotkey("Mod+K", onClose, { requireReset: true });
 
   return null;
 };
@@ -47,6 +47,7 @@ export default function CommandBasicExample() {
     {
       conflictBehavior: "allow",
       ignoreInputs: true,
+      requireReset: true,
     },
   );
 

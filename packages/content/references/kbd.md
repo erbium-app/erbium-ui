@@ -5,4 +5,5 @@ TanStack Hotkeys supplies platform detection, keyboard shortcut formatting, and 
 - [TanStack Hotkeys](https://tanstack.com/hotkeys/latest/docs/reference)
 - [useHotkey](https://tanstack.com/hotkeys/latest/docs/framework/react/reference/functions/useHotkey)
 - [Hotkey hints](https://tanstack.com/hotkeys/latest/docs/framework/react/guides/hotkey-hints)
+- [Accessible shortcuts](https://tanstack.com/hotkeys/latest/docs/framework/react/guides/accessibility)
 - [Formatting and display](https://tanstack.com/hotkeys/latest/docs/framework/react/guides/formatting-display)

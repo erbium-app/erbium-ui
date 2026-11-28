@@ -1,8 +1,7 @@
 import * as React from "react";
 import { Tooltip as TooltipPrimitive } from "@base-ui/react/tooltip";
-import { normalizeHotkey, useFormatForDisplay, useHotkeyHint } from "@tanstack/react-hotkeys";
+import { useFormatForDisplay, useHotkeyHint } from "@tanstack/react-hotkeys";
 import type { DisplayHotkey, RegisterableHotkey } from "@tanstack/react-hotkeys";
-import { useHotkeyPlatform } from "../lib/hotkeys";
 import { kbdClassName } from "../lib/kbd-styles";
 import { skeletonBlock } from "../lib/skeleton-hints";
 import { cn } from "../lib/utils";
@@ -13,16 +12,16 @@ type KbdProps = React.ComponentProps<"kbd"> & {
   useSymbols?: boolean;
 };
 
-const isShortcutText = (value: React.ReactNode): value is string => typeof value === "string";
+const isShortcutText = (value: React.ReactNode): value is DisplayHotkey & string =>
+  typeof value === "string";
 
 const Kbd = ({ className, hotkey, useSymbols = true, children, ...props }: KbdProps) => {
-  const platform = useHotkeyPlatform();
   // Fills in the provider's platform and, in Chromium, the user's keyboard layout, so a
   // physical binding such as `[KeyW]` reads `Z` on an AZERTY keyboard.
   const formatForDisplay = useFormatForDisplay();
 
-  const binding =
-    hotkey ?? (isShortcutText(children) ? normalizeHotkey(children, platform) : undefined);
+  // Text children are a shortcut too: the formatter normalizes either one.
+  const binding = hotkey ?? (isShortcutText(children) ? children : undefined);
 
   return (
     <kbd
@@ -32,7 +31,7 @@ const Kbd = ({ className, hotkey, useSymbols = true, children, ...props }: KbdPr
       className={cn(kbdClassName, className)}
       {...props}
     >
-      {binding === undefined ? children : formatForDisplay(binding, { platform, useSymbols })}
+      {binding === undefined ? children : formatForDisplay(binding, { useSymbols })}
     </kbd>
   );
 };

@@ -159,7 +159,7 @@ To toggle the sidebar, `SidebarProvider` registers the `Mod+B` shortcut through 
 const SIDEBAR_KEYBOARD_SHORTCUT = "Mod+B";
 ```
 
-The provider wires the shortcut up with `useHotkey` from `@tanstack/react-hotkeys`, so the binding adapts to the platform and cleans itself up on unmount. `SidebarTrigger` announces it with `aria-keyshortcuts` and shows a hint badge while the user holds the modifier. The shortcut pauses while a modal dialog or sheet is open.
+The provider wires the shortcut up with `useHotkey` from `@tanstack/react-hotkeys`, so the binding adapts to the platform and cleans itself up on unmount. It toggles once per press, even while the keys are held. `SidebarTrigger` announces it with `aria-keyshortcuts` and shows a hint badge while the user holds the modifier. The shortcut pauses while a modal dialog or sheet is open.
 
 ## Sidebar
 

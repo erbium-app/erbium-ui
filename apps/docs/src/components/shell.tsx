@@ -183,7 +183,7 @@ const searchGroups = navigationGroups.map((group) => ({
 // The dialog suspends the page's hotkeys while it is open, so the shortcut that opened
 // it is registered again inside it to close it.
 const CloseSearchHotkey = ({ onClose }: { onClose: () => void }) => {
-  useHotkey("Mod+K", onClose);
+  useHotkey("Mod+K", onClose, { requireReset: true });
 
   return null;
 };
@@ -249,9 +249,13 @@ const Search = ({
  */
 export const Shell = ({ children }: { children: ReactNode }) => {
   const [searchOpen, setSearchOpen] = useState(false);
-  useHotkey("Mod+K", () => {
-    setSearchOpen((open) => !open);
-  });
+  useHotkey(
+    "Mod+K",
+    () => {
+      setSearchOpen((open) => !open);
+    },
+    { requireReset: true },
+  );
 
   const openSearch = () => {
     setSearchOpen(true);

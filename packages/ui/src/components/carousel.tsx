@@ -1,5 +1,6 @@
 import { mergeProps } from "@base-ui/react/merge-props";
 import { useRender } from "@base-ui/react/use-render";
+import { matchesKeyboardEvent } from "@tanstack/react-hotkeys";
 import { cva } from "class-variance-authority";
 import useEmblaCarousel from "embla-carousel-react";
 import { useMotionValue } from "motion/react";
@@ -192,8 +193,8 @@ const Carousel = ({
 
   const options = React.useMemo(
     () => ({
-      align,
       axis: orientation === "horizontal" ? ("x" as const) : ("y" as const),
+      align,
       direction,
       dragFree,
       loop,
@@ -367,8 +368,10 @@ const Carousel = ({
     };
   }, [api]);
 
-  // A native listener keeps the section free of interaction handlers; it runs
-  // after the consumer's `onKeyDown`, which can opt out with preventDefault().
+  // A native listener keeps the section free of interaction handlers. It runs before React's
+  // `onKeyDown`, so opt out with preventDefault() in `onKeyDownCapture`. Not `useHotkeys`: for
+  // React it listens on the document, and a dialog or sheet around the carousel stops arrow
+  // keys before they get there.
   const handleKeyDown = React.useEffectEvent((event: KeyboardEvent) => {
     if (event.defaultPrevented || (event.target && isEditableTarget(event.target))) {
       return;
@@ -379,13 +382,14 @@ const Carousel = ({
     const nextKey = orientation === "horizontal" ? forward : "ArrowDown";
     const previousKey = orientation === "horizontal" ? backward : "ArrowUp";
 
-    if (event.key === nextKey) {
+    // Modifiers must match too, so chords such as Alt+ArrowLeft (Back) stay the browser's.
+    if (matchesKeyboardEvent(event, nextKey)) {
       actions.next("keyboard");
-    } else if (event.key === previousKey) {
+    } else if (matchesKeyboardEvent(event, previousKey)) {
       actions.previous("keyboard");
-    } else if (event.key === "Home") {
+    } else if (matchesKeyboardEvent(event, "Home")) {
       actions.goTo(0, "keyboard");
-    } else if (event.key === "End") {
+    } else if (matchesKeyboardEvent(event, "End")) {
       actions.goTo(snapshot.count - 1, "keyboard");
     } else {
       return;
@@ -504,6 +508,7 @@ const CarouselSlide = ({ className, render, ...props }: CarouselSlideProps) => {
   const { state } = useCarouselInternal();
 
   return useRender({
+    render,
     defaultTagName: "div",
     props: mergeProps<"div">(
       {
@@ -518,7 +523,6 @@ const CarouselSlide = ({ className, render, ...props }: CarouselSlideProps) => {
       },
       props,
     ),
-    render,
     state: { orientation: state.orientation },
   });
 };
@@ -679,6 +683,7 @@ const CarouselIndicator = ({
       {...props}
     >
       {Array.from({ length: state.count }, (_, index) => (
+        // oxlint-disable-next-line react-doctor/no-array-index-as-key -- a dot is a scroll position; its index is its identity.
         <StepIndicatorItem key={index} index={index} label={`Go to slide ${index + 1}`} />
       ))}
     </StepIndicator>
@@ -796,14 +801,14 @@ const CarouselAutoplay = ({
 
   // Each slide gets the full delay; a move by anyone restarts the clock.
   useAutoplayProgress({
+    held,
+    progress,
     count: state.count,
     duration: delay,
-    held,
     onAdvance: (index) => {
       actions.goTo(index, "autoplay");
     },
     playing: state.playing,
-    progress,
     value: state.value,
   });
 
