@@ -4,7 +4,7 @@
   "type": "registry:item",
   "title": "Questionnaire stories",
   "description": "All questionnaire variants as portable React CSF stories.",
-  "dependencies": ["@shadcn/react@^0.3.1", "effect@4.1.6"],
+  "dependencies": ["@shadcn/react@^0.3.1", "effect@4.1.7"],
   "devDependencies": ["@storybook/react@^10.6.1"],
   "registryDependencies": [
     "@erbium/button",

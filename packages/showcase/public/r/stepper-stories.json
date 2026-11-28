@@ -4,7 +4,7 @@
   "type": "registry:item",
   "title": "Stepper stories",
   "description": "All stepper variants as portable React CSF stories.",
-  "dependencies": ["@erbium-ui/react@workspace:*", "effect@4.1.6"],
+  "dependencies": ["@erbium-ui/react@workspace:*", "effect@4.1.7"],
   "devDependencies": ["@storybook/react@^10.6.1"],
   "registryDependencies": [
     "@erbium/button",
